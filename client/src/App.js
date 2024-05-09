@@ -3,11 +3,12 @@ import './App.css';
 
 function App() {
   return (
+<<<<<<< HEAD
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit1 <code>src/App.js</code> and save to reload.
         </p>
         <h1></h1>
         
@@ -17,10 +18,13 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React1
         </a>
       </header>
     </div>
+=======
+ <></>
+>>>>>>> release
   );
 }
 
