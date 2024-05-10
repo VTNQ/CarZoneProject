@@ -1,28 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import FormLayout from './Components/Admin/Layout/Form';
+import Menu from './Components/Menu/Menu';
 function App() {
   return (
-<<<<<<< HEAD
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit1 <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React1
-        </a>
-      </header>
-    </div>
-=======
- <></>
->>>>>>> release
+    <Router>
+      <Routes>
+        <Route path='/layoutAdmin' element={<FormLayout/>}/>
+        <Route path='/Menu' element={<Menu/>}/>
+      </Routes>
+    </Router>
   );
 }
 
