@@ -260,7 +260,7 @@ return(
                                             </div>
                                         </div>
                                         <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid">
-                                            
+                                            <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column"></div>
                                         </div>
                                     </div>
                                 </div>

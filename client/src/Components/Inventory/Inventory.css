@@ -96,6 +96,14 @@ select:not([multiple]):not([size]) {
 .templaza-ap-archive-view span.switcher_btn:first-child{
     margin-right: 10px;
 }
+@media (min-width: 1200px) {
+    .uk-grid+.uk-grid, .uk-grid>.uk-grid-margin, *+.uk-grid-margin {
+        margin-top: 40px;
+    }
+}
+.templazaFadeInUp{
+    
+}
 .templaza-ap-archive-view span.switcher_btn{
 border: 1px solid #eeeeee;
 cursor: pointer;
