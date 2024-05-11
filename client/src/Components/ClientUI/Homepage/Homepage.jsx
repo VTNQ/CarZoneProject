@@ -106,10 +106,11 @@ export const Homepage = () => {
                         <img className='img-slider' src={homepage} alt="" />
                         <div className='absolute container-mini'>
                                 <h1 className='text-card'>${card.title}</h1>
+                                ndjvbm
                         </div>
                         </div>
                         <div className='absolute top-[60%] bg-green-500 w-full h-[150px]'>
-                            
+
                         </div>
                     </div>
                 ))}
