@@ -44,7 +44,7 @@
     position: relative;
 }
 #templaza-sticky-header {
-    background-color: #ffffff !important;
+    background-color: inherit !important;
 }
 @keyframes slideInDown{
     0%{
