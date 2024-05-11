@@ -1,0 +1,142 @@
+.tz_custom_1715377415089181 {
+    margin-top: 100px !important;
+    margin-bottom: 100px !important;
+}
+div.templaza-sidebar .widget:last-child {
+    margin-bottom: 0 !important;
+}
+div.templaza-sidebar .widget {
+    padding: 30px;
+    margin-bottom: 40px;
+    background: #fff;
+    border-radius: 0;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+.templaza-filter-closed {
+    cursor: pointer;
+    z-index: 9;
+}
+ label.search-label {
+    margin-bottom: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #151515;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0 0 15px;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+    font-size: 16px;
+}
+.templaza-sidebar .advanced-product-search-form label.search-label {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 0 35px;
+}
+.advanced-product-search-form label.search-label {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #151515;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0 0 15px;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+}
+.templaza-sidebar .advanced-product-search-form .uk-form-controls select, .templaza-sidebar .advanced-product-search-form .uk-form-controls input[type="text"], .templaza-sidebar .advanced-product-search-form .uk-form-controls input[type="search"], .templaza-sidebar .advanced-product-search-form .uk-form-controls input[type="number"] {
+    background-color: #fff;
+    margin-top: 0;
+    height: 50px;
+}
+select:not([multiple]):not([size]) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2212%201%209%206%2015%206%22%20%2F%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2212%2013%209%208%2015%208%22%20%2F%3E%0A%3C%2Fsvg%3E%0A);
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+    height: 50px;
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 30px 0 15px;
+    color: #555555;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+    transition-property: color, background-color, border;
+    text-transform: none;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 0;
+    font-size: 0.9em;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+@media (min-width: 640px) {
+    .uk-flex-right\@s {
+        justify-content: flex-end;
+    }
+}
+.templaza-ap-archive-view label {
+    font-weight: 600;
+    color: #222222;
+    font-size: 14px;
+    margin-right: 20px;
+}
+.templaza-ap-archive-view span.switcher_btn:first-child{
+    margin-right: 10px;
+}
+.templaza-ap-archive-view span.switcher_btn{
+border: 1px solid #eeeeee;
+cursor: pointer;
+width: 50px;
+height: 50px;
+display: flex;
+justify-content: center;
+align-items: center;
+transition:  all ease 0.5s;
+}
+.templaza-ap-archive-view span.switcher_btn:hover, .templaza-ap-archive-view span.switcher_btn.uk-active {
+    background: #ff5400;
+    color: #ffffff;
+}
+.templaza-ap-archive-view .templaza-ap-archive-sort {
+    margin-right: 20px;
+}
+.uk-container{
+    max-width: 1400px;
+}
+.templaza-ap-archive-view h3 {
+    font-size: 16px;
+    color: #222222;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.templaza-ap-archive-view {
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 25px;
+}
+label.search-label::after {
+    content: "";
+    width: 60px;
+    position: absolute;
+    height: 1px;
+    bottom: -1px;
+    left: 0vh;
+    /* top: 59vh; */
+    background: #ff5400;
+}
+.templaza-sidebar .advanced-product-search-form .ap-search-item {
+    margin-bottom: 20px;
+}

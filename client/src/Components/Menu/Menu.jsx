@@ -83,9 +83,9 @@ function Menu() {
                                                         </ul>
                                                     </div>
                                                     <div className="header-icon-wrap uk-flex ">
-                                                        <div className="header-search uk-position-relative header-icon" onClick={ShowOpen}>
+                                                        <div className="header-search uk-position-relative header-icon" >
                                                             <span>
-                                                                <i className="fas fa-search"></i>
+                                                                <i className="fas fa-search" onClick={ShowOpen}></i>
                                                             </span>
                                                             {Active == true && (
                                                                 <form className="searchform active">
