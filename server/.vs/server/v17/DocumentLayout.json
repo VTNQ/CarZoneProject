@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\CarZoneProject\\server\\",
+  "WorkspaceRootPath": "C:\\Users\\votan\\OneDrive\\M\u00E1y t\u00EDnh\\CarZoneProject\\server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5DB3A473-7BF4-41D2-8B41-E364295090CA}|server.csproj|d:\\carzoneproject\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DB3A473-7BF4-41D2-8B41-E364295090CA}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{756BB899-A856-49AE-8CFC-3015E4B5E0D7}|server.csproj|c:\\users\\votan\\onedrive\\m\u00E1y t\u00EDnh\\carzoneproject\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{756BB899-A856-49AE-8CFC-3015E4B5E0D7}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,40 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{131369f2-062d-44a2-8671-91ff31efb4f4}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\votan\\OneDrive\\M\u00E1y t\u00EDnh\\CarZoneProject\\server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Program.cs",
+              "ToolTip": "C:\\Users\\votan\\OneDrive\\M\u00E1y t\u00EDnh\\CarZoneProject\\server\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAaAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T11:18:39.34Z",
+              "WhenOpened": "2024-05-11T05:43:41.564Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
