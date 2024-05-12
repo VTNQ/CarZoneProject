@@ -45,7 +45,7 @@ function Contact() {
                             </div>
                         </div>
                     </section>
-                    <section id="templaza-section-1715290647884082" className="templaza-section tz_custom_1715290647884082">
+                    <section id="templaza-section-1715290647884082" style={{maxWidth:'1400px'}} className="templaza-section tz_custom_1715290647884082">
                         <div className="elementor elementor-14468">
                             <section className="elementor-section elementor-top-section elementor-element elementor-element-6e55c4d elementor-section-boxed elementor-section-height-default elementor-section-height-default">
                                 <div className="elementor-container elementor-column-gap-no">
