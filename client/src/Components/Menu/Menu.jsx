@@ -1,10 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Menu.css'
 function Menu() {
     const [Active, setActive] = useState(false);
     const ShowOpen = () => {
         setActive(!Active)
     }
+    const isInventoryPage = window.location.href === 'http://localhost:3000/Inventory';
+    const [backgroundColor,setbackgroundColor]=useState('transparent');
+    useEffect(() => {
+       
+        const isInventoryPage = window.location.href === 'http://localhost:3000/Inventory';
+
+   
+        if (isInventoryPage) {
+            setbackgroundColor('#fff');
+        }
+    }, []);
+    useEffect(() => {
+        const handleScroll = () => {
+            // Lấy chiều cao của cửa sổ trình duyệt
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            // Lấy chiều cao của toàn bộ tài liệu
+            const documentHeight = document.body.scrollHeight;
+            // Lấy vị trí cuộn hiện tại của trang
+            const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+            // Tính toán phần trăm cuộn
+            const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
+
+            // Kiểm tra nếu phần trăm cuộn lớn hơn hoặc bằng 30%, đặt màu nền là #fff, ngược lại đặt là transparent
+            if (scrollPercentage >= 30 && !isInventoryPage) {
+                setbackgroundColor('#fff');
+            } else if(scrollPercentage<30 && !isInventoryPage) {
+                setbackgroundColor('transparent');
+            }else{
+                setbackgroundColor('#fff');
+            }
+        };
+
+        // Gắn sự kiện cuộn
+        window.addEventListener('scroll', handleScroll);
+
+        // Xóa sự kiện khi component unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    const customStyle = isInventoryPage ? { backgroundColor: '#fff' } : {};
     return (
         <>
             <section id="templaza-section-1715287020348770" className=" templaza-header-section header-absolute templaza-section tz_custom_1715287020348770">
@@ -23,8 +65,8 @@ function Menu() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </header>
-                                    <div id="templaza-sticky-header" className="templaza-header templaza-header-sticky header-sticky-desktop header-static-mobile header-static-tablet tz-sticky">
+                                    </header> 
+                                    <div id="templaza-sticky-header" className="templaza-header templaza-header-sticky header-sticky-desktop header-static-mobile header-static-tablet tz-sticky" style={{backgroundColor}}>
                                         <div className="templaza-sticky-inner megamenu-trigger-hover">
                                             <div className="uk-width uk-flex uk-flex-row uk-flex-between uk-flex-middle">
                                                 <div className="uk-flex uk-flex-left uk-hidden@m uk-flex-middle">
