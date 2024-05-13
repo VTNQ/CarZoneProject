@@ -7,6 +7,7 @@ import Inventory from './Components/Inventory/Inventory';
 import { Homepage } from './Components/ClientUI/Homepage/Homepage';
 import Menu from './Components/Menu/Menu';
 import DetailInventory from './Components/DetailInventory/DetailInventory';
+import AboutUs from './Components/AboutUs/AboutUs';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>
         <Route path='/DetailInventory' element={<DetailInventory/>}/>
+        <Route path='/AboutUs' element={<AboutUs/>}/>
       </Routes>
     </Router>
   );

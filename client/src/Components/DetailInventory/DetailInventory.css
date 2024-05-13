@@ -367,7 +367,15 @@ div.wpforms-container-full .wpforms-form .wpforms-field-label {
     text-transform: uppercase;
     margin: 0 0 40px 0 !important;
 }
-
+.ap-item.ap-item-style4 .ap-inner .ap-price-box span.ap-unit {
+    color: #ffffff;
+}
+.ap-item.ap-item-style4 .ap-price-box span.ap-unit {
+    padding-left: 4px;
+}
+.ap-item.ap-item-style4 .ap-inner .ap-price-box span {
+    display: flex;
+}
 #comments .comment-notes {
     margin-bottom: 20px;
 }

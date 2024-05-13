@@ -22,6 +22,23 @@ function DetailInventory() {
 
         }
     }
+    const [open,setOpen]=useState(false)
+    const handleOpen=()=>{
+        setOpen(prevOpen => {
+            const newOpen = !prevOpen;
+            console.log(newOpen)
+            document.body.style.overflowY = newOpen ? 'hidden' : 'auto';
+            return newOpen;
+        });
+    }
+    const popupContentStyle = {
+        display: 'flex',
+        animation: 'fadeDown 0.5s ease-out',
+    };
+    const closepopup = {
+        display: 'none',
+        animation: 'fadeUp 0.5s ease-out', // Specify the animation properties
+    };
     const gotoNextSubRef = () => {
         if (slideSubRef.current) {
             const slickSlider = slideSubRef.current;
@@ -37,128 +54,128 @@ function DetailInventory() {
     const renderTabContent = () => {
         switch (ActiveTab) {
             case 'Overview':
-                return(
+                return (
                     <ul className="uk-switcher uk-margin-medium-top">
-                    <li className="uk-active" id="uk-tab-2">
-                        <p style={{ lineHeight: '1.7', color: '#555555', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px' }}>
-                            <strong style={{ color: "#555555", fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: 'bold', fontSize: '16px' }}>The seventh-generation BMW 3 Series was launched in India back in August 2019. The model is currently available in four trims that include 330i Sport, 320d Luxury Edition, 330i M Sport, and the M340i xDrive. Exterior highlights of the new BMW 3 Series include the signature kidney grille, LED headlamps, 17-inch alloy wheels.</strong>
-                        </p>
-                        <p style={{ lineHeight: '1.7', color: '#555555', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '14px' }}>This beautiful car benefits from the following equipment : AMG Carbon Fibre Trim; Reversing Camera; Blind Spot Assistant; Auto Dimming Interior & Exterior Mirrors; Electric Seats with Memory; AMG Performance Steering Wheel in Leather & Alcantara; AIRSCARF; Tyre Pressure Monitoring System; AMG Ride Control sports Suspension with Adjustable Damper System; Electric Folding Exterior Mirrors; COMAND APS with DVD Changer; Media Interface; Thermotronic Climate Control; Bi Xenon Headlamps; AMG Polished Alloy Wheels.</p>
-                        <div className="su-row">
-                            <div className="su-column su-column-size-1-2">
-                                <div className="su-column-inner su-u-clearfix su-u-trim">
-                                    <p></p>
-                                    <h4 style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.2em', textTransform: 'capitalize', fontWeight: '600' }}>Running costs</h4>
-                                    <p></p>
-                                    <div className="su-list" style={{ marginLeft: '0' }}>
+                        <li className="uk-active" id="uk-tab-2">
+                            <p style={{ lineHeight: '1.7', color: '#555555', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px' }}>
+                                <strong style={{ color: "#555555", fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: 'bold', fontSize: '16px' }}>The seventh-generation BMW 3 Series was launched in India back in August 2019. The model is currently available in four trims that include 330i Sport, 320d Luxury Edition, 330i M Sport, and the M340i xDrive. Exterior highlights of the new BMW 3 Series include the signature kidney grille, LED headlamps, 17-inch alloy wheels.</strong>
+                            </p>
+                            <p style={{ lineHeight: '1.7', color: '#555555', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '14px' }}>This beautiful car benefits from the following equipment : AMG Carbon Fibre Trim; Reversing Camera; Blind Spot Assistant; Auto Dimming Interior & Exterior Mirrors; Electric Seats with Memory; AMG Performance Steering Wheel in Leather & Alcantara; AIRSCARF; Tyre Pressure Monitoring System; AMG Ride Control sports Suspension with Adjustable Damper System; Electric Folding Exterior Mirrors; COMAND APS with DVD Changer; Media Interface; Thermotronic Climate Control; Bi Xenon Headlamps; AMG Polished Alloy Wheels.</p>
+                            <div className="su-row">
+                                <div className="su-column su-column-size-1-2">
+                                    <div className="su-column-inner su-u-clearfix su-u-trim">
                                         <p></p>
-                                        <ul style={{ marginLeft: '-19px' }}>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-                                                    18″ 5-Spoke Light-Alloy Wheels
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-                                                    4-Wheel Disc Brakes
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-                                                    ABS brakes
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-
-                                                    AM/FM radio: SiriusXM
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-
-                                                    Adaptive suspension
-                                                </div>
-                                            </li>
-                                            <p></p>
-                                            <p></p>
-                                        </ul>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div className="su-column su-column-size-1-2">
-                                <div className="su-column-inner su-u-clearfix su-u-trim">
-                                    <p></p>
-                                    <h4 style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.2em', textTransform: 'capitalize', fontWeight: '600' }}>Performance</h4>
-                                    <div className="su-list" style={{ marginLeft: '0' }}>
+                                        <h4 style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.2em', textTransform: 'capitalize', fontWeight: '600' }}>Running costs</h4>
                                         <p></p>
-                                        <ul style={{ marginLeft: '-19px' }}>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-                                                    Auto tilt-away steering wheel
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-                                                    Auto-dimming Rear-View mirror
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-                                                    Auto-dimming door mirrors
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-
-                                                    Auto-leveling suspension
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
-                                                <div className="su-list">
-
-                                                    Automatic temperature control
-                                                </div>
-                                            </li>
+                                        <div className="su-list" style={{ marginLeft: '0' }}>
                                             <p></p>
-                                            <p></p>
-                                        </ul>
+                                            <ul style={{ marginLeft: '-19px' }}>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+                                                        18″ 5-Spoke Light-Alloy Wheels
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+                                                        4-Wheel Disc Brakes
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+                                                        ABS brakes
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+
+                                                        AM/FM radio: SiriusXM
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+
+                                                        Adaptive suspension
+                                                    </div>
+                                                </li>
+                                                <p></p>
+                                                <p></p>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
+                                <div className="su-column su-column-size-1-2">
+                                    <div className="su-column-inner su-u-clearfix su-u-trim">
+                                        <p></p>
+                                        <h4 style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.2em', textTransform: 'capitalize', fontWeight: '600' }}>Performance</h4>
+                                        <div className="su-list" style={{ marginLeft: '0' }}>
+                                            <p></p>
+                                            <ul style={{ marginLeft: '-19px' }}>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+                                                        Auto tilt-away steering wheel
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+                                                        Auto-dimming Rear-View mirror
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+                                                        Auto-dimming door mirrors
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+
+                                                        Auto-leveling suspension
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i className="fa fa-check-square-o" style={{ color: '#ff5400' }}></i>
+                                                    <div className="su-list">
+
+                                                        Automatic temperature control
+                                                    </div>
+                                                </li>
+                                                <p></p>
+                                                <p></p>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>  
+                        </li>
+                    </ul>
                 )
-                case 'Featured':
-                    return(
-                        <ul className="uk-switcher uk-margin-medium-top">
-                            <li id="uk-tab-4">
-                               <h4 className="body-h2 css-1128h8c et3p2gv0" style={{fontSize:'1.22em',lineHeight:'1.2em',fontFamily:'Montserrat, Arial, Helvetica, sans-serif'}}>
+            case 'Featured':
+                return (
+                    <ul className="uk-switcher uk-margin-medium-top">
+                        <li id="uk-tab-4">
+                            <h4 className="body-h2 css-1128h8c et3p2gv0" style={{ fontSize: '1.22em', lineHeight: '1.2em', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>
                                 <strong>EV Motor, Power, and Performance</strong>
-                               </h4>
-                               <p style={{lineHeight:'1.7',fontFamily:'Inter, Arial, Helvetica, sans-serif',fontWeight:'400',fontSize:'16px',color:'#555555'}}>A steer-by-wire system is standard, and Lexus has confirmed that a yoke-style steering wheel will be offered as an option; a regular circular wheel will be standard, so if you’re not ready for a yoke you’ll be able to opt out. The steer-by-wire system takes getting used to but once we got the hang of it, it proved to be beneficial for handling. When we get a chance to test the RZ at our test track, we’ll update this story with results.</p>
-                               <h4 className="body-h2 css-1128h8c et3p2gv0" style={{fontSize:'1.22em',lineHeight:'1.2em',fontFamily:'Montserrat, Arial, Helvetica, sans-serif'}}>
+                            </h4>
+                            <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>A steer-by-wire system is standard, and Lexus has confirmed that a yoke-style steering wheel will be offered as an option; a regular circular wheel will be standard, so if you’re not ready for a yoke you’ll be able to opt out. The steer-by-wire system takes getting used to but once we got the hang of it, it proved to be beneficial for handling. When we get a chance to test the RZ at our test track, we’ll update this story with results.</p>
+                            <h4 className="body-h2 css-1128h8c et3p2gv0" style={{ fontSize: '1.22em', lineHeight: '1.2em', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>
                                 <strong>Range, Charging, and Battery Life</strong>
-                               </h4>
-                               <p style={{lineHeight:'1.7',fontFamily:'Inter, Arial, Helvetica, sans-serif',fontWeight:'400',fontSize:'16px',color:'#555555'}}>The RZ450 will use the same 65.6-kWh battery pack as the bZ4X and Solterra, which should deliver around 225 miles of driving range per charge, according to Lexus. A 6.6-kW onboard charger is weaker than many rivals and the RZ’s DC fast-charging capabilities are limited to 150-kW connections. A simplicity-focused interior design in the RZ’s interior has removed many buttons and switches from the dashboard and doors and relocated those things to the large infotainment display. Similar approaches have been employed in EV models from Tesla and Polestar, with varying results. Either way, the RZ’s cabin looks spacious for a small crossover and quite upscale, with most surfaces wrapped with faux suede or synthetic leather.</p>
-                               <div className="su-row">
+                            </h4>
+                            <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>The RZ450 will use the same 65.6-kWh battery pack as the bZ4X and Solterra, which should deliver around 225 miles of driving range per charge, according to Lexus. A 6.6-kW onboard charger is weaker than many rivals and the RZ’s DC fast-charging capabilities are limited to 150-kW connections. A simplicity-focused interior design in the RZ’s interior has removed many buttons and switches from the dashboard and doors and relocated those things to the large infotainment display. Similar approaches have been employed in EV models from Tesla and Polestar, with varying results. Either way, the RZ’s cabin looks spacious for a small crossover and quite upscale, with most surfaces wrapped with faux suede or synthetic leather.</p>
+                            <div className="su-row">
                                 <div className="su-column su-column-size-1-2">
                                     <div className="su-column-inner su-u-clearfix su-u-trim">
                                         <h4 style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.2em', textTransform: 'capitalize', fontWeight: '600' }}>Engine</h4>
                                         <ol>
-                                            <li> Engine Type 
+                                            <li> Engine Type
                                                 <strong>4.6L Gas V8</strong>
                                             </li>
                                             <li>  Horsepower
@@ -182,10 +199,10 @@ function DetailInventory() {
                                             <li>  Wheelbase
                                                 <strong>116.3 in.</strong>
                                             </li>
-                                            <li>  Height 
+                                            <li>  Height
                                                 <strong>55.8 in.</strong>
                                             </li>
-                                           
+
                                         </ol>
                                     </div>
                                 </div>
@@ -193,7 +210,7 @@ function DetailInventory() {
                                     <div className="su-column-inner su-u-clearfix su-u-trim">
                                         <h4 style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.2em', textTransform: 'capitalize', fontWeight: '600' }}>Wheels</h4>
                                         <ol>
-                                            <li> Tires 
+                                            <li> Tires
                                                 <strong>P275/45HR18</strong>
                                             </li>
                                             <li>  Rim Size
@@ -220,57 +237,57 @@ function DetailInventory() {
                                             <li>   Rear Headroom/ Legroom
                                                 <strong>36.4 in. / 32.2 in.</strong>
                                             </li>
-                                           
+
                                         </ol>
                                     </div>
                                 </div>
-                               </div>
-                            </li>
-                        </ul>
-                    )
-                    case'Request':
-                    return(
-                        <ul className="uk-switcher uk-margin-medium-top">
-                            <li id="uk-tab-6">
-                                <div className="su-gmap su-u-responsive-media-yes">
+                            </div>
+                        </li>
+                    </ul>
+                )
+            case 'Request':
+                return (
+                    <ul className="uk-switcher uk-margin-medium-top">
+                        <li id="uk-tab-6">
+                            <div className="su-gmap su-u-responsive-media-yes">
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1485195313026!2d106.71160187480542!3d10.806689089343907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529ed00409f09%3A0x11f7708a5c77d777!2zQXB0ZWNoIENvbXB1dGVyIEVkdWNhdGlvbiAtIEjhu4cgVGjhu5FuZyDEkMOgbyB04bqhbyBM4bqtcCBUcsOsbmggVmnDqm4gUXXhu5FjIHThur8gQXB0ZWNo!5e1!3m2!1svi!2s!4v1715393973056!5m2!1svi!2s" width="600" height="450" style={mapstyles} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                                <div className="wpforms-container wpforms-container-full" id="wpforms-10201">
-                                    <form action="" className="wpforms-validate wpforms-form wpforms-ajax-form">
-                                        <div className="wpforms-field-container">
-                                            <div id="wpforms-10201-field_1-container" className="wpforms-field wpforms-field-text wpforms-one-half wpforms-first">
-                                                <label htmlFor="" className="wpforms-field-label">Your Name
+                            </div>
+                            <div className="wpforms-container wpforms-container-full" id="wpforms-10201">
+                                <form action="" className="wpforms-validate wpforms-form wpforms-ajax-form">
+                                    <div className="wpforms-field-container">
+                                        <div id="wpforms-10201-field_1-container" className="wpforms-field wpforms-field-text wpforms-one-half wpforms-first">
+                                            <label htmlFor="" className="wpforms-field-label">Your Name
                                                 <span className="wpforms-required-label">*</span>
-                                                 </label>
+                                            </label>
                                             <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                            </div>
-                                            <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{marginLeft:'5px'}}>
-                                                <label htmlFor="" className="wpforms-field-label">Your Email
-                                                <span className="wpforms-required-label">*</span>
-                                                 </label>
-                                            <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                            </div>
-                                            <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{marginLeft:'5px',width:'100%'}}>
-                                                <label htmlFor="" className="wpforms-field-label">Subject
-                                               
-                                                 </label>
-                                            <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                            </div>
-                                            <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{marginLeft:'5px',width:'100%'}}>
-                                                <label htmlFor="" className="wpforms-field-label">Message
-                                               
-                                                 </label>
-                                            <textarea  id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{  color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
-                                            </div>
                                         </div>
-                                        <div className="wpforms-submit-container">
+                                        <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px' }}>
+                                            <label htmlFor="" className="wpforms-field-label">Your Email
+                                                <span className="wpforms-required-label">*</span>
+                                            </label>
+                                            <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+                                        </div>
+                                        <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px', width: '100%' }}>
+                                            <label htmlFor="" className="wpforms-field-label">Subject
+
+                                            </label>
+                                            <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+                                        </div>
+                                        <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px', width: '100%' }}>
+                                            <label htmlFor="" className="wpforms-field-label">Message
+
+                                            </label>
+                                            <textarea id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
+                                        </div>
+                                    </div>
+                                    <div className="wpforms-submit-container">
                                         <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Send Message</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
-                    )
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                )
         }
     }
     const goToPrev = () => {
@@ -297,11 +314,11 @@ function DetailInventory() {
         }
 
     };
-    const [ActiveTab,setActiveTab]=useState('Overview');
+    const [ActiveTab, setActiveTab] = useState('Overview');
     const handleTabChange = (tabID) => {
         setActiveTab(tabID);
     }
-    
+
     const handleThumbnailClick = (index) => {
         if (sliderRef.current) {
             sliderRef.current.slickGoTo(index);
@@ -328,7 +345,7 @@ function DetailInventory() {
     }
     const settingSlide = {
         dots: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -337,6 +354,7 @@ function DetailInventory() {
     }
 
     return (
+        <>
         <div className="templaza-content">
             <div className="templaza-layout templaza-layout-wide">
                 <div className="templaza-wrapper">
@@ -471,52 +489,52 @@ function DetailInventory() {
                                                     </div>
                                                     <div className="ap-single-box1 ap-single-content" style={{ height: ActiveTab === 'Overview' ? '22%' : ActiveTab === 'Featured' ? '40%' : '55%' }}>
                                                         <ul className="uk-tab">
-                                                            <li className={`${ActiveTab=='Overview'?'uk-active':''}`} onClick={() => handleTabChange("Overview")}>
-                                                                <a  id="uk-tab-1" style={{ textDecoration: "none" }}> Vehicle Overview </a>
+                                                            <li className={`${ActiveTab == 'Overview' ? 'uk-active' : ''}`} onClick={() => handleTabChange("Overview")}>
+                                                                <a id="uk-tab-1" style={{ textDecoration: "none" }}> Vehicle Overview </a>
                                                             </li>
-                                                            <li className={`${ActiveTab=='Featured'?'uk-active':''}`} onClick={() => handleTabChange("Featured")}>
-                                                                <a  style={{ textDecoration: "none" }}> Features & Options </a>
+                                                            <li className={`${ActiveTab == 'Featured' ? 'uk-active' : ''}`} onClick={() => handleTabChange("Featured")}>
+                                                                <a style={{ textDecoration: "none" }}> Features & Options </a>
                                                             </li>
-                                                            <li className={`${ActiveTab=='Request'?'uk-active':''}`} onClick={() => handleTabChange("Request")}>
-                                                                <a  style={{ textDecoration: "none" }}>  Request information  </a>
+                                                            <li className={`${ActiveTab == 'Request' ? 'uk-active' : ''}`} onClick={() => handleTabChange("Request")}>
+                                                                <a style={{ textDecoration: "none" }}>  Request information  </a>
                                                             </li>
                                                         </ul>
                                                         {renderTabContent()}
                                                     </div>
                                                     <div className="templaza-single-comment ap-single-box1">
-                                                    <div id="comments" className="comments-area templaza-comment-form ">
-                                                        <div className="CommentForm">
-                                                            <div id="respond" className="comment-respond">
-                                                                <h3 id="reply-title" className="comment-reply-title box-title" style={{fontFamily:'Montserrat, Arial, Helvetica, sans-serif',fontWeight:'700',color:'#222222'}}>
-                                                                Leave a Comment 
-                                                                </h3>
-                                                                <form action="" id="commentform">
-                                                                    <p className="comment-notes" style={{lineHeight:'1.7',fontFamily:'Inter, Arial, Helvetica, sans-serif',fontWeight:'400',fontSize:'16px',color:'#555555'}}>
-                                                                    <span id="email-notes">Your email address will not be published.
-                                                                    <span className="required-field-message">
-                                                                    Required fields are marked 
-                                                                    <span className="required">*</span>
-                                                                    </span>
-                                                                    </span>
-                                                                    </p>
-                                                                    <div className="comment-form-comment">
-                                                                    <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
-                                                                    </div>
-                                                                    <div className="content-form uk-child-width-1-2@s uk-grid-small uk-grid">
-                                                                        <div className="comment-form-author uk-first-column" style={{width:'50%'}}>
-                                                                        <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+                                                        <div id="comments" className="comments-area templaza-comment-form ">
+                                                            <div className="CommentForm">
+                                                                <div id="respond" className="comment-respond">
+                                                                    <h3 id="reply-title" className="comment-reply-title box-title" style={{ fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontWeight: '700', color: '#222222' }}>
+                                                                        Leave a Comment
+                                                                    </h3>
+                                                                    <form action="" id="commentform">
+                                                                        <p className="comment-notes" style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>
+                                                                            <span id="email-notes">Your email address will not be published.
+                                                                                <span className="required-field-message">
+                                                                                    Required fields are marked
+                                                                                    <span className="required">*</span>
+                                                                                </span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div className="comment-form-comment">
+                                                                            <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
                                                                         </div>
-                                                                        <div className="comment-form-author uk-first-column" style={{width:'50%'}}>
-                                                                        <input type="email" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Email" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%',marginLeft:'3px' }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="wpforms-submit-container" style={{marginTop:"10px"}}>
-                                                                                <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Post Comment</button>
+                                                                        <div className="content-form uk-child-width-1-2@s uk-grid-small uk-grid">
+                                                                            <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
+                                                                                <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
                                                                             </div>
-                                                                </form>
+                                                                            <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
+                                                                                <input type="email" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Email" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', marginLeft: '3px' }} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="wpforms-submit-container" style={{ marginTop: "10px" }}>
+                                                                            <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Post Comment</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                                 <div className="uk-width-1-3@m ap-templaza-sidebar uk-visible@m">
@@ -755,7 +773,254 @@ function DetailInventory() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+                                            <div className="ap-related-product uk-margin-large-top">
+                                                <h3 className="box-title">
+                                                    Related Products
+                                                </h3>
+                                                <div className="uk-slider">
+                                                    <div className="uk-position-relative">
+                                                    <Slider {...settingSlide} >
+                                                            <div className="ap-item ap-item-style4 templazaFadeInUp uk-slide-active uk-active">
+                                                                    <div className="ap-inner" style={{ width: '95%' }}>
+                                                                        <div className="ap-info">
+                                                                            <div className="uk-inline">
+                                                                                <div className="ap-ribbon rental Default">
+                                                                                    <span className="ap-ribbon-content"> For Rent </span>
+                                                                                </div>
+                                                                                <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
+                                                                                    <a href="">
+                                                                                        <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg" width={444} height={296} style={{ width: '444px', height: '296px' }} alt="" />
+                                                                                    </a>
+                                                                                    <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
+                                                                                        <a className="uk-icon-button" style={{textDecoration:'none'}}>
+                                                                                            <i className="fas fa-not-equal js-ap-icon" ></i>
+                                                                                        </a>
+                                                                                        <a className="uk-icon-button" style={{textDecoration:'none'}} onClick={handleOpen}>
+                                                                                            <i className="fas fa-eye" ></i>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
+                                                                                    <div className="ap-price-box">
+                                                                                        <span className="ap-field-label">Rental price</span>
+                                                                                        <span className="ap-price ap-price-rental uk-display-inline-block">$500</span>
+                                                                                        <span className="meta ap-unit"> / Week </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
+                                                                                <div className="ap-title-info">
+                                                                                    <h2 className="ap-title">
+                                                                                        <a style={{ color: '#222222', fontSize: '16px', fontWeight: '700', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>
+                                                                                            Hyundai Ioniq 7
+                                                                                        </a>
+                                                                                    </h2>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-desc">
+                                                                            <p style={{ lineHeight: '1.7', fontSize: '16px', wordWrap: 'break-word', color: '#555555' }}>Rip-snorting engine, bonkers acceleration, handling agile enough to trick you into thinking it's a sports car.</p>
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
+                                                                            <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        2015
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        19400
+                                                                                        <span className="custom-field-append">mi</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 42px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        Used
+
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="ap-item ap-item-style4 templazaFadeInUp uk-slide-active uk-active">
+                                                                    <div className="ap-inner" style={{ width: '95%' }}>
+                                                                        <div className="ap-info">
+                                                                            <div className="uk-inline">
+                                                                                <div className="ap-ribbon sale Default">
+                                                                                    <span className="ap-ribbon-content">  For Sale  </span>
+                                                                                </div>
+                                                                                <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
+                                                                                    <a href="">
+                                                                                        <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/hans-isaacson-MVzjpM1vgEY-unsplash2-768x512.jpg" width={444} height={296} style={{ width: '444px', height: '296px' }} alt="" />
+                                                                                    </a>
+                                                                                    <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
+                                                                                        <a className="uk-icon-button" style={{textDecoration:'none'}}>
+                                                                                            <i className="fas fa-not-equal js-ap-icon" ></i>
+                                                                                        </a>
+                                                                                        <a className="uk-icon-button" style={{textDecoration:'none'}} onClick={handleOpen}>
+                                                                                            <i className="fas fa-eye" ></i>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
+                                                                                    <div className="ap-price-box">
+                                                                                        <span className="ap-field-label">Rental price</span>
+                                                                                        <span className="ap-price ">
+                                                                                            <b></b>
+                                                                                            $34,500 &nbsp; </span>
+                                                                                        <span className="ap-price-msrp">
+                                                                                            <span>|&nbsp; MSRP: </span>
+                                                                                            $33,100
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
+                                                                                <div className="ap-title-info">
+                                                                                    <h2 className="ap-title">
+                                                                                        <a style={{ color: '#222222', fontSize: '16px', fontWeight: '700', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>
+                                                                                        BMW X4 M
+                                                                                        </a>
+                                                                                    </h2>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-desc">
+                                                                            <p style={{ lineHeight: '1.7', fontSize: '16px', wordWrap: 'break-word', color: '#555555' }}>Rip-snorting engine, bonkers acceleration, handling agile enough to trick you into thinking it's a sports car.</p>
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
+                                                                            <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        2015
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        19400
+                                                                                        <span className="custom-field-append">mi</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 26px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        Preowned
+
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="ap-item ap-item-style4 templazaFadeInUp uk-slide-active uk-active">
+                                                                    <div className="ap-inner" style={{ width: '95%' }}>
+                                                                        <div className="ap-info">
+                                                                            <div className="uk-inline">
+                                                                                <div className="ap-ribbon rental Default">
+                                                                                    <span className="ap-ribbon-content"> For Rent </span>
+                                                                                </div>
+                                                                                <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
+                                                                                    <a href="">
+                                                                                        <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg" width={444} height={296} style={{ width: '444px', height: '296px' }} alt="" />
+                                                                                    </a>
+                                                                                    <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
+                                                                                        <a className="uk-icon-button" style={{textDecoration:'none'}}>
+                                                                                            <i className="fas fa-not-equal js-ap-icon" ></i>
+                                                                                        </a>
+                                                                                        <a className="uk-icon-button" style={{textDecoration:'none'}} onClick={handleOpen}>
+                                                                                            <i className="fas fa-eye" ></i>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
+                                                                                    <div className="ap-price-box">
+                                                                                        <span className="ap-field-label">Rental price</span>
+                                                                                        <span className="ap-price ap-price-rental uk-display-inline-block">$80
+                                                                                        </span>
+                                                                                        <span className="meta ap-unit"> / Day </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
+                                                                                <div className="ap-title-info">
+                                                                                    <h2 className="ap-title">
+                                                                                        <a style={{ color: '#222222', fontSize: '16px', fontWeight: '700', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>
+                                                                                        Chevrolet Bolt EV
+                                                                                        </a>
+                                                                                    </h2>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-desc">
+                                                                            <p style={{ lineHeight: '1.7', fontSize: '16px', wordWrap: 'break-word', color: '#555555' }}>Rip-snorting engine, bonkers acceleration, handling agile enough to trick you into thinking it's a sports car.</p>
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
+                                                                            <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        2018
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        19400
+                                                                                        <span className="custom-field-append">mi</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 42px' }}>
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        New
+
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </Slider>
+                                                        <div className="uk-slider-container">
+                                                            <div className="templaza-ap-archive uk-position-relative uk-slider-items uk-child-width-1-1 uk-grid-medium uk-child-width-1-3@l uk-child-width-1-3@m uk-child-width-1-2@s uk-grid" style={{ transform: 'translate3d(0px, 0px, 0px)', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+                                                           
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -765,6 +1030,167 @@ function DetailInventory() {
                 </div>
             </div>
         </div>
+        <div id="ap-product-modal__quickview" style={open ? { ...closepopup, ...popupContentStyle } : closepopup} className={`uk-modal-container uk-modal ${open==true ? 'uk-flex' :''}  ${open==true ?'uk-open':''}`}>
+                <div className="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle uk-margin-auto-vertical">
+                    <button type="button" className="uk-modal-close-full uk-close-large uk-icon uk-close" onClick={handleOpen}>
+                    <i class="fas fa-window-close" style={{fontSize:'44px'}}></i>
+                    </button>
+                    <div className="uk-grid-collapse uk-width-1-1 uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+                        <div className="ap-quickview-media uk-cover-container uk-first-column">
+                            <a href="">
+                                <img width={1200} height={800} className="attachment-full size-full wp-post-image" style={{ objectFit: 'cover' }} src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash.jpg" alt="" />
+                                <canvas width={600} height={400}></canvas>
+                            </a>
+                            <a href="" className="product-more-infor uk-background-muted uk-text-center uk-position-bottom" style={{textDecoration:'none'}}>
+                                <span className="product-more-infor__text" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'15px',fontWeight:'500',color:'#fff'}}>
+                                More Product Info
+                                </span>
+                                <i className="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                        <div className="ap-quickview-content">
+                            <div className="uk-padding">
+                                <h2 className="ap-quickview-product_title entry-title">
+                                    <a href="" style={{ color: '#222222', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontWeight: 'bold', textTransform: 'uppercase', lineHeight: '1.2em', textDecoration: 'none' }}>911 Carrera</a>
+                                </h2>
+                                <div className="ap-price-box">
+                                    <span className="ap-field-label" style={{ color: '#555555' }}>Total Price</span>
+                                    <span className="ap-price">
+                                        <b> </b>
+                                        $98,000
+                                    </span>
+                                    <span className="ap-price-msrp" style={{ color: '#555555' }}>
+                                        <span style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', lineHeight: '1.0em' }}> MSRP:  </span>
+                                        $96,500
+                                    </span>
+                                </div>
+                                <div className="ap-quickview-excerpt">
+                                    <p style={{ lineHeight: '1.7', color: '#555555', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textDecoration: 'none' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
+                                </div>
+                                <div className="widget  ap-box ap-group ap-group-auto-specifications">
+                                    <div className="widget-content">
+                                        <h3 className="widget-title">
+                                            <span style={{ color: '#222222', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontWeight: 'bold', textTransform: 'uppercase', lineHeight: '1.2em' }}>Auto Specifications</span>
+                                        </h3>
+                                        <div className="ap-group-content">
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".................................................................................................................">
+                                                        BHP
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em ',color: '#555555'}}>
+                                                    195        </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill="..........................................................................................................">
+                                                    Motor size
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                250        </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".................................................................................................">
+                                                    Fuel Type
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                Biodiesel      </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill="......................................................................................">
+                                                    Number of doors
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                4 Doors      </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".......................................................................................................">
+                                                    Drivetrain
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                4WD     </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".......................................................................................................">
+                                                    Engine
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                9     </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".........................................................................................">
+                                                    Transmission
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                Automatic    </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill="...............................................................................................">
+                                                    Interior Color
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                Black    </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".......................................................................................................">
+                                                    Exterior Color
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                Red   </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".......................................................................................................">
+                                                    Condition   
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                new    </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill=".......................................................................................................">
+                                                    Mileage
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                25000  </div>
+                                            </div>
+                                            <div className="uk-grid-small uk-grid">
+                                                <div className="uk-width-expand uk-leader uk-first-column">
+                                                    <span className="uk-leader-fill" data-fill="..........................................................................................">
+                                                    Registration Date
+                                                    </span>
+                                                </div>
+                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
+                                                2022   </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+        
     )
 }
 export default DetailInventory;
