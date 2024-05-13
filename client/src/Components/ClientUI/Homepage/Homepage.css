@@ -147,3 +147,55 @@ color: #fff;
     height: 300px;
     object-fit: cover;
 }
+.title-section3{
+    color: #222222;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 24px;
+}
+.title1-section3{
+    margin-top: 22px;
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.title3-section3{
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 400;
+    
+}
+.numbercount{
+    color: #fff;
+    font-weight: bold;
+    font-size: 3.5rem;
+
+}
+.titleCount{
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.buttonSearch{
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.text-browse{
+    font-size: 2rem;
+    color: black;
+    font-weight: 600;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+.text-show{
+    font-size: 1.2rem;
+    color: #FF5500;
+    font-weight: 600;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
