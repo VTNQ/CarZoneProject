@@ -491,14 +491,14 @@ export const Homepage = () => {
         </div>
         <div className='section6 w-full h-[120vh] bg-pink-400'>
         <div className='con2'>
-                    <h1 className='text-featured1 '>auto world magazine</h1>
+                    <h1 className='text-featured'>auto world magazine</h1>
                     <div className='flex justify-center mt-3'>
                     <div className='vertical-x-parallel'>
                         <div className='line-x'></div>
                         <div className='line-x mt-1'></div>                   
                     </div>
                     </div>
-                    <h1 className='text-descr1 mt-4'>Hundreds of clients are thrilled by the service that we deliver and are happy to tell us. Read about what some have said about us here.</h1>
+                    <h1 className='text-descr mt-4'>Hundreds of clients are thrilled by the service that we deliver and are happy to tell us. Read about what some have said about us here.</h1>
 
                 </div>
         </div>
