@@ -8,9 +8,13 @@ import Menu from './Components/Menu/Menu';
 import DetailInventory from './Components/DetailInventory/DetailInventory';
 import AboutUs from './Components/AboutUs/AboutUs';
 import Footer from './Components/Footer/Footer';
+import DashboardEmployee from './Components/Employee/Dashboard/Dashboard';
+import CreateCustomer from './Components/Employee/Customer/AddCustomer';
+import ShowCustomer from './Components/Employee/Customer/ShowCustomer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
 import Layout from './Components/Admin/Layout/Layout';
+import Dashboard from "./Components/Employee/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -25,6 +29,12 @@ function App() {
         <Route path='/DetailInventory' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
+        <Route path='/Employee/'>
+          <Route index path="Dashboard" element={<DashboardEmployee/>}/>
+          <Route path='Show-Customer' element={<ShowCustomer/>}/>
+          <Route path='Create-Customer' element={<CreateCustomer/>}/>
+        </Route>
+
       </Routes>
     </Router>
   );
