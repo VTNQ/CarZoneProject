@@ -10,8 +10,8 @@ function HomePage(){
   const navigate = useNavigate();
 return(
     <>
-    <LayoutAdmin/>
-    <div class="container-fluid page-body-wrapper">
+  
+   
           
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
 <ul class="nav">
@@ -735,7 +735,7 @@ return(
 </footer>
 
         </div>
-    </div>
+   
     </>
 )
 }

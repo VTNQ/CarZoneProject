@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import '../assets/vendors/feather/feather.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/vendors/css/vendor.bundle.base.css';
@@ -10,8 +10,9 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation } from "react-router-dom";
+import HomePage from "../Home/Homepage";
 function LayoutAdmin() {
-  
+  const [Layout,setlayout]=useState('Home')
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -100,6 +101,11 @@ function LayoutAdmin() {
     </button>
   </div>
 </nav>
+<div className="container-fluid page-body-wrapper pt-0">
+{Layout=='Home' &&(
+  <HomePage/>
+)}
+</div>
 
         </>
     )
