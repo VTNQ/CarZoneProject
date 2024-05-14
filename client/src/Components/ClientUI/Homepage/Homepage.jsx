@@ -4,9 +4,31 @@ import { useEffect,useRef } from 'react'
 import Menu from '../../Menu/Menu'
 import homepage from '../../assets/images/homepage/homepage-bg.jpg'
 import homepage2 from '../../assets/images/homepage/homepage2-bg.jpg'
+import audiLogo from '../../assets/images/logo/audi-logo.png'
+import hondaLogo from '../../assets/images/logo/honda-logo.png'
+import mazdaLogo from '../../assets/images/logo/mazda-logo.png'
+import bmwLogo from '../../assets/images/logo/bmw-logo.png'
+import landLogo from '../../assets/images/logo/landrover-logo.png'
+import merLogo from '../../assets/images/logo/mer-logo.png'
+import fordLogo from '../../assets/images/logo/ford-logo.png'
+import lexusLogo from '../../assets/images/logo/lexus-logo.png'
+import toyotaLogo from '../../assets/images/logo/toyota-logo.png'
+
+
+import autoLogo from '../../assets/images/logo/auto.png'
+import minivanLogo from '../../assets/images/logo/minivan.png'
+import truckLogo from '../../assets/images/logo/truck.png'
+import beetleLogo from '../../assets/images/logo/beetles.png'
+import vanLogo from '../../assets/images/logo/van.png'
+import convertibleLogo from '../../assets/images/logo/convertible.png'
+import suvLogo from '../../assets/images/logo/suv.png'
+
+import eyeIcon from '../../assets/images/icons/eye-icon.png'
+
 import '../Homepage/Homepage.css'
 import car1 from '../../assets/images/cars/mercedes-benz.jpg'
 import Counter from '../../SubFeature/Counter'
+import TruncateText from '../../SubFeature/TruncateText'
 import Select from 'react-select';
 
 
@@ -17,23 +39,46 @@ export const Homepage = () => {
         { id: 3, title: "Card 3dcsdjcnskdc", description: "Description for Card 3" },
         { id: 4, title: "Card 4", description: "Description for Card 4" },
         { id: 5, title: "Card 5", description: "Description for Card 5" },
-        { id: 6, title: "Card 6", description: "Description for Card 5" },
-        
+        { id: 6, title: "Card 6", description: "Description for Card 5" },       
     ];
+    const blogs = [
+        {id: 1,author: "jony Doe", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 2,author: "Kyos kao", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 3,author: "Iha Kalia", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 4,author: "abcded", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        
+    ]
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const cardsPerSlide = 3; // Số card mỗi slide
-    const totalSlides = Math.ceil(cards.length / cardsPerSlide);
-
+    const totalCards = cards.length;
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex(prevIndex => (prevIndex + 1) % totalSlides);
+            setCurrentIndex(prevIndex => {
+                return (prevIndex + 1) % totalCards; // Luôn luôn quay lại đầu sau khi đạt tới card cuối
+            });
         }, 4000); // Change card every 4 seconds
 
         return () => clearInterval(interval);
-    }, [totalSlides]);
+    }, []);
+
+    const [currentIndex1, setCurrentIndex1] = useState(0);
+    const cardsPerSlide1 = 3; // Số card mỗi slide
+    const totalCards1 = blogs.length;
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex1(prevIndex => {
+                return (prevIndex + 1) % totalCards1; // Luôn luôn quay lại đầu sau khi đạt tới card cuối
+            });
+        }, 4000); // Change card every 4 seconds
+
+        return () => clearInterval(interval);
+    }, []);
 
     const handleDotClick = (index) => {
+        setCurrentIndex(index);
+    };
+    const handleDotClick1 = (index) => {
         setCurrentIndex(index);
     };
 
@@ -55,6 +100,9 @@ export const Homepage = () => {
           display: 'flex'
         }),
       };
+
+      const text = "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility.";
+
   return (
     
     <>
@@ -104,7 +152,7 @@ export const Homepage = () => {
             
         </div>
         <div className='section3 bg-pink-400 w-full h-[145vh] relative'>
-            <img className='h-[145vh] object-cover' src={homepage2} alt="" />
+            <img className='h-[145vh] object-cover' src={car1} alt="" />
             <div className='absolute h-[125vh] overlay inset-0  bg-black opacity-40 z-[1]' ></div>
             <div className='con1  w-full h-[100px] absolute top-[8%]'>
                 <div className='con2'>
@@ -121,7 +169,9 @@ export const Homepage = () => {
                 
             </div>
             <div className='slider absolute top-[22%] w-full pr-[10%] pl-[4%]'>
-            {cards.slice(currentIndex * cardsPerSlide, (currentIndex + 1) * cardsPerSlide).map(card => (
+            {cards.slice(currentIndex, currentIndex + cardsPerSlide).concat(
+        cards.slice(0, Math.max(0, cardsPerSlide - (cards.length - currentIndex)))
+    ).map(card => (
                     <div key={card.id} className="card">
                         <div className='relative'>
                         <img className='img-slider' src={car1} alt="" />
@@ -166,7 +216,7 @@ export const Homepage = () => {
                 ))}
             </div>
             <div className="dots absolute bottom-[20%] left-[50%]">
-                {[0, 1, 2].map((dotIndex) => (
+                {[0, 1, 2,3,4,5].map((dotIndex) => (
                     <span key={dotIndex} onClick={() => handleDotClick(dotIndex)}
                           className={currentIndex === dotIndex ? 'dot active' : 'dot'}></span>
                 ))}
@@ -185,8 +235,8 @@ export const Homepage = () => {
             <div className='absolute h-[20vh] top-[86.2%] overlay inset-0  opacity-30 z-[1]' style={{backgroundImage: 'linear-gradient(to top, #FF5400 70%, #222222 100%)'}}></div>
 
         </div>
-        <div className='section3.5 w-full h-[50vh] bg-white flex gap-3'>
-                    <div className='bg-pink-400 w-[50%] h-full px-10'>
+        <div className='section3.5 w-full h-[50vh]   bg-white flex gap-3'>
+                    <div className=' w-[50%] h-full pl-10 '>
                         <div className='flex mt-[70px] gap-3'>
                             <p className='text-browse'>Browse by make</p>
                             <p className='text-show'>/ Show all make</p>
@@ -196,37 +246,133 @@ export const Homepage = () => {
                         <div className='line-x mt-1'></div>                   
                     </div>
                     <div className='w-full h-full grid grid-cols-3 gap-2 mt-7'>
-                        <div className='w-full h-full bg-yellow-300'>
-                            <div className='flex gap-2'>
-                                <div className='bg-purple-400 w-[100px]'>
-                                    <img src={homepage2} alt="" />
+                        <div className='w-full h-full '>
+                            <div className='flex  gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={audiLogo} alt="" />
                                 </div>
-                                <p>dvbfj</p>
+                                <p className='nameLogo m-0'>Audi <b className='quantityCar '>(3)</b></p>
                             </div>
-                            <div className='flex'>
-                                <div className='bg-purple-400 w-[100px]'>
-                                    <img src={car1} alt="" />
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={hondaLogo} alt="" />
                                 </div>
-                                <p>dvbfj</p>
-                            </div>
-                            <div className='flex'>
-                                <div className='bg-purple-400 w-[100px]'>
-                                    <img src={homepage} alt="" />
+                                <p className='nameLogo m-0'>Honda <b className='quantityCar'>(3)</b></p>                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={mazdaLogo} alt="" />
                                 </div>
-                                <p>dvbfj</p>
+                                <p className='nameLogo m-0'>Mazda <b className='quantityCar'>(3)</b></p>                            </div>
+                           
+                        </div>
+                        <div className='w-full h-full '>
+                            <div className='flex  gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={bmwLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>BMW <b className='quantityCar '>(3)</b></p>
                             </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={landLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Land Rover <b className='quantityCar'>(3)</b></p>                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={merLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Mercesdes <b className='quantityCar'>(3)</b></p>                            </div>
+                           
                         </div>
-                        <div className='w-full h-full bg-yellow-300'>
-
+                        <div className='w-full h-full '>
+                            <div className='flex  gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={fordLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Ford <b className='quantityCar '>(3)</b></p>
+                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={lexusLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Lexus <b className='quantityCar'>(3)</b></p>                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={toyotaLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Toyots <b className='quantityCar'>(3)</b></p>                            </div>
+                           
                         </div>
-                        <div className='w-full h-full bg-yellow-300'>
-
-                        </div>
+                        
                     </div>
                     </div>
-                    <div className='bg-pink-400 w-[50%] h-full'>
-
+                    <div className=' w-[50%] h-full pr-10'>
+                        <div className='flex mt-[70px] gap-3'>
+                            <p className='text-browse'>Browse by type</p>
+                            <p className='text-show'>/ Show all type</p>
+                        </div>
+                        <div className='vertical-x-parallel mt-2'>
+                        <div className='line-x'></div>
+                        <div className='line-x mt-1'></div>                   
                     </div>
+                    <div className='w-full h-full grid grid-cols-3 gap-2 mt-7'>
+                        <div className='w-full h-full '>
+                            <div className='flex  gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={autoLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Auto <b className='quantityCar '>(3)</b></p>
+                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={minivanLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Minivan <b className='quantityCar'>(3)</b></p>                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={truckLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Truck <b className='quantityCar'>(3)</b></p>                            </div>
+                           
+                        </div>
+                        <div className='w-full h-full'>
+                            <div className='flex  gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={beetleLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Beetle <b className='quantityCar '>(3)</b></p>
+                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={autoLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Sedan <b className='quantityCar'>(3)</b></p>                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={vanLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Van <b className='quantityCar'>(3)</b></p>                            </div>
+                           
+                        </div>
+                        <div className='w-full h-full '>
+                            <div className='flex  gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={convertibleLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>Convertible <b className='quantityCar '>(3)</b></p>
+                            </div>
+                            <div className='flex gap-2 py-3 items-center'>
+                                <div className='w-[50px]'>
+                                    <img className='h-[20px]' src={suvLogo} alt="" />
+                                </div>
+                                <p className='nameLogo m-0'>SUV <b className='quantityCar'>(3)</b></p>                            </div>
+                            
+                           
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
         </div>
         <div className='section4 w-full relative h-[50vh] bg-pink-500'>
             <img className='w-full h-[50vh] object-cover object-center' src={homepage} alt="" />
@@ -265,8 +411,96 @@ export const Homepage = () => {
 
         {/* <Counter target={829} /> */}
         </div>
-        <div className='section4 w-full h-full bg-slate-400'>
-            <Select options={options} />
+        <div className='section5 relative w-full h-[120VH] '>
+        <div className='con1  w-full h-[100px] absolute top-[10%]'>
+                <div className='con2'>
+                    <h1 className='text-featured1 '>auto world magazine</h1>
+                    <div className='flex justify-center mt-3'>
+                    <div className='vertical-x-parallel'>
+                        <div className='line-x'></div>
+                        <div className='line-x mt-1'></div>                   
+                    </div>
+                    </div>
+                    <h1 className='text-descr1 mt-4'>Hundreds of clients are thrilled by the service that we deliver and are happy to tell us. Read about what some have said about us here.</h1>
+
+                </div>
+                <div className='slider1 absolute w-full overflow-hidden h-[60vh] top-[185%]  px-[5%] gap-[30px] grid grid-cols-3'>
+                   
+                   
+            {blogs.slice(currentIndex1, currentIndex1 + cardsPerSlide1).concat(
+        blogs.slice(0, Math.max(0, cardsPerSlide1 - (blogs.length - currentIndex1)))
+    ).map(blog => (
+        <div key={blog.id} className='container-cardInfo w-full h-full relative '>
+        <img className='h-[60%]' src={blog.avatar} alt="" />
+        <div className='w-full h-[40%] bg-purple-300'>
+            <div className='bg-[#f3f3f3] w-[20%] h-full grid grid-rows-2 gap-[1px]'>
+                <div className='w-full h-full bg-white'>
+                    <div className='flex h-full flex-col justify-center items-center '>
+                    <i class='bx bx-chat text-[1.5rem]' style={{color:'#ff5500'}}  ></i>
+                        <p className='text-[#A1A1A1]'>0</p>
+                    </div>
+                </div>
+                <div className='w-full h-full bg-white'>
+                    <div className='flex h-full flex-col justify-center items-center '>
+                    <img src={eyeIcon} className='w-[25px]' alt="" />
+                        <p className='text-[#A1A1A1]'>0</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div className='cardInfo w-[80%] h-[70%] right-0 top-[220px] absolute px-[7%]'>
+                <div className='circle-avatar-author absolute top-[-30px] left-[30px]'>
+                    <img src={homepage} className='w-[60px] h-[60px] object-cover' alt="" />
+                </div>
+                <div className='w-full  h-full mt-[18%]'>
+                    <div className='flex w-full gap-4'>
+                        <p className='text-[#A1A1A1] font-[400] text-[14px]'> By {blog.author}</p>
+                        <div className='flex gap-1'>
+                        <i class='bx bx-folder-open text-[1.2rem]' style={{color:'#FF5400'}}  ></i> 
+                        <p className='text-[#A1A1A1] font-[400] text-[14px]'>{blog.category}</p>                                      
+                        </div>
+                    </div>
+                    <h1 className='title-blog mt-1 mb-2'>
+                    {blog.title}
+                    </h1>
+                    <TruncateText text={blog.description}  maxLength={90} />
+                    <a href="" className='readMore absolute bottom-[17px]'>Read More</a>
+                </div>
+            </div>
+        </div>
+        <div className=' flex h-[40px] bg-[#ff5500] top-0 right-0 absolute'>
+            <div className='flex w-[40px] bg-white justify-center'>
+            <i class='bx bx-calendar text-[1.5rem] p-2' style={{color:'#ff5500'}} ></i>
+            </div>
+            <div className='flex items-center'>
+                <h1 className='calendar'>September 26, 2023</h1>
+            </div>
+        </div>
+    </div>
+                ))}
+           
+                </div>
+                <div className="dots absolute w-full justify-center bottom-[-600px]">
+                {[0, 1, 2,3].map((dotIndex) => (
+                    <span key={dotIndex} onClick={() => handleDotClick1(dotIndex)}
+                          className={currentIndex === dotIndex ? 'dot active' : 'dot'}></span>
+                ))}
+            </div>
+                
+            </div>
+        </div>
+        <div className='section6 w-full h-[120vh] bg-pink-400'>
+        <div className='con2'>
+                    <h1 className='text-featured1 '>auto world magazine</h1>
+                    <div className='flex justify-center mt-3'>
+                    <div className='vertical-x-parallel'>
+                        <div className='line-x'></div>
+                        <div className='line-x mt-1'></div>                   
+                    </div>
+                    </div>
+                    <h1 className='text-descr1 mt-4'>Hundreds of clients are thrilled by the service that we deliver and are happy to tell us. Read about what some have said about us here.</h1>
+
+                </div>
         </div>
         
     </>
