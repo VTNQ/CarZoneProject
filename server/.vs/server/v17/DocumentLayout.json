@@ -95,8 +95,7 @@
               "RelativeToolTip": "Services\\EmployeeServiceImpl.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAA4wBwAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:25:05.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:25:05.513Z"
             },
             {
               "$type": "Document",
@@ -108,8 +107,7 @@
               "RelativeToolTip": "Services\\EmployeeService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:24:49.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:24:49.917Z"
             },
             {
               "$type": "Document",
@@ -121,12 +119,7 @@
               "RelativeToolTip": "Data\\AddEmployee.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAAxwAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:19:25.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2024-05-14T03:19:25.836Z"
             },
             {
               "$type": "Document",
@@ -138,12 +131,7 @@
               "RelativeToolTip": "Controllers\\AccountController.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAywA8AAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:49:43.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2024-05-14T01:49:43.896Z"
             },
             {
               "$type": "Document",
@@ -155,8 +143,7 @@
               "RelativeToolTip": "Models\\Employee.cs",
               "ViewState": "AQIAACoAAAAAAAAAAIA8wCkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:43:41.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:43:41.552Z"
             },
             {
               "$type": "Document",
@@ -168,8 +155,7 @@
               "RelativeToolTip": "Services\\AccountServiceImpl.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAA0wA8AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:38:09.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:38:09.652Z"
             },
             {
               "$type": "Document",
@@ -181,8 +167,7 @@
               "RelativeToolTip": "Services\\AccountService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:15:46.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:15:46.593Z"
             },
             {
               "$type": "Document",
@@ -194,8 +179,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAAAA8AAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T00:18:44.475Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T00:18:44.475Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
