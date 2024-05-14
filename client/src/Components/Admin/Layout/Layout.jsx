@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../assets/vendors/feather/feather.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/vendors/css/vendor.bundle.base.css';
@@ -9,12 +9,20 @@ import '../assets/css/style.css';
 import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
-import { useLocation } from "react-router-dom";
-function LayoutAdmin() {
-  
+import { useLocation, useNavigate } from "react-router-dom";
+import HomePage from "../Home/Homepage";
+import AddEmployee from "../AddEmployee/AddEmployee";
+const LayoutAdmin=({children})=> {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const ID = location.state?.ID || '';
+  const username=location.state?.fullName || '';
+  const email = location.state?.email || '';
+  const idShowroom=location.state?.idShowroom || '';
+
     return (
         <>
-     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
     <a class="navbar-brand brand-logo me-5" href="index.html"><img src={logo} class="me-2" alt="logo" /></a>
     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
@@ -100,6 +108,32 @@ function LayoutAdmin() {
     </button>
   </div>
 </nav>
+<div className="container-fluid page-body-wrapper pt-0">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style={{position:'relative',top:'64px'}}>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Dashboard</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Employee',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Employee</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-paper menu-icon"></i>
+      <span class="menu-title">Customer</span>
+    </a>
+  </li>
+</ul>
+</nav>
+{children}
+</div>
 
         </>
     )
