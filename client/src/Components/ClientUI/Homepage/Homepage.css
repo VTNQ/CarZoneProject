@@ -70,6 +70,9 @@ color: #fff;
     width: 100%;
     z-index: 2;
 }
+.slider1{
+    overflow: hidden;
+}
 
 .card {
     flex: 0 0 33.333%; 
@@ -85,20 +88,29 @@ color: #fff;
 .dots {
     text-align: center;
     padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .dot {
+    box-sizing: border-box;
     height: 10px;
     width: 10px;
     margin: 0 5px;
-    background-color: gray;
+    background-color:transparent;
+    border-color: #FF5500;
+    border-width: 1px;
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
 }
 
 .dot.active {
-    background-color: orange; /* Màu sắc cho dot đang active */
+    background-color: #FF5500; /* Màu sắc cho dot đang active */
+    height: 15px;
+    width: 15px;
 }
 .con1{
     display: flex;
@@ -113,6 +125,14 @@ color: #fff;
     color: #fff;
     text-align: center;
 }
+.text-featured1{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: #222222;
+    text-align: center;
+    text-transform: uppercase;
+}
 .vertical-x-parallel{
    
 }
@@ -126,6 +146,13 @@ color: #fff;
     font-size: 1.2rem;
     font-weight: 400;
     color: #fff;
+    text-align: center;
+    max-width: 800px;
+}
+.text-descr1{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #5F5555;
     text-align: center;
     max-width: 800px;
 }
@@ -146,4 +173,125 @@ color: #fff;
 .img-slider{
     height: 300px;
     object-fit: cover;
+}
+.title-section3{
+    color: #222222;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 24px;
+}
+.title1-section3{
+    margin-top: 22px;
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.title3-section3{
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 400;
+    
+}
+.numbercount{
+    color: #fff;
+    font-weight: bold;
+    font-size: 3.5rem;
+
+}
+.titleCount{
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.buttonSearch{
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.text-browse{
+    font-size: 2rem;
+    color: black;
+    font-weight: 600;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+.text-show{
+    font-size: 1.2rem;
+    color: #FF5500;
+    font-weight: 600;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+.nameLogo{
+    font-size: 1.1rem;
+    
+}
+.quantityCar{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #FF5500;
+}
+.calendar{
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0;
+    padding: 0 10px 0 10px;
+}
+.cardInfo {
+    background-color: white;
+    border-color: #f3f3f3;
+    border-width: 1px;
+    width: 80%; 
+    height: 70%; 
+    right: 0; 
+    top: 220px; 
+    position: absolute; 
+    transition: top 0.3s ease; 
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
+    /* 
+      Giải thích:
+      -5px -> bóng nghiêng sang trái
+      5px -> bóng nghiêng xuống dưới
+      10px -> bán kính làm mờ bóng
+      rgba(0, 0, 0, 0.1) -> màu đen với độ trong suốt là 10%
+    */
+}
+.container-cardInfo{
+    border-color: #f3f3f3;
+    border-width: 1px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+}
+.container-cardInfo:hover .cardInfo {
+    top: 135px; 
+}
+.circle-avatar-author{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.title-blog{
+    font-size: 1.6rem;
+    width: fit-content;
+    color: #222222;
+text-transform: uppercase;
+
+}
+.text-description{
+    font-size: 1rem;
+    width: fit-content;
+    color: #a1a1a1;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+
+}
+.readMore{
+    color: #222222;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    text-decoration: none;
 }
