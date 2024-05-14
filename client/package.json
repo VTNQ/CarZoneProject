@@ -16,6 +16,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.11.0",
     "tiny-slider-react": "^0.5.7",
 =======
     "@emotion/react": "^11.11.4",

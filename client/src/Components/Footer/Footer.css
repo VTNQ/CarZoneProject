@@ -1,0 +1,112 @@
+.templaza-footer {
+    font-size: 1em;
+    color: #aaaaaa;
+}
+.tz_custom_1715333309604818 p, .tz_custom_1715333309604818 {
+    color: #aaaaaa !important;
+}
+.tz_custom_1715333309604818 {
+    background-color: #222222 !important;
+}
+@media (min-width: 640px) {
+    .uk-width-1-2\@s {
+        width: 50%;
+    }
+}
+.templaza-footer .widgettitle, .templaza-footer .templaza-heading h3 {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1.2em;
+    color: #ffffff;
+}
+.tz_custom_1715333309604818 a:hover {
+    color: #ff5400 !important;
+}
+.tz_custom_1715333309607525 {
+    background-color: #151515 !important;
+}
+.tz_custom_1715333309607837 {
+    background-color: #ff5400 !important;
+    margin-top: -28px !important;
+    padding: 8px 25px !important;
+    border-radius: 30px !important;
+}
+.templaza-footer .textwidget {
+    font-weight: 400;
+    font-size: 1em;
+    color: #aaaaaa;
+}
+.tz_custom_1715333309607525 a:hover {
+    color: #ff5400 !important;
+}
+.tz_custom_1715333309607525 a {
+    color: #cccccc !important;
+}
+@media (min-width: 960px) {
+    .uk-text-left\@m {
+        text-align: left !important;
+    }
+}
+.tz_custom_1715333309608142 {
+    background-color: #151515 !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+.templaza-footer .templaza-social li a {
+    background: #f7f9fb;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.templaza-footer .wpforms-container-full .wpforms-form .wpforms-submit-container button {
+    border: none;
+    font-size: 16px;
+    border-radius: 0;
+    padding: 0 44px;
+    height: 60px;
+    line-height: 60px;
+}
+.templaza-footer .mini .wpforms-container-full .wpforms-form .wpforms-field input {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+}
+.templaza-footer .textwidget {
+    font-weight: 400;
+    font-size: 1em;
+    color: #aaaaaa;
+}
+.tz_custom_1715333309604818 p, .tz_custom_1715333309604818 {
+    color: #aaaaaa !important;
+}
+.templaza-footer .templaza-heading h3:before {
+    content: "";
+    width: 40px;
+    position: absolute;
+    height: 2px;
+    bottom: -1px;
+    left: 0;
+    background: #ff5400;
+}
+.templaza-footer .templaza-heading h3 {
+    padding-bottom: 18px;
+    margin-bottom: 33px;
+    position: relative;
+}
+.templaza-heading {
+    color: #fff;
+}
+@media (min-width: 960px) {
+    .uk-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+.tz_custom_1715333309604916 {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
