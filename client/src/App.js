@@ -9,19 +9,25 @@ import Menu from './Components/Menu/Menu';
 import DetailInventory from './Components/DetailInventory/DetailInventory';
 import AboutUs from './Components/AboutUs/AboutUs';
 import Footer from './Components/Footer/Footer';
+import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
+import Login from './Components/Login/Login';
+import HomeAdminPage from './Components/Admin/Home/Homepage';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path='/Employee' element={<AddEmployee/>}/>
         <Route path='/layoutAdmin' element={<FormLayout/>}/>
         <Route path='/Contact' element={<Contact/>}/>
         <Route path='/Inventory' element={<Inventory/>}/>
         <Route path='/Menu' element={<Menu/>}/>
+        <Route path='/HomeAdminPage' element={<HomeAdminPage/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>
         <Route path='/DetailInventory' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
+        <Route path='/Login' element={<Login/>}/>
       </Routes>
     </Router>
   );
