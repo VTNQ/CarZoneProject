@@ -10,15 +10,17 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import Footer from './Components/Footer/Footer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
-import Layout from './Components/Admin/Layout/Layout';
+import Layout from './Components/Admin/Home/Homepage';
+
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/Contact' element={<Contact/>}/>
+        <Route path='/Login' element={<Login/>}/>
         <Route path='/Inventory' element={<Inventory/>}/>
-        <Route path='/Employee' element={<Layout/>}/>
+        <Route path='/Employee' element={<AddEmployee/>}/>
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/HomeAdminPage' element={<Layout/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>

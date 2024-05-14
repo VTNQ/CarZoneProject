@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using server.Data;
 using server.Services;
 
 namespace server.Controllers
@@ -16,6 +17,19 @@ namespace server.Controllers
         [HttpPost("AddEmployee")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult
+        public IActionResult AddEmployee(AddEmployee addEmployee)
+        {
+            try
+            {
+                return Ok(new
+                {
+                    result = employeeService.CreateEmployee(addEmployee)
+                });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -12,21 +12,13 @@ import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
 import HomePage from "../Home/Homepage";
 import AddEmployee from "../AddEmployee/AddEmployee";
-function LayoutAdmin() {
+const LayoutAdmin=({children})=> {
   const navigate = useNavigate();
   const location = useLocation();
   const ID = location.state?.ID || '';
   const username=location.state?.fullName || '';
   const email = location.state?.email || '';
-  
-  const [ShowAddEmployee,setShowAddEmployee]=useState('');
-  useEffect(() => {
-    if (location.pathname === '/Employee') {
-      setShowAddEmployee("Employee");
-    } else if(location.pathname==='/HomeAdminPage') {
-      setShowAddEmployee("HomeAdmin");
-    }
-  }, [location.pathname]);
+
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -139,12 +131,7 @@ function LayoutAdmin() {
   </li>
 </ul>
 </nav>
-{ShowAddEmployee==='Employee' && (
-  <AddEmployee/>
-)}
-{ShowAddEmployee==='HomeAdmin' && (
-  <HomePage/>
-)}
+{children}
 </div>
 
         </>
