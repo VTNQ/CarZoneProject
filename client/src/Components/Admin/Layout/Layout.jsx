@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../assets/vendors/feather/feather.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/vendors/css/vendor.bundle.base.css';
@@ -9,10 +9,24 @@ import '../assets/css/style.css';
 import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HomePage from "../Home/Homepage";
+import AddEmployee from "../AddEmployee/AddEmployee";
 function LayoutAdmin() {
-  const [Layout,setlayout]=useState('Home')
+  const navigate = useNavigate();
+  const location = useLocation();
+  const ID = location.state?.ID || '';
+  const username=location.state?.fullName || '';
+  const email = location.state?.email || '';
+  
+  const [ShowAddEmployee,setShowAddEmployee]=useState('');
+  useEffect(() => {
+    if (location.pathname === '/Employee') {
+      setShowAddEmployee("Employee");
+    } else if(location.pathname==='/HomeAdminPage') {
+      setShowAddEmployee("HomeAdmin");
+    }
+  }, [location.pathname]);
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -102,7 +116,33 @@ function LayoutAdmin() {
   </div>
 </nav>
 <div className="container-fluid page-body-wrapper pt-0">
-{Layout=='Home' &&(
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style={{position:'relative',top:'64px'}}>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage')}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Dashboard</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Employee',{state:{ID:ID,fullName:username,email:email}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Employee</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="../../../docs/documentation.html">
+      <i class="icon-paper menu-icon"></i>
+      <span class="menu-title">Documentation</span>
+    </a>
+  </li>
+</ul>
+</nav>
+{ShowAddEmployee==='Employee' && (
+  <AddEmployee/>
+)}
+{ShowAddEmployee==='HomeAdmin' && (
   <HomePage/>
 )}
 </div>

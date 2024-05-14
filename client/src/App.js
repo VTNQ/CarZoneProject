@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/Contact' element={<Contact/>}/>
         <Route path='/Inventory' element={<Inventory/>}/>
+        <Route path='/Employee' element={<Layout/>}/>
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/HomeAdminPage' element={<Layout/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>
