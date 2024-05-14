@@ -1,7 +1,6 @@
 import React from "react";
 import './Contact.css'
 import Menu from "../Menu/Menu";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 function Contact() {
     const mapstyles = {
         height: '100vh',

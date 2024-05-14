@@ -9,7 +9,6 @@ import '../assets/css/style.css';
 import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
-import { useLocation } from "react-router-dom";
 function LayoutAdmin() {
   
     return (
