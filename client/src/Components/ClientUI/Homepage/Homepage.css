@@ -15,13 +15,13 @@
     background-color: #FF5500;
 }
 .text-banner-homepage{
+    width: 100%;
+    max-width: max-content;
     color: #fff;
     text-transform: uppercase;
     font-size: 3rem;
     font-weight: bold;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  
     font-family: Inter, Arial, Helvetica, sans-serif;
 
 }

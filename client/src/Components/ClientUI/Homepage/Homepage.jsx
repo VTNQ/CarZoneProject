@@ -110,9 +110,9 @@ export const Homepage = () => {
         <div className='section1 w-full h-[100vh]  relative'>
             <img src={homepage} alt="" />
             <div className='absolute h-[111.5vh] overlay inset-0 bg-black  opacity-50 z-[1]'></div>
-            <div className='w-full h-[300px] absolute  top-[40%]  left-[50px] z-[2]'>
+            <div className='max-w-[100%] h-[300px] absolute  top-[40%]  left-[50px] z-[2]'>
                 <a href="" className='newProduct'>New Product</a>
-                <div className='card-homepage flex gap-2 mr-[60%] h-[100px] mt-9  '>
+                <div className='card-homepage flex gap-2 mr-[40%] h-[100px] mt-9  '>
                     <div className='verical-line'></div>
                     <h1 className='text-banner-homepage'>2016 Lamborgini is 200t fsport</h1>
 
@@ -489,18 +489,89 @@ export const Homepage = () => {
                 
             </div>
         </div>
-        <div className='section6 w-full h-[120vh] bg-pink-400'>
-        <div className='con2'>
-                    <h1 className='text-featured'>auto world magazine</h1>
+        <div className='section3 bg-pink-400 w-full h-[145vh] relative'>
+            <img className='h-[145vh] object-cover' src={car1} alt="" />
+            <div className='absolute h-[125vh] overlay inset-0  bg-black opacity-40 z-[1]' ></div>
+            <div className='con1  w-full h-[100px] absolute top-[8%]'>
+                <div className='con2'>
+                    <h1 className='text-featured'>FEATURED VEHICLES</h1>
                     <div className='flex justify-center mt-3'>
                     <div className='vertical-x-parallel'>
                         <div className='line-x'></div>
                         <div className='line-x mt-1'></div>                   
                     </div>
                     </div>
-                    <h1 className='text-descr mt-4'>Hundreds of clients are thrilled by the service that we deliver and are happy to tell us. Read about what some have said about us here.</h1>
+                    <h1 className='text-descr mt-4'>We are working hard to brings new advanced design interfaces to Joomla and WordPress that both beginners and experts will fall in love</h1>
 
                 </div>
+                
+            </div>
+            <div className='slider absolute top-[22%] w-full pr-[10%] pl-[4%]'>
+            {cards.slice(currentIndex, currentIndex + cardsPerSlide).concat(
+        cards.slice(0, Math.max(0, cardsPerSlide - (cards.length - currentIndex)))
+    ).map(card => (
+                    <div key={card.id} className="card">
+                        <div className='relative'>
+                        <img className='img-slider' src={car1} alt="" />
+                        <div className='absolute container-mini'>
+                                <h1 className='text-card'>${card.title}</h1>
+                                
+                        </div>
+                        </div>
+                        <div className='absolute top-[63%]  w-full h-[140px] px-4'>
+                            <h1 className='title-section3'>{card.title}</h1>
+                            <h1 className='title1-section3'>{card.description}</h1>
+                        </div>
+                        <div className='absolute bottom-0 w-full  grid grid-cols-3 gap-1'>
+                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
+                                <div className='flex justify-center h-full items-center mt-1'>
+                                    <div className='flex justify-center gap-1'>
+                                    <i class='bx bx-registered text-[1rem]' style={{color:'#ff5500'}}  ></i>
+                                    <h1 className='title3-section3 '>{card.title} mi</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
+                                <div className='flex justify-center h-full items-center mt-1'>
+                                    <div className='flex justify-center gap-1'>
+                                    <i class='bx bx-cog text-[1rem]' style={{color:'#ff5500'}}  ></i>
+                                    <h1 className='title3-section3 '>{card.title} mi</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
+                                <div className='flex justify-center h-full items-center mt-1'>
+                                    <div className='flex justify-center gap-1'>
+                                    <i class='bx bx-car text-[1rem]' style={{color:'#ff5500'}}  ></i>
+                                    <h1 className='title3-section3 '>{card.title} mi</h1>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="dots absolute bottom-[20%] left-[50%]">
+                {[0, 1, 2,3,4,5].map((dotIndex) => (
+                    <span key={dotIndex} onClick={() => handleDotClick(dotIndex)}
+                          className={currentIndex === dotIndex ? 'dot active' : 'dot'}></span>
+                ))}
+            </div>
+            <div className='absolute bottom-0 w-full h-[150px]  px-[5%] z-[2]'>
+                    <form className='w-full h-full  pr-[12%] grid grid-cols-4 gap-3 items-center justify-center'>
+                    <Select  styles={customStyles} placeholder='All Branch' menuPosition='fixed' className='' options={options} />
+                    <Select placeholder='All Make' menuPosition='fixed' className='' options={options} />
+                    <Select placeholder='All Model' menuPosition='fixed' className='' options={options} />
+                    <Select placeholder='All Registration Date' menuPosition='fixed' className='' options={options} />
+                    
+                    </form>
+                    <button className='buttonSearch absolute top-[37%] right-[76px] px-[38px] py-[10px] text-white  bg-[#FF5500]'>Search</button>
+            </div>
+            
+            <div className='absolute h-[20vh] top-[86.2%] overlay inset-0  opacity-30 z-[1]' style={{backgroundImage: 'linear-gradient(to top, #FF5400 70%, #222222 100%)'}}></div>
+
         </div>
         
     </>
