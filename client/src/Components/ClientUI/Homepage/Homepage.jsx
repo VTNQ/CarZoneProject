@@ -110,7 +110,7 @@ export const Homepage = () => {
         <div className='section1 w-full h-[100vh]  relative'>
             <img src={homepage} alt="" />
             <div className='absolute h-[111.5vh] overlay inset-0 bg-black  opacity-50 z-[1]'></div>
-            <div className='w-full h-[300px] absolute  top-[40%]  left-[50px] z-[2]'>
+            <div className='max-w-[100vw] h-[300px] absolute  top-[40%]  left-[50px] z-[2]'>
                 <a href="" className='newProduct'>New Product</a>
                 <div className='card-homepage flex gap-2 mr-[60%] h-[100px] mt-9  '>
                     <div className='verical-line'></div>
