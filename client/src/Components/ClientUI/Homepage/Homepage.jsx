@@ -600,8 +600,8 @@ export const Homepage = () => {
                                 <a className='button-black' href="">View more</a>
                             </div>
             </div>
-            <div className='containerCar1 w-full relative  h-full '>
-                    <div  className='imageContainer1 relative w-full overflow-hidden'>
+            <div className='containerCar1 min-w-[100%] relative  h-full '>
+                    <div  className='imageContainer1 relative min-w-[100%] overflow-hidden'>
                             <img src={rightCar} alt="" />
                         </div>
                         <div className='bg-[#555555] w-full  inset-0 opacity-90 h-full z-[2] absolute'></div>
