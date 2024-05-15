@@ -588,14 +588,14 @@ export const Homepage = () => {
            
 
         </div>
-        <div className='section6 max-w-[100%] h-[48vh] grid grid-cols-2 '>
+        <div className='section7 max-w-[100%] h-[48vh] grid grid-cols-2 '>
             <div className='containerCar w-full relative  h-full '>
                     <div  className='imageContainer relative w-full overflow-hidden'>
                             <img src={leftCar}alt="" />
                         </div>
                         <div className='bg-[#ff5400] w-full  inset-0 opacity-80 h-full z-[2] absolute'></div>
                         <div className='w-[50%] h-[70%] mt-[9%] right-0 absolute mr-[11%]  z-10'>
-                                <h1 className='title-text3'>Are You looking for a car?</h1>
+                                <h1 className='title-text3 text-white'>Are You looking for a car?</h1>
                                 <p className='title-description'>Search your car in our Inventory and request a quote on the vehicle of choosing</p>
                                 <a className='button-black' href="">View more</a>
                             </div>
@@ -606,7 +606,7 @@ export const Homepage = () => {
                         </div>
                         <div className='bg-[#555555] w-full  inset-0 opacity-90 h-full z-[2] absolute'></div>
                         <div className='w-[50%] h-[70%] mt-[9%] left-0 absolute ml-[11%]  z-10'>
-                                <h1 className='title-text3'>do you want to sell your car</h1>
+                                <h1 className='title-text3 text-white'>do you want to sell your car</h1>
                                 <p className='title-description'>Search your car in our Inventory and request a quote on the vehicle of choosing</p>
                                 <a className='button-white' href="">Register now</a>
                             </div>
