@@ -6,7 +6,7 @@ const Counter = ({ target }) => {
     const [count, setCount] = useState(0);
     const { ref, inView } = useInView({
         triggerOnce: true,
-        threshold: 0.5  // Trigger khi 50% của phần tử hiện trên màn hình
+        threshold: 0.5  
     });
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const Counter = ({ target }) => {
         if (inView && count < target) {
             interval = setInterval(() => {
                 setCount((prevCount) => (prevCount + 1 <= target ? prevCount + 1 : target));
-            }, 0.5);  // Điều chỉnh tốc độ đếm
+            }, 0.5); 
         } else if (count === target && interval) {
             clearInterval(interval);
         }

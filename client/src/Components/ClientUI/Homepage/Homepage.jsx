@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { useInView } from 'react-intersection-observer';
+
 import { useEffect,useRef } from 'react'
 import Menu from '../../Menu/Menu'
 import homepage from '../../assets/images/homepage/homepage-bg.jpg'
@@ -13,7 +15,8 @@ import merLogo from '../../assets/images/logo/mer-logo.png'
 import fordLogo from '../../assets/images/logo/ford-logo.png'
 import lexusLogo from '../../assets/images/logo/lexus-logo.png'
 import toyotaLogo from '../../assets/images/logo/toyota-logo.png'
-
+import leftCar from '../../assets/images/cars/leftCar.png'
+import rightCar from '../../assets/images/cars/rightCar.png'
 
 import autoLogo from '../../assets/images/logo/auto.png'
 import minivanLogo from '../../assets/images/logo/minivan.png'
@@ -82,6 +85,23 @@ export const Homepage = () => {
         setCurrentIndex(index);
     };
 
+    const [currentIndex2, setCurrentIndex2] = useState(0);
+    const cardsPerSlide2 = 1; // Số card mỗi slide
+    const totalCards2 = blogs.length;
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex2(prevIndex => {
+                return (prevIndex + 1) % totalCards2; // Luôn luôn quay lại đầu sau khi đạt tới card cuối
+            });
+        }, 4000); // Change card every 4 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const handleDotClick2 = (index) => {
+        setCurrentIndex(index);
+    };
+
     //count start end
     const options = [
         { value: 'all', label: 'All Make' },
@@ -100,9 +120,9 @@ export const Homepage = () => {
           display: 'flex'
         }),
       };
-
-      const text = "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility.";
-
+      const[transition,setTransition] = useState(false);
+    
+    
   return (
     
     <>
@@ -489,88 +509,109 @@ export const Homepage = () => {
                 
             </div>
         </div>
-        <div className='section3 bg-pink-400 w-full h-[145vh] relative'>
-            <img className='h-[145vh] object-cover' src={car1} alt="" />
-            <div className='absolute h-[125vh] overlay inset-0  bg-black opacity-40 z-[1]' ></div>
-            <div className='con1  w-full h-[100px] absolute top-[8%]'>
-                <div className='con2'>
-                    <h1 className='text-featured'>FEATURED VEHICLES</h1>
-                    <div className='flex justify-center mt-3'>
-                    <div className='vertical-x-parallel'>
+        <div className='section6 max-w-[100%] h-[80vh] px-[4.5%] mb-5 py-[5%]'>
+            <div className='max-w-full h-full  grid grid-cols-2'>
+                <div className=' max-w-full pr-[8%]'>
+                    <h1>Welcome to <b>carzone</b></h1>
+                    <div className=''>
+                    <div className='vertical-x-parallel mt-[15px]'>
                         <div className='line-x'></div>
                         <div className='line-x mt-1'></div>                   
                     </div>
                     </div>
-                    <h1 className='text-descr mt-4'>We are working hard to brings new advanced design interfaces to Joomla and WordPress that both beginners and experts will fall in love</h1>
-
-                </div>
-                
-            </div>
-            <div className='slider absolute top-[22%] w-full pr-[10%] pl-[4%]'>
-            {cards.slice(currentIndex, currentIndex + cardsPerSlide).concat(
-        cards.slice(0, Math.max(0, cardsPerSlide - (cards.length - currentIndex)))
-    ).map(card => (
-                    <div key={card.id} className="card">
-                        <div className='relative'>
-                        <img className='img-slider' src={car1} alt="" />
-                        <div className='absolute container-mini'>
-                                <h1 className='text-card'>${card.title}</h1>
-                                
-                        </div>
-                        </div>
-                        <div className='absolute top-[63%]  w-full h-[140px] px-4'>
-                            <h1 className='title-section3'>{card.title}</h1>
-                            <h1 className='title1-section3'>{card.description}</h1>
-                        </div>
-                        <div className='absolute bottom-0 w-full  grid grid-cols-3 gap-1'>
-                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
-                                <div className='flex justify-center h-full items-center mt-1'>
-                                    <div className='flex justify-center gap-1'>
-                                    <i class='bx bx-registered text-[1rem]' style={{color:'#ff5500'}}  ></i>
-                                    <h1 className='title3-section3 '>{card.title} mi</h1>
-                                    </div>
+                    <p>Auto Showroom Theme is a clean and modern design which is useful for Car Dealer, Auto Dealer, Automotive WordPress website and any other automotive dealership business, who sell, buy or lease vehicles via website. Its stunning beauty, fashionable clean look and proper execution.</p>
+                    <div className=' max-w-full grid grid-cols-2 gap-1'>
+                        <div className=' w-full mt-4'>
+                            <h2>Running costs</h2>
+                            <div className='flex flex-col gap-[20px] mt-4'>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>18″ 5-Spoke Light-Alloy Wheels</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>4-Wheel Disc Brakes</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>ABS brakes</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>AM/FM radio: SiriusXM</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>Adaptive suspension</h3>
                                 </div>
                             </div>
-                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
-                                <div className='flex justify-center h-full items-center mt-1'>
-                                    <div className='flex justify-center gap-1'>
-                                    <i class='bx bx-cog text-[1rem]' style={{color:'#ff5500'}}  ></i>
-                                    <h1 className='title3-section3 '>{card.title} mi</h1>
-                                    </div>
+                        </div>
+                        <div className=' w-full mt-4'>
+                            <h2>Performance</h2>
+                            <div className='flex flex-col gap-[20px] mt-4'>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>18″ 5-Spoke Light-Alloy Wheels</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>4-Wheel Disc Brakes</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>ABS brakes</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>AM/FM radio: SiriusXM</h3>
+                                </div>
+                                <div className='flex items-center'>
+                                <i class='bx bx-check-square mr-[5px]' style={{color:'#ff5400'}} ></i>
+                                <h3>Adaptive suspension</h3>
                                 </div>
                             </div>
-                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
-                                <div className='flex justify-center h-full items-center mt-1'>
-                                    <div className='flex justify-center gap-1'>
-                                    <i class='bx bx-car text-[1rem]' style={{color:'#ff5500'}}  ></i>
-                                    <h1 className='title3-section3 '>{card.title} mi</h1>
-                                    </div>
-                                </div>
-                            </div>
-                           
+                        </div>
+                        <div className='bg-yellow-100'>
                             
                         </div>
                     </div>
-                ))}
-            </div>
-            <div className="dots absolute bottom-[20%] left-[50%]">
-                {[0, 1, 2,3,4,5].map((dotIndex) => (
-                    <span key={dotIndex} onClick={() => handleDotClick(dotIndex)}
-                          className={currentIndex === dotIndex ? 'dot active' : 'dot'}></span>
-                ))}
-            </div>
-            <div className='absolute bottom-0 w-full h-[150px]  px-[5%] z-[2]'>
-                    <form className='w-full h-full  pr-[12%] grid grid-cols-4 gap-3 items-center justify-center'>
-                    <Select  styles={customStyles} placeholder='All Branch' menuPosition='fixed' className='' options={options} />
-                    <Select placeholder='All Make' menuPosition='fixed' className='' options={options} />
-                    <Select placeholder='All Model' menuPosition='fixed' className='' options={options} />
-                    <Select placeholder='All Registration Date' menuPosition='fixed' className='' options={options} />
-                    
-                    </form>
-                    <button className='buttonSearch absolute top-[37%] right-[76px] px-[38px] py-[10px] text-white  bg-[#FF5500]'>Search</button>
+                </div>
+                <div className=' grid grid-cols-2 gap-3 '>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
+                
+                </div>
             </div>
             
-            <div className='absolute h-[20vh] top-[86.2%] overlay inset-0  opacity-30 z-[1]' style={{backgroundImage: 'linear-gradient(to top, #FF5400 70%, #222222 100%)'}}></div>
+           
+
+        </div>
+        <div className='section6 max-w-[100%] h-[48vh] grid grid-cols-2 '>
+            <div className='containerCar w-full relative  h-full '>
+                    <div  className='imageContainer relative w-full overflow-hidden'>
+                            <img src={leftCar}alt="" />
+                        </div>
+                        <div className='bg-[#ff5400] w-full  inset-0 opacity-80 h-full z-[2] absolute'></div>
+                        <div className='w-[50%] h-[70%] mt-[9%] right-0 absolute mr-[11%]  z-10'>
+                                <h1 className='title-text3'>Are You looking for a car?</h1>
+                                <p className='title-description'>Search your car in our Inventory and request a quote on the vehicle of choosing</p>
+                                <a className='button-black' href="">View more</a>
+                            </div>
+            </div>
+            <div className='containerCar1 w-full relative  h-full '>
+                    <div  className='imageContainer1 relative w-full overflow-hidden'>
+                            <img src={rightCar} alt="" />
+                        </div>
+                        <div className='bg-[#555555] w-full  inset-0 opacity-90 h-full z-[2] absolute'></div>
+                        <div className='w-[50%] h-[70%] mt-[9%] left-0 absolute ml-[11%]  z-10'>
+                                <h1 className='title-text3'>do you want to sell your car</h1>
+                                <p className='title-description'>Search your car in our Inventory and request a quote on the vehicle of choosing</p>
+                                <a className='button-white' href="">Register now</a>
+                            </div>
+            </div>
+            
 
         </div>
         
