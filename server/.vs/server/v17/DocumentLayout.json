@@ -3,8 +3,56 @@
   "WorkspaceRootPath": "D:\\CarZoneProject\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\data\\addcolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:data\\addcolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\models\\color.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:models\\color.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\data\\addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:data\\addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\services\\colorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:services\\colorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\services\\supplierserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:services\\supplierserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\services\\supplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:services\\supplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\data\\addsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:data\\addsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\models\\suplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:models\\suplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\services\\customerserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\data\\updateemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:data\\updateemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\data\\addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:data\\addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,16 +87,8 @@
       "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -61,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\helper\\filehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:helper\\filehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0AFD6465-5C98-43DA-8B46-E9D6DD46B850}|server.csproj|d:\\carzoneproject\\server\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,7 +118,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -113,25 +145,72 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UpdateCustomer.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\UpdateCustomer.cs",
-              "RelativeDocumentMoniker": "Data\\UpdateCustomer.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Data\\UpdateCustomer.cs",
-              "RelativeToolTip": "Data\\UpdateCustomer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
+              "DocumentIndex": 1,
+              "Title": "AddColor.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\AddColor.cs",
+              "RelativeDocumentMoniker": "Data\\AddColor.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Data\\AddColor.cs",
+              "RelativeToolTip": "Data\\AddColor.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T15:08:48.504Z",
+              "WhenOpened": "2024-05-15T07:27:13.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "ColorService.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\ColorService.cs",
+              "RelativeDocumentMoniker": "Services\\ColorService.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Services\\ColorService.cs",
+              "RelativeToolTip": "Services\\ColorService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T07:26:26.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Color.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Models\\Color.cs",
+              "RelativeDocumentMoniker": "Models\\Color.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Models\\Color.cs",
+              "RelativeToolTip": "Models\\Color.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T07:24:31.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SupplierController.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\SupplierController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SupplierController.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\SupplierController.cs",
+              "RelativeToolTip": "Controllers\\SupplierController.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAEwFoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T03:05:46.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SupplierService.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\SupplierService.cs",
+              "RelativeDocumentMoniker": "Services\\SupplierService.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Services\\SupplierService.cs",
+              "RelativeToolTip": "Services\\SupplierService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T03:00:14.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "CustomerServiceImpl.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\CustomerServiceImpl.cs",
               "RelativeDocumentMoniker": "Services\\CustomerServiceImpl.cs",
@@ -139,25 +218,24 @@
               "RelativeToolTip": "Services\\CustomerServiceImpl.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAiwEsAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:15:03.785Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:15:03.785Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AccountService.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\AccountService.cs",
-              "RelativeDocumentMoniker": "Services\\AccountService.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Services\\AccountService.cs",
-              "RelativeToolTip": "Services\\AccountService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA7AAAA",
+              "DocumentIndex": 6,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAAAA8AAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:15:46.593Z",
+              "WhenOpened": "2024-05-14T01:49:43.896Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "AddCustomer.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\AddCustomer.cs",
               "RelativeDocumentMoniker": "Data\\AddCustomer.cs",
@@ -170,7 +248,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAiwC8AAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-14T13:26:07.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAGMAAAAAAAAAAADgvxUAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-14T03:33:59.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SupplierServiceImpl.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\SupplierServiceImpl.cs",
+              "RelativeDocumentMoniker": "Services\\SupplierServiceImpl.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Services\\SupplierServiceImpl.cs",
+              "RelativeToolTip": "Services\\SupplierServiceImpl.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAiwCAAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T03:01:30.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Suplier.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Models\\Suplier.cs",
+              "RelativeDocumentMoniker": "Models\\Suplier.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Models\\Suplier.cs",
+              "RelativeToolTip": "Models\\Suplier.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwBYAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T03:27:20.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AddSupplier.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\AddSupplier.cs",
+              "RelativeDocumentMoniker": "Data\\AddSupplier.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Data\\AddSupplier.cs",
+              "RelativeToolTip": "Data\\AddSupplier.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T03:27:43.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\AccountService.cs",
+              "RelativeDocumentMoniker": "Services\\AccountService.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Services\\AccountService.cs",
+              "RelativeToolTip": "Services\\AccountService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-14T01:15:46.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "UpdateEmployee.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\UpdateEmployee.cs",
               "RelativeDocumentMoniker": "Data\\UpdateEmployee.cs",
@@ -178,25 +330,35 @@
               "RelativeToolTip": "Data\\UpdateEmployee.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T10:57:48.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T10:57:48.465Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "Controllers\\CustomerController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAADwvxkAAAATAAAA",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAUwBIAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:26:07.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T00:18:44.475Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
+              "Title": "UpdateCustomer.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\UpdateCustomer.cs",
+              "RelativeDocumentMoniker": "Data\\UpdateCustomer.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Data\\UpdateCustomer.cs",
+              "RelativeToolTip": "Data\\UpdateCustomer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-14T15:08:48.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "CustomerService.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\CustomerService.cs",
               "RelativeDocumentMoniker": "Services\\CustomerService.cs",
@@ -204,12 +366,11 @@
               "RelativeToolTip": "Services\\CustomerService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:10:52.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:10:52.16Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 18,
               "Title": "EmployeeServiceImpl.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\EmployeeServiceImpl.cs",
               "RelativeDocumentMoniker": "Services\\EmployeeServiceImpl.cs",
@@ -217,12 +378,11 @@
               "RelativeToolTip": "Services\\EmployeeServiceImpl.cs",
               "ViewState": "AQIAAGQAAAAAAAAAAAAnwGwAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:25:05.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:25:05.513Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 19,
               "Title": "AddEmployee.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Data\\AddEmployee.cs",
               "RelativeDocumentMoniker": "Data\\AddEmployee.cs",
@@ -230,12 +390,11 @@
               "RelativeToolTip": "Data\\AddEmployee.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAQAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:19:25.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:19:25.836Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 20,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -243,12 +402,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-14T12:59:42.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T12:59:42.066Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 21,
               "Title": "Customer.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Models\\Customer.cs",
               "RelativeDocumentMoniker": "Models\\Customer.cs",
@@ -256,38 +414,11 @@
               "RelativeToolTip": "Models\\Customer.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwCcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:12:28.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:12:28.305Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "EmployeeController.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\EmployeeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\EmployeeController.cs",
-              "RelativeToolTip": "Controllers\\EmployeeController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAArwDwAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:33:59.478Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAUwBEAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T00:18:44.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 24,
               "Title": "EmployeeService.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\EmployeeService.cs",
               "RelativeDocumentMoniker": "Services\\EmployeeService.cs",
@@ -295,25 +426,11 @@
               "RelativeToolTip": "Services\\EmployeeService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:24:49.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:24:49.917Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAADwvw8AAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:49:43.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 22,
               "Title": "server.http",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\server.http",
               "RelativeDocumentMoniker": "server.http",
@@ -321,12 +438,11 @@
               "RelativeToolTip": "server.http",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-05-14T06:56:25.663Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T06:56:25.663Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 23,
               "Title": "FileHelper.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Helper\\FileHelper.cs",
               "RelativeDocumentMoniker": "Helper\\FileHelper.cs",
@@ -334,12 +450,11 @@
               "RelativeToolTip": "Helper\\FileHelper.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:03:52.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:03:52.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 26,
               "Title": "Employee.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Models\\Employee.cs",
               "RelativeDocumentMoniker": "Models\\Employee.cs",
@@ -351,7 +466,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 25,
               "Title": "AccountServiceImpl.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\AccountServiceImpl.cs",
               "RelativeDocumentMoniker": "Services\\AccountServiceImpl.cs",
@@ -360,6 +475,10 @@
               "ViewState": "AQIAAAUAAAAAAAAAAAAAwBQAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-14T01:38:09.652Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

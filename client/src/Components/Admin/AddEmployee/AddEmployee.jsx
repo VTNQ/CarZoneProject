@@ -215,7 +215,7 @@ function AddEmployee() {
                 if (response.ok) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Deletion successful',
+                        title: 'Reset successful',
                         showConfirmButton: false,
                         timer: 1500,
                     });

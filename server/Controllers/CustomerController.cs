@@ -16,7 +16,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateCustomer/{id}")]
         [Produces("application/json")]
-        public IActionResult UpdateCustomer(int id,UpdateCustomer updateCustomer)
+        public IActionResult UpdateCustomer(int id,[FromBody]UpdateCustomer updateCustomer)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace server.Controllers
         [HttpPost("AddCustomer")]
         [Produces("application/json")]
 
-        public IActionResult AddCustomer(AddCustomer addCustomer)
+        public IActionResult AddCustomer([FromBody]  AddCustomer addCustomer)
         {
             try
             {

@@ -12,7 +12,8 @@ import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
 import Layout from './Components/Admin/Home/Homepage';
 import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCustomer';
-
+import Supplier from './Components/Admin/Supplier/Supplier';
+import Color from './Components/Color/Color';
 function App() {
   return (
     <Router>
@@ -28,6 +29,8 @@ function App() {
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
         <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer/>}/>
+        <Route path='/Supplier' element={<Supplier/>}/>
+        <Route path='/Color' element={<Color/>}/>
       </Routes>
     </Router>
   );
