@@ -171,7 +171,7 @@ export const Homepage = () => {
             
             
         </div>
-        <div className='section3 bg-pink-400 w-full h-[145vh] relative'>
+        <div className='section3 bg-pink-400 max-w-[100%] h-[145vh] relative'>
             <img className='h-[145vh] object-cover' src={car1} alt="" />
             <div className='absolute h-[125vh] overlay inset-0  bg-black opacity-40 z-[1]' ></div>
             <div className='con1  w-full h-[100px] absolute top-[8%]'>
