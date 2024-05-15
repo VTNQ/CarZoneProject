@@ -33,6 +33,7 @@ import car1 from '../../assets/images/cars/mercedes-benz.jpg'
 import Counter from '../../SubFeature/Counter'
 import TruncateText from '../../SubFeature/TruncateText'
 import Select from 'react-select';
+import Footer from '../../Footer/Footer';
 
 
 export const Homepage = () => {
@@ -102,21 +103,20 @@ export const Homepage = () => {
         setCurrentIndex(index);
     };
 
-    //count start end
     const options = [
         { value: 'all', label: 'All Make' },
         { value: 'audi', label: 'Audi' },
         { value: 'bmw', label: 'BMW' },
         { value: 'chevrolet', label: 'Chevrolet' },
-        // Thêm các tùy chọn khác
+       
       ];
     
       const customStyles = {
         option: (provided, state) => ({
           ...provided,
-          height: '100px',  // Tăng chiều cao của từng tùy chọn
-          padding: '10px', // Thêm padding để văn bản không dính vào cạnh
-          alignItems: 'center', // Căn giữa nội dung tùy chọn theo chiều dọc
+          height: '100px', 
+          padding: '10px', 
+          alignItems: 'center', 
           display: 'flex'
         }),
       };
@@ -614,6 +614,7 @@ export const Homepage = () => {
             
 
         </div>
+        <Footer/>
         
     </>
   )
