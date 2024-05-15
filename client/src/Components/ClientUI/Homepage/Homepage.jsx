@@ -188,7 +188,7 @@ export const Homepage = () => {
                 </div>
                 
             </div>
-            <div className='slider absolute top-[22%] w-full pr-[10%] pl-[4%]'>
+            <div className='slider absolute top-[22%] max-w-[100%] pr-[10%] pl-[4%]'>
             {cards.slice(currentIndex, currentIndex + cardsPerSlide).concat(
         cards.slice(0, Math.max(0, cardsPerSlide - (cards.length - currentIndex)))
     ).map(card => (
@@ -589,7 +589,7 @@ export const Homepage = () => {
 
         </div>
         <div className='section7 max-w-[100%] h-[48vh] grid grid-cols-2 '>
-            <div className='containerCar w-full relative  h-full '>
+            <div className='containerCar max-w-full relative  h-full '>
                     <div  className='imageContainer relative w-full overflow-hidden'>
                             <img src={leftCar}alt="" />
                         </div>
@@ -600,8 +600,8 @@ export const Homepage = () => {
                                 <a className='button-black' href="">View more</a>
                             </div>
             </div>
-            <div className='containerCar1 min-w-[100%] relative  h-full '>
-                    <div  className='imageContainer1 relative min-w-[100%] overflow-hidden'>
+            <div className='containerCar1 max-w-[100%] relative  h-full overflow-hidden'>
+                    <div  className='imageContainer1 relative w-[100%] overflow-hidden'>
                             <img src={rightCar} alt="" />
                         </div>
                         <div className='bg-[#555555] w-full  inset-0 opacity-90 h-full z-[2] absolute'></div>
