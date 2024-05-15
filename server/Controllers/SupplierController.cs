@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server.Data;
+using server.Models;
 using server.Services;
 
 namespace server.Controllers
@@ -10,9 +11,11 @@ namespace server.Controllers
     public class SupplierController : ControllerBase
     {
         private readonly SupplierService supplierService;
-        public SupplierController(SupplierService supplierService)
+        private readonly DatabaseContext databaseContext;
+        public SupplierController(SupplierService supplierService,DatabaseContext databaseContext)
         {
             this.supplierService = supplierService;
+            this.databaseContext = databaseContext;
         }
         [HttpPost("AddSupplier")]
         [Produces("application/json")]
@@ -21,6 +24,10 @@ namespace server.Controllers
         {
             try
             {
+                if(databaseContext.Supliers.Any(d=>d.Name == addSupplier.Name))
+                {
+                    return BadRequest(new { message = "Name already Exist" });
+                }
                 return Ok(new
                 {
                     result = supplierService.AddSupplier(addSupplier)
@@ -52,6 +59,10 @@ namespace server.Controllers
         {
             try
             {
+                if(databaseContext.Supliers.Any(d=>d.Name==updateSupplier.Name && d.Id != id))
+                {
+                    return BadRequest(new { message = "Name already Exist" });
+                }
                 return Ok(new
                 {
                     result = supplierService.UpdateSupplier(id, updateSupplier)

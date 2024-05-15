@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server.Data;
+using server.Models;
 using server.Services;
 
 namespace server.Controllers
@@ -10,9 +11,11 @@ namespace server.Controllers
     public class CustomerController : ControllerBase
     {
         private CustomerService customerService;
-        public CustomerController(CustomerService customerService)
+        private DatabaseContext databaseContext;
+        public CustomerController(CustomerService customerService,DatabaseContext databaseContext)
         {
             this.customerService = customerService;
+            this.databaseContext = databaseContext;
         }
         [HttpPut("UpdateCustomer/{id}")]
         [Produces("application/json")]
@@ -20,6 +23,17 @@ namespace server.Controllers
         {
             try
             {
+                if(databaseContext.Customers.Any(d=>d.FullName==updateCustomer.FullName && d.Id!=id)) {
+                    return BadRequest(new { message = "Full Name already Exist" });
+                }
+                if(databaseContext.Customers.Any(d=>d.Email==updateCustomer.Email && d.Id!=id))
+                {
+                    return BadRequest(new { message = "Email already Exist" });
+                }
+                if(databaseContext.Customers.Any(d=>d.Phone==updateCustomer.Phone && d.Id!=id))
+                {
+                    return BadRequest(new { message = "Phone already Exist" });
+                }
                 return Ok(new
                 {
                     result = customerService.UpdateCustomer(id, updateCustomer)
@@ -49,6 +63,18 @@ namespace server.Controllers
         {
             try
             {
+                if (databaseContext.Customers.Any(d => d.FullName == addCustomer.FullName))
+                {
+                    return BadRequest(new { message = "Full Name already Exist" });
+                }
+                if(databaseContext.Customers.Any(d=>d.Email == addCustomer.Email))
+                {
+                    return BadRequest(new { message = "Email already Exists" });
+                }
+                if(databaseContext.Customers.Any(d=>d.IndentityCode== addCustomer.IndentityCode))
+                {
+                    return BadRequest(new { message = "Indentity Code already Exists" });
+                }
                 return Ok(new
                 {
                     result = customerService.AddCustomer(addCustomer)

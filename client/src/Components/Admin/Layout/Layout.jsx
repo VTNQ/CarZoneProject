@@ -130,6 +130,18 @@ const LayoutAdmin=({children})=> {
       <span class="menu-title">Customer</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-paper menu-icon"></i>
+      <span class="menu-title">Supplier</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-paper menu-icon"></i>
+      <span class="menu-title">Color</span>
+    </a>
+  </li>
 </ul>
 </nav>
 {children}

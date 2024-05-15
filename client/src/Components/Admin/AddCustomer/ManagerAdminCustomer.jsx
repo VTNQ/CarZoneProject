@@ -6,12 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
 import Pagination from 'react-paginate';
 function ManagerAdminCustomer() {
-    const [Dob,setDob]=useState(null);
-    const [UpdateDob,setUpdateDob]=useState(null);
-    const handleDob=(date)=>{
+    const [Dob, setDob] = useState(null);
+    const [UpdateDob, setUpdateDob] = useState(null);
+    const handleDob = (date) => {
         setDob(date);
     }
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const [IsCloginImage, setIsClosingImage] = useState(false)
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const popupContentStyle = {
         background: 'white',
@@ -23,6 +24,10 @@ function ManagerAdminCustomer() {
         animation: 'flipleft 0.5s',
         zindex: '1000000' // Default animation
     };
+    const ImageViewstype = {
+        animation: 'flipleft 0.5s',
+        zindex: '1000000'
+    }
     const handleClosepopup = () => {
         setIsClosingPopup(true);
         setTimeout(() => {
@@ -35,7 +40,7 @@ function ManagerAdminCustomer() {
                 UpdatePhone: '',
                 UpdateIdentityCode: ''
             })
-setUpdateDob(null)
+            setUpdateDob(null)
             setPopupVisibility(false)
             setIsClosingPopup(false)
         }, 500);
@@ -44,22 +49,22 @@ setUpdateDob(null)
         animation: 'flipright 0.5s forwards',
     };
     const [imagePreView, setImagePreView] = useState(null);
-    const [Customer,setCustomer]=useState([]);
+    const [Customer, setCustomer] = useState([]);
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            const response=await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
+    useEffect(() => {
+        const fetchdata = async () => {
+            const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
             setCustomer(response.data)
         }
         fetchdata();
-    },[])
-    const handleImageChange=(event)=>{
+    }, [])
+    const handleImageChange = (event) => {
         const file = event.target.files[0];
-        if(file){
-            const render=new FileReader();
-            render.onloadend=()=>{
+        if (file) {
+            const render = new FileReader();
+            render.onloadend = () => {
                 setImagePreView(render.result);
             }
 
@@ -70,10 +75,10 @@ setUpdateDob(null)
             });
         }
     }
-    const handleUpdateChange=(date)=>{
+    const handleUpdateChange = (date) => {
         setUpdateDob(date)
     }
-    const FilterCustomer =Customer.filter(Empl =>
+    const FilterCustomer = Customer.filter(Empl =>
         Empl.fullName.toLowerCase().includes(searchTerm.toLowerCase())
     )
     const indexOflastCustomer = (currentPage + 1) * perPage;
@@ -82,24 +87,28 @@ setUpdateDob(null)
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-    const [FromData,setFromData]=useState({
-        FullName:'',
-        Image:null,
-        Email:'',
-        Address:'',
-        IdentityCode:'',
-        Phone:'',
+    const [FromData, setFromData] = useState({
+        FullName: '',
+        Image: null,
+        Email: '',
+        Address: '',
+        IdentityCode: '',
+        Phone: '',
         UpdateName: '',
         UpdateEmail: '',
         id: '',
         UpdateAdress: '',
         UpdatePhone: '',
         UpdateIdentityCode: ''
-        
+
     })
-    const HandleEditClick=(IdCustomer)=>{
-        const SelectCustomer=Customer.find(Customer=>Customer.id==IdCustomer);
-        if(SelectCustomer){
+    const [previewImage, setPreviewImage] = useState(null);
+    const hanleImageClick = (imageUrl) => {
+        setPreviewImage(imageUrl)
+    }
+    const HandleEditClick = (IdCustomer) => {
+        const SelectCustomer = Customer.find(Customer => Customer.id == IdCustomer);
+        if (SelectCustomer) {
             FromData.UpdateName = SelectCustomer.fullName;
             FromData.UpdateAdress = SelectCustomer.address;
             FromData.UpdateEmail = SelectCustomer.email;
@@ -110,24 +119,46 @@ setUpdateDob(null)
         }
         setPopupVisibility(true)
     }
-    const AddCustomer=async (event)=>{
+    const AddCustomer = async (event) => {
         event.preventDefault();
-        try{
-            const formData = new FormData();
-            const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
+        if (FromData.FullName == '' || Dob == null || FromData.Phone || FromData.Email == '' || FromData.Address == '' || FromData.IdentityCode == '' || FromData.Image) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else if (FromData.IdentityCode.length != 12) {
+            Swal.fire({
+                icon: 'error',
+                title: 'ID card requires 12 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else if (FromData.Phone.length != 10) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Phone requires 10 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            try {
+                const formData = new FormData();
+                const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
                 const vietnamStartDate = new Date(Dob.getTime() + offsetInMilliseconds);
-                formData.append("FullName",FromData.FullName);
-                formData.append("Dob",vietnamStartDate.toISOString().split('T')[0]);
-                formData.append("Phone",FromData.Phone);
-                formData.append("Email",FromData.Email);
-                formData.append("Address",FromData.Address);
-                formData.append("IndentityCode",FromData.IdentityCode);
-                formData.append("Sign",FromData.Image)
-                const response=await fetch("http://localhost:5278/api/Customer/AddCustomer",{
+                formData.append("FullName", FromData.FullName);
+                formData.append("Dob", vietnamStartDate.toISOString().split('T')[0]);
+                formData.append("Phone", FromData.Phone);
+                formData.append("Email", FromData.Email);
+                formData.append("Address", FromData.Address);
+                formData.append("IndentityCode", FromData.IdentityCode);
+                formData.append("Sign", FromData.Image)
+                const response = await fetch("http://localhost:5278/api/Customer/AddCustomer", {
                     method: 'POST',
                     body: formData
                 })
-                if(response.ok){
+                if (response.ok) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Customer Success',
@@ -135,69 +166,133 @@ setUpdateDob(null)
                         timer: 1500,
                     });
                     setFromData({
-                        FullName:'',
-                        Image:null,
-                        Email:'',
-                        Address:'',
-                        IdentityCode:'',
-                        Phone:''
+                        FullName: '',
+                        Image: null,
+                        Email: '',
+                        Address: '',
+                        IdentityCode: '',
+                        Phone: ''
                     })
-                    const response=await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
+                    const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
                     setCustomer(response.data)
                     setDob(null)
                     setImagePreView(null)
                     document.getElementById('Sign').value = '';
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
                 }
-        }catch(error){
-            console.log(error)
-        }
-    }
-    const today=new Date();
-   
-    const MaxDate=new Date(today.getFullYear()-18,today.getMonth(),today.getDate())
-    const handleUpdate=async(event)=>{
-        event.preventDefault();
-        const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
-                const vietnamStartDate = new Date(UpdateDob.getTime() + offsetInMilliseconds);
-               
-        try{
-            const response=await fetch(`http://localhost:5278/api/Customer/UpdateCustomer/${FromData.id}`,{
-                method:'Put',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                fullName:FromData.UpdateName,
-                email:FromData.UpdateEmail,
-                address:FromData.UpdateAdress,
-                phone:FromData.UpdatePhone,
-                dob:vietnamStartDate.toISOString().split('T')[0]
-                })
-                
-            })
-            if(response.ok){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Update Customer Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                setFromData({
-                    UpdateName: '',
-                    UpdateEmail: '',
-                    id: '',
-                    UpdateAdress: '',
-                    UpdatePhone: '',
-                    UpdateIdentityCode: ''
-                })
-                const response=await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-                setCustomer(response.data)
-                setUpdateDob(null);
-                setPopupVisibility(false)
+            } catch (error) {
+                console.log(error)
             }
-           
-        }catch(error){
-            console.log(error)
+        }
+
+    }
+    const today = new Date();
+
+    const MaxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        if (FromData.UpdateName==''  || FromData.UpdateEmail == '' || FromData.UpdateAdress == '' || FromData.UpdatePhone == '' || UpdateDob == null) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else if (FromData.UpdatePhone.length != 10) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Phone requires 10 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
+            const vietnamStartDate = new Date(UpdateDob.getTime() + offsetInMilliseconds);
+
+            try {
+                const response = await fetch(`http://localhost:5278/api/Customer/UpdateCustomer/${FromData.id}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullName: FromData.UpdateName,
+                        email: FromData.UpdateEmail,
+                        address: FromData.UpdateAdress,
+                        phone: FromData.UpdatePhone,
+                        dob: vietnamStartDate.toISOString().split('T')[0]
+                    })
+
+                })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Update Customer Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setFromData({
+                        UpdateName: '',
+                        UpdateEmail: '',
+                        id: '',
+                        UpdateAdress: '',
+                        UpdatePhone: '',
+                        UpdateIdentityCode: ''
+                    })
+                    const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
+                    setCustomer(response.data)
+                    setUpdateDob(null);
+                    setPopupVisibility(false)
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+    }
+    const handleZoomIn = () => {
+        const image = document.getElementById('preview-image');
+        if (image) {
+            image.style.width = (image.clientWidth * 1.2) + 'px';
+        }
+    };
+    const handleClosePreview = () => {
+
+
+        setIsClosingImage(true);
+
+        setTimeout(() => {
+
+            setPreviewImage(null)
+
+
+            setIsClosingImage(false)
+        }, 500);
+    };
+    const handleZoomOut = () => {
+        const image = document.getElementById('preview-image');
+        if (image) {
+            image.style.width = (image.clientWidth / 1.2) + 'px'
         }
     }
     return (
@@ -214,47 +309,47 @@ setUpdateDob(null)
                                         <form class="forms-sample" onSubmit={AddCustomer}>
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Full Name</label>
-                                                <input type="text" class="form-control" id="exampleInputUsername1" value={FromData.FullName} onChange={(e)=>setFromData({...FromData,FullName:e.target.value})} placeholder="Full Name" />
+                                                <input type="text" class="form-control" id="exampleInputUsername1" value={FromData.FullName} onChange={(e) => setFromData({ ...FromData, FullName: e.target.value })} placeholder="Full Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Birthday </label>
                                                 <br />
-                                               <DatePicker name='Birthday' dateFormat="dd/MM/yyyy"
-                                                className="form-control w-[100%]"
-                                                 selected={Dob}
-                                                 onChange={handleDob}
-                                                placeholderText="Select Birthday"
-                                                showYearDropdown
-                                                scrollableYearDropdown
-                                                yearDropdownItemNumber={83} 
-                                                
-                                                maxDate={MaxDate} 
+                                                <DatePicker name='Birthday' dateFormat="dd/MM/yyyy"
+                                                    className="form-control w-[100%]"
+                                                    selected={Dob}
+                                                    onChange={handleDob}
+                                                    placeholderText="Select Birthday"
+                                                    showYearDropdown
+                                                    scrollableYearDropdown
+                                                    yearDropdownItemNumber={83}
+
+                                                    maxDate={MaxDate}
                                                 />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email </label>
-                                                <input type="email" class="form-control" value={FromData.Email} onChange={(e)=>setFromData({...FromData,Email:e.target.value})}  id="exampleInputEmail1" placeholder="Email" />
+                                                <input type="email" class="form-control" value={FromData.Email} onChange={(e) => setFromData({ ...FromData, Email: e.target.value })} id="exampleInputEmail1" placeholder="Email" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Address </label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" value={FromData.Address} onChange={(e)=>setFromData({...FromData,Address:e.target.value})} placeholder="Address" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1" value={FromData.Address} onChange={(e) => setFromData({ ...FromData, Address: e.target.value })} placeholder="Address" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Phone</label>
-                                                <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Phone" value={FromData.Phone} onChange={(e)=>setFromData({...FromData,Phone:e.target.value})} />
+                                                <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Phone" value={FromData.Phone} onChange={(e) => setFromData({ ...FromData, Phone: e.target.value })} />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Identity Code</label>
-                                                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Entity Code" value={FromData.IdentityCode} onChange={(e)=>setFromData({...FromData,IdentityCode:e.target.value})} />
+                                                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Entity Code" value={FromData.IdentityCode} onChange={(e) => setFromData({ ...FromData, IdentityCode: e.target.value })} />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Sign</label>
-                                                <input type="file" class="form-control" id="Sign" placeholder="Entity Code" onChange={(e)=>handleImageChange(e)} />
+                                                <input type="file" class="form-control" id="Sign" placeholder="Entity Code" onChange={(e) => handleImageChange(e)} />
                                                 {imagePreView && (
-                                                <div className="image-preview">
-                                                    <img src={imagePreView} alt="Preview" className="preview-image" />
-                                                </div>
-                                            )}
+                                                    <div className="image-preview">
+                                                        <img src={imagePreView} alt="Preview" className="preview-image" />
+                                                    </div>
+                                                )}
                                             </div>
 
 
@@ -293,18 +388,22 @@ setUpdateDob(null)
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                        {currentCustomer.map((customer,index)=>(
-                                                            <tr>
-                                                                <td>{++index}</td>
-                                                                <td>{customer.fullName}</td>
-                                                                <td>{new Date(customer.dob).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                                <td>{customer.email}</td>
-                                                                <td>{customer.address}</td>
-                                                                <td>{customer.indentityCode}</td>
-                                                                <td><img src={customer.sign}  width="100" height="100" style={{ objectFit: 'cover',width:'77%',height:'100%',borderRadius:'0%' }}  alt="" /></td>
-                                                                <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>HandleEditClick(customer.id)}>Edit</button></td>
-                                                            </tr>
-                                                        ))}
+                                                    {currentCustomer.map((customer, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{customer.fullName}</td>
+                                                            <td>{new Date(customer.dob).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                            <td>{customer.email}</td>
+                                                            <td>{customer.address}</td>
+                                                            <td>{customer.indentityCode}</td>
+                                                            <td><img src={customer.sign} width="100" height="100" style={{ objectFit: 'cover', width: '77%', height: '100%', borderRadius: '0%' }}
+                                                                alt="" />
+                                                                <br />
+                                                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => hanleImageClick(customer.sign)}>Preview</button>
+                                                            </td>
+                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => HandleEditClick(customer.id)}>Edit</button></td>
+                                                        </tr>
+                                                    ))}
                                                 </tbody>
                                             </table>
                                             <Pagination
@@ -327,6 +426,19 @@ setUpdateDob(null)
                                                 pageLinkClassName={'page-link'}
 
                                             />
+                                            {previewImage && (
+                                                <div className="preview-modal"      >
+                                                    <div className="preview-content" style={IsCloginImage ? { ...ImageViewstype, ...closingAnimation } : ImageViewstype}>
+                                                        <img src={previewImage} alt="Signature Preview" id="preview-image" />
+                                                        <div className="preview-buttons">
+                                                            <button onClick={handleClosePreview}>Close</button>
+                                                            <button onClick={handleZoomIn}>Zoom In</button>
+                                                            <button onClick={handleZoomOut}>Zoom out</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
                                         </div>
                                     </div>
                                 </div>
@@ -369,15 +481,15 @@ setUpdateDob(null)
                                 <div class="form-group">
                                     <label className='float-left'>Birthday</label>
                                     <DatePicker name='Birthday' dateFormat="dd/MM/yyyy"
-                                                className="form-control w-[100%]"
-                                                 selected={UpdateDob}
-                                                onChange={handleUpdateChange}
-                                                placeholderText="Select Birthday"
-                                                showYearDropdown
-                                                scrollableYearDropdown
-                                                yearDropdownItemNumber={83} 
-                                                
-                                                maxDate={MaxDate} />
+                                        className="form-control w-[100%]"
+                                        selected={UpdateDob}
+                                        onChange={handleUpdateChange}
+                                        placeholderText="Select Birthday"
+                                        showYearDropdown
+                                        scrollableYearDropdown
+                                        yearDropdownItemNumber={83}
+
+                                        maxDate={MaxDate} />
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Email</label>
@@ -391,7 +503,7 @@ setUpdateDob(null)
                                     <label className='float-left'>Phone</label>
                                     <input type="text" class="form-control" value={FromData.UpdatePhone} onChange={(e) => setFromData({ ...FromData, UpdatePhone: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
-                               
+
 
                             </div>
 

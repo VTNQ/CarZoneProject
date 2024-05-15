@@ -57,16 +57,16 @@ function Supplier() {
             FromData.id = SelctSsupplier.id;
             setUpdateSelectCountry(SelctSsupplier.idCountry)
             setUpdateSelectType(SelctSsupplier.type)
-            
+
         }
-        
+
 
         setPopupVisibility(true)
     }
-    const handleUpdateSelectCountry=(event)=>{
+    const handleUpdateSelectCountry = (event) => {
         setUpdateSelectCountry(event.target.value)
     }
-    const HandleUpdateType=(event)=>{
+    const HandleUpdateType = (event) => {
         setUpdateSelectType(event.target.value)
     }
     const [Supplier, setSupplier] = useState([])
@@ -110,8 +110,8 @@ function Supplier() {
         }
         fetchdata();
     }, [])
-    const DeleteSuppier=async(IDsuppier)=>{
-        try{
+    const DeleteSuppier = async (IDsuppier) => {
+        try {
             const confirmation = await Swal.fire({
                 title: 'Are you sure?',
                 text: 'You won\'t be able to revert this!',
@@ -122,13 +122,13 @@ function Supplier() {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
-                const response=await fetch(`http://localhost:5278/api/Supplier/DeleteSupplier/${IDsuppier}`,{
+                const response = await fetch(`http://localhost:5278/api/Supplier/DeleteSupplier/${IDsuppier}`, {
                     method: 'Delete',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 })
-                if(response.ok){
+                if (response.ok) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion successful',
@@ -137,81 +137,121 @@ function Supplier() {
                     });
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
                     setSupplier(response.data)
-    
+
                 }
-            }
-        }catch(error){
-            console.log(error)
-        }
-    }
-    const SubmitSupplier = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await fetch("http://localhost:5278/api/Supplier/AddSupplier", {
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: FromData.name,
-                    type: SelectType?.label,
-                    idCountry: SelectCountry?.value
-                })
-            })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add Supplier Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                })
-                setFromData({
-                    name: ''
-                })
-                setSelectCountry(null)
-                SetSelectType(null)
-                const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-            setSupplier(response.data)
             }
         } catch (error) {
             console.log(error)
         }
     }
-    const handleUpdate=async(event)=>{
+    const SubmitSupplier = async (event) => {
         event.preventDefault();
-       try{
-        const response=await fetch(`http://localhost:5278/api/Supplier/UpdateSupplier/${FromData.id}`,{
-            method:'Put',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name:FromData.UpdateName,
-                type:UpdateSelectType,
-                idCountry:UpdateSelectCountry
-            })
-            
-        })
-        if(response.ok){
+        if (FromData.name == '' || SelectType?.label == null || SelectCountry?.value == null) {
             Swal.fire({
-                icon: 'success',
-                title: 'Add Supplier Success',
+                icon: 'error',
+                title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
             })
-            setFromData({
-                id: '',
-                UpdateName: ''
-            })
-            setUpdateSelectCountry(null);
-            setUpdateSelectType(null);
-            const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-            setSupplier(response.data)
-            setPopupVisibility(false)
+        } else {
+            try {
+                const response = await fetch("http://localhost:5278/api/Supplier/AddSupplier", {
+                    method: 'Post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: FromData.name,
+                        type: SelectType?.label,
+                        idCountry: SelectCountry?.value
+                    })
+                })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add Supplier Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    setFromData({
+                        name: ''
+                    })
+                    setSelectCountry(null)
+                    SetSelectType(null)
+                    const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
+                    setSupplier(response.data)
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
-       }catch(error){
-        console.log(error)
-       }
+
+    }
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        if (FromData.UpdateName == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Name is Required',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            try {
+                const response = await fetch(`http://localhost:5278/api/Supplier/UpdateSupplier/${FromData.id}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: FromData.UpdateName,
+                        type: UpdateSelectType,
+                        idCountry: UpdateSelectCountry
+                    })
+
+                })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add Supplier Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    setFromData({
+                        id: '',
+                        UpdateName: ''
+                    })
+                    setUpdateSelectCountry(null);
+                    setUpdateSelectType(null);
+                    const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
+                    setSupplier(response.data)
+                    setPopupVisibility(false)
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
     }
     return (
         <>
@@ -274,7 +314,7 @@ function Supplier() {
                                                         <th>Type</th>
                                                         <th>Country</th>
                                                         <th>Edit</th>
-
+                                                        <th>Delete</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -350,13 +390,13 @@ function Supplier() {
                                     <label className='float-left'>Full Name</label>
                                     <input type="text" class="form-control" value={FromData.UpdateName} onChange={(e) => setFromData({ ...FromData, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
-                             
+
                                 <div class="form-group">
                                     <label className='float-left'>Country</label>
                                     <br />
                                     <select className="form-select" aria-label="Default select example" value={UpdateSelectCountry} onChange={handleUpdateSelectCountry}>
                                         {Country.map((country, index) => (
-                                            <option value={country.id} selected={country.id==UpdateSelectCountry}>{country.name}</option>
+                                            <option value={country.id} selected={country.id == UpdateSelectCountry}>{country.name}</option>
                                         ))}
                                     </select>
 
@@ -366,12 +406,12 @@ function Supplier() {
                                     <br />
                                     <select className="form-select" aria-label="Default select example" value={UpdateSelectType} onChange={HandleUpdateType}>
                                         {options.map((country, index) => (
-                                            <option  value={country.label} selected={country.label==UpdateSelectType}>{country.label}</option>
+                                            <option value={country.label} selected={country.label == UpdateSelectType}>{country.label}</option>
                                         ))}
                                     </select>
 
                                 </div>
-                               
+
 
                             </div>
 
