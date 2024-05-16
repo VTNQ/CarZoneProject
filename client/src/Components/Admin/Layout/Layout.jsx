@@ -142,6 +142,12 @@ const LayoutAdmin=({children})=> {
       <span class="menu-title">Color</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-paper menu-icon"></i>
+      <span class="menu-title">In Order</span>
+    </a>
+  </li>
 </ul>
 </nav>
 {children}

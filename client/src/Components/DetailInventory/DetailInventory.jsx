@@ -824,7 +824,7 @@ function DetailInventory() {
                                                                         </div>
                                                                         <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
                                                                             <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -832,7 +832,7 @@ function DetailInventory() {
                                                                                         2015
                                                                                     </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -904,7 +904,7 @@ function DetailInventory() {
                                                                         </div>
                                                                         <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
                                                                             <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -912,7 +912,7 @@ function DetailInventory() {
                                                                                         2015
                                                                                     </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -980,7 +980,7 @@ function DetailInventory() {
                                                                         </div>
                                                                         <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
                                                                             <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -988,7 +988,7 @@ function DetailInventory() {
                                                                                         2018
                                                                                     </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>

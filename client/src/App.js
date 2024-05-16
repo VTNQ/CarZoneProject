@@ -14,6 +14,7 @@ import Layout from './Components/Admin/Home/Homepage';
 import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCustomer';
 import Supplier from './Components/Admin/Supplier/Supplier';
 import Color from './Components/Color/Color';
+import InOrder from './Components/Admin/InOrder/InOrder';
 function App() {
   return (
     <Router>
@@ -31,6 +32,7 @@ function App() {
         <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer/>}/>
         <Route path='/Supplier' element={<Supplier/>}/>
         <Route path='/Color' element={<Color/>}/>
+        <Route path='/Inorder' element={<InOrder/>}/>
       </Routes>
     </Router>
   );
