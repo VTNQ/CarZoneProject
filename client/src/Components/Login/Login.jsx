@@ -25,7 +25,7 @@ function Login(){
                 },
             })
             const responseData = await response.json();
-            const { id, fullName,email,role } = responseData;
+            const { id, fullName,email,role,idShowroom } = responseData;
             if(response.ok){
                 Swal.fire({
                     icon: 'success',
@@ -34,7 +34,7 @@ function Login(){
                     timer: 1500,
                 }).then(()=>{
                     if(role==='Admin'){
-                        navigate('/HomeAdminPage',{state:{ID:id,fullName:fullName,email:email}})
+                        navigate('/HomeAdminPage',{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
                     }else if (role==="Employee"){
                         navigate("/Employee/Dashboard",{state:{ID:id,fullName:fullName,email:email}})
                     }

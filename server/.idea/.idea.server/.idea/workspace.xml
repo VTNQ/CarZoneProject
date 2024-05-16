@@ -9,12 +9,67 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Admin/Home/Homepage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Admin/Home/Homepage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/DetailInventory/DetailInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/DetailInventory/DetailInventory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/server/FileContentIndex/0dd19c74-00ff-482c-a0b3-da40d22f7307.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/server/FileContentIndex/5492867b-0f4f-4946-8af8-47e93f45a1af.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/server/FileContentIndex/66d29789-9015-49e9-a6eb-05dd2a116556.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/server/FileContentIndex/d4b4265e-a94c-461c-a50b-1d49c21ce5fc.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/server/FileContentIndex/ffe647cf-add4-4f4f-a6ef-00d558e153a8.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/ColorController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/CustomerController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/SupplierController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/AddColor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/AddCustomer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/AddSupplier.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/UpdateCustomer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/UpdateEmployee.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Helper/FileHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/ColorService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/ColorServiceImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/CustomerService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/CustomerServiceImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/SupplierService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/SupplierServiceImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets/msbuild.server.Microsoft.AspNetCore.StaticWebAssets.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/e02391a72aef445086dfe983dfdb833e.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/f695214be5b14f83bae6213a5df67733.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.metadata.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.metadata.v7.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.projects.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.projects.v7.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/server/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/FileContentIndex/3aed5489-9e16-4976-9e37-0676732a48f6.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/FileContentIndex/843583e5-1d8e-4e1c-953e-cd0a15f13773.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/FileContentIndex/9cc81716-ae29-40d3-968e-63bf4c52f3dd.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/FileContentIndex/a3346811-c075-4e3f-85ed-afb8aab7b0df.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/FileContentIndex/fbb1baa5-71a4-4cca-8733-beb405a08326.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/server/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/server/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/server/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/server/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/EmployeeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/EmployeeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/EmployeeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/EmployeeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/EmployeeServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/EmployeeServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/server.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +94,11 @@
     &quot;accountId&quot;: &quot;180732de-4b3c-40ec-84f4-dc48c81662e6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -118,6 +178,7 @@
       <updated>1715608253519</updated>
       <workItem from="1715608258483" duration="1928000" />
       <workItem from="1715657587185" duration="311000" />
+      <workItem from="1715819440371" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -127,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715609911541</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update">
+      <option name="closed" value="true" />
+      <created>1715821001422</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715821001422</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +218,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Update models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update models" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

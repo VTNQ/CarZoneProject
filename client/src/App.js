@@ -13,16 +13,18 @@ import CreateCustomer from './Components/Employee/Customer/AddCustomer';
 import ShowCustomer from './Components/Employee/Customer/ShowCustomer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
-import Layout from './Components/Admin/Layout/Layout';
-import Dashboard from "./Components/Employee/Dashboard/Dashboard";
-
+import Layout from './Components/Admin/Home/Homepage';
+import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCustomer';
+import Supplier from './Components/Admin/Supplier/Supplier';
+import Color from './Components/Color/Color';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/Contact' element={<Contact/>}/>
+        <Route path='/Login' element={<Login/>}/>
         <Route path='/Inventory' element={<Inventory/>}/>
-        <Route path='/Employee' element={<Layout/>}/>
+        <Route path='/Employee' element={<AddEmployee/>}/>
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/HomeAdminPage' element={<Layout/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>
@@ -35,6 +37,9 @@ function App() {
           <Route path='Create-Customer' element={<CreateCustomer/>}/>
         </Route>
 
+        <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer/>}/>
+        <Route path='/Supplier' element={<Supplier/>}/>
+        <Route path='/Color' element={<Color/>}/>
       </Routes>
     </Router>
   );
