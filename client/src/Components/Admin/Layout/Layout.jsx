@@ -106,50 +106,56 @@ const LayoutAdmin=({children})=> {
   </div>
 </nav>
 <div className="container-fluid page-body-wrapper pt-0">
-<nav class="sidebar sidebar-offcanvas" id="sidebar" style={{position:'relative',top:'64px'}}>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
 <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link">
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Dashboard</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Employee',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Employee</span>
     </a>
   </li>
-
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
-      <i class="icon-paper menu-icon"></i>
+    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email}})}>
+      <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Customer</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
-      <i class="icon-paper menu-icon"></i>
+    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email}})}>
+      <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Supplier</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
-      <i class="icon-paper menu-icon"></i>
+    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email}})}>
+      <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Color</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
-      <i class="icon-paper menu-icon"></i>
+    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email}})}>
+      <i class="icon-grid menu-icon"></i>
       <span class="menu-title">In Order</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/OutOrder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Out Order</span>
+    </a>
+  </li>
+
+
 </ul>
 </nav>
 {children}
 </div>
-
         </>
     )
 }

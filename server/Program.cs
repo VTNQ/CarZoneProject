@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using server.Middleware;
 using server.Models;
 using server.Services;
 
@@ -19,6 +20,7 @@ builder.Services.AddScoped<CustomerService,CustomerServiceImpl>();
 builder.Services.AddScoped<SupplierService,SupplierServiceImpl>();
 builder.Services.AddScoped<ColorService,ColorServiceImpl>();
 builder.Services.AddScoped<InOrderService, InOrderServiceImpl>();
+builder.Services.AddScoped<OutOrderService, OutOrderServiceImpl>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>
@@ -32,7 +34,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
-
+app.UseMiddleware<InOrderMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

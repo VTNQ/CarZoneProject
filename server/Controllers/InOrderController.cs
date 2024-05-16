@@ -14,6 +14,18 @@ namespace server.Controllers
         {
             _orderService = orderService;
         }
+        [HttpGet("ShowInOrder/{id}")]
+        public IActionResult ShowInOrder(int id)
+        {
+            try
+            {
+                return Ok(_orderService.ShowInOrder(id)); 
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("AddInorder")]
         [Produces("application/json")]
         public IActionResult AddInorder([FromForm] InOrder inOrder)
@@ -24,6 +36,18 @@ namespace server.Controllers
                 {
                     result = _orderService.AddInOrder(inOrder)
                 });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("DetailInOrder/{id}")]
+        public IActionResult DetailInOrder(int id)
+        {
+            try
+            {
+                return Ok(_orderService.DetailInOrder(id));
             }
             catch
             {

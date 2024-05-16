@@ -1,4 +1,5 @@
-﻿using server.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Models;
 
 namespace server.Services
 {
@@ -64,13 +65,54 @@ namespace server.Services
                     };
                    databaseContext.DetailOfInOrders.Add(DetailIndorder);
                 }
-                return databaseContext.SaveChanges()>0;
-              
+                databaseContext.SaveChanges();
+                return true;
+
             }
             catch
             {
                 return false;
             }
+        }
+
+        public dynamic ShowInOrder(int id)
+        {
+            return databaseContext.InOrders.Where(d => d.IdEmployee == id).Select(d => new
+            {
+                id = d.Id,
+                WareHouse = d.IdWarehouseNavigation.Name,
+                Supplier = d.IdSuplierNavigation.Name,
+                DateofSale = d.DateOfSale,
+                TotalAmount = d.TotalAmount,
+                ToTalTax = d.TotalTax,
+                Payment = d.Payment,
+            }).ToList();
+        }
+       
+        public dynamic DetailInOrder(int id)
+        {
+            return databaseContext.DetailOfInOrders.Where(d => d.IdOrder == id).Select(d => new
+            {
+                id = d.Id,
+                Car = d.IdCarNavigation.Name,
+                DeleveryDate = d.DeliveryDate,
+                Price = d.Price,
+                Tax = d.Tax,
+            }).ToList(); 
+        }
+
+        public async Task UpdateOrderStatus()
+        {
+            var Orders = await databaseContext.InOrders.ToListAsync();
+            foreach(var order in Orders)
+            {
+                var details=await databaseContext.DetailOfInOrders.Where(d=>d.IdOrder==order.Id && d.DeliveryDate<=DateOnly.FromDateTime(DateTime.Today)).ToListAsync();
+                if (details.Any())
+                {
+                    order.Status = true;
+                }
+            }
+            await databaseContext.SaveChangesAsync();
         }
     }
 }

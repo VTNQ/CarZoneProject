@@ -17,6 +17,9 @@ import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCus
 import Supplier from './Components/Admin/Supplier/Supplier';
 import Color from './Components/Color/Color';
 import InOrder from './Components/Admin/InOrder/InOrder';
+import DetailInOrders from './Components/Admin/InOrder/DetailInOrder';
+import OutOrder from './Components/Admin/OutOrder/OutOrder';
+import DetailOutOrders from './Components/Admin/OutOrder/DetailOutOrder';
 function App() {
   return (
     <Router>
@@ -31,6 +34,7 @@ function App() {
         <Route path='/DetailInventory' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
+        <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>
           <Route path='Show-Customer' element={<ShowCustomer/>}/>
@@ -41,6 +45,8 @@ function App() {
         <Route path='/Supplier' element={<Supplier/>}/>
         <Route path='/Color' element={<Color/>}/>
         <Route path='/Inorder' element={<InOrder/>}/>
+        <Route path='/OutOrder' element={<OutOrder/>}/>
+        <Route path='/DetailOutOrder/:id' element={<DetailOutOrders/>}/>
       </Routes>
     </Router>
   );
