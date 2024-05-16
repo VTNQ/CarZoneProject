@@ -14,6 +14,10 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration["ConnectionStrings:DefaultConnect"];
 builder.Services.AddDbContext<DatabaseContext>(option=>option.UseLazyLoadingProxies().UseSqlServer(connectionString));
 builder.Services.AddScoped<AccountService,AccountServiceImpl>();
+builder.Services.AddScoped<EmployeeService,EmployeeServiceImpl>();
+builder.Services.AddScoped<CustomerService,CustomerServiceImpl>();
+builder.Services.AddScoped<SupplierService,SupplierServiceImpl>();
+builder.Services.AddScoped<ColorService,ColorServiceImpl>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>

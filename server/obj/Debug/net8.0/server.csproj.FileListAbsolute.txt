@@ -304,3 +304,4 @@ D:\CarZoneProject\server\obj\Debug\net8.0\refint\server.dll
 D:\CarZoneProject\server\obj\Debug\net8.0\server.pdb
 D:\CarZoneProject\server\obj\Debug\net8.0\server.genruntimeconfig.cache
 D:\CarZoneProject\server\obj\Debug\net8.0\ref\server.dll
+D:\CarZoneProject\server\bin\Debug\net8.0\server.staticwebassets.runtime.json
