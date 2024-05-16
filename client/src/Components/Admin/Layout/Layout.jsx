@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import '../assets/vendors/feather/feather.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/vendors/css/vendor.bundle.base.css';
@@ -10,8 +9,6 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
-import HomePage from "../Home/Homepage";
-import AddEmployee from "../AddEmployee/AddEmployee";
 const LayoutAdmin=({children})=> {
   const navigate = useNavigate();
   const location = useLocation();

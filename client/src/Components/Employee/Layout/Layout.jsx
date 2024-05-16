@@ -9,7 +9,9 @@ import '../assets/css/style.css';
 import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
-function LayoutAdmin() {
+import {useNavigate} from "react-router-dom";
+const LayoutEmployee=({children})=>{
+  const navigate=useNavigate();
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -98,8 +100,29 @@ function LayoutAdmin() {
     </button>
   </div>
 </nav>
+          <div className="container-fluid page-body-wrapper">
+            <nav className="sidebar sidebar-offcanvas" id="sidebar">
+              <ul className="nav">
+                <li className="nav-item">
+                  <a className="nav-link" onClick={()=>navigate('/Employee/Dashboard')}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">Dashboard</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" onClick={()=>navigate('/Employee/Create-Customer')}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">Customer</span>
+                  </a>
+                </li>
 
+              </ul>
+            </nav>
+
+            {children}
+          </div>
+          handleEditClick
         </>
     )
 }
-export default LayoutAdmin;
+export default LayoutEmployee;

@@ -32,6 +32,9 @@ public partial class InOrder
 
     public bool Status { get; set; }
 
+    [InverseProperty("IdOrderNavigation")]
+    public virtual ICollection<DetailOfInOrder> DetailOfInOrders { get; set; } = new List<DetailOfInOrder>();
+
     [ForeignKey("IdEmployee")]
     [InverseProperty("InOrders")]
     public virtual Employee IdEmployeeNavigation { get; set; } = null!;
