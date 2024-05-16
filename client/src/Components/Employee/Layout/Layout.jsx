@@ -121,6 +121,7 @@ const LayoutEmployee=({children})=>{
 
             {children}
           </div>
+          handleEditClick
         </>
     )
 }
