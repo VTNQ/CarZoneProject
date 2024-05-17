@@ -119,42 +119,60 @@ function InOrder() {
         event.preventDefault();
         let totalAmount = 0;
         let totalTax = 0;
+        let hasInvalidInput = false;
         Object.keys(carTaxes).forEach((carId) => {
-            const price = Number(carTaxes[carId].price || 0);
-            const tax = Number(carTaxes[carId].tax || 0);
-            totalAmount += price;
-            totalTax += tax;
-        })
-
-        const formData = new FormData();
-
-        formData.append("IdWarehouse", SelectWareHouse?.value)
-        formData.append("IdEmployee", ID)
-        formData.append("IdSuplier", SelectSupply?.value)
-        formData.append("TotalAmount", totalAmount);
-        formData.append("TotalTax", totalTax);
-        formData.append("Payment", SelectCash?.value)
-        Object.keys(carTaxes).forEach((carId, index) => {
-            const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
-            const vietnamStartDate = new Date(carTaxes[carId].delivery.getTime() + offsetInMilliseconds);
-            formData.append(`DetailInOrders[${index}].idCar`, carTaxes[carId].id)
-            formData.append(`DetailInOrders[${index}].deliveryDate`, vietnamStartDate.toISOString().split('T')[0])
-            formData.append(`DetailInOrders[${index}].price`, carTaxes[carId].price)
-            formData.append(`DetailInOrders[${index}].tax`, carTaxes[carId].tax)
-
-        })
-        const response = await fetch("http://localhost:5278/api/InOrder/AddInorder", {
-            method: 'POST',
-            body: formData
-        })
-        if (response.ok) {
+            if (carTaxes[carId].tax === '' || carTaxes[carId].delivery === null) {
+                hasInvalidInput = true;
+            }
+        });
+        if (hasInvalidInput || SelectSupply?.value || SelectWareHouse?.value || SelectCars?.value || SelectCash?.value) {
             Swal.fire({
-                icon: 'success',
-                title: 'Add Lecture Success',
+                icon: 'error',
+                title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
-            });
+            })
+        } else {
+            Object.keys(carTaxes).forEach((carId) => {
+                const price = Number(carTaxes[carId].price || 0);
+                const tax = Number(carTaxes[carId].tax || 0);
+                totalAmount += price;
+                totalTax += tax;
+            })
+
+            const formData = new FormData();
+
+            formData.append("IdWarehouse", SelectWareHouse?.value)
+            formData.append("IdEmployee", ID)
+            formData.append("IdSuplier", SelectSupply?.value)
+            formData.append("TotalAmount", totalAmount);
+            formData.append("TotalTax", totalTax);
+            formData.append("Payment", SelectCash?.value)
+            Object.keys(carTaxes).forEach((carId, index) => {
+                const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
+                const vietnamStartDate = new Date(carTaxes[carId].delivery.getTime() + offsetInMilliseconds);
+                formData.append(`DetailInOrders[${index}].idCar`, carTaxes[carId].id)
+                formData.append(`DetailInOrders[${index}].deliveryDate`, vietnamStartDate.toISOString().split('T')[0])
+                formData.append(`DetailInOrders[${index}].price`, carTaxes[carId].price)
+                formData.append(`DetailInOrders[${index}].tax`, carTaxes[carId].tax)
+
+            })
+            const response = await fetch("http://localhost:5278/api/InOrder/AddInorder", {
+                method: 'POST',
+                body: formData
+            })
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add Lecture Success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${ID}`)
+                setInOrder(response.data)
+            }
         }
+
     }
     return (
         <>
@@ -165,7 +183,7 @@ function InOrder() {
                             <div class="col-md-12 grid-margin stretch-card">
                                 <div class="card" style={{ height: 'auto' }}>
                                     <div class="card-body">
-                                        <h4 class="card-title">Customer</h4>
+                                        <h4 class="card-title">In Order</h4>
                                         <p class="card-description"> Basic form layout </p>
                                         <form class="forms-sample" onSubmit={SubmitCar}>
                                             <div class="form-group">
@@ -234,7 +252,7 @@ function InOrder() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Employee</h4>
+                                        <h4 class="card-title">In Order</h4>
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Full Name" />
@@ -268,8 +286,8 @@ function InOrder() {
                                                             <td>{inorder.payment}</td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                                onClick={()=>navigate(`/DetailInOrder/${inorder.id}`,{state:{ID:ID,fullName:username,email:email,IDInorder:inorder.id}})}
-                                                            >Edit
+                                                                onClick={() => navigate(`/DetailInOrder/${inorder.id}`, { state: { ID: ID, fullName: username, email: email, IDInorder: inorder.id } })}
+                                                            >Detail
                                                             </button></td>
                                                         </tr>
                                                     ))}

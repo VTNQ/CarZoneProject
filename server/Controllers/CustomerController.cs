@@ -60,7 +60,7 @@ namespace server.Controllers
         [HttpPost("AddCustomer")]
         [Produces("application/json")]
 
-        public IActionResult AddCustomer([FromBody]  AddCustomer addCustomer)
+        public IActionResult AddCustomer([FromForm]  AddCustomer addCustomer)
         {
             try
             {

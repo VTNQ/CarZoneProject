@@ -9,6 +9,7 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 const LayoutAdmin=({children})=> {
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,6 +17,10 @@ const LayoutAdmin=({children})=> {
   const username=location.state?.fullName || '';
   const email = location.state?.email || '';
   const idShowroom=location.state?.idShowroom || '';
+  const [showDropdown, setShowDropdown] = useState(false);
+  const handleDropdownToggle = () => {
+      setShowDropdown(!showDropdown);
+    };
 
     return (
         <>
@@ -84,9 +89,21 @@ const LayoutAdmin=({children})=> {
         </div>
       </li>
       <li class="nav-item nav-profile dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+        <a class="nav-link dropdown-toggle" onClick={handleDropdownToggle} data-bs-toggle="dropdown" id="profileDropdown">
           <img src={avatar} alt="profile" />
         </a>
+        {showDropdown && (
+            <div className="dropdown1">
+              <a href="#" onClick={() => navigate('/Account')}>
+                <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+              </a>
+              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+                <i className="fa fa-user" aria-hidden="true"></i> Account
+              </a>
+
+              {/* Các mục khác của dropdown có thể được thêm vào đây */}
+            </div>
+          )}
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item">
             <i class="ti-settings text-primary"></i> Settings </a>
@@ -115,31 +132,37 @@ const LayoutAdmin=({children})=> {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email}})}>
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Home</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/EmployeeAdmin',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Employee</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email}})}>
+    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Customer</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email}})}>
+    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Supplier</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email}})}>
+    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Color</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email}})}>
+    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">In Order</span>
     </a>
@@ -148,6 +171,18 @@ const LayoutAdmin=({children})=> {
     <a class="nav-link" onClick={()=>navigate('/OutOrder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Out Order</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/ShowContact',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Contact</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Request',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Request WareHouse</span>
     </a>
   </li>
 

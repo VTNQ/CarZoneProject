@@ -20,6 +20,9 @@ import InOrder from './Components/Admin/InOrder/InOrder';
 import DetailInOrders from './Components/Admin/InOrder/DetailInOrder';
 import OutOrder from './Components/Admin/OutOrder/OutOrder';
 import DetailOutOrders from './Components/Admin/OutOrder/DetailOutOrder';
+import ShowContact from './Components/Admin/ShowContact/ShowContact';
+import Request from './Components/Admin/Request/Request';
+import EditProfile from './Components/Admin/EditProfile/EditProfile';
 function App() {
   return (
     <Router>
@@ -27,7 +30,7 @@ function App() {
         <Route path='/Contact' element={<Contact/>}/>
         <Route path='/Login' element={<Login/>}/>
         <Route path='/Inventory' element={<Inventory/>}/>
-        <Route path='/Employee' element={<AddEmployee/>}/>
+        <Route path='/EmployeeAdmin' element={<AddEmployee/>}/>
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/HomeAdminPage' element={<Layout/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>
@@ -47,6 +50,9 @@ function App() {
         <Route path='/Inorder' element={<InOrder/>}/>
         <Route path='/OutOrder' element={<OutOrder/>}/>
         <Route path='/DetailOutOrder/:id' element={<DetailOutOrders/>}/>
+        <Route path='/ShowContact' element={<ShowContact/>}/>
+        <Route path='/Request' element={<Request/>}/>
+        <Route path='/EditProfile' element={<EditProfile/>}/>
       </Routes>
     </Router>
   );
