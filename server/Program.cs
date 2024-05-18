@@ -23,6 +23,7 @@ builder.Services.AddScoped<InOrderService, InOrderServiceImpl>();
 builder.Services.AddScoped<OutOrderService, OutOrderServiceImpl>();
 builder.Services.AddScoped<ContactService,ContactServiceImpl>();
 builder.Services.AddScoped<RequestService,RequestServiceImpl>();
+builder.Services.AddScoped<InVoiceService, InVoiceServiceImpl>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>
