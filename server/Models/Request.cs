@@ -23,4 +23,7 @@ public partial class Request
     public bool? Type { get; set; }
 
     public DateOnly? CreateDay { get; set; }
+
+    [Column(TypeName = "text")]
+    public string? Description { get; set; }
 }

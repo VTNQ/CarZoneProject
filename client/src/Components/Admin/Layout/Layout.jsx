@@ -180,9 +180,15 @@ const LayoutAdmin=({children})=> {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Request',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/RequestWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Request WareHouse</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/RequestSupplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Request Supplier</span>
     </a>
   </li>
 
