@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Menu from "../Menu/Menu";
 import './Inventory.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import axios from "axios";
 function Inventory() {
-    
+
     const Producttype = [
         { value: 0, label: 'sale' },
         { value: 1, label: "Rental" },
@@ -61,8 +62,20 @@ function Inventory() {
         setFilterValue(value)
 
     }
-    const [open,setOpen]=useState(false)
-    const handleOpen=()=>{
+    const [Car, setCar] = useState([]);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/WareHouse/ShowCar");
+                setCar(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [])
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => {
         setOpen(prevOpen => {
             const newOpen = !prevOpen;
             console.log(newOpen)
@@ -285,82 +298,85 @@ function Inventory() {
                                             </div>
                                             {ChangeSwitch == 1 && (
                                                 <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
-                                                    <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
-                                                        <div className="ap-inner" style={{ width: '97%' }}>
-                                                            <div className="ap-info">
-                                                                <div className="uk-inline">
-                                                                    <div className="ap-ribbon sale Default">
-                                                                        <span className="ap-ribbon-content">For Sale</span>
-                                                                    </div>
-                                                                    <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
-                                                                        <a href="" style={{ color: '#222222' }}>
-                                                                            <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg" width={580} height={387} className="attachment-medium_large size-medium_large wp-post-image" alt="" />
-                                                                        </a>
-                                                                        <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
-                                                                            <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                <i className="fas fa-not-equal js-ap-icon"></i>
+                                                    {Car.map((car, inex) => (
+                                                        <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
+                                                            <div className="ap-inner" style={{ width: '97%' }}>
+                                                                <div className="ap-info">
+                                                                    <div className="uk-inline">
+                                                                        <div className="ap-ribbon sale Default">
+                                                                            <span className="ap-ribbon-content">For Sale</span>
+                                                                        </div>
+                                                                        <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
+                                                                            <a href="" style={{ color: '#222222' }}>
+                                                                                <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg" width={580} height={387} className="attachment-medium_large size-medium_large wp-post-image" alt="" />
                                                                             </a>
-                                                                            <a className="uk-icon-button" style={{ textDecoration: 'none' }} onClick={handleOpen}>
-                                                                                <i className="fas fa-eye"></i>
-                                                                            </a>
+                                                                            <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
+                                                                                <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
+                                                                                    <i className="fas fa-not-equal js-ap-icon"></i>
+                                                                                </a>
+                                                                                <a className="uk-icon-button" style={{ textDecoration: 'none' }} onClick={handleOpen}>
+                                                                                    <i className="fas fa-eye"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
+                                                                            <div className="ap-price-box">
+                                                                                <span className="ap-field-label">Total Price</span>
+                                                                                <span className="ap-price">
+                                                                                    <b></b>
+                                                                                    $ {car.price}
+                                                                                </span>
+                                                                                {/* <span className="ap-price-msrp">
+                                                                                    <span>&nbsp; MSRP: </span>
+                                                                                    $96,500
+                                                                                </span> */}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
-                                                                        <div className="ap-price-box">
-                                                                            <span className="ap-field-label">Total Price</span>
-                                                                            <span className="ap-price">
-                                                                                <b></b>
-                                                                                $98,000 |
-                                                                            </span>
-                                                                            <span className="ap-price-msrp">
-                                                                                <span>&nbsp; MSRP: </span>
-                                                                                $96,500
-                                                                            </span>
+                                                                    <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
+                                                                        <div className="ap-title-info">
+                                                                            <h2 className="ap-title">
+                                                                                <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textTransform: 'uppercase', lineHeight: '1.2em' }}>{car.name    }</a>
+                                                                            </h2>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
-                                                                    <div className="ap-title-info">
-                                                                        <h2 className="ap-title">
-                                                                            <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textTransform: 'uppercase', lineHeight: '1.2em' }}>911 Carrera</a>
-                                                                        </h2>
+                                                                    <div className="ap-info-inner ap-info-desc">
+                                                                        <p style={{ marginBottom: '0', lineHeight: '1.7', fontSize: '16px', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
                                                                     </div>
-                                                                </div>
-                                                                <div className="ap-info-inner ap-info-desc">
-                                                                    <p style={{ marginBottom: '0', lineHeight: '1.7', fontSize: '16px', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
-                                                                </div>
-                                                                <div className="ap-info-inner ap-info-bottom" style={{ padding: '2px' }}>
-                                                                    <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                        <div className="ap-spec-item uk-flex uk-flex-column uk-first-column">
-                                                                            <span className="ap-spec-value">
-                                                                                <span className="ap-style4-icon">
-                                                                                    <i className="far fa-registered"></i>
+                                                                    <div className="ap-info-inner ap-info-bottom" style={{ padding: '2px' }}>
+                                                                        <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
+                                                                            <div className="ap-spec-item uk-flex uk-flex-column uk-first-column">
+                                                                                <span className="ap-spec-value">
+                                                                                    <span className="ap-style4-icon">
+                                                                                        <i className="far fa-registered"></i>
+                                                                                    </span>
+                                                                                    2022
                                                                                 </span>
-                                                                                2022
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="ap-spec-item uk-flex uk-flex-column">
-                                                                            <span className="ap-spec-value">
-                                                                                <span className="ap-style4-icon">
-                                                                                    <i className="fas fa-car"></i>
+                                                                            </div>
+                                                                            <div className="ap-spec-item uk-flex uk-flex-column">
+                                                                                <span className="ap-spec-value">
+                                                                                    <span className="ap-style4-icon">
+                                                                                        <i className="fas fa-car"></i>
+                                                                                    </span>
+                                                                                    New
                                                                                 </span>
-                                                                                New
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="ap-spec-item uk-flex uk-flex-column">
-                                                                            <span className="ap-spec-value">
-                                                                                <span className="ap-style4-icon">
-                                                                                    <i className="fas fa-cog"></i>
+                                                                            </div>
+                                                                            <div className="ap-spec-item uk-flex uk-flex-column">
+                                                                                <span className="ap-spec-value">
+                                                                                    <span className="ap-style4-icon">
+                                                                                        <i className="fas fa-cog"></i>
+                                                                                    </span>
+                                                                                    25000 mi
                                                                                 </span>
-                                                                                25000 mi
-                                                                            </span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="ap-item ap-item-style4  templazaFadeInUp">
+                                                    ))}
+
+                                                    {/* <div className="ap-item ap-item-style4  templazaFadeInUp">
                                                         <div className="ap-inner" style={{ width: '98%' }}>
                                                             <div className="ap-info">
                                                                 <div className="uk-inline">
@@ -584,7 +600,7 @@ function Inventory() {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             )}
                                             {ChangeSwitch == 2 && (
@@ -602,7 +618,7 @@ function Inventory() {
                                                                             <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
                                                                                 <i className="fas fa-not-equal js-ap-icon"></i>
                                                                             </a>
-                                                                            <a  className="uk-icon-button" style={{ textDecoration: 'none' }}>
+                                                                            <a className="uk-icon-button" style={{ textDecoration: 'none' }}>
                                                                                 <i className="fas fa-eye"></i>
                                                                             </a>
                                                                         </div>
@@ -685,7 +701,7 @@ function Inventory() {
                                                                             <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
                                                                                 <i className="fas fa-not-equal js-ap-icon"></i>
                                                                             </a>
-                                                                            <a  className="uk-icon-button" style={{ textDecoration: 'none' }}>
+                                                                            <a className="uk-icon-button" style={{ textDecoration: 'none' }}>
                                                                                 <i className="fas fa-eye"></i>
                                                                             </a>
                                                                         </div>
@@ -765,10 +781,10 @@ function Inventory() {
                     </div>
                 </div>
             </div>
-            <div id="ap-product-modal__quickview" style={open ? { ...closepopup, ...popupContentStyle } : closepopup} className={`uk-modal-container uk-modal ${open==true ? 'uk-flex' :''}  ${open==true ?'uk-open':''}`}>
+            <div id="ap-product-modal__quickview" style={open ? { ...closepopup, ...popupContentStyle } : closepopup} className={`uk-modal-container uk-modal ${open == true ? 'uk-flex' : ''}  ${open == true ? 'uk-open' : ''}`}>
                 <div className="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle uk-margin-auto-vertical">
                     <button type="button" className="uk-modal-close-full uk-close-large uk-icon uk-close" onClick={handleOpen}>
-                    <i class="fas fa-window-close" style={{fontSize:'44px'}}></i>
+                        <i class="fas fa-window-close" style={{ fontSize: '44px' }}></i>
                     </button>
                     <div className="uk-grid-collapse uk-width-1-1 uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
                         <div className="ap-quickview-media uk-cover-container uk-first-column">
@@ -776,9 +792,9 @@ function Inventory() {
                                 <img width={1200} height={800} className="attachment-full size-full wp-post-image" style={{ objectFit: 'cover' }} src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash.jpg" alt="" />
                                 <canvas width={600} height={400}></canvas>
                             </a>
-                            <a href="" className="product-more-infor uk-background-muted uk-text-center uk-position-bottom" style={{textDecoration:'none'}}>
-                                <span className="product-more-infor__text" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'15px',fontWeight:'500',color:'#fff'}}>
-                                More Product Info
+                            <a href="" className="product-more-infor uk-background-muted uk-text-center uk-position-bottom" style={{ textDecoration: 'none' }}>
+                                <span className="product-more-infor__text" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '15px', fontWeight: '500', color: '#fff' }}>
+                                    More Product Info
                                 </span>
                                 <i className="fas fa-info-circle"></i>
                             </a>
@@ -814,107 +830,107 @@ function Inventory() {
                                                         BHP
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em ',color: '#555555'}}>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em ', color: '#555555' }}>
                                                     195        </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill="..........................................................................................................">
-                                                    Motor size
+                                                        Motor size
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                250        </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    250        </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".................................................................................................">
-                                                    Fuel Type
+                                                        Fuel Type
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                Biodiesel      </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    Biodiesel      </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill="......................................................................................">
-                                                    Number of doors
+                                                        Number of doors
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                4 Doors      </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    4 Doors      </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".......................................................................................................">
-                                                    Drivetrain
+                                                        Drivetrain
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                4WD     </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    4WD     </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".......................................................................................................">
-                                                    Engine
+                                                        Engine
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                9     </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    9     </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".........................................................................................">
-                                                    Transmission
+                                                        Transmission
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                Automatic    </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    Automatic    </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill="...............................................................................................">
-                                                    Interior Color
+                                                        Interior Color
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                Black    </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    Black    </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".......................................................................................................">
-                                                    Exterior Color
+                                                        Exterior Color
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                Red   </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    Red   </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".......................................................................................................">
-                                                    Condition   
+                                                        Condition
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                new    </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    new    </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill=".......................................................................................................">
-                                                    Mileage
+                                                        Mileage
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                25000  </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    25000  </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
                                                     <span className="uk-leader-fill" data-fill="..........................................................................................">
-                                                    Registration Date
+                                                        Registration Date
                                                     </span>
                                                 </div>
-                                                <div className="field-value" style={{fontFamily:'Inter, Arial, Helvetica, sans-serif',fontSize:'16px',lineHeight:'1.0em',color: '#555555'}}>
-                                                2022   </div>
+                                                <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
+                                                    2022   </div>
                                             </div>
                                         </div>
                                     </div>

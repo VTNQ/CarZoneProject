@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fGMPG2NrLiYxnlSm+ZXt8DQiF0Hd4GkWe/kngIY4N4s=",
+  "Hash": "Tu6S50Cisy99jVDbfofo2ldHvzh14AEY/8zayM1Y7/g=",
   "Source": "server",
   "BasePath": "_content/server",
   "Mode": "Default",
@@ -74,6 +74,25 @@
       "OriginalItemSpec": "wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png"
     },
     {
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"
+    },
+    {
       "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
       "SourceId": "server",
       "SourceType": "Discovered",
@@ -91,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png"
+    },
+    {
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"
     }
   ]
 }

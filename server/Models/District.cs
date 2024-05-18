@@ -18,6 +18,9 @@ public partial class District
 
     public int IdCity { get; set; }
 
+    [Required]
+    public bool? IsDelete { get; set; }
+
     [ForeignKey("IdCity")]
     [InverseProperty("Districts")]
     public virtual City IdCityNavigation { get; set; } = null!;

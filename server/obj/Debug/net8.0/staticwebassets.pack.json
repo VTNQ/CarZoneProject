@@ -13,8 +13,16 @@
       "PackagePath": "staticwebassets\\images\\e02391a72aef445086dfe983dfdb833e.png"
     },
     {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+      "PackagePath": "staticwebassets\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"
+    },
+    {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
       "PackagePath": "staticwebassets\\images\\f695214be5b14f83bae6213a5df67733.png"
+    },
+    {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+      "PackagePath": "staticwebassets\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.server.props",

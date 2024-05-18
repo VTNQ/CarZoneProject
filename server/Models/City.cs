@@ -18,6 +18,9 @@ public partial class City
 
     public int IdCountry { get; set; }
 
+    [Required]
+    public bool? IsDelete { get; set; }
+
     [InverseProperty("IdCityNavigation")]
     public virtual ICollection<District> Districts { get; set; } = new List<District>();
 

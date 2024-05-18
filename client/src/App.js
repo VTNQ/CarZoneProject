@@ -24,6 +24,7 @@ import ShowContact from './Components/Admin/ShowContact/ShowContact';
 import Request from './Components/Admin/Request/Request';
 import EditProfile from './Components/Admin/EditProfile/EditProfile';
 import RequestSupplier from './Components/Admin/Request/RequestSupplier';
+import ShowCarWareHouse from './Components/Admin/ShowCarWareHouse/ShowCarWareHouse';
 function App() {
   return (
     <Router>
@@ -55,6 +56,7 @@ function App() {
         <Route path='/RequestWareHouse' element={<Request/>}/>
         <Route path='/EditProfile' element={<EditProfile/>}/>
         <Route path='/RequestSupplier' element={<RequestSupplier/>}/>
+        <Route path='/ShowCarWareHouse' element={<ShowCarWareHouse/>}/>
       </Routes>
     </Router>
   );

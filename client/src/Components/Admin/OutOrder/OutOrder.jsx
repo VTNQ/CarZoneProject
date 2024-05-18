@@ -81,7 +81,7 @@ function OutOrder() {
         const newCarTaxes = { ...carTaxes };
         SelectOptions.forEach(option => {
             if (!newCarTaxes[option.value]) {
-                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price*0.2, price: option.price, delivery: null }
+                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price * 0.2, price: option.price, delivery: null }
             }
         })
         setcarTaxes(newCarTaxes)
@@ -148,15 +148,15 @@ function OutOrder() {
         const formData = new FormData();
         let hasInvalidInput = false;
 
-        
+
         Object.keys(carTaxes).forEach((carId) => {
             if (carTaxes[carId].tax == '' || carTaxes[carId].delivery == null) {
                 hasInvalidInput = true;
             }
         });
-        const IsSelectCars=SelectCars.length<=0?false:true;
-        console.log(SelectCustomer)
-        if (hasInvalidInput==true || IsSelectCars==false || SelectCustomer?.value==null || SelectPayment?.value==null || SelectDeliveryType?.value==null) {
+        const IsSelectCars = SelectCars.length <= 0 ? false : true;
+
+        if (hasInvalidInput == true || IsSelectCars == false || SelectCustomer?.value == null || SelectPayment?.value == null || SelectDeliveryType?.value == null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -199,6 +199,12 @@ function OutOrder() {
                     });
                     const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${ID}`)
                     SetShowOutOrder(response.data)
+
+                    SetSelectCustomer(null)
+                    setSelectCars([]);
+                    SetSelectPayment(null);
+                    setSelectDeliveryType(null)
+
                 }
             } catch (error) {
                 console.log(error)
@@ -255,33 +261,7 @@ function OutOrder() {
             console.log(error)
         }
     }
-    const ExportInvoice = async (ID) => {
-        try {
-            const response = await fetch(`http://localhost:5278/api/OutOrder/AddInvoice/${ID}`, {
-                method: 'POST',
-            })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Export Invoice Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            } else {
-                const responseBody = await response.json();
-                if (responseBody.message) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: responseBody.message || 'Failed to add genre',
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
+
     return (
         <>
             <LayoutAdmin>
@@ -317,7 +297,7 @@ function OutOrder() {
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
                                                             value={carTaxes[car.value]?.tax || ''}
-                                                           
+
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">
@@ -377,7 +357,7 @@ function OutOrder() {
                                                         <th>Payment</th>
                                                         <th>Delivery type</th>
                                                         <th>Detail</th>
-                                                        <th>Export Invoice</th>
+
                                                         <th>Add Contract</th>
 
                                                     </tr>
@@ -397,7 +377,6 @@ function OutOrder() {
                                                                 onClick={() => navigate(`/DetailOutOrder/${show.id}`, { state: { ID: ID, fullName: username, email: email, idShowroom: idShowroom, IDOutOrder: show.id } })}
                                                             >Detail
                                                             </button></td>
-                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={() => ExportInvoice(show.id)}>Export Invoice</button></td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={() => handleContract(show.id)}>Add Contract</button></td>
                                                         </tr>
                                                     ))}

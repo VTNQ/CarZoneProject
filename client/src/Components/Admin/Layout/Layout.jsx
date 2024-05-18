@@ -191,6 +191,12 @@ const LayoutAdmin=({children})=> {
       <span class="menu-title">Request Supplier</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/ShowCarWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Car WareHouse</span>
+    </a>
+  </li>
 
 
 </ul>

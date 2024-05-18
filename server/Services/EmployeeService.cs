@@ -8,5 +8,6 @@ namespace server.Services
         public dynamic GetEmployee(int idShowRoom);
         public bool UpdateEmployee(int id,UpdateEmployee updateEmployee);
         public bool ResetPasswordEmployee(int id);
+        public dynamic FindByID(int id);
     }
 }

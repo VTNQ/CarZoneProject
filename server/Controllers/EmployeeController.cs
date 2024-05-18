@@ -104,5 +104,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("FindById/{id}")]
+        public IActionResult FindById(int id)
+        {
+            try
+            {
+                return Ok(employeeService.FindByID(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

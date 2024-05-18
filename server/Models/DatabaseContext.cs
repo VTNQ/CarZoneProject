@@ -124,6 +124,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__City__3214EC07F5FB6C18");
 
+            entity.Property(e => e.IsDelete)
+                .HasDefaultValueSql("('0')")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
 
             entity.HasOne(d => d.IdCountryNavigation).WithMany(p => p.Cities)
@@ -162,6 +165,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Country__3214EC07CE1981A7");
 
+            entity.Property(e => e.IsDelete)
+                .HasDefaultValueSql("('0')")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
         });
 
@@ -210,6 +216,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__District__3214EC0724EE77EE");
 
+            entity.Property(e => e.IsDelete)
+                .HasDefaultValueSql("('0')")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
 
             entity.HasOne(d => d.IdCityNavigation).WithMany(p => p.Districts)
