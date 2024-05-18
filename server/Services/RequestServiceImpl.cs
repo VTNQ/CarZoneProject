@@ -31,7 +31,17 @@ namespace server.Services
             }
         }
 
-       
+        public dynamic ShowRequestSupplier(string fullname)
+        {
+            return databaseContext.Requests.Where(d => d.Type == false && d.From==fullname).Select(d => new
+            {
+                id = d.Id,
+                To = d.To,
+
+                Creadate = d.CreateDay,
+                Decription = d.Description,
+            }).ToList();
+        }
 
         public dynamic ShowRequestWareHouse()
         {

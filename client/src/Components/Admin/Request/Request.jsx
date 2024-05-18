@@ -96,7 +96,7 @@ function Request() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ to: username, from: SelectWareHouse?.value, type: true, description: FromData.Description })
+                body: JSON.stringify({ to: SelectWareHouse?.value , from:username, type: true, description: FromData.Description })
             })
             if (response.ok) {
                 Swal.fire({

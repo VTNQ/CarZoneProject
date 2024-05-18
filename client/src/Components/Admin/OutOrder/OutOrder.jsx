@@ -81,7 +81,7 @@ function OutOrder() {
         const newCarTaxes = { ...carTaxes };
         SelectOptions.forEach(option => {
             if (!newCarTaxes[option.value]) {
-                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: '', price: option.price, delivery: null }
+                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price*0.2, price: option.price, delivery: null }
             }
         })
         setcarTaxes(newCarTaxes)
@@ -150,11 +150,13 @@ function OutOrder() {
 
         
         Object.keys(carTaxes).forEach((carId) => {
-            if (carTaxes[carId].tax === '' || carTaxes[carId].delivery === null) {
+            if (carTaxes[carId].tax == '' || carTaxes[carId].delivery == null) {
                 hasInvalidInput = true;
             }
         });
-        if (hasInvalidInput || SelectCars?.value || SelectCustomer?.value || SelectPayment?.value || SelectDeliveryType?.value) {
+        const IsSelectCars=SelectCars.length<=0?false:true;
+        console.log(SelectCustomer)
+        if (hasInvalidInput==true || IsSelectCars==false || SelectCustomer?.value==null || SelectPayment?.value==null || SelectDeliveryType?.value==null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -315,7 +317,7 @@ function OutOrder() {
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
                                                             value={carTaxes[car.value]?.tax || ''}
-                                                            onChange={e => handleTaxChange(car.value, e.target.value)}
+                                                           
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">

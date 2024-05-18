@@ -8,5 +8,6 @@ namespace server.Services
         public dynamic ShowWareHouse();
         public dynamic ShowRequestWareHouse();
         public dynamic ShowSupplier();
+        public dynamic ShowRequestSupplier(string fullname);
     }
 }

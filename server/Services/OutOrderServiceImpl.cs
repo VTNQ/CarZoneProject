@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Models;
 
 namespace server.Services
@@ -148,6 +149,31 @@ namespace server.Services
                Payment=d.Payment,
                DeliveryType=d.DeliveryType
            }).ToList();
+        }
+
+        public async Task UpdateOrderStatus()
+        {
+            var Orders = await _dbContext.OutOrders.ToListAsync();
+            foreach(var order in Orders)
+            {
+                var details= await _dbContext.DetailOfOutOrders.Where(d=> d.IdOrder == order.Id && d.DeliveryDay <= DateOnly.FromDateTime(DateTime.Today)).ToListAsync();
+                if (details.Any())
+                {
+                    if (order.Status == false)
+                    {
+                        order.Status = true;
+                        var invoice = new InVoice
+                        {
+                            IdOrder = order.Id,
+                            CreateDate = DateOnly.FromDateTime(DateTime.Today),
+                        };
+                        _dbContext.InVoices.Add(invoice);
+                    }
+                   
+                       
+                }
+            }
+           await _dbContext.SaveChangesAsync();
         }
     }
 }
