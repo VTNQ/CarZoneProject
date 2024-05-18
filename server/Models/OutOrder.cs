@@ -30,9 +30,8 @@ public partial class OutOrder
     [Unicode(false)]
     public string Payment { get; set; } = null!;
 
-    [StringLength(30)]
-    [Unicode(false)]
-    public string Status { get; set; } = null!;
+    [Required]
+    public bool? Status { get; set; }
 
     [StringLength(30)]
     [Unicode(false)]
@@ -57,5 +56,5 @@ public partial class OutOrder
     public virtual Showroom IdShowroomNavigation { get; set; } = null!;
 
     [InverseProperty("IdOrderNavigation")]
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+    public virtual ICollection<InVoice> InVoices { get; set; } = new List<InVoice>();
 }
