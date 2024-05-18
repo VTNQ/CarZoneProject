@@ -11,7 +11,11 @@ import Footer from './Components/Footer/Footer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
 import Layout from './Components/Admin/Layout/Layout';
-
+import { LayoutSuperadmin } from './Components/Superadmin/LayoutSuperadmin';
+import { Dashboard } from './Components/Superadmin/Dashboard';
+import { Car } from './Components/Superadmin/Car/Car';
+import { Countries } from './Components/Superadmin/Countries';
+import { CityDistrict } from './Components/Superadmin/CityDistrict';
 function App() {
   return (
     <Router>
@@ -24,6 +28,13 @@ function App() {
         <Route path='/DetailInventory' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
+        <Route path='/superadmin/' element={<LayoutSuperadmin/>}>
+            <Route index element={<Dashboard/>} />
+            <Route path='carPage' element={<Car/>}/>
+            <Route path='countriesPage' element={<Countries/>}/>
+            <Route path='CityDistrictPage' element={<CityDistrict/>}/>
+
+        </Route>
       </Routes>
     </Router>
   );
