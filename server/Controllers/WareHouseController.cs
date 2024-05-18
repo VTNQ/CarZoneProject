@@ -13,12 +13,36 @@ namespace server.Controllers
         {
             this.wareHouserService = wareHouserService;
         }
+        [HttpGet("ShowBranch")]
+        public IActionResult ShowBranch()
+        {
+            try
+            {
+                return Ok(wareHouserService.ShowBranch());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowCar")]
         public IActionResult ShowCar()
         {
             try
             {
                 return Ok(wareHouserService.ShowCar());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowModel")]
+        public IActionResult ShowModel()
+        {
+            try
+            {
+                return Ok(wareHouserService.ShowModel());
             }
             catch
             {

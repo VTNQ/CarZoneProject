@@ -5,7 +5,16 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import axios from "axios";
 function Inventory() {
-
+    const[SelectBrand,SetSelectBrand]=useState(null);
+    const handleSelectBrand=(event)=>{
+        SetSelectBrand(event.target.value)
+        
+    }
+    const [SelectModel,setSelectModel]=useState(null);
+    const handleSelectModel=(event)=>{
+        setSelectModel(event.target.value)
+    }
+    
     const Producttype = [
         { value: 0, label: 'sale' },
         { value: 1, label: "Rental" },
@@ -29,10 +38,7 @@ function Inventory() {
         { value: 1, label: 'Audi' },
         { value: 2, label: 'BMW' }
     ]
-    const Model = [
-        { value: 0, label: 'All Mode' },
-        { value: 1, label: '911' }
-    ]
+   
     const Condition = [
         { value: 0, label: 'All Condition' },
         { value: 1, label: 'New' },
@@ -62,6 +68,7 @@ function Inventory() {
         setFilterValue(value)
 
     }
+    
     const [Car, setCar] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
@@ -74,15 +81,80 @@ function Inventory() {
         }
         fetchdata();
     }, [])
+
     const [open, setOpen] = useState(false)
-    const handleOpen = () => {
+    const [FromData, setFromData] = useState({
+        price: '',
+        image: '',
+        name: '',
+        Bhp: '',
+        MotorSize: '',
+        FueType: '',
+        numberSeat: '',
+        engine: '',
+        transmission: '',
+        condition: '',
+        mileage: '',
+        dateAccept: ''
+    })
+    const [Model,setModel]=useState([])
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get("http://localhost:5278/api/WareHouse/ShowModel");
+                setModel(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchdata();
+    },[])
+        const filterCar=Car.filter((product) => {
+            if (SelectBrand === null) {
+                return true;
+            }
+            if(SelectModel==null){
+                return true;
+            }
+            // Otherwise, check if SelectBrand includes the product's branch
+            return SelectModel.includes(product.idModel) && SelectBrand.includes(product.branch)
+        });
+    const handleOpen = (id) => {
         setOpen(prevOpen => {
             const newOpen = !prevOpen;
             console.log(newOpen)
             document.body.style.overflowY = newOpen ? 'hidden' : 'auto';
             return newOpen;
         });
+        const SelectCar = Car.find(car => car.id == id);
+        if (SelectCar) {
+            FromData.price = SelectCar.price;
+            FromData.image = SelectCar.picture.pictureLink;
+            FromData.name = SelectCar.name;
+            FromData.Bhp = SelectCar.bhp;
+            FromData.MotorSize = SelectCar.motorSize;
+            FromData.FueType = SelectCar.fueType;
+            FromData.numberSeat = SelectCar.numberSeat;
+            FromData.engine = SelectCar.engine;
+            FromData.transmission = SelectCar.transmission;
+            FromData.condition = SelectCar.condition;
+            FromData.mileage = SelectCar.mileage;
+            FromData.dateAccept = SelectCar.dateAccept;
+        }
+
     }
+    const[Brand,setBrand]=useState([])
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get("http://localhost:5278/api/WareHouse/ShowBranch");
+                setBrand(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchdata()
+    },[])
     const popupContentStyle = {
         display: 'flex',
         animation: 'fadeDown 0.5s ease-out',
@@ -153,9 +225,9 @@ function Inventory() {
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {Branch.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
+                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectBrand} onChange={handleSelectBrand}>
+                                                                                {Brand.map(item => (
+                                                                                    <option value={item.id}>{item.name}</option>
                                                                                 ))}
                                                                             </select>
                                                                         </div>
@@ -181,9 +253,9 @@ function Inventory() {
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
+                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b" onChange={handleSelectModel} value={SelectModel}>
                                                                                 {Model.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
+                                                                                    <option value={item.id}>{item.name}</option>
                                                                                 ))}
                                                                             </select>
                                                                         </div>
@@ -298,7 +370,7 @@ function Inventory() {
                                             </div>
                                             {ChangeSwitch == 1 && (
                                                 <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
-                                                    {Car.map((car, inex) => (
+                                                    {filterCar.map((car, inex) => (
                                                         <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
                                                             <div className="ap-inner" style={{ width: '97%' }}>
                                                                 <div className="ap-info">
@@ -308,13 +380,13 @@ function Inventory() {
                                                                         </div>
                                                                         <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
                                                                             <a href="" style={{ color: '#222222' }}>
-                                                                                <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg" width={580} height={387} className="attachment-medium_large size-medium_large wp-post-image" alt="" />
+                                                                                <img src={car.picture.pictureLink} width={580} height={387} className="attachment-medium_large size-medium_large wp-post-image" alt="" />
                                                                             </a>
                                                                             <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
                                                                                 <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
                                                                                     <i className="fas fa-not-equal js-ap-icon"></i>
                                                                                 </a>
-                                                                                <a className="uk-icon-button" style={{ textDecoration: 'none' }} onClick={handleOpen}>
+                                                                                <a className="uk-icon-button" style={{ textDecoration: 'none' }} onClick={() => handleOpen(car.id)}>
                                                                                     <i className="fas fa-eye"></i>
                                                                                 </a>
                                                                             </div>
@@ -336,7 +408,7 @@ function Inventory() {
                                                                     <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
                                                                         <div className="ap-title-info">
                                                                             <h2 className="ap-title">
-                                                                                <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textTransform: 'uppercase', lineHeight: '1.2em' }}>{car.name    }</a>
+                                                                                <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textTransform: 'uppercase', lineHeight: '1.2em' }}>{car.name}</a>
                                                                             </h2>
                                                                         </div>
                                                                     </div>
@@ -350,7 +422,7 @@ function Inventory() {
                                                                                     <span className="ap-style4-icon">
                                                                                         <i className="far fa-registered"></i>
                                                                                     </span>
-                                                                                    2022
+                                                                                    {car.dateAccept}
                                                                                 </span>
                                                                             </div>
                                                                             <div className="ap-spec-item uk-flex uk-flex-column">
@@ -366,7 +438,7 @@ function Inventory() {
                                                                                     <span className="ap-style4-icon">
                                                                                         <i className="fas fa-cog"></i>
                                                                                     </span>
-                                                                                    25000 mi
+                                                                                    {car.mileage} mi
                                                                                 </span>
                                                                             </div>
                                                                         </div>
@@ -605,171 +677,90 @@ function Inventory() {
                                             )}
                                             {ChangeSwitch == 2 && (
                                                 <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-1@l uk-child-width-1-1@xl uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-default uk-grid uk-grid-stack">
-                                                    <div className="ap-item ap-item-style5 ap-item-list templazaFadeInUp uk-first-column" style={{ animationDelay: '0ms' }}>
-                                                        <div className="ap-inner">
-                                                            <div className="uk-card uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '35px' }}>
-                                                                <div className="uk-card-media-left uk-cover-container uk-width-2-5@s uk-transition-toggle uk-first-column">
-                                                                    <div className="uk-position-relative uk-height-1-1">
-                                                                        <div className="ap-ribbon sale Default">
-                                                                            <span className="ap-ribbon-content"> For Sale </span>
+                                                    {Car.map((car, index) => (
+                                                        <div className="ap-item ap-item-style5 ap-item-list templazaFadeInUp uk-first-column" style={{ animationDelay: '0ms' }}>
+                                                            <div className="ap-inner">
+                                                                <div className="uk-card uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '35px',marginBottom:'28px' }}>
+                                                                    <div className="uk-card-media-left uk-cover-container uk-width-2-5@s uk-transition-toggle uk-first-column">
+                                                                        <div className="uk-position-relative uk-height-1-1">
+                                                                            <div className="ap-ribbon sale Default">
+                                                                                <span className="ap-ribbon-content"> For Sale </span>
+                                                                            </div>
+                                                                            <img src={car.picture.pictureLink} className="attachment-medium_large size-medium_large wp-post-image" width={580} height={387} alt="" />
+                                                                            <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade" style={{ top: '258px', right: '0' }}>
+                                                                                <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
+                                                                                    <i className="fas fa-not-equal js-ap-icon"></i>
+                                                                                </a>
+                                                                                <a className="uk-icon-button" onClick={()=>handleOpen(car.id)} style={{ textDecoration: 'none' }}>
+                                                                                    <i className="fas fa-eye"></i>
+                                                                                </a>
+                                                                            </div>
                                                                         </div>
-                                                                        <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash.jpg" className="attachment-medium_large size-medium_large wp-post-image" width={580} height={387} alt="" />
-                                                                        <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade" style={{ top: '258px', right: '0' }}>
-                                                                            <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                <i className="fas fa-not-equal js-ap-icon"></i>
-                                                                            </a>
-                                                                            <a className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                <i className="fas fa-eye"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
 
-                                                                </div>
-                                                                <div className="ap-info uk-width-3-5@s">
-                                                                    <div className="ap-info-inner ap-info-top">
-                                                                        <h2 className="ap-title">
-                                                                            <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>911 Carrera</a>
-                                                                        </h2>
                                                                     </div>
-                                                                    <div className="ap-info-inner ap-info-desc">
-                                                                        <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
-                                                                    </div>
-                                                                    <div className="ap-info-inner ap">
-                                                                        <div className="ap-specification uk-grid-column-small uk-grid-row-collapse ap-specification-style5 uk-child-width-1-2 uk-grid" style={{ justifyContent: 'space-between' }}>
-                                                                            <div className="ap-spec-item uk-first-column">
-                                                                                <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                    <span className="ap-style5-icon">
-                                                                                        <i className="far fa-registered"></i>
+                                                                    <div className="ap-info uk-width-3-5@s">
+                                                                        <div className="ap-info-inner ap-info-top">
+                                                                            <h2 className="ap-title">
+                                                                                <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>{car.name}</a>
+                                                                            </h2>
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-desc">
+                                                                            <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap">
+                                                                            <div className="ap-specification uk-grid-column-small uk-grid-row-collapse ap-specification-style5 uk-child-width-1-2 uk-grid" style={{ justifyContent: 'space-between' }}>
+                                                                                <div className="ap-spec-item uk-first-column">
+                                                                                    <span className="ap-field-label" style={{ fontWeight: '400' }}>
+                                                                                        <span className="ap-style5-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        Registration Date:
                                                                                     </span>
-                                                                                    Registration Date:
-                                                                                </span>
-                                                                                <span className="ap-spec-value"> 2022</span>
-                                                                            </div>
-                                                                            <div className="ap-spec-item">
-                                                                                <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                    <span className="ap-style5-icon">
-                                                                                        <i className="fas fa-car"></i>
+                                                                                    <span className="ap-spec-value"> {car.dateAccept}</span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item">
+                                                                                    <span className="ap-field-label" style={{ fontWeight: '400' }}>
+                                                                                        <span className="ap-style5-icon">
+                                                                                            <i className="fas fa-car"></i>
+                                                                                        </span>
+                                                                                        Condition:
                                                                                     </span>
-                                                                                    Condition:
-                                                                                </span>
-                                                                                <span className="ap-spec-value"> New</span>
-                                                                            </div>
-                                                                            <div className="ap-spec-item uk-grid-margin uk-first-column">
-                                                                                <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                    <span className="ap-style5-icon">
-                                                                                        <i className="fas fa-cog"></i>
+                                                                                    <span className="ap-spec-value"> {car.condition}</span>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-grid-margin uk-first-column">
+                                                                                    <span className="ap-field-label" style={{ fontWeight: '400' }}>
+                                                                                        <span className="ap-style5-icon">
+                                                                                            <i className="fas fa-cog"></i>
+                                                                                        </span>
+                                                                                        Mileage:
                                                                                     </span>
-                                                                                    Mileage:
-                                                                                </span>
-                                                                                <span className="ap-spec-value">
-                                                                                    25000
-                                                                                    <span className="custom-field-append">
-                                                                                        mi
+                                                                                    <span className="ap-spec-value">
+                                                                                        {car.mileage}
+                                                                                        <span className="custom-field-append">
+                                                                                            mi
+                                                                                        </span>
                                                                                     </span>
-                                                                                </span>
-                                                                            </div>
+                                                                                </div>
 
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="ap-info-inner  ap-info-bottom uk-flex uk-flex-between uk-flex-middle">
-                                                                        <div className="ap-price-box">
-                                                                            <span className="ap-field-label" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif' }}>Total Price</span>
-                                                                            <span className="ap-price" style={{ fontWeight: 'bold', fontSize: '1.2em' }}> $98,000 </span>
-                                                                            <span className="ap-price-msrp">
-                                                                                <span> MSRP: </span>
-                                                                                $96,500
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="ap-readmore-box">
-                                                                            <a href="" className="templaza-btn">View more</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="ap-item ap-item-style5 ap-item-list templazaFadeInUp uk-first-column" style={{ animationDelay: '0ms', marginTop: '40px' }}>
-                                                        <div className="ap-inner">
-                                                            <div className="uk-card uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '35px' }}>
-                                                                <div className="uk-card-media-left uk-cover-container uk-width-2-5@s uk-transition-toggle uk-first-column">
-                                                                    <div className="uk-position-relative uk-height-1-1">
-                                                                        <div className="ap-ribbon rental Default">
-                                                                            <span className="ap-ribbon-content">  For Rent  </span>
-                                                                        </div>
-                                                                        <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg" className="attachment-medium_large size-medium_large wp-post-image" width={580} height={387} alt="" />
-                                                                        <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade" style={{ top: '258px', right: '0' }}>
-                                                                            <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                <i className="fas fa-not-equal js-ap-icon"></i>
-                                                                            </a>
-                                                                            <a className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                <i className="fas fa-eye"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div className="ap-info uk-width-3-5@s">
-                                                                    <div className="ap-info-inner ap-info-top">
-                                                                        <h2 className="ap-title">
-                                                                            <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>HYUNDAI IONIQ 7</a>
-                                                                        </h2>
-                                                                    </div>
-                                                                    <div className="ap-info-inner ap-info-desc">
-                                                                        <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>Rip-snorting engine, bonkers acceleration, handling agile enough to trick you into thinking it’s a sports car.</p>
-                                                                    </div>
-                                                                    <div className="ap-info-inner ap">
-                                                                        <div className="ap-specification uk-grid-column-small uk-grid-row-collapse ap-specification-style5 uk-child-width-1-2 uk-grid" style={{ justifyContent: 'space-between' }}>
-                                                                            <div className="ap-spec-item uk-first-column">
-                                                                                <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                    <span className="ap-style5-icon">
-                                                                                        <i className="far fa-registered"></i>
-                                                                                    </span>
-                                                                                    Registration Date:
-                                                                                </span>
-                                                                                <span className="ap-spec-value"> 2015</span>
                                                                             </div>
-                                                                            <div className="ap-spec-item">
-                                                                                <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                    <span className="ap-style5-icon">
-                                                                                        <i className="fas fa-car"></i>
-                                                                                    </span>
-                                                                                    Condition:
-                                                                                </span>
-                                                                                <span className="ap-spec-value">Used</span>
-                                                                            </div>
-                                                                            <div className="ap-spec-item uk-grid-margin uk-first-column">
-                                                                                <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                    <span className="ap-style5-icon">
-                                                                                        <i className="fas fa-cog"></i>
-                                                                                    </span>
-                                                                                    Mileage:
-                                                                                </span>
-                                                                                <span className="ap-spec-value">
-                                                                                    19400
-                                                                                    <span className="custom-field-append">
-                                                                                        mi
-                                                                                    </span>
-                                                                                </span>
-                                                                            </div>
-
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="ap-info-inner  ap-info-bottom uk-flex uk-flex-between uk-flex-middle">
-                                                                        <div className="ap-price-box">
-                                                                            <span className="ap-field-label" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif' }}>RENTAL PRICE</span>
-                                                                            <span className="ap-price" style={{ fontWeight: 'bold', fontSize: '1.2em' }}> $500 </span>
-                                                                            <span className="ap-price-msrp">
-                                                                                /Week
-                                                                            </span>
-                                                                        </div>
-                                                                        <div className="ap-readmore-box">
-                                                                            <a href="" className="templaza-btn">View more</a>
+                                                                        <div className="ap-info-inner  ap-info-bottom uk-flex uk-flex-between uk-flex-middle">
+                                                                            <div className="ap-price-box">
+                                                                                <span className="ap-field-label" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif' }}>Total Price</span>
+                                                                                <span className="ap-price" style={{ fontWeight: 'bold', fontSize: '1.2em' }}> ${car.price} </span>
+                                                                               
+                                                                            </div>
+                                                                            <div className="ap-readmore-box">
+                                                                                <a href="" className="templaza-btn">View more</a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    ))}
+
+
                                                 </div>
                                             )}
 
@@ -789,7 +780,7 @@ function Inventory() {
                     <div className="uk-grid-collapse uk-width-1-1 uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
                         <div className="ap-quickview-media uk-cover-container uk-first-column">
                             <a href="">
-                                <img width={1200} height={800} className="attachment-full size-full wp-post-image" style={{ objectFit: 'cover' }} src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/erik-mclean-M0z9ajPI3PE-unsplash.jpg" alt="" />
+                                <img width={1200} height={800} className="attachment-full size-full wp-post-image" src={FromData.image} style={{ objectFit: 'cover' }} alt="" />
                                 <canvas width={600} height={400}></canvas>
                             </a>
                             <a href="" className="product-more-infor uk-background-muted uk-text-center uk-position-bottom" style={{ textDecoration: 'none' }}>
@@ -802,18 +793,18 @@ function Inventory() {
                         <div className="ap-quickview-content">
                             <div className="uk-padding">
                                 <h2 className="ap-quickview-product_title entry-title">
-                                    <a href="" style={{ color: '#222222', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontWeight: 'bold', textTransform: 'uppercase', lineHeight: '1.2em', textDecoration: 'none' }}>911 Carrera</a>
+                                    <a href="" style={{ color: '#222222', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', fontWeight: 'bold', textTransform: 'uppercase', lineHeight: '1.2em', textDecoration: 'none' }}>{FromData.name}</a>
                                 </h2>
                                 <div className="ap-price-box">
                                     <span className="ap-field-label" style={{ color: '#555555' }}>Total Price</span>
                                     <span className="ap-price">
                                         <b> </b>
-                                        $98,000
+                                        ${FromData.price}
                                     </span>
-                                    <span className="ap-price-msrp" style={{ color: '#555555' }}>
+                                    {/* <span className="ap-price-msrp" style={{ color: '#555555' }}>
                                         <span style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', lineHeight: '1.0em' }}> MSRP:  </span>
                                         $96,500
-                                    </span>
+                                    </span> */}
                                 </div>
                                 <div className="ap-quickview-excerpt">
                                     <p style={{ lineHeight: '1.7', color: '#555555', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textDecoration: 'none' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
@@ -831,16 +822,16 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em ', color: '#555555' }}>
-                                                    195        </div>
+                                                    {FromData.Bhp}    </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
-                                                    <span className="uk-leader-fill" data-fill="..........................................................................................................">
+                                                    <span className="uk-leader-fill" data-fill="............................................................................................">
                                                         Motor size
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    250        </div>
+                                                    {FromData.MotorSize}       </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
@@ -849,7 +840,7 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    Biodiesel      </div>
+                                                    {FromData.FueType}    </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
@@ -858,7 +849,7 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    4 Doors      </div>
+                                                    {FromData.numberSeat} Doors      </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
@@ -876,16 +867,16 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    9     </div>
+                                                    {FromData.engine}    </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
-                                                    <span className="uk-leader-fill" data-fill=".........................................................................................">
+                                                    <span className="uk-leader-fill" data-fill="..........................................................................">
                                                         Transmission
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    Automatic    </div>
+                                                    {FromData.transmission}   </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
@@ -912,7 +903,7 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    new    </div>
+                                                    {FromData.condition}   </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
@@ -921,7 +912,7 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    25000  </div>
+                                                    {FromData.mileage} </div>
                                             </div>
                                             <div className="uk-grid-small uk-grid">
                                                 <div className="uk-width-expand uk-leader uk-first-column">
@@ -930,7 +921,7 @@ function Inventory() {
                                                     </span>
                                                 </div>
                                                 <div className="field-value" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontSize: '16px', lineHeight: '1.0em', color: '#555555' }}>
-                                                    2022   </div>
+                                                    {FromData.dateAccept}  </div>
                                             </div>
                                         </div>
                                     </div>

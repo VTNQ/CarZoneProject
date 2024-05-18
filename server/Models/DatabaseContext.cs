@@ -90,7 +90,7 @@ public partial class DatabaseContext : DbContext
 
             entity.Property(e => e.Bhp).HasDefaultValue("0");
             entity.Property(e => e.Condition).HasDefaultValue("0");
-            entity.Property(e => e.DateAccept).HasDefaultValue("");
+            entity.Property(e => e.DateAccept).HasDefaultValueSql("('')");
             entity.Property(e => e.Drivertrain).HasDefaultValue("0");
             entity.Property(e => e.Engine).HasDefaultValue("0");
             entity.Property(e => e.FuelConsumption).HasDefaultValue("0");

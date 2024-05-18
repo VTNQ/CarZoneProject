@@ -128,7 +128,10 @@ namespace server.Services
         {
             try
             {
-                return databaseContext.Employees.Find(id);
+                return databaseContext.Employees.Where(d=>d.Id==id).Select(d=>new
+                {
+                    idshowroom=d.IdShowroom
+                }).First();
             }
             catch (Exception e)
             {
