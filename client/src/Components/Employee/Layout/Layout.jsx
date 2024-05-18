@@ -109,18 +109,37 @@ const LayoutEmployee=({children})=>{
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
               <ul className="nav">
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>navigate('/Employee/Dashboard')}>
+                  <a className="nav-link" onClick={() => navigate('/Employee/Dashboard')}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Dashboard</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>navigate('/Employee/Create-Customer',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+                  <a className="nav-link" onClick={() => navigate('/Employee/Show-Customer', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Customer</span>
                   </a>
                 </li>
-
+                <li className="nav-item">
+                  <a className="nav-link" onClick={() => navigate('/InVoice/HistoryInVoice', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">History InVoice</span>
+                  </a>
+                </li>
               </ul>
             </nav>
 

@@ -154,7 +154,7 @@ function OutOrder() {
                 hasInvalidInput = true;
             }
         });
-        if (hasInvalidInput || SelectCars?.value || SelectCustomer?.value || SelectPayment?.value || SelectDeliveryType?.value) {
+        if (hasInvalidInput || SelectCars?.value==null || SelectCustomer?.value==null || SelectPayment?.value==null || SelectDeliveryType?.value==null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',

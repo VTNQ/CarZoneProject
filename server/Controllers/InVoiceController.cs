@@ -15,6 +15,20 @@ namespace server.Controllers
         {
             InVoiceService = inVoiceService;
         }
+
+        [HttpGet("ShowInvoice/{idEmployee}")]
+        public IActionResult ShowInvoice(int idEmployee)
+        {
+            try
+            {
+                return Ok(InVoiceService.ShowInvoice(idEmployee));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         [HttpGet("HistoryInVoice")]
         public IActionResult FindAll()
         {
