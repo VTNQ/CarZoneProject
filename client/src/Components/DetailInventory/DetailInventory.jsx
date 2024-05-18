@@ -276,7 +276,7 @@ function DetailInventory() {
                                             <label htmlFor="" className="wpforms-field-label">Message
 
                                             </label>
-                                            <textarea id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
+                                            <textarea id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px'}} />
                                         </div>
                                     </div>
                                     <div className="wpforms-submit-container">
@@ -517,7 +517,7 @@ function DetailInventory() {
                                                                             </span>
                                                                         </p>
                                                                         <div className="comment-form-comment">
-                                                                            <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
+                                                                            <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px' }} />
                                                                         </div>
                                                                         <div className="content-form uk-child-width-1-2@s uk-grid-small uk-grid">
                                                                             <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
@@ -758,7 +758,7 @@ function DetailInventory() {
                                                                                     <input type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Phone" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
                                                                                 </div>
                                                                                 <div id="wpforms-14099-field_1-container" className="wpforms-field wpforms-field-name">
-                                                                                    <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', height: '220px' }} />
+                                                                                    <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px'}} />
                                                                                 </div>
                                                                             </div>
                                                                             <div className="wpforms-submit-container">
@@ -824,7 +824,7 @@ function DetailInventory() {
                                                                         </div>
                                                                         <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
                                                                             <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -832,7 +832,7 @@ function DetailInventory() {
                                                                                         2015
                                                                                     </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -904,7 +904,7 @@ function DetailInventory() {
                                                                         </div>
                                                                         <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
                                                                             <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -912,7 +912,7 @@ function DetailInventory() {
                                                                                         2015
                                                                                     </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -980,7 +980,7 @@ function DetailInventory() {
                                                                         </div>
                                                                         <div className="ap-info-inner ap-info-bottom" style={{ padding: '30px 11px 1px 1px' }}>
                                                                             <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>
@@ -988,7 +988,7 @@ function DetailInventory() {
                                                                                         2018
                                                                                     </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 38px' }}>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column" style={{ padding: '10px 37px' }}>
                                                                                     <span className="ap-spec-value">
                                                                                         <span className="ap-style4-icon">
                                                                                             <i className="far fa-registered"></i>

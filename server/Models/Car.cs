@@ -86,6 +86,9 @@ public partial class Car
     public double HeightBetween { get; set; }
 
     [InverseProperty("IdCarNavigation")]
+    public virtual ICollection<DetailOfInOrder> DetailOfInOrders { get; set; } = new List<DetailOfInOrder>();
+
+    [InverseProperty("IdCarNavigation")]
     public virtual ICollection<DetailOfOutOrder> DetailOfOutOrders { get; set; } = new List<DetailOfOutOrder>();
 
     [ForeignKey("IdColorInSide")]

@@ -1,7 +1,7 @@
 import React from "react";
-import LayoutAdmin from "../Layout/Layout";
 import Img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
+import LayoutAdmin from "../Layout/Layout";
 function HomePage(){
     const location=useLocation();
   const ID = location.state?.ID || '';
@@ -10,33 +10,8 @@ function HomePage(){
   const navigate = useNavigate();
 return(
     <>
-  
-   
-          
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link">
-      <i class="icon-grid menu-icon"></i>
-      <span class="menu-title">Dashboard</span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:fullName,email:email}})}>
-      <i class="icon-grid menu-icon"></i>
-      <span class="menu-title">Employee</span>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/documentation.html">
-      <i class="icon-paper menu-icon"></i>
-      <span class="menu-title">Documentation</span>
-    </a>
-  </li>
-</ul>
-</nav>
-<div class="main-panel">
+   <LayoutAdmin>
+   <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
               <div class="col-md-12 grid-margin">
@@ -735,6 +710,8 @@ return(
 </footer>
 
         </div>
+   </LayoutAdmin>
+
    
     </>
 )

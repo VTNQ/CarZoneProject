@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace server.Models;
 
-[Keyless]
 [Table("DetailOfInOrder")]
 public partial class DetailOfInOrder
 {
+    [Key]
+    public int Id { get; set; }
+
     public int IdCar { get; set; }
 
     public int IdOrder { get; set; }
@@ -23,8 +25,10 @@ public partial class DetailOfInOrder
     public decimal Tax { get; set; }
 
     [ForeignKey("IdCar")]
+    [InverseProperty("DetailOfInOrders")]
     public virtual Car IdCarNavigation { get; set; } = null!;
 
     [ForeignKey("IdOrder")]
+    [InverseProperty("DetailOfInOrders")]
     public virtual InOrder IdOrderNavigation { get; set; } = null!;
 }

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import '../assets/vendors/feather/feather.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/vendors/css/vendor.bundle.base.css';
@@ -9,13 +8,23 @@ import '../assets/css/style.css';
 import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
-import { useLocation } from "react-router-dom";
-import HomePage from "../Home/Homepage";
-function LayoutAdmin() {
-  const [Layout,setlayout]=useState('Home')
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+const LayoutAdmin=({children})=> {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const ID = location.state?.ID || '';
+  const username=location.state?.fullName || '';
+  const email = location.state?.email || '';
+  const idShowroom=location.state?.idShowroom || '';
+  const [showDropdown, setShowDropdown] = useState(false);
+  const handleDropdownToggle = () => {
+      setShowDropdown(!showDropdown);
+    };
+
     return (
         <>
-     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
     <a class="navbar-brand brand-logo me-5" href="index.html"><img src={logo} class="me-2" alt="logo" /></a>
     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
@@ -80,9 +89,21 @@ function LayoutAdmin() {
         </div>
       </li>
       <li class="nav-item nav-profile dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+        <a class="nav-link dropdown-toggle" onClick={handleDropdownToggle} data-bs-toggle="dropdown" id="profileDropdown">
           <img src={avatar} alt="profile" />
         </a>
+        {showDropdown && (
+            <div className="dropdown1">
+              <a href="#" onClick={() => navigate('/Account')}>
+                <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+              </a>
+              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+                <i className="fa fa-user" aria-hidden="true"></i> Account
+              </a>
+
+              {/* Các mục khác của dropdown có thể được thêm vào đây */}
+            </div>
+          )}
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item">
             <i class="ti-settings text-primary"></i> Settings </a>
@@ -102,11 +123,74 @@ function LayoutAdmin() {
   </div>
 </nav>
 <div className="container-fluid page-body-wrapper pt-0">
-{Layout=='Home' &&(
-  <HomePage/>
-)}
-</div>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link">
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Dashboard</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Home</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/EmployeeAdmin',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Employee</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Customer</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Supplier</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Color</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">In Order</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/OutOrder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Out Order</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/ShowContact',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Contact</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/Request',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Request WareHouse</span>
+    </a>
+  </li>
 
+
+</ul>
+</nav>
+{children}
+</div>
         </>
     )
 }

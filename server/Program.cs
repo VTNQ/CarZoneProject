@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using server.Middleware;
 using server.Models;
 using server.Services;
 
@@ -14,6 +15,15 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration["ConnectionStrings:DefaultConnect"];
 builder.Services.AddDbContext<DatabaseContext>(option=>option.UseLazyLoadingProxies().UseSqlServer(connectionString));
 builder.Services.AddScoped<AccountService,AccountServiceImpl>();
+builder.Services.AddScoped<EmployeeService,EmployeeServiceImpl>();
+builder.Services.AddScoped<CustomerService,CustomerServiceImpl>();
+builder.Services.AddScoped<SupplierService,SupplierServiceImpl>();
+builder.Services.AddScoped<ColorService,ColorServiceImpl>();
+builder.Services.AddScoped<InOrderService, InOrderServiceImpl>();
+builder.Services.AddScoped<OutOrderService, OutOrderServiceImpl>();
+builder.Services.AddScoped<ContactService,ContactServiceImpl>();
+builder.Services.AddScoped<RequestService,RequestServiceImpl>();
+builder.Services.AddScoped<CountriesService,CountriesServiceImpl>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>
@@ -27,7 +37,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
-
+app.UseMiddleware<InOrderMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

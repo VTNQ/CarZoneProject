@@ -243,7 +243,7 @@ export const Homepage = () => {
             </div>
             <div className='absolute bottom-0 w-full h-[150px]  px-[5%] z-[2]'>
                     <form className='w-full h-full  pr-[12%] grid grid-cols-4 gap-3 items-center justify-center'>
-                    <Select  styles={customStyles} placeholder='All Branch' menuPosition='fixed' className='' options={options} />
+                    <Select placeholder='All Branch' menuPosition='fixed' className='' options={options} />
                     <Select placeholder='All Make' menuPosition='fixed' className='' options={options} />
                     <Select placeholder='All Model' menuPosition='fixed' className='' options={options} />
                     <Select placeholder='All Registration Date' menuPosition='fixed' className='' options={options} />

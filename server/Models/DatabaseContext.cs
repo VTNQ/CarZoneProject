@@ -43,7 +43,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<InOrder> InOrders { get; set; }
 
-    public virtual DbSet<Invoice> Invoices { get; set; }
+    public virtual DbSet<InVoice> Invoices { get; set; }
 
     public virtual DbSet<Model> Models { get; set; }
 
@@ -180,13 +180,25 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<DetailOfInOrder>(entity =>
         {
-            entity.Property(e => e.IdCar).ValueGeneratedOnAdd();
+            entity.HasKey(e => e.Id); // Assuming Id is the primary key
 
-            entity.HasOne(d => d.IdCarNavigation).WithMany()
+            // Configure IdCar foreign key
+            entity.Property(e => e.IdCar)
+                .HasColumnName("IdCar"); // Specify the correct column name
+
+            entity.HasOne(d => d.IdCarNavigation)
+                .WithMany(c => c.DetailOfInOrders) // Assuming Car has a collection navigation property of DetailOfInOrder
+                .HasForeignKey(d => d.IdCar)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_detail_car");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany()
+            // Configure IdOrder foreign key
+            entity.Property(e => e.IdOrder)
+                .HasColumnName("IdOrder"); // Specify the correct column name
+
+            entity.HasOne(d => d.IdOrderNavigation)
+                .WithMany(o => o.DetailOfInOrders) // Assuming InOrder has a collection navigation property of DetailOfInOrder
+                .HasForeignKey(d => d.IdOrder)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_detail_inorder");
         });
@@ -255,11 +267,11 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_inorder_warehouse");
         });
 
-        modelBuilder.Entity<Invoice>(entity =>
+        modelBuilder.Entity<InVoice>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Invoice__3214EC0731FC790E");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.InVoices)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Invoice_OutOrder");
         });
@@ -281,7 +293,7 @@ public partial class DatabaseContext : DbContext
 
             entity.Property(e => e.DeliveryType).HasDefaultValue("0");
             entity.Property(e => e.Payment).HasDefaultValue("0");
-            entity.Property(e => e.Status).HasDefaultValue("0");
+            entity.Property(e => e.Status).HasDefaultValue(false);
 
             entity.HasOne(d => d.IdCustomerNavigation).WithMany(p => p.OutOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)

@@ -9,345 +9,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/css/maps/style.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraBold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraBold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraLight.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraLight.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-ExtraLight.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Light.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Medium.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Medium.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-Regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-SemiBold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-SemiBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Manrope/Manrope-SemiBold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Black.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Black.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Black.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraBold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraBold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraLight.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraLight.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-ExtraLight.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Italic.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Italic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Italic.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Light.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-Regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-SemiBold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-SemiBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Nunito/Nunito-SemiBold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Black.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Black.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Black.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Light.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Medium.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Medium.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/fonts/Roboto/Roboto-Regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/auth/lockscreen-bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/auth/login-bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/auth/register-bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/carousel/banner_9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/people.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/people11.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/shape-1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/shape-2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/shape-3.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/dashboard/shape-4.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/boxed-layout.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/calendar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/compact-menu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/dark-sidebar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/email.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/fixed-menu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/horizontal-menu-dark.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/horizontal-menu-light.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/icon-menu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/login.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/portfolio.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/pricing.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/toggle-menu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/toggle-overlay-menu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/vertical-dark.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/demo/vertical-default.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face16.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face17.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face18.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face19.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face20.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face21.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face22.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face23.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face24.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face25.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face26.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face27.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face28.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/faces/face9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/001-interface-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/002-tool.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/003-interface.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/004-folder-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/005-database.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/006-record.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/007-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/128/008-archive.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/001-interface-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/002-tool.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/003-interface.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/004-folder-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/005-database.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/006-record.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/007-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/256/008-archive.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/001-interface-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/002-tool.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/003-interface.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/004-folder-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/005-database.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/006-record.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/007-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/512/008-archive.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/001-interface-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/002-tool.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/003-interface.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/004-folder-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/005-database.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/006-record.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/007-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/64/008-archive.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/file-icons/flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/lightbox/play-button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/lightbox/thumb-v-v-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/lightbox/thumb-v-v-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/lightbox/thumb-v-y-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/lightbox/thumb-v-y-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/logo-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/logo-mini.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/logo-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/logo1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/1280x768/9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/samples/300x300/9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/jsgrid-icons.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/red.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/images/sprites/yellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/codemirror.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/dashboard-dark.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/data-table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/dataTables.select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/demo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/file-upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/jquery-file-upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/jquery.cookie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/off-canvas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/select.dataTables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/select2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/settings.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/todolist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/js/typeahead.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/_layouts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/_navbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/_settings-panel.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/_sidebar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/_vertical-wrapper.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_background.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_dashboard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_demo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_fonts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_functions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_misc.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_reset.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_typography.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/common.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_badges.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_cards.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_checkbox-radio.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_dropdown.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_icons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_lists.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_preview.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/_todo-list.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/plugin-overrides/_codemirror.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/plugin-overrides/_data-tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/plugin-overrides/_pws-tabs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/plugin-overrides/_select2.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/components/plugin-overrides/_typeahead.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/landing-screens/_auth.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_animation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_badges.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_blockqoute.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_breadcrumbs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_cards.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_misc.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_no-ui-slider.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_popovers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/common/light/mixins/_tooltips.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/fonts/Manrope/Manrope-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/scss/style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/chart.js/chart.umd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/css/vendor.bundle.base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/feather/feather.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/feather/fonts/feather-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/feather/fonts/feather-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/feather/fonts/feather-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/feather/fonts/feather-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/js/vendor.bundle.base.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/mdi/css/materialdesignicons.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/mdi/css/materialdesignicons.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/mdi/fonts/materialdesignicons-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/mdi/fonts/materialdesignicons-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/mdi/fonts/materialdesignicons-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/mdi/fonts/materialdesignicons-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/select2/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/select2/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/ti-icons/css/themify-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/ti-icons/fonts/themify.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/ti-icons/fonts/themify.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/ti-icons/fonts/themify.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/Components/Employee/assets/vendors/ti-icons/fonts/themify.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/server.csproj.EntityFrameworkCore.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Admin/Layout/Form.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Customer/ShowCustomer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Customer/ShowCustomer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Context/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Context/DatabaseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DatabaseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Invoice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Invoice.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/OutOrder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/OutOrder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Request.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Request.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/OutOrderServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/OutOrderServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets/msbuild.server.Microsoft.AspNetCore.StaticWebAssets.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets/msbuild.server.Microsoft.AspNetCore.StaticWebAssets.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/server.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/server.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/server.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/server.csproj.nuget.g.props" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,6 +70,10 @@
     &quot;accountId&quot;: &quot;180732de-4b3c-40ec-84f4-dc48c81662e6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -388,28 +90,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.server: IIS Express.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.rider.plugins.efcore.settings.EfCoreUiConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.server: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.server: http.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.rider.plugins.efcore.settings.EfCoreUiConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\votan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\votan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\votan\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\votan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\votan\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\votan\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.server: IIS Express">
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.server: http">
     <configuration name="server: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/server.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -451,6 +154,10 @@
       <updated>1715608253519</updated>
       <workItem from="1715608258483" duration="1928000" />
       <workItem from="1715657587185" duration="311000" />
+      <workItem from="1715819440371" duration="675000" />
+      <workItem from="1715821061753" duration="2104000" />
+      <workItem from="1715830303620" duration="214000" />
+      <workItem from="1715991006420" duration="3067000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -460,7 +167,39 @@
       <option name="project" value="LOCAL" />
       <updated>1715609911541</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update">
+      <option name="closed" value="true" />
+      <created>1715821001422</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715821001422</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fix: SQL">
+      <option name="closed" value="true" />
+      <created>1715830389371</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715830389371</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix : SQL">
+      <option name="closed" value="true" />
+      <created>1715830419102</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715830419102</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix : SQL">
+      <option name="closed" value="true" />
+      <created>1715830509947</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715830509947</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +221,10 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Update models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update models" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Fix: SQL" />
+    <MESSAGE value="Fix : SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix : SQL" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
