@@ -43,7 +43,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<InOrder> InOrders { get; set; }
 
-    public virtual DbSet<Invoice> Invoices { get; set; }
+    public virtual DbSet<InVoice> Invoices { get; set; }
 
     public virtual DbSet<Model> Models { get; set; }
 
@@ -267,11 +267,11 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_inorder_warehouse");
         });
 
-        modelBuilder.Entity<Invoice>(entity =>
+        modelBuilder.Entity<InVoice>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Invoice__3214EC0731FC790E");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.InVoices)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Invoice_OutOrder");
         });

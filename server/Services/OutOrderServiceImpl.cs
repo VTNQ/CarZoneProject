@@ -34,7 +34,7 @@ namespace server.Services
         {
             try
             {
-                var invoice = new Invoice
+                var invoice = new InVoice
                 {
                     IdOrder = id,
                     CreateDate = DateOnly.FromDateTime(DateTime.Now)
@@ -61,7 +61,7 @@ namespace server.Services
                     TotalAmount = outOrder.TotalAmount,
                     TotalTax = outOrder.TotalTax,
                     Payment = outOrder.Payment,
-                    Status = "unfinished",
+                    Status = false,
                     DeliveryType = outOrder.DeliveryType,
                 };
                 _dbContext.OutOrders.Add(OutOrder);
