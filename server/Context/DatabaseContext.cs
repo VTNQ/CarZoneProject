@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using server.Models;
 
+
 namespace server.Context;
 
 public partial class DatabaseContext : DbContext
@@ -62,7 +63,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<Suplier> Supliers { get; set; }
 
-    public virtual DbSet<Version> Versions { get; set; }
+    public virtual DbSet<Models.Version> Versions { get; set; }
 
     public virtual DbSet<Warehouse> Warehouses { get; set; }
 
@@ -367,7 +368,7 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_suplier_country");
         });
 
-        modelBuilder.Entity<Version>(entity =>
+        modelBuilder.Entity<server.Models.Version>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Version__3214EC07A5B61E8B");
 

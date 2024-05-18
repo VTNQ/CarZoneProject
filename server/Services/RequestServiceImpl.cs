@@ -18,6 +18,8 @@ namespace server.Services
                 {
                     To = addRequest.To,
                     From = addRequest.From,
+                    Type=addRequest.Type,
+                    CreateDay=DateOnly.FromDateTime(DateTime.Now),
                 };
                 databaseContext.Requests.Add(Request);
                 return databaseContext.SaveChanges()>0;
@@ -26,6 +28,16 @@ namespace server.Services
             {
                 return false;
             }
+        }
+
+        public dynamic ShowRequestWareHouse()
+        {
+           return databaseContext.Requests.Where(d => d.Type == true).Select(d => new
+           {
+               To=d.To,
+               From=d.From,
+               Creadate=d.CreateDay
+           }).ToList(); 
         }
 
         public dynamic ShowWareHouse()

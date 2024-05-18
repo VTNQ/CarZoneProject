@@ -16,6 +16,18 @@ function Request(){
     const handleSelectWareHouse=(SelectWareHouse)=>{
         setSelectWareHouse(SelectWareHouse);
     }
+    const [Request,setReQuest]=useState([]);
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
+                setReQuest(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchdata();
+    },[])
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
@@ -35,7 +47,7 @@ function Request(){
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({to:username,from:SelectWareHouse?.value})
+                body: JSON.stringify({to:username,from:SelectWareHouse?.value,type:true})
             })
             if(response.ok){
                 Swal.fire({
@@ -84,7 +96,7 @@ return(
                         <div class="card">
                             <div class="card-body">
                       
-                                <h4 class="card-title">Contact</h4>
+                                <h4 class="card-title">Request WareHouse</h4>
                                 <form class="forms-sample" >
                                     <label for="exampleInputUsername1">Search</label>
                                     <input type="text" class="form-control" id="exampleInputUsername1"   placeholder="Enter Name Or Email" />
@@ -96,14 +108,22 @@ return(
                                         <thead>
                                             <tr>
                                                 <th> # </th>
-                                                <th> Name Customer </th>
+                                                <th> To </th>
 
-                                                <th> Email Customer </th>
-                                                <th> Description</th>
+                                                <th> From </th>
+                                                <th> Create Day</th>
                                              
 
 
                                             </tr>
+                                            {Request.map((request,index)=>(
+                                                <tr>
+                                                    <td>{++index}</td>
+                                                    <td>{request.to}</td>
+                                                    <td>{request.from}</td>
+                                                    <td>{new Date(request.creadate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                </tr>
+                                            ))}
                                         </thead>
                                         <tbody>
                                     

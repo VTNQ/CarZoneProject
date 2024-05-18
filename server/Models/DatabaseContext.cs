@@ -293,7 +293,7 @@ public partial class DatabaseContext : DbContext
 
             entity.Property(e => e.DeliveryType).HasDefaultValue("0");
             entity.Property(e => e.Payment).HasDefaultValue("0");
-            entity.Property(e => e.Status).HasDefaultValue("0");
+            entity.Property(e => e.Status).HasDefaultValue(false);
 
             entity.HasOne(d => d.IdCustomerNavigation).WithMany(p => p.OutOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)

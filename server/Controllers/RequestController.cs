@@ -30,6 +30,19 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("ShowRequestWareHouse")]
+        public IActionResult ShowRequestWareHouse()
+        {
+            try
+            {
+                return Ok(_requestService.ShowRequestWareHouse());
+
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowWareHouse")]
         public IActionResult ShowWareHouse()
         {
