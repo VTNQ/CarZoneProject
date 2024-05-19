@@ -14,6 +14,7 @@ function Inventory() {
     const handleSelectModel=(event)=>{
         setSelectModel(event.target.value)
     }
+    const [SelectCondition,setSelectCondition]=useState(null)
     
     const Producttype = [
         { value: 0, label: 'sale' },
@@ -269,7 +270,7 @@ function Inventory() {
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b">
                                                                                 {Condition.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
+                                                                                    <option value={item.label}>{item.label}</option>
                                                                                 ))}
                                                                             </select>
                                                                         </div>

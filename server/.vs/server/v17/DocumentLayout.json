@@ -266,7 +266,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -291,10 +291,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -331,8 +327,7 @@
               "RelativeToolTip": "Services\\WareHouserService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-18T06:33:46.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T06:33:46.769Z"
             },
             {
               "$type": "Document",
@@ -356,8 +351,7 @@
               "RelativeToolTip": "Controllers\\WareHouseController.cs",
               "ViewState": "AQIAACMAAAAAAAAAAAAnwCwAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-18T07:12:38.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T07:12:38.157Z"
             },
             {
               "$type": "Document",
@@ -1066,6 +1060,10 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-14T13:03:52.518Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
