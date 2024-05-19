@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Models;
 
 namespace server.Services
@@ -34,12 +35,12 @@ namespace server.Services
         {
             try
             {
-                var invoice = new Invoice
+                var invoice = new InVoice
                 {
                     IdOrder = id,
                     CreateDate = DateOnly.FromDateTime(DateTime.Now)
                 };
-                _dbContext.Invoices.Add(invoice);
+                _dbContext.InVoices.Add(invoice);
                 return _dbContext.SaveChanges() > 0;
             }
             catch
@@ -61,7 +62,7 @@ namespace server.Services
                     TotalAmount = outOrder.TotalAmount,
                     TotalTax = outOrder.TotalTax,
                     Payment = outOrder.Payment,
-                    Status = "unfinished",
+                    Status = false,
                     DeliveryType = outOrder.DeliveryType,
                 };
                 _dbContext.OutOrders.Add(OutOrder);
@@ -129,7 +130,7 @@ namespace server.Services
 
         public dynamic ShowInvoice(int id)
         {
-            return _dbContext.Invoices.Where(d => d.IdOrder == id).Select(d => new
+            return _dbContext.InVoices.Where(d => d.IdOrder == id).Select(d => new
             {
                 DateCreate = d.CreateDate,
             }).FirstOrDefault();
@@ -148,6 +149,31 @@ namespace server.Services
                Payment=d.Payment,
                DeliveryType=d.DeliveryType
            }).ToList();
+        }
+
+        public async Task UpdateOrderStatus()
+        {
+            var Orders = await _dbContext.OutOrders.ToListAsync();
+            foreach(var order in Orders)
+            {
+                var details= await _dbContext.DetailOfOutOrders.Where(d=> d.IdOrder == order.Id && d.DeliveryDay <= DateOnly.FromDateTime(DateTime.Today)).ToListAsync();
+                if (details.Any())
+                {
+                    if (order.Status == false)
+                    {
+                        order.Status = true;
+                        var invoice = new InVoice
+                        {
+                            IdOrder = order.Id,
+                            CreateDate = DateOnly.FromDateTime(DateTime.Today),
+                        };
+                        _dbContext.InVoices.Add(invoice);
+                    }
+                   
+                       
+                }
+            }
+           await _dbContext.SaveChangesAsync();
         }
     }
 }

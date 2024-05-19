@@ -24053,6 +24053,22 @@ table.dataTable tbody td.select-checkbox:after {
   z-index: 1000;
   transition: all ease 2.5s;
 }
+.preview-content1 {
+  background: white; 
+  padding: 20px; 
+  border-radius: 10px; 
+  max-width: 80%; 
+  max-height: 80%; 
+  overflow-y: auto; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  animation: fadeIn 0.3s ease-in-out;
+}
+.preview-content1 p {
+  margin: 0; 
+  font-size: 16px; 
+  line-height: 1.5; 
+  color: #333; 
+}
 .preview-content {
   background-color: white;
   border-radius: 8px;
@@ -24091,6 +24107,44 @@ preview-content img {
 .preview-buttons button:hover {
   background-color: #45a049; /* Darker green */
 }
+.dropdown1 {
+    position: absolute;
+    top: 100%; /* Hiển thị dropdown dưới phần user-info */
+    right: -23px;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  /* Kiểu dáng cho các mục trong dropdown */
+  .dropdown1 a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    padding: 5px 10px;
+    /* Thêm khoảng cách xung quanh mỗi mục */
+  }
+  
+  .dropdown1 i {
+    margin-right: 5px;
+  }
+  
+  /* Kiểu dáng cho đường kẻ ngăn cách */
+  .dropdown1 a::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 5px;
+    margin-left: 10px; /* Khoảng cách từ mép trái của mục */
+    margin-right: 10px; /* Khoảng cách từ mép phải của mục */
+  }
 
 /* Close button */
 .preview-buttons button:first-child {

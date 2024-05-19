@@ -97,7 +97,7 @@ namespace server.Controllers
         {
             try
             {
-                if(_databaseContext.Invoices.Any(d=>d.IdOrder==id)) {
+                if(_databaseContext.InVoices.Any(d=>d.IdOrder==id)) {
                     return BadRequest(new { message = "Invoice already Exist" });
                 }
 

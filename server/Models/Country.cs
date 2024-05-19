@@ -16,6 +16,9 @@ public partial class Country
     [Unicode(false)]
     public string Name { get; set; } = null!;
 
+    [Required]
+    public bool? IsDelete { get; set; }
+
     [InverseProperty("IdCountryNavigation")]
     public virtual ICollection<Brand> Brands { get; set; } = new List<Brand>();
 

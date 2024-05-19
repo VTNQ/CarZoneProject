@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using server.Models;
-using Version = server.Models.Version;
+
 
 namespace server.Context;
 
@@ -45,7 +45,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<InOrder> InOrders { get; set; }
 
-    public virtual DbSet<Invoice> Invoices { get; set; }
+    public virtual DbSet<InVoice> InVoices { get; set; }
 
     public virtual DbSet<Model> Models { get; set; }
 
@@ -63,7 +63,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<Suplier> Supliers { get; set; }
 
-    public virtual DbSet<Version> Versions { get; set; }
+    public virtual DbSet<Models.Version> Versions { get; set; }
 
     public virtual DbSet<Warehouse> Warehouses { get; set; }
 
@@ -259,11 +259,11 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_inorder_warehouse");
         });
 
-        modelBuilder.Entity<Invoice>(entity =>
+        modelBuilder.Entity<InVoice>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Invoice__3214EC0731FC790E");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.InVoices)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Invoice_OutOrder");
         });
@@ -285,7 +285,7 @@ public partial class DatabaseContext : DbContext
 
             entity.Property(e => e.DeliveryType).HasDefaultValue("0");
             entity.Property(e => e.Payment).HasDefaultValue("0");
-            entity.Property(e => e.Status).HasDefaultValue("0");
+            entity.Property(e => e.Status).HasDefaultValueSql("('0')");
 
             entity.HasOne(d => d.IdCustomerNavigation).WithMany(p => p.OutOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -368,7 +368,7 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_suplier_country");
         });
 
-        modelBuilder.Entity<Version>(entity =>
+        modelBuilder.Entity<server.Models.Version>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Version__3214EC07A5B61E8B");
 

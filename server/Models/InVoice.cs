@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace server.Models;
 
-[Table("Invoice")]
-public partial class Invoice
+[Table("InVoice")]
+public partial class InVoice
 {
     [Key]
     public int Id { get; set; }
@@ -17,6 +17,6 @@ public partial class Invoice
     public DateOnly CreateDate { get; set; }
 
     [ForeignKey("IdOrder")]
-    [InverseProperty("Invoices")]
+    [InverseProperty("InVoices")]
     public virtual OutOrder IdOrderNavigation { get; set; } = null!;
 }

@@ -1,4 +1,5 @@
-﻿using server.Models;
+﻿using server.Data;
+using server.Models;
 
 namespace server.Services
 {
@@ -33,6 +34,41 @@ namespace server.Services
             catch
             {
                 return null;
+            }
+        }
+
+        public dynamic ShowEmployee(int id)
+        {
+            return _dbContext.Employees.Where(d => d.Id == id).Select(d => new
+            {
+                FullName = d.FullName,
+                Email = d.Email,
+                Address = d.Address,
+                Phone = d.Phone,
+                IdentityCode = d.IdentityCode,
+
+            }).FirstOrDefault();
+        }
+
+        public bool UpdateEmployee(int id, EditEmployee editEmployee)
+        {
+            try
+            {
+                var Employee = _dbContext.Employees.Find(id);
+                if (Employee != null)
+                {
+                    Employee.FullName = editEmployee.FullName;
+                    Employee.Email = editEmployee.Email;
+                    Employee.Address = editEmployee.Address;
+                    Employee.Phone = editEmployee.Phone;
+                    Employee.IdentityCode = editEmployee.IdentityCode;
+                }
+                return _dbContext.SaveChanges()>0;
+
+            }
+            catch
+            {
+                return false;
             }
         }
     }

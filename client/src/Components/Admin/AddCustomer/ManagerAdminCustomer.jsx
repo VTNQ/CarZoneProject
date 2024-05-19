@@ -121,7 +121,7 @@ function ManagerAdminCustomer() {
     }
     const AddCustomer = async (event) => {
         event.preventDefault();
-        if (FromData.FullName == '' || Dob == null || FromData.Phone || FromData.Email == '' || FromData.Address == '' || FromData.IdentityCode == '' || FromData.Image) {
+        if (FromData.FullName == '' || Dob == null || FromData.Phone=='' || FromData.Email == '' || FromData.Address == '' || FromData.IdentityCode == '' || FromData.Image==null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',

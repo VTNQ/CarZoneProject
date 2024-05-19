@@ -10,7 +10,7 @@ public partial class DatabaseContext : DbContext
     {
     }
 
-    public DatabaseContext(DbContextOptions<DbContext> options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
     {
     }
@@ -43,7 +43,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<InOrder> InOrders { get; set; }
 
-    public virtual DbSet<Invoice> Invoices { get; set; }
+    public virtual DbSet<InVoice> InVoices { get; set; }
 
     public virtual DbSet<Model> Models { get; set; }
 
@@ -90,7 +90,7 @@ public partial class DatabaseContext : DbContext
 
             entity.Property(e => e.Bhp).HasDefaultValue("0");
             entity.Property(e => e.Condition).HasDefaultValue("0");
-            entity.Property(e => e.DateAccept).HasDefaultValue("");
+            entity.Property(e => e.DateAccept).HasDefaultValueSql("('')");
             entity.Property(e => e.Drivertrain).HasDefaultValue("0");
             entity.Property(e => e.Engine).HasDefaultValue("0");
             entity.Property(e => e.FuelConsumption).HasDefaultValue("0");
@@ -124,6 +124,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__City__3214EC07F5FB6C18");
 
+            entity.Property(e => e.IsDelete)
+                .HasDefaultValueSql("('0')")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
 
             entity.HasOne(d => d.IdCountryNavigation).WithMany(p => p.Cities)
@@ -162,6 +165,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Country__3214EC07CE1981A7");
 
+            entity.Property(e => e.IsDelete)
+                .HasDefaultValueSql("('0')")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
         });
 
@@ -180,25 +186,15 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<DetailOfInOrder>(entity =>
         {
-            entity.HasKey(e => e.Id); // Assuming Id is the primary key
+            entity.HasKey(e => e.Id).HasName("PK__DetailOf__3214EC07774E73CC");
 
-            // Configure IdCar foreign key
-            entity.Property(e => e.IdCar)
-                .HasColumnName("IdCar"); // Specify the correct column name
+            entity.Property(e => e.Id).HasComment("");
 
-            entity.HasOne(d => d.IdCarNavigation)
-                .WithMany(c => c.DetailOfInOrders) // Assuming Car has a collection navigation property of DetailOfInOrder
-                .HasForeignKey(d => d.IdCar)
+            entity.HasOne(d => d.IdCarNavigation).WithMany(p => p.DetailOfInOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_detail_car");
 
-            // Configure IdOrder foreign key
-            entity.Property(e => e.IdOrder)
-                .HasColumnName("IdOrder"); // Specify the correct column name
-
-            entity.HasOne(d => d.IdOrderNavigation)
-                .WithMany(o => o.DetailOfInOrders) // Assuming InOrder has a collection navigation property of DetailOfInOrder
-                .HasForeignKey(d => d.IdOrder)
+            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.DetailOfInOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_detail_inorder");
         });
@@ -220,6 +216,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__District__3214EC0724EE77EE");
 
+            entity.Property(e => e.IsDelete)
+                .HasDefaultValueSql("('0')")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
 
             entity.HasOne(d => d.IdCityNavigation).WithMany(p => p.Districts)
@@ -267,11 +266,11 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_inorder_warehouse");
         });
 
-        modelBuilder.Entity<Invoice>(entity =>
+        modelBuilder.Entity<InVoice>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Invoice__3214EC0731FC790E");
 
-            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.IdOrderNavigation).WithMany(p => p.InVoices)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Invoice_OutOrder");
         });
@@ -293,7 +292,9 @@ public partial class DatabaseContext : DbContext
 
             entity.Property(e => e.DeliveryType).HasDefaultValue("0");
             entity.Property(e => e.Payment).HasDefaultValue("0");
-            entity.Property(e => e.Status).HasDefaultValue("0");
+
+            entity.Property(e => e.Status).HasDefaultValue(false);
+
 
             entity.HasOne(d => d.IdCustomerNavigation).WithMany(p => p.OutOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -323,6 +324,7 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Request__3214EC073E99BA52");
 
+            entity.Property(e => e.Description).HasComment("");
             entity.Property(e => e.From).HasDefaultValue("");
             entity.Property(e => e.To).HasDefaultValue("");
         });

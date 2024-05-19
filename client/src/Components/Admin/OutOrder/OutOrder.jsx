@@ -18,14 +18,14 @@ function OutOrder() {
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
-    const [FromData,setFromData]=useState({
-        id:'',
-        Condition:''
+    const [FromData, setFromData] = useState({
+        id: '',
+        Condition: ''
     })
-    const handleContract=(id)=>{
-        const showout=ShowOutOrder.find(show=>show.id==id)
-        if(showout){
-            FromData.id=showout.id;
+    const handleContract = (id) => {
+        const showout = ShowOutOrder.find(show => show.id == id)
+        if (showout) {
+            FromData.id = showout.id;
         }
         setPopupVisibility(true)
     }
@@ -81,20 +81,12 @@ function OutOrder() {
         const newCarTaxes = { ...carTaxes };
         SelectOptions.forEach(option => {
             if (!newCarTaxes[option.value]) {
-                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: '', price: option.price, delivery: null }
+                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price * 0.2, price: option.price, delivery: null }
             }
         })
         setcarTaxes(newCarTaxes)
     }
-    const handleTaxChange = (carId, TaxValue) => {
-        setcarTaxes({
-            ...carTaxes,
-            [carId]: {
-                ...carTaxes[carId],
-                tax: TaxValue
-            }
-        })
-    }
+   
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -132,10 +124,10 @@ function OutOrder() {
         setIsClosingPopup(true);
         setTimeout(() => {
             setFromData({
-                id:'',
-                Condition:''
+                id: '',
+                Condition: ''
             })
-          
+
 
             setPopupVisibility(false)
             setIsClosingPopup(false)
@@ -146,67 +138,95 @@ function OutOrder() {
         let totalAmount = 0;
         let totalTax = 0;
         const formData = new FormData();
-        try {
-            formData.append("IdCustomer", SelectCustomer?.value)
-            formData.append("IdShowroom", idShowroom);
-            formData.append("IdEmployee", ID);
-            Object.keys(carTaxes).forEach((carId) => {
-                const price = Number(carTaxes[carId].price || 0);
-                const tax = Number(carTaxes[carId].tax || 0);
-                totalAmount += price;
-                totalTax += tax;
-            })
-            formData.append("TotalAmount", totalAmount);
-            formData.append("TotalTax", totalTax);
-            formData.append("Payment", SelectPayment?.value);
-            formData.append("DeliveryType", SelectDeliveryType?.value)
-            Object.keys(carTaxes).forEach((carId, index) => {
-                const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
-                const vietnamStartDate = new Date(carTaxes[carId].delivery.getTime() + offsetInMilliseconds);
-                formData.append(`DetailOutOrders[${index}].idCar`, carTaxes[carId].id)
-                formData.append(`DetailOutOrders[${index}].deliveryDate`, vietnamStartDate.toISOString().split('T')[0])
-                formData.append(`DetailOutOrders[${index}].price`, carTaxes[carId].price)
-                formData.append(`DetailOutOrders[${index}].tax`, carTaxes[carId].tax)
-            })
-            const response = await fetch("http://localhost:5278/api/OutOrder/AddOutOrder", {
-                method: 'POST',
-                body: formData
-            })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add Order Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+        let hasInvalidInput = false;
+
+
+        Object.keys(carTaxes).forEach((carId) => {
+            if (carTaxes[carId].tax == '' || carTaxes[carId].delivery == null) {
+                hasInvalidInput = true;
             }
-        } catch (error) {
-            console.log(error)
+        });
+        const IsSelectCars = SelectCars.length <= 0 ? false : true;
+
+        if (hasInvalidInput == true || IsSelectCars == false || SelectCustomer?.value == null || SelectPayment?.value == null || SelectDeliveryType?.value == null) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            try {
+                formData.append("IdCustomer", SelectCustomer?.value)
+                formData.append("IdShowroom", idShowroom);
+                formData.append("IdEmployee", ID);
+                Object.keys(carTaxes).forEach((carId) => {
+                    const price = Number(carTaxes[carId].price || 0);
+                    const tax = Number(carTaxes[carId].tax || 0);
+                    totalAmount += price;
+                    totalTax += tax;
+                })
+                formData.append("TotalAmount", totalAmount);
+                formData.append("TotalTax", totalTax);
+                formData.append("Payment", SelectPayment?.value);
+                formData.append("DeliveryType", SelectDeliveryType?.value)
+                Object.keys(carTaxes).forEach((carId, index) => {
+                    const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
+                    const vietnamStartDate = new Date(carTaxes[carId].delivery.getTime() + offsetInMilliseconds);
+                    formData.append(`DetailOutOrders[${index}].idCar`, carTaxes[carId].id)
+                    formData.append(`DetailOutOrders[${index}].deliveryDate`, vietnamStartDate.toISOString().split('T')[0])
+                    formData.append(`DetailOutOrders[${index}].price`, carTaxes[carId].price)
+                    formData.append(`DetailOutOrders[${index}].tax`, carTaxes[carId].tax)
+                })
+                const response = await fetch("http://localhost:5278/api/OutOrder/AddOutOrder", {
+                    method: 'POST',
+                    body: formData
+                })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add Order Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${ID}`)
+                    SetShowOutOrder(response.data)
+
+                    SetSelectCustomer(null)
+                    setSelectCars([]);
+                    SetSelectPayment(null);
+                    setSelectDeliveryType(null)
+
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
 
 
+
     }
-    const FilterOutOrder=ShowOutOrder.filter(ShowOut=>
+    const FilterOutOrder = ShowOutOrder.filter(ShowOut =>
         ShowOut.customer.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    const IndexOflastOutOrder=(currentPage + 1) * perPage;
-    const IndexOfFirtOutOrder=IndexOflastOutOrder-perPage;
-    const CurrentOutOrder=FilterOutOrder.slice(IndexOfFirtOutOrder,IndexOflastOutOrder)
+    const IndexOflastOutOrder = (currentPage + 1) * perPage;
+    const IndexOfFirtOutOrder = IndexOflastOutOrder - perPage;
+    const CurrentOutOrder = FilterOutOrder.slice(IndexOfFirtOutOrder, IndexOflastOutOrder)
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-    const AddContract1=async(event)=>{
+    const AddContract1 = async (event) => {
         event.preventDefault();
         console.log(FromData.Condition)
-        try{
-            const response=await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`,{
+        try {
+            const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body:JSON.stringify({name:FromData.Condition})
+                body: JSON.stringify({ name: FromData.Condition })
             })
-            if(response.ok){
+            if (response.ok) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Add Contract Success',
@@ -214,11 +234,11 @@ function OutOrder() {
                     timer: 1500,
                 });
                 setFromData({
-                    id:'',
-                Condition:''
+                    id: '',
+                    Condition: ''
                 })
                 setPopupVisibility(false)
-            }else{
+            } else {
                 const responseBody = await response.json();
                 if (responseBody.message) {
                     Swal.fire({
@@ -229,37 +249,11 @@ function OutOrder() {
                     });
                 }
             }
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
-    const ExportInvoice=async(ID)=>{
-        try{
-            const response=await fetch(`http://localhost:5278/api/OutOrder/AddInvoice/${ID}`,{
-                method: 'POST',
-            })
-            if(response.ok){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Export Invoice Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            }else{
-                const responseBody = await response.json();
-                if (responseBody.message) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: responseBody.message || 'Failed to add genre',
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            }
-        }catch(error){
-            console.log(error)
-        }
-    }
+
     return (
         <>
             <LayoutAdmin>
@@ -269,7 +263,7 @@ function OutOrder() {
                             <div class="col-md-12 grid-margin stretch-card">
                                 <div class="card" style={{ height: 'auto' }}>
                                     <div class="card-body">
-                                 
+
                                         <h4 class="card-title">Out Order</h4>
                                         <p class="card-description"> Basic form layout </p>
                                         <form class="forms-sample" onSubmit={handleSubmit}>
@@ -295,7 +289,7 @@ function OutOrder() {
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
                                                             value={carTaxes[car.value]?.tax || ''}
-                                                            onChange={e => handleTaxChange(car.value, e.target.value)}
+
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">
@@ -355,7 +349,7 @@ function OutOrder() {
                                                         <th>Payment</th>
                                                         <th>Delivery type</th>
                                                         <th>Detail</th>
-                                                        <th>Export Invoice</th>
+
                                                         <th>Add Contract</th>
 
                                                     </tr>
@@ -372,11 +366,10 @@ function OutOrder() {
                                                             <td>{show.deliveryType}</td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                            onClick={()=>navigate(`/DetailOutOrder/${show.id}`,{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom,IDOutOrder:show.id}})}
+                                                                onClick={() => navigate(`/DetailOutOrder/${show.id}`, { state: { ID: ID, fullName: username, email: email, idShowroom: idShowroom, IDOutOrder: show.id } })}
                                                             >Detail
                                                             </button></td>
-                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={()=>ExportInvoice(show.id)}>Export Invoice</button></td>
-                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={()=>handleContract(show.id)}>Add Contract</button></td>
+                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={() => handleContract(show.id)}>Add Contract</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
@@ -442,7 +435,7 @@ function OutOrder() {
                                     <input type="text" class="form-control" value={FromData.Condition} onChange={(e) => setFromData({ ...FromData, Condition: e.target.value })} id="exampleInputUsername1" placeholder="Condition" />
                                 </div>
 
-                                
+
 
 
                             </div>

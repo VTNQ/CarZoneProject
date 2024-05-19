@@ -9,12 +9,17 @@ import '../assets/css/style.css';
 import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 const LayoutEmployee=({children})=>{
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const ID = location.state?.ID || '';
+  const username=location.state?.fullName || '';
+  const email = location.state?.email || '';
+  const idShowroom=location.state?.idShowroom || '';
     return (
         <>
-     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
     <a class="navbar-brand brand-logo me-5" href="index.html"><img src={logo} class="me-2" alt="logo" /></a>
     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
@@ -104,18 +109,63 @@ const LayoutEmployee=({children})=>{
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
               <ul className="nav">
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>navigate('/Employee/Dashboard')}>
+                  <a className="nav-link" onClick={() => navigate('/Employee/Dashboard')}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Dashboard</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>navigate('/Employee/Create-Customer')}>
+                  <a className="nav-link" onClick={() => navigate('/Employee/Show-Customer', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Customer</span>
                   </a>
                 </li>
-
+                <li className="nav-item">
+                  <a className="nav-link" onClick={() => navigate('/InVoice/HistoryInVoice', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">History InVoice</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" onClick={() => navigate('/Employee/AddOrder', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">Add Order</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" onClick={() => navigate('/Employee/HistoryOrder', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">History Order</span>
+                  </a>
+                </li>
               </ul>
             </nav>
 

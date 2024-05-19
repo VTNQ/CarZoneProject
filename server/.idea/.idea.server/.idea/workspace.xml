@@ -8,7 +8,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="" />
+    <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Admin/OutOrder/OutOrder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Admin/OutOrder/OutOrder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Customer/ShowCustomer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Customer/ShowCustomer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/InVoice/HistoryInVoice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/InVoice/HistoryInVoice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/ShowContact/ShowContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/ShowContact/ShowContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/InVoiceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/InVoiceController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Invoice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/InVoice.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/EmployeeServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/EmployeeServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/InVoiceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/InVoiceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/InVoiceServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/InVoiceServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,9 +58,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -56,6 +80,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;.NET Launch Settings Profile.server: IIS Express.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.server: http.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -74,7 +99,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.server: IIS Express">
+  <component name="RunManager" selected=".NET Launch Settings Profile.server: http">
     <configuration name="server: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/server.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -118,6 +143,9 @@
       <workItem from="1715657587185" duration="311000" />
       <workItem from="1715819440371" duration="675000" />
       <workItem from="1715821061753" duration="2104000" />
+      <workItem from="1715830303620" duration="214000" />
+      <workItem from="1715991006420" duration="4665000" />
+      <workItem from="1715996260308" duration="12494000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -135,7 +163,31 @@
       <option name="project" value="LOCAL" />
       <updated>1715821001422</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fix: SQL">
+      <option name="closed" value="true" />
+      <created>1715830389371</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715830389371</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix : SQL">
+      <option name="closed" value="true" />
+      <created>1715830419102</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715830419102</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix : SQL">
+      <option name="closed" value="true" />
+      <created>1715830509947</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715830509947</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,7 +210,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Update models" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="Fix: SQL" />
+    <MESSAGE value="Fix : SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix : SQL" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -404,7 +404,28 @@ button.uk-icon:not(:disabled) {
     padding-top: 25px;
     margin-top: 30px;
 }
+.filter-price-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
 
+.filter-price-container label {
+    margin-right: 5px;
+}
+
+.filter-price-container input {
+    margin-right: 10px;
+    width: 80px;
+}
+
+.filter-price-container button {
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 #ap-product-modal__quickview .ap-price-box .ap-price {
     font-size: 24px;
     font-weight: bold;

@@ -28,18 +28,20 @@ namespace server.Services
         {
             try
             {
+                string Password = GenerateRandomString(8);
 
                 var EmployeeAdd = new Employee
                 {
                     FullName = addEmployee.FullName,
                     Email = addEmployee.Email,
                     Address = addEmployee.Address,
-                    Password=BCrypt.Net.BCrypt.HashPassword(GenerateRandomString(8)) ,
+                    Password=BCrypt.Net.BCrypt.HashPassword(Password) ,
                     Phone = addEmployee.Phone,
                     Role="Employee",
                     IdentityCode = addEmployee.IdentityCode,
                     IdShowroom = addEmployee.IdShowroom,
                 };
+                SendEmail(addEmployee.Email, "Reset Information", $"FullName :{addEmployee.FullName}\n Password:{Password}");
                 databaseContext.Employees.Add(EmployeeAdd);
                 return databaseContext.SaveChanges()>0;
             }
@@ -119,6 +121,21 @@ namespace server.Services
             catch
             {
                 return false;
+            }
+        }
+
+        public dynamic FindByID(int id)
+        {
+            try
+            {
+                return databaseContext.Employees.Where(d=>d.Id==id).Select(d=>new
+                {
+                    idshowroom=d.IdShowroom
+                }).First();
+            }
+            catch (Exception e)
+            {
+                return "Not Exist";
             }
         }
     }

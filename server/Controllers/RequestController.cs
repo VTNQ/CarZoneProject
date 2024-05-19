@@ -1,0 +1,83 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using server.Data;
+using server.Services;
+
+namespace server.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RequestController : ControllerBase
+    {
+        private readonly RequestService _requestService;
+        public RequestController(RequestService requestService) { 
+        _requestService = requestService;
+        }
+        [HttpPost("AddRequest")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        public IActionResult AddRequest(AddRequest addRequest)
+        {
+            try
+            {
+                return Ok(new
+                {
+                    result = _requestService.AddRequest(addRequest),
+                });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowRequestSupplier/{Employee}")]
+        public IActionResult ShowRequestSupplier(string Employee)
+        {
+            try
+            {
+                return Ok(_requestService.ShowRequestSupplier(Employee));   
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowSupplier")]
+        public IActionResult ShowSupplier()
+        {
+            try
+            {
+                return Ok(_requestService.ShowSupplier());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowRequestWareHouse")]
+        public IActionResult ShowRequestWareHouse()
+        {
+            try
+            {
+                return Ok(_requestService.ShowRequestWareHouse());
+
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowWareHouse")]
+        public IActionResult ShowWareHouse()
+        {
+            try
+            {
+                return Ok(_requestService.ShowWareHouse());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+    }
+}
