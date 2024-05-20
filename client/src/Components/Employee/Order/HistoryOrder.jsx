@@ -11,6 +11,7 @@ function HistoryOrder(){
    
     const email = location.state?.email || '';
     const idShowroom = location.state?.idShowroom || '';
+    const [isPopupVisible, setPopupVisibility] = useState(false);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const [Order,setOrder]=useState([]);
@@ -25,6 +26,10 @@ function HistoryOrder(){
         }
         fetchdata();
     },[])
+    const [FromData,setFromData]=useState({
+        id:'',
+        Condition:'',
+    })
     const [searchTerm, setSearchtem] = useState('');
     const FilterOrder=Order.filter(order=>
         order.customer.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,6 +40,12 @@ function HistoryOrder(){
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+    const handleAddContract=(ID)=>{
+        const SelectOrder=Order.find(order=>order.id==ID);
+        if(SelectOrder){
+            FromData.id=SelectOrder.id;
+        }
+    }
 return(
     <>
     <LayoutAdmin>
@@ -64,7 +75,7 @@ return(
                                                 <th> Total Tax </th>
                                                 <th>Payment</th>
                                                 <th>Delivery type</th>
-                                               
+                                               <th>Add Contract</th>
 
                                             </tr>
                                         </thead>
@@ -78,6 +89,11 @@ return(
                                                             <td>{order.totalTax}</td>
                                                             <td>{order.payment}</td>
                                                             <td>{order.deliveryType}</td>
+                                                            <td><button
+                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                              
+                                                            >Add
+                                                            </button></td>
                                                 </tr>
                                             ))}
                                         </tbody>

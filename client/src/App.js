@@ -28,6 +28,7 @@ import ShowCarWareHouse from './Components/Admin/ShowCarWareHouse/ShowCarWareHou
 import HistoryInVoice from './Components/Employee/InVoice/HistoryInVoice';
 import AddOrder from './Components/Employee/Order/AddOrder';
 import HistoryOrder from './Components/Employee/Order/HistoryOrder';
+import ShowContactEmployee from './Components/Employee/ShowContact/ShowContact';
 function App() {
   return (
     <Router>
@@ -49,6 +50,7 @@ function App() {
           <Route path='Create-Customer' element={<CreateCustomer/>}/>
           <Route path='AddOrder' element={<AddOrder/>}/>
           <Route path='HistoryOrder' element={<HistoryOrder/>}/>
+          <Route path='ShowContact' element={<ShowContactEmployee/>}/>
         </Route>
         <Route path='/InVoice/HistoryInVoice' element={<HistoryInVoice/>}/>
         <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer/>}/>
