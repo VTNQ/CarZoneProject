@@ -35,6 +35,7 @@ import InOrderWareHouse from './Components/WareHouse/InOrder/InOrder';
 import DetailOrder from './Components/WareHouse/InOrder/DetailOrder';
 import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
+import Brand from './Components/WareHouse/Brand/Brand';
 function App() {
   return (
     <Router>
@@ -56,6 +57,7 @@ function App() {
           <Route path='DetaiInOrder/:id' element={<DetailOrder/>}/>
           <Route path='Form' element={<Form/>}/>
           <Route path='Version' element={<Version/>}/>
+          <Route path='Brand' element={<Brand/>}/>
         </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>
