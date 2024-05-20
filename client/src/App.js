@@ -29,6 +29,12 @@ import HistoryInVoice from './Components/Employee/InVoice/HistoryInVoice';
 import AddOrder from './Components/Employee/Order/AddOrder';
 import HistoryOrder from './Components/Employee/Order/HistoryOrder';
 import ShowContactEmployee from './Components/Employee/ShowContact/ShowContact';
+import ShowContract from './Components/Employee/Contract/ShowContract';
+import DashboardWareHouse from './Components/WareHouse/Dashboard/Dashboard';
+import InOrderWareHouse from './Components/WareHouse/InOrder/InOrder';
+import DetailOrder from './Components/WareHouse/InOrder/DetailOrder';
+import Form from './Components/WareHouse/Form/Form';
+import Version from './Components/WareHouse/Version/Version';
 function App() {
   return (
     <Router>
@@ -44,6 +50,13 @@ function App() {
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
         <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
+        <Route path='/WareHouse/'>
+          <Route index path='Dashboard' element={<DashboardWareHouse/>}/>
+          <Route path='InOrder' element={<InOrderWareHouse/>}/>
+          <Route path='DetaiInOrder/:id' element={<DetailOrder/>}/>
+          <Route path='Form' element={<Form/>}/>
+          <Route path='Version' element={<Version/>}/>
+        </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>
           <Route path='Show-Customer' element={<ShowCustomer/>}/>
@@ -51,6 +64,7 @@ function App() {
           <Route path='AddOrder' element={<AddOrder/>}/>
           <Route path='HistoryOrder' element={<HistoryOrder/>}/>
           <Route path='ShowContact' element={<ShowContactEmployee/>}/>
+          <Route path='ShowContract/:id' element={<ShowContract/>}/>
         </Route>
         <Route path='/InVoice/HistoryInVoice' element={<HistoryInVoice/>}/>
         <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer/>}/>

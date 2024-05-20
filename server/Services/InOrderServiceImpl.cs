@@ -114,5 +114,20 @@ namespace server.Services
             }
             await databaseContext.SaveChangesAsync();
         }
+
+        public dynamic ShowOrderWareHouse(int id)
+        {
+            return databaseContext.InOrders.Where(d=>d.IdEmployeeNavigation.IdShowroom==id && d.IdEmployeeNavigation.Role!= "WareHouse").Select(d => new
+            {
+                id = d.Id,
+                WareHouse = d.IdWarehouseNavigation.Name,
+                Supplier = d.IdSuplierNavigation.Name,
+                DateofSale = d.DateOfSale,
+                Employee=d.IdEmployeeNavigation.FullName,
+                TotalAmount = d.TotalAmount,
+                ToTalTax = d.TotalTax,
+                Payment = d.Payment,
+            }).ToList() ;
+        }
     }
 }

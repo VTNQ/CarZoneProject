@@ -217,7 +217,7 @@ function OutOrder() {
     };
     const AddContract1 = async (event) => {
         event.preventDefault();
-        console.log(FromData.Condition)
+        
         try {
             const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
                 method: 'POST',

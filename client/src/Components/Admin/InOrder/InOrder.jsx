@@ -87,15 +87,7 @@ function InOrder() {
             })
             setcarTaxes(newCarTaxes)
         }
-    const handleTaxChange = (carId, TaxValue) => {
-        setcarTaxes({
-            ...carTaxes,
-            [carId]: {
-                ...carTaxes[carId],
-                tax: TaxValue
-            }
-        })
-    }
+  
     const handleDeliveryChange = (carId, deliveryDate) => {
         setcarTaxes(prevCarTaxes => ({
             ...prevCarTaxes,
