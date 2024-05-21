@@ -1,4 +1,4 @@
-﻿using server.Controllers;
+﻿using server.Data;
 
 namespace server.Services
 {
@@ -6,5 +6,7 @@ namespace server.Services
     {
         public bool AddBrand(AddBrand addBrand);
         public dynamic GetCountry();
+        public dynamic ShowBrand();
+        public bool UpdateBrand(int id,UpdateBrand updateBrand);
     }
 }

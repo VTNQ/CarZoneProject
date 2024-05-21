@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "../Layout/Layout";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import Select from "react-select"
 import axios from 'axios'
 import Pagination from 'react-paginate';
 function AddEmployee() {
+    const options = [
+        { value: 0, label: "Employee" },
+        { value: 1, label: "WareHouse" }
+    ]
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const popupContentStyle = {
         background: 'white',
@@ -35,6 +40,10 @@ function AddEmployee() {
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
+    const [SelectRole,setSelectRole]=useState(null);
+    const handleSelectRole=(SelectRole)=>{
+        setSelectRole(SelectRole);
+    }
     const username = location.state?.fullName || '';
     const email = location.state?.email || '';
     const idShowroom = location.state?.idShowroom || '';
@@ -121,7 +130,7 @@ function AddEmployee() {
     const handleOnsubmit = async (event) => {
         event.preventDefault();
         try {
-            if (FromData.FullName == '' || FromData.Email == '' || FromData.Address == '' || FromData.Phone == '' || FromData.IdentityCode == '') {
+            if (FromData.FullName == '' || FromData.Email == '' || FromData.Address == '' || FromData.Phone == '' || FromData.IdentityCode == '' || SelectRole?.value==null) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Please enter complete information',
@@ -156,7 +165,8 @@ function AddEmployee() {
                         address: FromData.Address,
                         phone: FromData.Phone,
                         identityCode: FromData.IdentityCode,
-                        idShowroom: idShowroom
+                        idShowroom: idShowroom,
+                        role:SelectRole?.value
 
                     }),
                 })
@@ -246,6 +256,13 @@ function AddEmployee() {
                                         <h4 class="card-title">Employee</h4>
                                         <p class="card-description"> Basic form layout </p>
                                         <form class="forms-sample" onSubmit={handleOnsubmit}>
+                                        <div class="form-group">
+                                                <label for="exampleInputUsername1">Role</label>
+                                              <Select options={options.map(type => ({ value: type.label, label: type.label }))}
+                                              value={SelectRole}
+                                              onChange={(SelectedOption) => handleSelectRole(SelectedOption)}
+                                              />
+                                            </div>
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Full Name</label>
                                                 <input type="text" class="form-control" value={FromData.FullName} onChange={(e) => setFromData({ ...FromData, FullName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />

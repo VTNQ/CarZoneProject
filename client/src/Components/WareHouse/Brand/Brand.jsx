@@ -6,6 +6,19 @@ import LayoutAdmin from "../Layout/Layout";
 function Brand() {
     const [Country, setCountry] = useState([]);
     const [SelectCountry, setSelectCountry] = useState(null);
+    const [Brand, setBrand] = useState([]);
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
+                setBrand(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [])
     const HandleSelectCountry = (event) => {
         setSelectCountry(event.target.value);
     }
@@ -13,6 +26,9 @@ function Brand() {
         Name: '',
         Logo: null,
         HeadQuartes: '',
+        id: '',
+        UpdateName: '',
+        UpdateHeadQuaters: ''
     })
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -65,6 +81,96 @@ function Brand() {
         }
         fetchdata();
     }, [])
+    const [isPopupVisible, setPopupVisibility] = useState(false);
+    const [UpdateSelectCountry, setUpdateSelectCountry] = useState(null);
+    const handleEditClick = (ID) => {
+        const SelectBrand = Brand.find(brand => brand.id == ID)
+        if (SelectBrand) {
+            FromData.id = SelectBrand.id;
+            FromData.UpdateHeadQuaters = SelectBrand.headQuaters;
+            FromData.UpdateName = SelectBrand.name;
+            setUpdateSelectCountry(SelectBrand.idCountry)
+        }
+        setPopupVisibility(true)
+    }
+    const closingAnimation = {
+        animation: 'flipright 0.5s forwards',
+    };
+    const handleClosepopup = () => {
+        setIsClosingPopup(true);
+        setTimeout(() => {
+            setFromData({
+                id: '',
+                UpdateName: '',
+                UpdateHeadQuaters: ''
+            })
+            setUpdateSelectCountry(null);
+
+
+            setPopupVisibility(false)
+            setIsClosingPopup(false)
+        }, 500);
+    }
+    const popupContentStyle = {
+        background: 'white',
+        padding: '20px',
+        maxWidth: '400px',
+        textAlign: 'center',
+        borderRadius: '8px',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+        animation: 'flipleft 0.5s',
+        zindex: '1000000' // Default animation
+    };
+    const handleUpdateSelectCountry = (event) => {
+        setUpdateSelectCountry(event.target.value)
+    }
+    const [searchTerm, setSearchtem] = useState('');
+    const [perPage, setperPage] = useState(5);
+
+    const [currentPage, setCurrentPage] = useState(0);
+    const FilterBrand = Brand.filter(brand =>
+        brand.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    const IndexoflastBrand = (currentPage + 1) * perPage;
+    const IndexofFirstBrand = IndexoflastBrand - perPage;
+    const CurrentBrand = FilterBrand.slice(IndexofFirstBrand, IndexoflastBrand)
+    const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const handleUpdateBrand = async (event) => {
+        event.preventDefault();
+        console.log(FromData)
+        try {
+            const response = await fetch(`http://localhost:5278/api/Brand/UpdateBrand/${FromData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: FromData.UpdateName,
+                    headquarters: FromData.UpdateHeadQuaters,
+                    idCountry: UpdateSelectCountry
+                })
+            })
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Update Brand Success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                setFromData({
+                    id: '',
+                    UpdateName: '',
+                    UpdateHeadQuaters: ''
+                })
+                setUpdateSelectCountry(null);
+                setPopupVisibility(false);
+                const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
+                setBrand(response.data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <>
             <LayoutAdmin>
@@ -113,10 +219,10 @@ function Brand() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Employee</h4>
+                                        <h4 class="card-title">Brand</h4>
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter Full Name" />
+                                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter Name" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} />
                                         </form>
                                         <p class="card-description">
                                         </p>
@@ -125,18 +231,27 @@ function Brand() {
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                        <th> Full Name </th>
-                                                        <th>Dob</th>
-                                                        <th> Email </th>
-                                                        <th> Address </th>
-                                                        <th> Identity Code </th>
-                                                        <th>Sign</th>
+                                                        <th> Name </th>
+                                                        <th>Logo</th>
+                                                        <th> Head Quaters </th>
+                                                        <th> Country </th>
                                                         <th>Edit</th>
+
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                    {CurrentBrand.map((brand, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{brand.name}</td>
+                                                            <td><img src={brand.logo} width="100" height="100" style={{ objectFit: 'cover', width: '24%', height: '100%', borderRadius: '0%' }}
+                                                                alt="" /></td>
+                                                            <td>{brand.headQuaters}</td>
+                                                            <td>{brand.country}</td>
+                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleEditClick(brand.id)}>Edit</button></td>
+                                                        </tr>
+                                                    ))}
                                                 </tbody>
                                             </table>
 
@@ -161,7 +276,53 @@ function Brand() {
             </LayoutAdmin>
 
 
+            {isPopupVisible && (
+                <div className="popup-container">
 
+                    <div className="popup-content" style={IsClosingPopup ? { ...popupContentStyle, ...closingAnimation } : popupContentStyle}>
+                        <div className='flex justify-end'>
+                            <button onClick={handleClosepopup} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded float-right "><i className="fas fa-times"></i></button>
+                        </div>
+
+                        <div style={{ marginTop: '16px' }}>
+
+                            <h3 className="box-title1">Edit Brand</h3>
+                        </div>
+                        <form role="form" onSubmit={handleUpdateBrand}>
+                            <div className="box-body">
+                                {/* Form fields go here */}
+                                <div class="form-group">
+                                    <label className='float-left'>Name</label>
+                                    <input type="text" class="form-control" value={FromData.UpdateName} onChange={(e) => setFromData({ ...FromData, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label className='float-left'>Country</label>
+                                    <br />
+                                    <select className="form-select" aria-label="Default select example" value={UpdateSelectCountry} onChange={handleUpdateSelectCountry}>
+                                        {Country.map((country, index) => (
+                                            <option value={country.id} selected={country.id == UpdateSelectCountry}>{country.name}</option>
+                                        ))}
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label className='float-left'>Head Quaters</label>
+                                    <input type="text" class="form-control" value={FromData.UpdateHeadQuaters} onChange={(e) => setFromData({ ...FromData, UpdateHeadQuaters: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                </div>
+
+
+                            </div>
+
+                            <div className="box-footer">
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded ">Update</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            )}
 
 
         </>

@@ -37,7 +37,7 @@ namespace server.Services
                     Address = addEmployee.Address,
                     Password=BCrypt.Net.BCrypt.HashPassword(Password) ,
                     Phone = addEmployee.Phone,
-                    Role="Employee",
+                    Role=addEmployee.Role,
                     IdentityCode = addEmployee.IdentityCode,
                     IdShowroom = addEmployee.IdShowroom,
                 };
