@@ -27,7 +27,6 @@ export const Countries = () => {
         formData.append("Name", CountryData.Name); // Sửa lại các tham chiếu tới state
         const response = await fetch("http://127.0.0.1:5278/api/Countries/AddCountries", {
             method: 'POST',
-          
             body: formData
         })
         if(response.ok){
@@ -68,11 +67,12 @@ export const Countries = () => {
     const fetchData = async () => {
     const response = await axios.get(`http://localhost:5278/api/Countries/ShowCountry`);
     setCountry(response.data);
-};
+    };
 
 useEffect(() => {
     fetchData();
 }, []);
+
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const popupContentStyle = {
         background: 'white',
@@ -82,7 +82,7 @@ useEffect(() => {
         borderRadius: '8px',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         animation: 'flipleft 0.5s',
-        zindex: '1000000' // Default animation
+        zindex: '1000000' 
     };
     const closingAnimation = {
         animation: 'flipright 0.5s forwards',
@@ -91,8 +91,6 @@ useEffect(() => {
         setIsClosingPopup(true);
         setTimeout(() => {
 
-
-
             setPopupVisibility(false)
             setIsClosingPopup(false)
         }, 500);
@@ -100,7 +98,6 @@ useEffect(() => {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-
     const indexOflastEmployee = (currentPage + 1) * perPage;
     const indexOfFirtEmployee = indexOflastEmployee - perPage;
     const [isPopupVisible, setPopupVisibility] = useState(false);
@@ -112,6 +109,46 @@ useEffect(() => {
                 UpdateName: selectedCountry.Name
             });
             setPopupVisibility(true);
+        }
+    }; 
+    const handleDeleteClick = async (id) => {
+        try {
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+                denyButtonText: `Don't save`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await fetch(`http://127.0.0.1:5278/api/Countries/DeleteCountry/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+    
+                    if (!response.ok) {
+                        const responseBody = await response.json();
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to delete country',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Delete Country Success',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        fetchData(); 
+                    }
+                } 
+            });
+        } catch (error) {
+            console.log(error.message);
         }
     };
     
@@ -199,8 +236,8 @@ useEffect(() => {
                         <tr>
                           <th>Id</th>
                           <th>Country Name</th>
-                          <th>Action</th>
                           <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -213,6 +250,12 @@ useEffect(() => {
                           <button
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
                                 onClick={() => handleEditClick(Emp.id)}>Edit
+                                        </button>
+                          </td>
+                          <td>
+                          <button
+                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                onClick={() => handleDeleteClick(Emp.id)}>Delete
                                         </button>
                           </td>
                         </tr>

@@ -39,7 +39,7 @@ namespace server.Services
                     IdOrder = id,
                     CreateDate = DateOnly.FromDateTime(DateTime.Now)
                 };
-                _dbContext.Invoices.Add(invoice);
+                _dbContext.InVoices.Add(invoice);
                 return _dbContext.SaveChanges() > 0;
             }
             catch
@@ -129,7 +129,7 @@ namespace server.Services
 
         public dynamic ShowInvoice(int id)
         {
-            return _dbContext.Invoices.Where(d => d.IdOrder == id).Select(d => new
+            return _dbContext.InVoices.Where(d => d.IdOrder == id).Select(d => new
             {
                 DateCreate = d.CreateDate,
             }).FirstOrDefault();

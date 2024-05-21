@@ -109,10 +109,9 @@ function ShowCustomer() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-
-    const indexOflastEmployee = (currentPage + 1) * perPage;
+    const indexOflastEmployee = (currentPage + 1) * perPage; 
     const indexOfFirtEmployee = indexOflastEmployee - perPage;
-    const currentEmployee = FilterEmployee.slice(indexOfFirtEmployee, indexOflastEmployee)
+    const currentEmployee = FilterEmployee.slice(indexOfFirtEmployee, indexOflastEmployee);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const handleEditClick = (id) => {
         const SelectCustomer = Employee.find(Customer => Customer.id == id)

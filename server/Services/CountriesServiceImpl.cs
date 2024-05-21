@@ -49,13 +49,17 @@ namespace server.Services
 
         public dynamic ShowCountries()
         {
-            return databaseContext.Countries.Select(d => new
-            {
-                Id = d.Id,
-                Name = d.Name,
-               
-            }).ToList();
+            return databaseContext.Countries
+                                  .Where(c => c.IsDelete.HasValue && !c.IsDelete.Value)  
+                                  .Select(c => new
+                                  {
+                                      Id = c.Id,
+                                      Name = c.Name
+                                  })
+                                  .ToList();
         }
+
+
         public bool UpdateCountries(int id, UpdateCountry updateCountry)
         {
             try

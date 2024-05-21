@@ -24,6 +24,9 @@ builder.Services.AddScoped<OutOrderService, OutOrderServiceImpl>();
 builder.Services.AddScoped<ContactService,ContactServiceImpl>();
 builder.Services.AddScoped<RequestService,RequestServiceImpl>();
 builder.Services.AddScoped<CountriesService,CountriesServiceImpl>();
+builder.Services.AddScoped<InVoiceService, InVoiceServiceImpl>();
+builder.Services.AddScoped<DistrictService, DistrictServiceImpl>();
+builder.Services.AddScoped<CityService, CityServiceImpl>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>

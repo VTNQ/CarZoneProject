@@ -59,9 +59,7 @@ namespace server.Controllers
         public IActionResult DeleteCountry(int id)
         {
             try
-            {
-               
-                
+            {   
                 return Ok(new
                 {
                     result = countriesService.DeleteCountries(id)

@@ -123,5 +123,17 @@ namespace server.Services
                 return false;
             }
         }
+
+        public dynamic FindByID(int id)
+        {
+            try
+            {
+                return databaseContext.Employees.Find(id);
+            }
+            catch (Exception e)
+            {
+                return "Not Exist";
+            }
+        }
     }
 }
