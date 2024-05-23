@@ -10,8 +10,12 @@ function HistoryInVoice() {
     const [Employee,setEmployee]=useState([])
     const [currentPage, setCurrentPage] = useState(0);
     const location = useLocation();
+    const [ActiveTab,setActiveTab]=useState(0);
     const ID=location.state?.ID||"";
     const idShowroom=location.state?.idShowroom||"";
+    const [FromData,setFromData]=useState({
+        id:''
+    })
     useEffect(() => {
         const fetchdataInVoice = async () => {
             const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${ID}`);
@@ -19,13 +23,26 @@ function HistoryInVoice() {
         };
         fetchdataInVoice();
     }, [])
-  
+  const [DetailOrder,setDetailOrder]=useState([])
+  useEffect(()=>{
+    const fetchdata=async()=>{
+        try{
+            const response=await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${FromData.id}`);
+            setDetailOrder(response.data)
+        }catch(error){
+
+        }
+    }
+    fetchdata();
+  },[FromData.id])
+ 
     const indexOflastInVoice = (currentPage + 1) * perPage;
     const indexOfFirtInVoice = indexOflastInVoice - perPage;
     const[isPopupVisible,setPopupVisibility]=useState(false)
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+ 
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const popupContentStyle = {
         background: 'white',
@@ -54,9 +71,7 @@ function HistoryInVoice() {
         animation: 'flipright 0.5s forwards',
     };
     
-    const [FromData,setFromData]=useState({
-        id:''
-    })
+   
     const handleViewClick=(ID)=>{
         setFromData({
             id:ID
@@ -64,6 +79,9 @@ function HistoryInVoice() {
         setPopupVisibility(true)
         
     }
+    const handleTabChange = (index) => {
+        setActiveTab(index);
+    };
     return(
         <>
          <LayoutEmployee>
@@ -93,7 +111,7 @@ function HistoryInVoice() {
                                                     <td>{iv.idorder}</td>
                                                     <td>{iv.createDate}</td>
                                                     <td>
-                                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleViewClick(iv.id)} >View</button>
+                                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleViewClick(iv.idorder)} >View</button>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -137,9 +155,30 @@ function HistoryInVoice() {
 
                         <div style={{ marginTop: '16px' }}>
 
-                            <h3 className="box-title1">Edit Supplier</h3>
+                            <h3 className="box-title1">Detail Order</h3>
                         </div>
-                     
+                        <div className="tab-container">
+                        <div className="tabs">
+                        {DetailOrder.map((order,index)=>(
+                            <button key={index}     className={`tab ${ActiveTab === index ? 'active' : ''}`} onClick={()=>handleTabChange(index)}>
+                                {order.car}
+                            </button>
+                        ))}
+                     </div>
+                     <div className="tab-content">
+                        {DetailOrder.map((order,index)=>(
+                            ActiveTab==index &&(
+                                <div key={index} className='details-content'>
+                                    <h4>Car Information</h4>
+                                    <p><strong>Delivery Date:</strong>{new Date(order.deliveryDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                                    <p><strong>Price:</strong>{order.price}$</p>
+                                    <p><strong>Tax:</strong>{order.tax}</p>
+                                </div>
+                            )
+                        ))}
+                     </div>
+                        </div>
+                  
 
 
                     </div>

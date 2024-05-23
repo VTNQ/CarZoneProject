@@ -1,8 +1,8 @@
-﻿using server.Context;
-using server.Data;
+﻿using server.Data;
 using server.Models;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace server.Services
 {
@@ -64,7 +64,7 @@ namespace server.Services
             }).ToList();    
         }
 
-        public dynamic ShowCar()
+        public async Task<IEnumerable<dynamic>> ShowCar()
         {
             return databaseContext.Cars.Select(d => new
             {
@@ -177,6 +177,127 @@ namespace server.Services
                 }).FirstOrDefault(),
                 Model = d.IdModelNavigation.Name,
             }).Take(3).ToList();
+        }
+
+        public dynamic ShowRoom()
+        {
+            return databaseContext.Showrooms.Select(d => new
+            {
+                id = d.Id,
+                Name = d.Name,
+                District = d.IdDistrictNavigation.Name,
+            }).ToList();
+        }
+
+      
+
+       public async Task<bool> CreateShowRoom(CreateCarShowRoom createCarShowRoom)
+        {
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    foreach (var carID in createCarShowRoom.idCar)
+                    {
+                        var SubWareHouseShowRoom = new SubWarehouseShowroom
+                        {
+                            IdShowroom = createCarShowRoom.IdShowRoom,
+                            IdCar = carID,
+                        };
+                        databaseContext.SubWarehouseShowrooms.Add(SubWareHouseShowRoom);
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
+        }
+
+        public async Task<IEnumerable<dynamic>> GetCartoShowRoom()
+        {
+            return databaseContext.Showrooms.Select(d => new
+            {
+                id=d.Id,
+                Name = d.Name,
+                TotalCar=databaseContext.SubWarehouseShowrooms.Where(m=>m.IdShowroom==d.Id).Count(),
+            }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id)
+        {
+            return  databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==id)).Select(d => new
+            {
+                id = d.Id,
+                TotalCar =databaseContext.SubWarehouseShowrooms.Where(e=>e.IdCar==d.Id).Count(),
+                Name = d.Name,
+                Model = d.IdModelNavigation.Name,
+                ColorInSide = d.IdColorInSideNavigation.Name,
+                ColorOutSide = d.IdColorOutSideNavigation.Name,
+                NumberofSeat = d.NumberOfSeat,
+                Version = d.IdVersionNavigation.ReleaseYear,
+                Price = d.Price,
+                Weight = d.Weight,
+                SpeedAbillity = d.SpeedAbility,
+                MaxSpeed = d.MaxSpeed,
+                Form = d.IdFormNavigation.Name,
+                HeightBetween = d.HeightBetween,
+                Condition = d.Condition,
+                Drivertrain = d.Drivertrain,
+                Fuetype = d.FuelType,
+                Engine = d.Engine,
+                MotorSize = d.MotorSize,
+                Bhp = d.Bhp,
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
+            }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> GetWareHouseCar()
+        {
+            return databaseContext.Warehouses.Select(d => new
+            {
+                id=d.Id,
+                Name=d.Name,
+                TotalCar=databaseContext.SubWarehouseCars.Where(m=>m.IdWarehouse==d.Id).Count(),
+            }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> DetailWareHouseCar(int id)
+        {
+           return databaseContext.Cars.Where(d=>databaseContext.SubWarehouseCars.Any(m=>m.IdWarehouse== id)).Select(d => new
+           {
+               id=d.Id,
+               TotalCar=databaseContext.SubWarehouseCars.Where(e=>e.IdCar== id).Count(),
+               Name = d.Name,
+               Model = d.IdModelNavigation.Name,
+               ColorInSide = d.IdColorInSideNavigation.Name,
+               ColorOutSide = d.IdColorOutSideNavigation.Name,
+               NumberofSeat = d.NumberOfSeat,
+               Version = d.IdVersionNavigation.ReleaseYear,
+               Price = d.Price,
+               Weight = d.Weight,
+               SpeedAbillity = d.SpeedAbility,
+               MaxSpeed = d.MaxSpeed,
+               Form = d.IdFormNavigation.Name,
+               HeightBetween = d.HeightBetween,
+               Condition = d.Condition,
+               Drivertrain = d.Drivertrain,
+               Fuetype = d.FuelType,
+               Engine = d.Engine,
+               MotorSize = d.MotorSize,
+               Bhp = d.Bhp,
+               Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+               {
+                   PictureLink = configuration["ImageUrl"] + m.Link,
+               }).FirstOrDefault(),
+           }).ToList();
         }
     }
 }

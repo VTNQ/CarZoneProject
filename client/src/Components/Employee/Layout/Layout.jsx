@@ -10,6 +10,9 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import {useLocation, useNavigate} from "react-router-dom";
+
+
+
 const LayoutEmployee=({children})=>{
   const navigate = useNavigate();
   const location = useLocation();
@@ -141,19 +144,6 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Employee/AddOrder', {
-                    state: {
-                      ID: ID,
-                      fullName: username,
-                      email: email,
-                      idShowroom: idShowroom
-                    }
-                  })}>
-                    <i className="icon-grid menu-icon"></i>
-                    <span className="menu-title">Add Order</span>
-                  </a>
-                </li>
-                <li className="nav-item">
                   <a className="nav-link" onClick={() => navigate('/Employee/HistoryOrder', {
                     state: {
                       ID: ID,
@@ -163,7 +153,7 @@ const LayoutEmployee=({children})=>{
                     }
                   })}>
                     <i className="icon-grid menu-icon"></i>
-                    <span className="menu-title">History Order</span>
+                    <span className="menu-title">Order</span>
                   </a>
                 </li>
               </ul>

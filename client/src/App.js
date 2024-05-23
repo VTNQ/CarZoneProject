@@ -12,7 +12,14 @@ import CreateCustomer from './Components/Employee/Customer/AddCustomer';
 import ShowCustomer from './Components/Employee/Customer/ShowCustomer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
-import Layout from './Components/Admin/Home/Homepage';
+import Layout from './Components/Admin/Layout/Layout';
+import { LayoutSuperadmin } from './Components/Superadmin/LayoutSuperadmin';
+import { Dashboard } from './Components/Superadmin/Dashboard';
+import { Car } from './Components/Superadmin/Car/Car';
+import { Countries } from './Components/Superadmin/Countries';
+import { CityDistrict } from './Components/Superadmin/CityDistrict';
+import { Customer } from './Components/Superadmin/Customer';
+import LayoutHomepage from './Components/Admin/Home/Homepage';
 import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCustomer';
 import Supplier from './Components/Admin/Supplier/Supplier';
 import Color from './Components/Color/Color';
@@ -36,6 +43,11 @@ import DetailOrder from './Components/WareHouse/InOrder/DetailOrder';
 import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
+import { WarehouseShowroom } from './Components/Superadmin/WarehouseShowroom';
+import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/CreateCarWareHouse';
+import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
+import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
+import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
 function App() {
   return (
     <Router>
@@ -45,11 +57,20 @@ function App() {
         <Route path='/Inventory' element={<Inventory/>}/>
         <Route path='/EmployeeAdmin' element={<AddEmployee/>}/>
         <Route path='/Menu' element={<Menu/>}/>
-        <Route path='/HomeAdminPage' element={<Layout/>}/>
+        <Route path='/HomeAdminPage' element={<LayoutHomepage/>}/>
         <Route path='/Homepage' element={<Homepage/>}/>
         <Route path='/DetailInventory/:id' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
+        <Route path='/superadmin/' element={<LayoutSuperadmin/>}>
+            <Route index element={<Dashboard/>} />
+            <Route path='carPage' element={<Car/>}/>
+            <Route path='countriesPage' element={<Countries/>}/>
+            <Route path='CityDistrictPage' element={<CityDistrict/>}/>
+            <Route path='CustomerPage' element={<Customer/>}/>
+            <Route path='warehouseShowroom' element={<WarehouseShowroom/>}/>
+          
+        </Route>
         <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
         <Route path='/WareHouse/'>
           <Route index path='Dashboard' element={<DashboardWareHouse/>}/>
@@ -58,6 +79,10 @@ function App() {
           <Route path='Form' element={<Form/>}/>
           <Route path='Version' element={<Version/>}/>
           <Route path='Brand' element={<Brand/>}/>
+          <Route path='CreateCarWareHouse' element={<CreateCarWareHouse/>}/>
+          <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
+          <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
+          <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
         </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>

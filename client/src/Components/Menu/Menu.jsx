@@ -29,7 +29,7 @@ function Menu() {
             const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
 
             // Kiểm tra nếu phần trăm cuộn lớn hơn hoặc bằng 30%, đặt màu nền là #fff, ngược lại đặt là transparent
-            if (scrollPercentage >= 30 && !isInventoryPage) {
+            if (scrollPercentage >= 1 && !isInventoryPage) {
                 setbackgroundColor('#fff');
             } else if(scrollPercentage<30 && !isInventoryPage) {
                 setbackgroundColor('transparent');
@@ -79,8 +79,9 @@ function Menu() {
                                                     </div>
                                                 </div>
                                                 <div className="header-left-section uk-flex uk-flex-between uk-flex-middle">
-                                                    <a className="templaza-logo templaza-logo-image uk-flex uk-flex-middle mr-0 mr-lg-4">
-                                                        <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/08/Auto-Showroom-White.svg" alt="" />
+                                                    <a className="logo-text templaza-logo templaza-logo-image uk-flex uk-flex-middle mr-0 mr-lg-4">
+                                                        {/* <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/08/Auto-Showroom-White.svg" alt="" /> */}
+                                                        car <b className="logo-sub">zone</b>
                                                     </a>
                                                 </div>
                                                 <div className="header-right-section uk-flex uk-flex-right uk-flex-middle">

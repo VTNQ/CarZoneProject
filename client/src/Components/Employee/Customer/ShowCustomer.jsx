@@ -65,6 +65,9 @@ function ShowCustomer() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+    const indexOflastEmployee = (currentPage + 1) * perPage; 
+    const indexOfFirtEmployee = indexOflastEmployee - perPage;
+    // const currentEmployee = FilterEmployee.slice(indexOfFirtEmployee, indexOflastEmployee);
 
     const indexOflastCustomer = (currentPage + 1) * perPage;
     const indexOfFirtCustomer = indexOflastCustomer - perPage;
@@ -91,7 +94,7 @@ function ShowCustomer() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={()=>navigate("/Employee/Create-Customer",{state:{ID:ID,fullName:username,email:email}})}>Add</button>
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3" onClick={()=>navigate("/Employee/Create-Customer",{state:{ID:ID,fullName:username,email:email}})}>Add</button>
                                         <h4 class="card-title">Customer</h4>
                                         <form class="forms-sample">
                                             <label for="exampleInputUsername1">Search</label>

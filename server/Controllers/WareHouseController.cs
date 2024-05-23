@@ -26,8 +26,9 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+      
         [HttpGet("ShowCar")]
-        public IActionResult ShowCar()
+        public async Task<IActionResult> ShowCar()
         {
             try
             {
@@ -44,6 +45,46 @@ namespace server.Controllers
             try
             {
                 return Ok(wareHouserService.ShowListPicture(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("GetCartoShowRoom")]
+        public async Task<IActionResult> GetCartoShowRoom()
+        {
+            try
+            {
+                return Ok(wareHouserService.GetCartoShowRoom());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("GetShowroom")]
+        public async Task<IActionResult> GetShowroom()
+        {
+            try
+            {
+                return Ok(wareHouserService.ShowRoom());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPost("AddCarShowRoom")]
+        [Produces("application/json")]
+        public async Task<IActionResult> AddCarShowRoom([FromForm] CreateCarShowRoom createCarShowRoom)
+        {
+            try
+            {
+                return Ok(new
+                {
+                    result = wareHouserService.CreateShowRoom(createCarShowRoom)
+                });
             }
             catch
             {
@@ -86,12 +127,47 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("DetailWareHouseCar/{id}")]
+        public async Task<IActionResult> DetailWareHouseCar(int id)
+        {
+            try
+            {
+                return Ok(wareHouserService.DetailWareHouseCar(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("DetailCar/{id}")]
         public IActionResult DetailCar(int id)
         {
             try
             {
                 return Ok(wareHouserService.DetailCar(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("GetWareHouseCar")]
+        public async Task<IActionResult> GetWareHouseCar()
+        {
+            try {
+                return Ok(wareHouserService.GetWareHouseCar());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("DetailCartoShowRoom/{id}")]
+        public IActionResult DetailCartoShowRoom(int id)
+        {
+            try
+            {
+                return Ok(wareHouserService.DetailCartoShowRoom(id));
             }
             catch
             {
