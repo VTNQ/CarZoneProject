@@ -104,6 +104,7 @@
 }
 .templaza-header-sticky .templaza-logo .templaza-logo-default {
     display: none !important;
+    text-decoration: none;
 }
 .uk-margin-auto-left {
     margin-left: auto !important;
@@ -271,10 +272,12 @@ button.uk-icon:not(:disabled) {
 }
 .templaza-logo img {
     min-width: 175px;
+    text-decoration: none;
 }
 .templaza-logo img {
     max-width: 250px;
     max-height: 90px;
+    text-decoration: none;
     height: auto;
 }
 .uk-flex-middle {
@@ -343,4 +346,18 @@ button.uk-icon:not(:disabled) {
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
+}
+.logo-text{
+    font-weight: 400;
+    font-style: normal;
+  font-size: 2rem;
+    /* font-family: Inter, Arial, Helvetica, sans-serif; */
+    font-family: "Russo One", sans-serif;
+    text-decoration: none;
+    color: #222222;
+    text-transform: uppercase;
+}
+.logo-sub{
+    padding-left: 2px;
+    color: #ff5400;
 }

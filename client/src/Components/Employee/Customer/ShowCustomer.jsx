@@ -65,6 +65,9 @@ function ShowCustomer() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+    const indexOflastEmployee = (currentPage + 1) * perPage; 
+    const indexOfFirtEmployee = indexOflastEmployee - perPage;
+    // const currentEmployee = FilterEmployee.slice(indexOfFirtEmployee, indexOflastEmployee);
 
     const indexOflastCustomer = (currentPage + 1) * perPage;
     const indexOfFirtCustomer = indexOflastCustomer - perPage;

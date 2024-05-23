@@ -10,6 +10,9 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import {useLocation, useNavigate} from "react-router-dom";
+
+
+
 const LayoutEmployee=({children})=>{
   const navigate = useNavigate();
   const location = useLocation();

@@ -20,9 +20,11 @@
     color: #fff;
     text-transform: uppercase;
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: 400;
+    font-style: normal;
   
-    font-family: Inter, Arial, Helvetica, sans-serif;
+    /* font-family: Inter, Arial, Helvetica, sans-serif; */
+    font-family: "Russo One", sans-serif;
 
 }
 .text-banner{
@@ -77,7 +79,7 @@ color: #fff;
 .card {
     flex: 0 0 33.333%; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    height: 530px;
+    min-height: 530px;
     margin: 15px;
     
     overflow: hidden;
@@ -294,4 +296,113 @@ text-transform: uppercase;
     font-weight: bold;
     font-family: Inter, Arial, Helvetica, sans-serif;
     text-decoration: none;
+}
+.imageContainer{   
+    height: 100%; 
+    right:300px;   
+    position: absolute; 
+    transition: right 0.3s ease-in-out;
+}
+.containerCar:hover .imageContainer{  
+    right: 100px;
+}
+.imageContainer1{   
+    height: 100%; 
+    left: 400px;   
+    position: absolute; 
+    transition: left 0.3s ease-in-out;
+}
+.containerCar1:hover .imageContainer1{ 
+    left: 250px;
+}
+.button-black{
+    color: #f3f3f3;
+    background-color: #000;
+    text-decoration: none;
+    padding: 15px 25px 15px 25px;
+    z-index: 10;   
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in;
+}
+.button-white{
+    color: #000;
+    background-color: #fff;
+    text-decoration: none;
+    padding: 15px 25px 15px 25px;
+    z-index: 10;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in;
+}
+.button-black:hover{
+    color: #222222;
+    background-color: #fff;   
+}
+.button-white:hover{
+    color: #fff;
+    background-color: #000;  
+}
+.title-text3{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f3f3f3;
+    font-family: Helvetica;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.title-text4{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: Helvetica;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+.title-description{
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #f3f3f3;
+    line-height: 1.2;
+    margin-bottom: 40px;
+}
+.section6 h1{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    font-family: Helvetica;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+.section6 h1 b{
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Helvetica;
+    color: #FF5500;
+}
+.section6 p{
+    margin-top: 40px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    font-family: Helvetica;
+    color: #7B5555;
+}
+.section6 h2{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555555;
+}
+.section6 h3{
+    font-size: 1rem;
+    margin: 0;
+    color: #7B5555;
+}
+.image-Card{
+    border-radius: 12px;
+    overflow: hidden;
 }

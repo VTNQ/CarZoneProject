@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace server.Middleware
 {
-    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
+    // update status don hang
     public class InOrderMiddleware
     {
         private readonly RequestDelegate _next;
