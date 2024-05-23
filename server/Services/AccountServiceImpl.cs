@@ -10,21 +10,21 @@ namespace server.Services
         {
             _dbContext = dbContext;
         }
-        public Employee Login(string Email, string password)
+        public Employee Login(string email, string password)
         {
             try
             {
-                var EmployeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == Email );
-                if(EmployeeLogin != null && BCrypt.Net.BCrypt.Verify(password,EmployeeLogin.Password))
+                var employeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == email );
+                if(employeeLogin != null && BCrypt.Net.BCrypt.Verify(password,employeeLogin.Password))
                 {
                     var user = new Employee
                     {
-                        Id = EmployeeLogin.Id,
-                        FullName = EmployeeLogin.FullName,
-                        Email = EmployeeLogin.Email,
-                        Role = EmployeeLogin.Role,
-                        IdentityCode = EmployeeLogin.IdentityCode,
-                        IdShowroom = EmployeeLogin.IdShowroom,
+                        Id = employeeLogin.Id,
+                        FullName = employeeLogin.FullName,
+                        Email = employeeLogin.Email,
+                        Role = employeeLogin.Role,
+                        IdentityCode = employeeLogin.IdentityCode,
+                        IdShowroom = employeeLogin.IdShowroom,
 
                     };
                     return user;
@@ -54,14 +54,14 @@ namespace server.Services
         {
             try
             {
-                var Employee = _dbContext.Employees.Find(id);
-                if (Employee != null)
+                var employee = _dbContext.Employees.Find(id);
+                if (employee != null)
                 {
-                    Employee.FullName = editEmployee.FullName;
-                    Employee.Email = editEmployee.Email;
-                    Employee.Address = editEmployee.Address;
-                    Employee.Phone = editEmployee.Phone;
-                    Employee.IdentityCode = editEmployee.IdentityCode;
+                    employee.FullName = editEmployee.FullName;
+                    employee.Email = editEmployee.Email;
+                    employee.Address = editEmployee.Address;
+                    employee.Phone = editEmployee.Phone;
+                    employee.IdentityCode = editEmployee.IdentityCode;
                 }
                 return _dbContext.SaveChanges()>0;
 
