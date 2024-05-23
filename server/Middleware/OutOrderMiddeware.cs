@@ -18,7 +18,7 @@ namespace server.Middleware
         public async Task Invoke(HttpContext httpContext,OutOrderService outOrderService)
         {
             await outOrderService.UpdateOrderStatus();
-           await _next(httpContext);
+            await _next(httpContext);
         }
     }
 

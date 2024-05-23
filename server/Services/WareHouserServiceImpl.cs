@@ -51,6 +51,12 @@ namespace server.Services
                 MaxSpeed=d.IdCarNavigation.MaxSpeed,
                 Form=d.IdCarNavigation.IdFormNavigation.Name,
                 HeightBetween=d.IdCarNavigation.HeightBetween,
+                Condition=d.IdCarNavigation.Condition,
+                Drivertrain=d.IdCarNavigation.Drivertrain,
+                Fuetype=d.IdCarNavigation.FuelType,
+                Engine=d.IdCarNavigation.Engine,
+                MotorSize=d.IdCarNavigation.MotorSize,
+                Bhp=d.IdCarNavigation.Bhp,
                 Picture=databaseContext.Photos.Where(m=>m.IdCar==d.IdCarNavigation.Id && m.Status == 0).Select(m => new
                 {
                     PictureLink= configuration["ImageUrl"] + m.Link,

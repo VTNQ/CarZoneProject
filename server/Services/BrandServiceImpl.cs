@@ -41,6 +41,32 @@ namespace server.Services
                 return false;
             }
         }
+        public void DeletePhoto(string photo)
+        {
+            try
+            {
+                string path = Path.Combine(webHostEnvironment.WebRootPath, "images", photo);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting file '{photo}': {ex.Message}");
+            }
+        }
+        public bool DeleteBrand(int id)
+        {
+            var Brand = databaseContext.Brands.Find(id);
+            if(Brand != null)
+            {
+                DeletePhoto(Brand.Logo);
+                databaseContext.Brands.Remove(Brand);
+            }
+            return databaseContext.SaveChanges() > 0;   
+        }
 
         public dynamic GetCountry()
         {
