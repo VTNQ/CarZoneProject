@@ -18,6 +18,9 @@ namespace server.Services
                 {
                     To = addRequest.To,
                     From = addRequest.From,
+                    Type=addRequest.Type,
+                    CreateDay=DateOnly.FromDateTime(DateTime.Now),
+                    Description=addRequest.Description,
                 };
                 databaseContext.Requests.Add(Request);
                 return databaseContext.SaveChanges()>0;
@@ -26,6 +29,39 @@ namespace server.Services
             {
                 return false;
             }
+        }
+
+        public dynamic ShowRequestSupplier(string fullname)
+        {
+            return databaseContext.Requests.Where(d => d.Type == false && d.From==fullname).Select(d => new
+            {
+                id = d.Id,
+                To = d.To,
+
+                Creadate = d.CreateDay,
+                Decription = d.Description,
+            }).ToList();
+        }
+
+        public dynamic ShowRequestWareHouse()
+        {
+           return databaseContext.Requests.Where(d => d.Type == true).Select(d => new
+           {
+               id=d.Id,
+               To=d.To,
+               
+               Creadate=d.CreateDay,
+               Decription=d.Description,
+           }).ToList(); 
+        }
+
+        public dynamic ShowSupplier()
+        {
+            return databaseContext.Supliers.Select(d => new
+            {
+                id = d.Id,
+                Name = d.Name,
+            }).ToList();
         }
 
         public dynamic ShowWareHouse()

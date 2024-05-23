@@ -6,5 +6,8 @@ namespace server.Services
     {
         public bool AddRequest(AddRequest addRequest);
         public dynamic ShowWareHouse();
+        public dynamic ShowRequestWareHouse();
+        public dynamic ShowSupplier();
+        public dynamic ShowRequestSupplier(string fullname);
     }
 }

@@ -79,9 +79,7 @@ public partial class Car
 
     public int IdForm { get; set; }
 
-    [StringLength(50)]
-    [Unicode(false)]
-    public string DateAccept { get; set; } = null!;
+    public DateOnly DateAccept { get; set; }
 
     public double HeightBetween { get; set; }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HhGtv5dz6Rtp+vVPvvrL6x3wBfFox5V9NS8d1JFwOac=",
+  "Hash": "RAe82pZye7ucpUU4NQhyAMOY+2JLwEIZkuAjluzwCf0=",
   "Source": "server",
   "BasePath": "_content/server",
   "Mode": "Default",
@@ -74,6 +74,44 @@
       "OriginalItemSpec": "wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png"
     },
     {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/audi.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\audi.jpg"
+    },
+    {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/audi2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\audi2.jpg"
+    },
+    {
       "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
       "SourceId": "server",
       "SourceType": "Discovered",
@@ -91,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png"
+    },
+    {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/c1212b58c1ca45dabd1d069524cb6093.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png"
     },
     {
       "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
@@ -131,6 +188,25 @@
       "OriginalItemSpec": "wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png"
     },
     {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"
+    },
+    {
       "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
       "SourceId": "server",
       "SourceType": "Discovered",
@@ -148,6 +224,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png"
+    },
+    {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"
     }
   ]
 }

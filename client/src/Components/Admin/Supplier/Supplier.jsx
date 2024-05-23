@@ -253,6 +253,7 @@ function Supplier() {
         }
 
     }
+    
     return (
         <>
             <LayoutAdmin>

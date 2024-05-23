@@ -30,6 +30,43 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("ShowRequestSupplier/{Employee}")]
+        public IActionResult ShowRequestSupplier(string Employee)
+        {
+            try
+            {
+                return Ok(_requestService.ShowRequestSupplier(Employee));   
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowSupplier")]
+        public IActionResult ShowSupplier()
+        {
+            try
+            {
+                return Ok(_requestService.ShowSupplier());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowRequestWareHouse")]
+        public IActionResult ShowRequestWareHouse()
+        {
+            try
+            {
+                return Ok(_requestService.ShowRequestWareHouse());
+
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowWareHouse")]
         public IActionResult ShowWareHouse()
         {

@@ -308,6 +308,18 @@ export const LayoutSuperadmin = () => {
               <span class="menu-title">City&District management</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/CustomerPage')}>
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Customer</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/warehouseShowroom')}>
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Warehouse-Showroom</span>
+            </a>
+          </li>
         </ul>
       </nav>
       

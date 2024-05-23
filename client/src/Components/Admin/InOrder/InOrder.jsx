@@ -77,25 +77,17 @@ function InOrder() {
         }
         fetchdata();
     }, [])
-    const handleCarChange = (SelectedOptions) => {
-        setSelectCars(SelectedOptions);
-        const newCarTaxes = { ...carTaxes };
-        SelectedOptions.forEach(option => {
-            if (!newCarTaxes[option.value]) {
-                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: '', price: option.price, delivery: null }
-            }
-        })
-        setcarTaxes(newCarTaxes)
-    }
-    const handleTaxChange = (carId, TaxValue) => {
-        setcarTaxes({
-            ...carTaxes,
-            [carId]: {
-                ...carTaxes[carId],
-                tax: TaxValue
-            }
-        })
-    }
+        const handleCarChange = (SelectedOptions) => {
+            setSelectCars(SelectedOptions);
+            const newCarTaxes = { ...carTaxes };
+            SelectedOptions.forEach(option => {
+                if (!newCarTaxes[option.value]) {
+                    newCarTaxes[option.value] = { id: option.value, name: option.label, tax:option.price*0.2, price: option.price, delivery: null }
+                }
+            })
+            setcarTaxes(newCarTaxes)
+        }
+  
     const handleDeliveryChange = (carId, deliveryDate) => {
         setcarTaxes(prevCarTaxes => ({
             ...prevCarTaxes,
@@ -121,11 +113,14 @@ function InOrder() {
         let totalTax = 0;
         let hasInvalidInput = false;
         Object.keys(carTaxes).forEach((carId) => {
-            if (carTaxes[carId].tax === '' || carTaxes[carId].delivery === null) {
+            if (carTaxes[carId].tax == '' || carTaxes[carId].delivery == null) {
                 hasInvalidInput = true;
             }
         });
-        if (hasInvalidInput || SelectSupply?.value || SelectWareHouse?.value || SelectCars?.value || SelectCash?.value) {
+       
+        const IsSelectCars=SelectCars.length<=0?false:true;
+
+        if (hasInvalidInput==true || IsSelectCars==false  || SelectSupply?.value==null || SelectWareHouse?.value==null  || SelectCash?.value==null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -170,6 +165,10 @@ function InOrder() {
                 });
                 const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${ID}`)
                 setInOrder(response.data)
+                setSelectSupply(null)
+                setSelectWareHouse(null)
+                setSelectCars([]);
+                setSelectCash(null)
             }
         }
 
@@ -204,6 +203,7 @@ function InOrder() {
                                                 <label for="exampleInputUsername1">Car</label>
                                                 <Select options={car.map(type => ({ value: type.id, label: type.name, price: type.price }))}
                                                     isMulti
+                                                    value={SelectCars}
                                                     onChange={handleCarChange}
                                                 />
                                             </div>
@@ -216,7 +216,7 @@ function InOrder() {
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
                                                             value={carTaxes[car.value]?.tax || ''}
-                                                            onChange={e => handleTaxChange(car.value, e.target.value)}
+                                                          
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">

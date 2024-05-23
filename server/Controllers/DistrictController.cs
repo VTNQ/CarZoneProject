@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace server.Controllers
 {
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DistrictController : Controller
     {
@@ -48,7 +48,7 @@ namespace server.Controllers
                 return Ok(new
                 {
                     result = districtService.deleteDistrict(id)
-                }) ;
+                });
             }
             catch
             {

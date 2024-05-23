@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LayoutAdmin from "../Layout/Layout";
+import LayoutEmployee from "../Layout/Layout";
 import Pagination from 'react-paginate';
 import axios from "axios";
 function ShowContact(){
@@ -29,7 +29,7 @@ function ShowContact(){
     };
 return(
     <>
-    <LayoutAdmin>
+    <LayoutEmployee>
         <div class="main-panel">
             <div class="content-wrapper">
 
@@ -111,11 +111,7 @@ return(
         </div>
 
 
-    </LayoutAdmin>
-
-
-
-
+    </LayoutEmployee>
 </>
 )
 }

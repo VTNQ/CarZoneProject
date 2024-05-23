@@ -27,6 +27,13 @@ builder.Services.AddScoped<CountriesService,CountriesServiceImpl>();
 builder.Services.AddScoped<InVoiceService, InVoiceServiceImpl>();
 builder.Services.AddScoped<DistrictService, DistrictServiceImpl>();
 builder.Services.AddScoped<CityService, CityServiceImpl>();
+builder.Services.AddScoped<WareHouserService, WareHouserServiceImpl>();
+builder.Services.AddScoped<FormService, FormServiceImpl>();
+builder.Services.AddScoped<VersionService, VersionServiceImpl>();
+builder.Services.AddScoped<BrandService, BrandServiceImpl>();
+builder.Services.AddScoped<ShowroomService, ShowroomServiceImpl>();
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", builder =>
@@ -41,6 +48,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 app.UseMiddleware<InOrderMiddleware>();
+app.UseMiddleware<OutOrderMiddeware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

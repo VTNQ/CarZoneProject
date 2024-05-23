@@ -10,6 +10,7 @@ function DetailInOrders() {
     const IDEmployee = location.state?.ID || '';
     const username = location.state?.fullName || '';
     const email = location.state?.email || '';
+    const idShowroom = location.state?.idShowroom || '';
     const [Detail, setDetail] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
@@ -47,7 +48,7 @@ function DetailInOrders() {
                                     <div class="card-body">
                                         <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                        onClick={()=>navigate("/Inorder",{state:{ID:IDEmployee,fullName:username,email:email}})}
+                                        onClick={()=>navigate("/Inorder",{state:{ID:IDEmployee,fullName:username,email:email,idShowroom:idShowroom}})}
                                         >Back
                                         </button>
                                         <h4 class="card-title">Detail Order</h4>

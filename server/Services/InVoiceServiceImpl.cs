@@ -26,4 +26,14 @@ public class InVoiceServiceImpl:InVoiceService
             return "Not Data";
         }
     }
+
+    public dynamic ShowInvoice(int idEmployee)
+    {
+        return DatabaseContext.InVoices.Where(d => d.IdOrderNavigation.IdEmployee == idEmployee
+        ).Select(d => new
+        {
+            idorder=d.IdOrder,
+            CreateDate=d.CreateDate,
+        }).ToList();
+    }
 }

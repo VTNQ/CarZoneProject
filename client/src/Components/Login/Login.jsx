@@ -37,6 +37,8 @@ function Login(){
                         navigate('/HomeAdminPage',{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
                     }else if (role==="Employee"){
                         navigate("/Employee/Dashboard",{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
+                    }else if(role=='WareHouse'){
+                      navigate("/WareHouse/Dashboard",{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
                     }
                 })
             }

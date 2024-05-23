@@ -3,6 +3,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Select from 'react-select';
 import Pagination from "react-paginate";
+
+
 export const CityDistrict = () => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -89,6 +91,7 @@ export const CityDistrict = () => {
         timer: 1500
       });
       setCityData({ Name: '', IdCountry: '' });
+      fetchData();
     } else {
       const responseBody = await response.json();
       Swal.fire({
@@ -237,6 +240,7 @@ export const CityDistrict = () => {
         timer: 1500
       });
       setDistrictData({ Name: '', IdCity: '' });
+      fetchDataDistrict();
     } else {
       const responseBody = await response.json();
       Swal.fire({

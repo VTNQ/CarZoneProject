@@ -26,6 +26,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("ShowOrderWareHouse/{id}")]
+        public IActionResult ShowOrderWareHouse(int id)
+        {
+            try
+            {
+                return Ok(_orderService.ShowOrderWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("AddInorder")]
         [Produces("application/json")]
         public IActionResult AddInorder([FromForm] InOrder inOrder)
