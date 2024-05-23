@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 import Select from "react-select"
 import LayoutAdmin from "../Layout/Layout";
+import Pagination from 'react-paginate';
 function Brand() {
     const [Country, setCountry] = useState([]);
     const [SelectCountry, setSelectCountry] = useState(null);
@@ -65,6 +66,8 @@ function Brand() {
                 })
                 setSelectCountry(null)
                 document.getElementById('Logo').value = '';
+                const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
+                setBrand(response.data)
             }
         } catch (error) {
             console.log(error)
@@ -166,11 +169,68 @@ function Brand() {
                 setPopupVisibility(false);
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                 setBrand(response.data)
+            } else {
+                const responseBody = await response.json();
+                if (responseBody.message) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: responseBody.message || 'Failed to add genre',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
             }
         } catch (error) {
             console.log(error)
         }
     }
+    const DeleteBrand = async (IDBrand) => {
+        try {
+            const confirmation = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Delete it',
+            });
+            if (confirmation.isConfirmed) {
+                const response = await fetch(`http://localhost:5278/api/Brand/DeleteBrand/${IDBrand}`, {
+                    method: 'Delete',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deletion successful',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
+                    setBrand(response.data)
+
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const handlePageclick = (data) => {
+        setCurrentPage(data.selected);
+    };
     return (
         <>
             <LayoutAdmin>
@@ -236,6 +296,7 @@ function Brand() {
                                                         <th> Head Quaters </th>
                                                         <th> Country </th>
                                                         <th>Edit</th>
+                                                        <th>Delete</th>
 
 
                                                     </tr>
@@ -250,11 +311,31 @@ function Brand() {
                                                             <td>{brand.headQuaters}</td>
                                                             <td>{brand.country}</td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleEditClick(brand.id)}>Edit</button></td>
+                                                            <td><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => DeleteBrand(brand.id)}>Delete</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
                                             </table>
+                                            <Pagination
+                                                previousLabel={'previous'}
+                                                nextLabel={'next'}
+                                                breakLabel={'...'}
+                                                pageCount={Math.ceil(FilterBrand.length / perPage)}
+                                                marginPagesDisplayed={2}
+                                                pageRangeDisplayed={5}
+                                                onPageChange={handlePageclick}
+                                                containerClassName={'pagination'}
+                                                activeClassName={'active'}
+                                                previousClassName={'page-item'}
+                                                previousLinkClassName={'page-link'}
+                                                nextClassName={'page-item'}
+                                                nextLinkClassName={'page-link'}
+                                                breakClassName={'page-item'}
+                                                breakLinkClassName={'page-link'}
+                                                pageClassName={'page-item'}
+                                                pageLinkClassName={'page-link'}
 
+                                            />
 
                                         </div>
                                     </div>
