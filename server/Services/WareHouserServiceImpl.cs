@@ -1,5 +1,4 @@
-﻿using server.Context;
-using server.Data;
+﻿using server.Data;
 using server.Models;
 using System.Net.Mail;
 using System.Net;
