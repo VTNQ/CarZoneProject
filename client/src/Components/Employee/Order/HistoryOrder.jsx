@@ -16,6 +16,8 @@ function HistoryOrder() {
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const [Order, setOrder] = useState([]);
+    const [Contract, setContract] = useState([])
+   
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -180,8 +182,11 @@ function HistoryOrder() {
                                                             </button>
                                                         </td>
                                                         <td>
-                                                            <button
+                                                            <button disabled={order.idOrder==null}
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                                style={{opacity:order.idOrder==null ? 0.5:1,
+                                                                    cursor:order.idOrder==null? 'not-allowed':'pointer'
+                                                                }}
                                                                 onClick={() => navigate(`/Employee/ShowContract/${order.id}`, {
                                                                     state: {
                                                                         ID: ID,

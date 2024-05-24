@@ -25692,4 +25692,62 @@ table.dataTable tbody td.select-checkbox:after {
     display: none;
   }
 }
+.tabs-container {
+  background: #fff; /* White background */
+  border: 1px solid #e5e7eb; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Tabs styling */
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb; /* Light gray border */
+}
+
+/* Individual tab styling */
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #f1f5f9; /* Light gray background */
+  border: 1px solid #e5e7eb; /* Light gray border */
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  margin-right: 4px;
+  transition: background-color 0.3s;
+}
+
+.tab.active {
+  background-color: #007bff; /* Active tab color */
+  color: white;
+  border-color: #007bff; /* Match border color */
+}
+
+.tab:not(.active):hover {
+  background-color: #e2e8f0; /* Slightly darker gray for hover */
+}
+
+/* Tab content styling */
+.tab-content {
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #e5e7eb; /* Border matching the tabs */
+  border-radius: 0 8px 8px 8px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .popup-content {
+      width: 90%;
+  }
+
+  .tab {
+      padding: 8px 12px;
+  }
+}
 /*# sourceMappingURL=maps/style.css.map */

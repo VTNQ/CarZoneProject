@@ -10,8 +10,12 @@ function HistoryInVoice() {
     const [Employee,setEmployee]=useState([])
     const [currentPage, setCurrentPage] = useState(0);
     const location = useLocation();
+    const [ActiveTab,setActiveTab]=useState(0);
     const ID=location.state?.ID||"";
     const idShowroom=location.state?.idShowroom||"";
+    const [FromData,setFromData]=useState({
+        id:''
+    })
     useEffect(() => {
         const fetchdataInVoice = async () => {
             const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${ID}`);
@@ -19,14 +23,68 @@ function HistoryInVoice() {
         };
         fetchdataInVoice();
     }, [])
-    console.log(InVoice)
+  const [DetailOrder,setDetailOrder]=useState([])
+  useEffect(()=>{
+    const fetchdata=async()=>{
+        try{
+            const response=await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${FromData.id}`);
+            setDetailOrder(response.data)
+        }catch(error){
+
+        }
+    }
+    fetchdata();
+  },[FromData.id])
+ 
     const indexOflastInVoice = (currentPage + 1) * perPage;
     const indexOfFirtInVoice = indexOflastInVoice - perPage;
+    const[isPopupVisible,setPopupVisibility]=useState(false)
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+ 
+    const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const popupContentStyle = {
+        background: 'white',
+        padding: '20px',
+        maxWidth: '400px',
+        textAlign: 'center',
+        borderRadius: '8px',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+        animation: 'flipleft 0.5s',
+        zindex: '1000000' // Default animation
+    };
+    const handleClosepopup = () => {
+        setIsClosingPopup(true);
+        setTimeout(() => {
+            setFromData({
+                id: '',
+                UpdateName: ''
+            })
+       
+
+            setPopupVisibility(false)
+            setIsClosingPopup(false)
+        }, 500);
+    }
+    const closingAnimation = {
+        animation: 'flipright 0.5s forwards',
+    };
+    
+   
+    const handleViewClick=(ID)=>{
+        setFromData({
+            id:ID
+        })
+        setPopupVisibility(true)
+        
+    }
+    const handleTabChange = (index) => {
+        setActiveTab(index);
+    };
     return(
-        <LayoutEmployee>
+        <>
+         <LayoutEmployee>
             <div className="main-panel">
                 <div className="content-wrapper">
                     <div className="row">
@@ -53,7 +111,7 @@ function HistoryInVoice() {
                                                     <td>{iv.idorder}</td>
                                                     <td>{iv.createDate}</td>
                                                     <td>
-                                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " >View</button>
+                                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleViewClick(iv.idorder)} >View</button>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -87,6 +145,50 @@ function HistoryInVoice() {
             </div>
 
         </LayoutEmployee>
+        {isPopupVisible && (
+                <div className="popup-container">
+
+                    <div className="popup-content" style={IsClosingPopup ? { ...popupContentStyle, ...closingAnimation } : popupContentStyle}>
+                        <div className='flex justify-end'>
+                            <button onClick={handleClosepopup} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded float-right "><i className="fas fa-times"></i></button>
+                        </div>
+
+                        <div style={{ marginTop: '16px' }}>
+
+                            <h3 className="box-title1">Detail Order</h3>
+                        </div>
+                        <div className="tab-container">
+                        <div className="tabs">
+                        {DetailOrder.map((order,index)=>(
+                            <button key={index}     className={`tab ${ActiveTab === index ? 'active' : ''}`} onClick={()=>handleTabChange(index)}>
+                                {order.car}
+                            </button>
+                        ))}
+                     </div>
+                     <div className="tab-content">
+                        {DetailOrder.map((order,index)=>(
+                            ActiveTab==index &&(
+                                <div key={index} className='details-content'>
+                                    <h4>Car Information</h4>
+                                    <p><strong>Delivery Date:</strong>{new Date(order.deliveryDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                                    <p><strong>Price:</strong>{order.price}$</p>
+                                    <p><strong>Tax:</strong>{order.tax}</p>
+                                </div>
+                            )
+                        ))}
+                     </div>
+                        </div>
+                  
+
+
+                    </div>
+                </div>
+            )}
+
+        
+        </>
+       
+        
         )
 }
 export default HistoryInVoice;

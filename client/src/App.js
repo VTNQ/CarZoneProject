@@ -44,6 +44,10 @@ import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
 import { WarehouseShowroom } from './Components/Superadmin/WarehouseShowroom';
+import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/CreateCarWareHouse';
+import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
+import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
+import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
 function App() {
   return (
     <Router>
@@ -65,6 +69,7 @@ function App() {
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
             <Route path='warehouseShowroom' element={<WarehouseShowroom/>}/>
+          
         </Route>
         <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
         <Route path='/WareHouse/'>
@@ -74,6 +79,10 @@ function App() {
           <Route path='Form' element={<Form/>}/>
           <Route path='Version' element={<Version/>}/>
           <Route path='Brand' element={<Brand/>}/>
+          <Route path='CreateCarWareHouse' element={<CreateCarWareHouse/>}/>
+          <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
+          <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
+          <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
         </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>

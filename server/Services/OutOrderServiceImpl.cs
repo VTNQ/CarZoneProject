@@ -97,6 +97,7 @@ namespace server.Services
                DeliveryDate=d.DeliveryDay,
                Price=d.Price,
                Tax=d.Tax,
+
            }).ToList();
         }
 
@@ -147,7 +148,11 @@ namespace server.Services
                TotalAmount=d.TotalAmount,
                TotalTax=d.TotalTax,
                Payment=d.Payment,
-               DeliveryType=d.DeliveryType
+               DeliveryType=d.DeliveryType,
+               idOrder = _dbContext.Contracts.Where(m=>m.IdOrder==d.Id).Select(m => new
+               {
+                   idorder=m.IdOrder,
+               }).FirstOrDefault(),
            }).ToList();
         }
 

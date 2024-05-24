@@ -100,7 +100,7 @@ function ShowCarWareHouse() {
                                                         <th>Form</th>
                                                         <th>Height Between</th>
                                                         <th>Picture</th>
-                                                        <th>Detail</th>
+                         
                                                 
 
                                                     </tr>

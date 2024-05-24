@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {}
+    "D:\\CarZoneProject\\server\\server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {
+    "D:\\CarZoneProject\\server\\server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
+        "projectUniqueName": "D:\\CarZoneProject\\server\\server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
-        "packagesPath": "C:\\Users\\votan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\obj\\",
+        "projectPath": "D:\\CarZoneProject\\server\\server.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "D:\\CarZoneProject\\server\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\votan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {

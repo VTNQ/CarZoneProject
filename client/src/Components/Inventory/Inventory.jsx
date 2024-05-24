@@ -14,7 +14,7 @@ function Inventory() {
         try {
 
             const response = await axios.get("http://localhost:5278/api/WareHouse/ShowCar");
-            return response.data;
+            return response.data.result;
         } catch (error) {
             console.error('Error fetching products:', error);
             throw error; // Propagate the error for handling in the calling code
@@ -61,7 +61,7 @@ function Inventory() {
     }, [])
     const [SelectBrand, SetSelectBrand] = useState('');
 
-    console.log(SelectBrand)
+    
     const handleSelectBrand = (event) => {
         SetSelectBrand(event.target.value)
 
@@ -134,7 +134,7 @@ function Inventory() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/WareHouse/ShowCar");
-                setCar(response.data)
+                setCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
