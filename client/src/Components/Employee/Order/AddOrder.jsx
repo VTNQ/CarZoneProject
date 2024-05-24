@@ -144,6 +144,10 @@ function AddOrder() {
             }
         }))
     }
+    let TotalPrice=0;
+    SelectCars.forEach(
+        TotalPrice=document.getElementsByClassName("total-price").;
+    )
    console.log(SelectCars)
     return (
         <>
@@ -177,15 +181,33 @@ function AddOrder() {
                                             {SelectCars.map(car => (
                                                 <>
                                                     <div key={car.value} className="form-group">
-                                                        <label htmlFor={`tax-${car.value}`}>Tax for {car.label}</label>
+                                                        <label htmlFor={`'price-${car.value}`}>Price
+                                                            for {car.label}</label>
                                                         <input type="number"
-                                                            className="form-control"
-                                                            id={`tax-${car.value}`}
-                                                            value={carArray[car.value]?.tax || ''}
+                                                               className="form-control"
+                                                               id={`price-${car.value}`}
+                                                               value={carArray[car.value]?.price || ''}
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">
-                                                        <label htmlFor={`tax-${car.value}`}>Delivery Date for {car.label}</label>
+                                                        <label htmlFor={`tax-${car.value}`}>Tax for {car.label}</label>
+                                                        <input type="number"
+                                                               className="form-control"
+                                                               id={`tax-${car.value}`}
+                                                               value={carArray[car.value]?.tax || ''}
+                                                        />
+                                                    </div>
+                                                    <div key={car.value} className="form-group">
+                                                        <label htmlFor={`totalPrice-${car.value}`}>Total Price for {car.label}</label>
+                                                        <input type="number"
+                                                               className="form-control total-price"
+                                                               id={`totalPrice-${car.value}`}
+                                                               value={carArray[car.value]?.tax+carArray[car.value]?.price || ''}
+                                                        />
+                                                    </div>
+                                                    <div key={car.value} className="form-group">
+                                                        <label htmlFor={`tax-${car.value}`}>Delivery Date
+                                                            for {car.label}</label>
                                                         <DatePicker
                                                             selected={carArray[car.value]?.delivery || null}
                                                             onChange={date => handleDeliveryChange(car.value, date)}
@@ -196,14 +218,19 @@ function AddOrder() {
                                                 </>
                                             ))}
                                             <div class="form-group">
+                                                <label for="">Total Price</label>
+                                                <input type="number" id="TotalPriceAll"/>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="exampleInputUsername1">Payment</label>
-                                                <Select options={Payment.map(car => ({ value: car.label, label: car.label }))} value={SelectPayment}
-                                                    onChange={(SelectedOption) => handleSelectPayment(SelectedOption)} />
+                                                <Select
+                                                    options={Payment.map(car => ({value: car.label, label: car.label}))}
+                                                    value={SelectPayment}
+                                                    onChange={(SelectedOption) => handleSelectPayment(SelectedOption)}/>
 
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="exampleInputUsername1">Delivery Type</label>
+                                            <label for="exampleInputUsername1">Delivery Type</label>
                                                 <Select options={Options.map(Car => ({ value: Car.label, label: Car.label }))}
                                                     value={SelectDeliveryType}
                                                     onChange={(SelectedOption) => handleSelectDeliveryType(SelectedOption)}

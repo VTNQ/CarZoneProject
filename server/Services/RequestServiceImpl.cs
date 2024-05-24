@@ -21,6 +21,7 @@ namespace server.Services
                     Type=addRequest.Type,
                     CreateDay=DateOnly.FromDateTime(DateTime.Now),
                     Description=addRequest.Description,
+                    Status=false,
                 };
                 databaseContext.Requests.Add(Request);
                 return databaseContext.SaveChanges()>0;
