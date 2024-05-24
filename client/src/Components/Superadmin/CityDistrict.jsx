@@ -8,7 +8,6 @@ import Pagination from "react-paginate";
 export const CityDistrict = () => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const [cities,setCities] = useState([]);
   const [district,setDistrict] = useState([]);
   const [showDistrict,setShowDistrict] = useState([]);
   const [selectedDistrict,setSelectedDistrict] = useState(null);
@@ -329,7 +328,7 @@ export const CityDistrict = () => {
                     onChange={handleCityChange}
                     options={district}
                     placeholder="Select a city"
-                    isDisabled={!selectedCountry}
+                    isDisabled={!selectedCountry1}
                   />
                 </div>
                 
@@ -381,7 +380,7 @@ export const CityDistrict = () => {
                               {city.name}
                             </td>
                             <td>
-                              {city.idCountry}
+                              {city.nameCountry}
                             </td>
                             <td>
                               <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded "

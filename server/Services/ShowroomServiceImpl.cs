@@ -30,27 +30,37 @@ namespace server.Services
             }
         }
 
-        public dynamic showShowroom()
+        public async Task<dynamic> showShowroom()
         {
             try
             {
-                return databaseContext.Showrooms
-                    
+                // Asynchronously executing the query and converting it to List
+                var showrooms = await databaseContext.Showrooms
                     .Select(d => new
                     {
                         Id = d.Id,
                         Name = d.Name,
-
-                        IdDistrict = d.IdDistrictNavigation.Name
+                        NameDistrict = d.IdDistrictNavigation.Name // Ensure IdDistrictNavigation is included in the query
                     })
-                    .ToList();
+                    .ToListAsync(); // Using ToListAsync for asynchronous operation
+                return showrooms;
             }
-
             catch (Exception ex)
             {
-                
-                return false;
+                // Log the exception if needed
+                // Return an empty list if there is an exception
+                return new List<dynamic>(); // Ensuring the return type is consistent
             }
+        }
+
+        public bool updateShowroom(int id, UpdateShowroom updateShowroom)
+        {
+            var showroom = databaseContext.Showrooms.Find(id);
+            if(showroom != null)
+            {
+                showroom.Name = updateShowroom.Name;
+            }
+            return databaseContext.SaveChanges() > 0;
         }
     }
 }

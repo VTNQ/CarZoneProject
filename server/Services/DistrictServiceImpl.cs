@@ -48,6 +48,22 @@ namespace server.Services
             }
         }
 
+        public dynamic findDistrictByCity(int cityId)
+        {
+            try
+            {
+                return databaseContext.Districts.Where(c => c.IdCity == cityId).Select(d => new
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                }).ToList();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public dynamic showDistrict()
         {
             try

@@ -43,7 +43,8 @@ import DetailOrder from './Components/WareHouse/InOrder/DetailOrder';
 import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
-import { WarehouseShowroom } from './Components/Superadmin/WarehouseShowroom';
+import { Showroom } from './Components/Superadmin/Showroom';
+import { Warehouse } from './Components/Superadmin/Warehouse';
 function App() {
   return (
     <Router>
@@ -64,7 +65,8 @@ function App() {
             <Route path='countriesPage' element={<Countries/>}/>
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
-            <Route path='warehouseShowroom' element={<WarehouseShowroom/>}/>
+            <Route path='showroom' element={<Showroom/>}/>
+            <Route path='warehouse' element={<Warehouse/>}/>
         </Route>
         <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
         <Route path='/WareHouse/'>

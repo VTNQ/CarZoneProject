@@ -9,6 +9,7 @@ namespace server.Services
         public dynamic showDistrict();
 
         public bool deleteDistrict(int id);
+        public dynamic findDistrictByCity (int cityId);
         
     }
 }
