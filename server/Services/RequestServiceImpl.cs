@@ -18,7 +18,7 @@ namespace server.Services
                 {
                     To = addRequest.To,
                     From = addRequest.From,
-                    Type=addRequest.Type,
+                    Type=addRequest.Type.Value,
                     CreateDay=DateOnly.FromDateTime(DateTime.Now),
                     Description=addRequest.Description,
                 };

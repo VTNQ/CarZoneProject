@@ -1,6 +1,18 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
+      "PackagePath": "staticwebassets\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
+    },
+    {
+      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
+      "PackagePath": "staticwebassets\\images\\4a2b06492e764cd18be611ce6ae77c27.png"
+    },
+    {
+      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
+      "PackagePath": "staticwebassets\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png"
+    },
+    {
       "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
       "PackagePath": "staticwebassets\\images\\audi.jpg"
     },
