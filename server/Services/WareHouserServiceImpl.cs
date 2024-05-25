@@ -127,6 +127,10 @@ namespace server.Services
                 Mileage = d.Mileage,
                 DateAccept = d.DateAccept.Year,
                 Model=d.IdModelNavigation.Name,
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
             }).FirstOrDefault();
         }
 
@@ -251,6 +255,7 @@ namespace server.Services
                 Fuetype = d.FuelType,
                 Engine = d.Engine,
                 MotorSize = d.MotorSize,
+                Mileage = d.Mileage,
                 Bhp = d.Bhp,
                 Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
                 {
@@ -288,7 +293,7 @@ namespace server.Services
                Form = d.IdFormNavigation.Name,
                HeightBetween = d.HeightBetween,
                Condition = d.Condition,
-               Drivertrain = d.Drivertrain,
+               Drivertrain = d.Drivertrain,     
                Fuetype = d.FuelType,
                Engine = d.Engine,
                MotorSize = d.MotorSize,
@@ -298,6 +303,39 @@ namespace server.Services
                    PictureLink = configuration["ImageUrl"] + m.Link,
                }).FirstOrDefault(),
            }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> CompareCar(int id)
+        {
+            return databaseContext.Cars.Where(d => d.Id!=id).Select(d => new
+            {
+                id = d.Id,
+                TotalCar = databaseContext.SubWarehouseCars.Where(e => e.IdCar == id).Count(),
+                Name = d.Name,
+                Model = d.IdModelNavigation.Name,
+                ColorInSide = d.IdColorInSideNavigation.Name,
+                ColorOutSide = d.IdColorOutSideNavigation.Name,
+                NumberofSeat = d.NumberOfSeat,
+                Version = d.IdVersionNavigation.ReleaseYear,
+                Price = d.Price,
+                Weight = d.Weight,
+                SpeedAbillity = d.SpeedAbility,
+                MaxSpeed = d.MaxSpeed,
+                Form = d.IdFormNavigation.Name,
+                HeightBetween = d.HeightBetween,
+                Condition = d.Condition,
+                Drivertrain = d.Drivertrain,
+                Fuetype = d.FuelType,
+                Engine = d.Engine,
+                MotorSize = d.MotorSize,
+                Bhp = d.Bhp,
+                Mileage = d.Mileage,
+                DateAccept = d.DateAccept.Year,
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
+            }).ToList();
         }
     }
 }

@@ -127,6 +127,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("CompareCar/{id}")]
+        public IActionResult CompareCar(int id)
+        {
+            try
+            {
+                return Ok(wareHouserService.CompareCar(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("DetailWareHouseCar/{id}")]
         public async Task<IActionResult> DetailWareHouseCar(int id)
         {
