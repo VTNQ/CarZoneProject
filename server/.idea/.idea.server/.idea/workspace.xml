@@ -9,29 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Order/AddOrder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Order/AddOrder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/ShowContact/ShowContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/ShowContact/ShowContact.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DatabaseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Request.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Request.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/RequestServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/RequestServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/Debug/net8.0/server.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -147,7 +129,9 @@
       <workItem from="1715996260308" duration="14055000" />
       <workItem from="1716423844135" duration="100000" />
       <workItem from="1716423976478" duration="5535000" />
-      <workItem from="1716537981594" duration="102000" />
+      <workItem from="1716537981594" duration="247000" />
+      <workItem from="1716596845681" duration="3688000" />
+      <workItem from="1716604556694" duration="230000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -197,7 +181,31 @@
       <option name="project" value="LOCAL" />
       <updated>1716016803719</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1716538117969</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716538117969</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1716538205722</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716538205722</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1716602126943</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716602126943</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +231,8 @@
     <MESSAGE value="Fix: SQL" />
     <MESSAGE value="Fix : SQL" />
     <MESSAGE value="Update : SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update : SQL" />
+    <MESSAGE value="Update By Quoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update By Quoc" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

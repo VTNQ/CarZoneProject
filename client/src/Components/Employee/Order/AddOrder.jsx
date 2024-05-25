@@ -13,12 +13,8 @@ function AddOrder() {
     const [SelectCars, SetSelectCars] = useState([])
     const [SelectPayment, SetSelectPayment] = useState(null);
     const [SelectDeliveryType, setSelectDeliveryType] = useState(null);
-    const navigate = useNavigate();
     const location = useLocation();
     const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-
-    const email = location.state?.email || '';
     const idShowroom = location.state?.idShowroom || '';
     const [TotalPrice,setTotalPrice]=useState(0);
     const handleSelectDeliveryType = (SelectDeliveryType) => {
@@ -107,6 +103,7 @@ function AddOrder() {
             }
         }
     }
+    const [TotalPrice,setTotalPrice]=useState(0);
     const handleCarChange = (SelectCar) => {
         SetSelectCars(SelectCar)
         const newCarTaxes = { ...carArray };
@@ -116,8 +113,14 @@ function AddOrder() {
             }
         })
         setcarArray(newCarTaxes)
+<<<<<<< HEAD
         const newTotalPrice=Object.values(newCarTaxes).reduce((acc,car)=>acc+car.tax,0);
         setTotalPrice(newTotalPrice)
+=======
+        const newTotalPrice=Object.values(newCarTaxes).reduce((acc,car)=>acc+car.price+car.tax,0);
+        console.log(newTotalPrice)
+        setTotalPrice(newTotalPrice);
+>>>>>>> e66ff05a71e41f842ced00a9f4ca81c2bcc2cd3e
     }
     useEffect(() => {
         const fetchdata = async () => {
@@ -147,11 +150,17 @@ function AddOrder() {
             }
         }))
     }
+<<<<<<< HEAD
     // let TotalPrice=0;
     // SelectCars.forEach(
     //     TotalPrice=document.getElementsByClassName("total-price").;
     // )
    console.log(SelectCars)
+=======
+
+
+    console.log(TotalPrice)
+>>>>>>> e66ff05a71e41f842ced00a9f4ca81c2bcc2cd3e
     return (
         <>
             <LayoutAdmin>
@@ -222,7 +231,7 @@ function AddOrder() {
                                             ))}
                                             <div class="form-group">
                                                 <label for="">Total Price</label>
-                                                <input type="number" id="TotalPriceAll"/>
+                                                <input type="number"  className="form-control" value={TotalPrice} disabled/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Payment</label>

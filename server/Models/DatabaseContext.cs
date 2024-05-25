@@ -368,6 +368,9 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Suplier__3214EC070B9BBC3B");
 
+            entity.Property(e => e.Email)
+                .HasDefaultValue("''0''")
+                .HasComment("");
             entity.Property(e => e.Name).HasDefaultValue("");
             entity.Property(e => e.Type).HasDefaultValue("0");
 
