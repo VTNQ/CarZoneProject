@@ -20,6 +20,7 @@ namespace server.Services
                     Name = addSuppplier.Name,
                     Type = addSuppplier.Type,
                     IdCountry = addSuppplier.IdCountry,
+                    Email = addSuppplier.Email,
                 };
                 _databaseContext.Supliers.Add(Supplier);
                 return _databaseContext.SaveChanges()>0;
@@ -65,6 +66,7 @@ namespace server.Services
                 Type = d.Type,
                 Country = d.IdCountryNavigation.Name,
                 IdCountry = d.IdCountry,
+                Email=d.Email,
             }).ToList(); 
         }
 
@@ -78,6 +80,7 @@ namespace server.Services
                     Supplier.Name = updateSuppplier.Name;
                     Supplier.Type = updateSuppplier.Type;
                     Supplier.IdCountry= updateSuppplier.IdCountry;
+                    Supplier.Email = updateSuppplier.Email;
                 }
                 return _databaseContext.SaveChanges() > 0;
             }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a5uWXgWfem1DHwC4A7+kmLHLF1zbA4OmvVamks2qpDU=",
+  "Hash": "+RracEj+3r7bmZUX270hZxFwcQ9xk3PZrkoNWQxsTEw=",
   "Source": "server",
   "BasePath": "_content/server",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "server\\wwwroot",
       "Source": "server",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/368e6eaa89554db1a61a9e7db7543f87.png",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/4a2b06492e764cd18be611ce6ae77c27.png",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/4a43a80ec2e642e48a2d47ee7347f15b.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/audi.jpg",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\images\\audi.jpg"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/audi2.jpg",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\images\\audi2.jpg"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/bad9dc920443424084a88ca8ed42c05c.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/c1212b58c1ca45dabd1d069524cb6093.png",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/cac934d233e343c3bc30f634240a06c3.png",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/e02391a72aef445086dfe983dfdb833e.png",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/f695214be5b14f83bae6213a5df67733.png",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png"
     },
     {
-      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
       "RelativePath": "images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
       "AssetKind": "All",
