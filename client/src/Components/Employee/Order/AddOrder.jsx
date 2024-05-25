@@ -13,12 +13,8 @@ function AddOrder() {
     const [SelectCars, SetSelectCars] = useState([])
     const [SelectPayment, SetSelectPayment] = useState(null);
     const [SelectDeliveryType, setSelectDeliveryType] = useState(null);
-    const navigate = useNavigate();
     const location = useLocation();
     const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-
-    const email = location.state?.email || '';
     const idShowroom = location.state?.idShowroom || '';
     const handleSelectDeliveryType = (SelectDeliveryType) => {
         setSelectDeliveryType(SelectDeliveryType)
@@ -106,6 +102,7 @@ function AddOrder() {
             }
         }
     }
+    const [TotalPrice,setTotalPrice]=useState(0);
     const handleCarChange = (SelectCar) => {
         SetSelectCars(SelectCar)
         const newCarTaxes = { ...carArray };
@@ -115,6 +112,9 @@ function AddOrder() {
             }
         })
         setcarArray(newCarTaxes)
+        const newTotalPrice=Object.values(newCarTaxes).reduce((acc,car)=>acc+car.price+car.tax,0);
+        console.log(newTotalPrice)
+        setTotalPrice(newTotalPrice);
     }
     useEffect(() => {
         const fetchdata = async () => {
@@ -144,11 +144,9 @@ function AddOrder() {
             }
         }))
     }
-    let TotalPrice=0;
-    SelectCars.forEach(
-        TotalPrice=document.getElementsByClassName("total-price").;
-    )
-   console.log(SelectCars)
+
+
+    console.log(TotalPrice)
     return (
         <>
             <LayoutAdmin>
@@ -219,7 +217,7 @@ function AddOrder() {
                                             ))}
                                             <div class="form-group">
                                                 <label for="">Total Price</label>
-                                                <input type="number" id="TotalPriceAll"/>
+                                                <input type="number"  className="form-control" value={TotalPrice} disabled/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Payment</label>
