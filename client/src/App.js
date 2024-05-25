@@ -48,6 +48,8 @@ import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/Create
 import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
 import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
 import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
+import RequestWareHouse from './Components/WareHouse/Request/Request';
+import Model from './Components/WareHouse/Model/Model';
 function App() {
   return (
     <Router>
@@ -83,6 +85,8 @@ function App() {
           <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
           <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
           <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
+          <Route path='RequestWareHouse' element={<RequestWareHouse/>}/>
+          <Route path='Model' element={<Model/>}/>
         </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>

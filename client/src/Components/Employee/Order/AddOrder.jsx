@@ -20,6 +20,7 @@ function AddOrder() {
 
     const email = location.state?.email || '';
     const idShowroom = location.state?.idShowroom || '';
+    const [TotalPrice,setTotalPrice]=useState(0);
     const handleSelectDeliveryType = (SelectDeliveryType) => {
         setSelectDeliveryType(SelectDeliveryType)
     }
@@ -115,6 +116,8 @@ function AddOrder() {
             }
         })
         setcarArray(newCarTaxes)
+        const newTotalPrice=Object.values(newCarTaxes).reduce((acc,car)=>acc+car.tax,0);
+        setTotalPrice(newTotalPrice)
     }
     useEffect(() => {
         const fetchdata = async () => {
@@ -144,10 +147,10 @@ function AddOrder() {
             }
         }))
     }
-    let TotalPrice=0;
-    SelectCars.forEach(
-        TotalPrice=document.getElementsByClassName("total-price").;
-    )
+    // let TotalPrice=0;
+    // SelectCars.forEach(
+    //     TotalPrice=document.getElementsByClassName("total-price").;
+    // )
    console.log(SelectCars)
     return (
         <>
@@ -237,7 +240,10 @@ function AddOrder() {
                                                 />
 
                                             </div>
-
+                                            <div className="form-group">
+                                                <label htmlFor="">Total Price</label>
+                                                <input type="text" value={TotalPrice} />
+                                            </div>
 
 
                                             <button type="submit" class="btn btn-primary me-2">Submit</button>

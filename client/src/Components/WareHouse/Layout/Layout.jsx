@@ -161,6 +161,30 @@ const LayoutAdmin=({children})=> {
       <span class="menu-title">Brand</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/Model',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Model</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/CreateCarWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Car ShowRoom</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/ShowWareHouseCar',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Car WareHouse</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/RequestWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+      <i class="icon-grid menu-icon"></i>
+      <span class="menu-title">Request</span>
+    </a>
+  </li>
  
 
 

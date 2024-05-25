@@ -88,12 +88,13 @@ namespace server.Services
             }
         }
 
-        public dynamic DetailOutOrder(int id)
+        public dynamic DetailOutOrder()
         {
-           return _dbContext.DetailOfOutOrders.Where(d => d.IdOrder == id).Select(d => new
+           return _dbContext.DetailOfOutOrders.Select(d => new
            {
                id=d.Id,
                Car=d.IdCarNavigation.Name,
+               idorder=d.IdOrderNavigation.Id,
                DeliveryDate=d.DeliveryDay,
                Price=d.Price,
                Tax=d.Tax,

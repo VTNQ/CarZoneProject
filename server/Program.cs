@@ -32,6 +32,7 @@ builder.Services.AddScoped<FormService, FormServiceImpl>();
 builder.Services.AddScoped<VersionService, VersionServiceImpl>();
 builder.Services.AddScoped<BrandService, BrandServiceImpl>();
 builder.Services.AddScoped<ShowroomService, ShowroomServiceImpl>();
+builder.Services.AddScoped<ModelService, ModelServiceImpl>();
 
 
 builder.Services.AddCors(options =>

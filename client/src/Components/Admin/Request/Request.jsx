@@ -109,6 +109,8 @@ function Request() {
                 setFromData({
                     Description: ''
                 })
+                const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
+                setReQuest(response.data)
             }
         } catch (error) {
             console.log(error)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LayoutEmployee from "../../Employee/Layout/Layout";
+import LayoutEmployee from "../Layout/Layout";
 import Pagination from 'react-paginate';
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,6 +7,11 @@ function ShowWareHouseCar() {
     const [WareHouse, setWareHouse] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+   
+    const ID = location.state?.ID || '';
+    const username = location.state?.fullName || '';
+    const email = location.state?.email || '';
+    const idShowroom = location.state?.idShowroom || '';
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
@@ -71,7 +76,7 @@ function ShowWareHouseCar() {
                                                         <td>{warehouse.totalCar}</td>
                                                         <td><button disabled={warehouse.totalCar<=0}  style={{opacity:warehouse.totalCar<=0 ? 0.5:1,
                                                                     cursor:warehouse.totalCar<=0? 'not-allowed':'pointer'
-                                                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>navigate(`/WareHouse/DetailWareHouseCar/${warehouse.id}`,{state:{IDCarWareHouse:warehouse.id,NameWareHouse:warehouse.name}})}>Detail</button></td>
+                                                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>navigate(`/WareHouse/DetailWareHouseCar/${warehouse.id}`,{state:{IDCarWareHouse:warehouse.id,NameWareHouse:warehouse.name,ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>Detail</button></td>
                                                     </tr>
                                                 ))}
                                                 </tbody>
