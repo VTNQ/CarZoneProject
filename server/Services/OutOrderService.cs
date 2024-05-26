@@ -9,7 +9,7 @@ namespace server.Services
         public dynamic ShowCar();
         public bool AddOutOrder(Data.OutOrder outOrder);
         public dynamic ShowOutOrder(int id);
-        public dynamic DetailOutOrder();
+        public dynamic DetailOutOrder(int id);
         public bool AddInvoice(int id);
         public dynamic ShowInvoice(int id);
         public bool AddContract(int id,AddContract addContract);

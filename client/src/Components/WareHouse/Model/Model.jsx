@@ -70,7 +70,10 @@ function Model() {
                     setFromData({
                         name: ''
                     })
+                    
                     SetSelectBrand(null)
+                    const response = await axios.get("http://localhost:5278/api/Model/ShowModel");
+                    setModel(response.data.result)
                 }else{
                     const responseBody = await response.json();
                     if (responseBody.message) {

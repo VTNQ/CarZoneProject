@@ -22,6 +22,9 @@ namespace server.Controllers
         {
             try
             {
+                if(db.Brands.Any(d=>d.Name == updateBrand.Name && d.Id!=id)) {
+                    return BadRequest(new { message = "Name already Exist" });
+                }
                 return Ok(new
                 {
                     result = _brandService.UpdateBrand(id, updateBrand)
@@ -81,6 +84,10 @@ namespace server.Controllers
         {
             try
             {
+                if(db.Brands.Any(d=>d.Name == addBrand.Name))
+                {
+                    return BadRequest(new { message = "Name already Exist" });
+                }
                 return Ok(new
                 {
                     result = _brandService.AddBrand(addBrand)

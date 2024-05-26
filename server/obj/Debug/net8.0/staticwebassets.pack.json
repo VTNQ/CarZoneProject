@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png",
+      "PackagePath": "staticwebassets\\images\\0dfc94e2555a42f89d5144003311c82c.png"
+    },
+    {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png",
+      "PackagePath": "staticwebassets\\images\\1fe0cf657635486cb627d91be41c4872.png"
+    },
+    {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
       "PackagePath": "staticwebassets\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
     },
@@ -35,6 +43,10 @@
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
       "PackagePath": "staticwebassets\\images\\e02391a72aef445086dfe983dfdb833e.png"
+    },
+    {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png",
+      "PackagePath": "staticwebassets\\images\\e9c0bcc2cc5f49b38590727d57537452.png"
     },
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",

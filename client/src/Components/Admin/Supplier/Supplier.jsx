@@ -141,6 +141,16 @@ function Supplier() {
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
                     setSupplier(response.data)
 
+                }else{
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
                 }
             }
         } catch (error) {

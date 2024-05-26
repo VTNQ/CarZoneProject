@@ -90,31 +90,41 @@ function Request() {
     const currentRequest=filterRequest.slice(indexOfFirtRequest, indexOflastRequest);
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ to: SelectWareHouse?.value , from:username, type: true, description: FromData.Description })
+        if(SelectWareHouse?.value==null || FromData.Description==''){
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
             })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add success',
-                    showConfirmButton: false,
-                    timer: 1500,
+        }else{
+            try {
+                const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
+                    method: 'Post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ to: SelectWareHouse?.value , from:username, type: true, description: FromData.Description })
                 })
-                setSelectWareHouse(null)
-                setFromData({
-                    Description: ''
-                })
-                const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                setReQuest(response.data)
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    setSelectWareHouse(null)
+                    setFromData({
+                        Description: ''
+                    })
+                    const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
+                    setReQuest(response.data)
+                }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
+       
 
     }
     const closingAnimation = {

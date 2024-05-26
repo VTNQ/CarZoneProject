@@ -203,12 +203,18 @@ namespace server.Services
                 {
                     foreach (var carID in createCarShowRoom.idCar)
                     {
+                        var WareHouseCar = databaseContext.SubWarehouseCars.FirstOrDefault(d => d.IdCar == carID);
+                        
                         var SubWareHouseShowRoom = new SubWarehouseShowroom
                         {
                             IdShowroom = createCarShowRoom.IdShowRoom,
                             IdCar = carID,
                         };
                         databaseContext.SubWarehouseShowrooms.Add(SubWareHouseShowRoom);
+                        if(WareHouseCar!=null)
+                        {
+                            databaseContext.SubWarehouseCars.Remove(WareHouseCar);
+                        }
                     }
                     await databaseContext.SaveChangesAsync();
                     await traction.CommitAsync();
@@ -311,6 +317,39 @@ namespace server.Services
             {
                 id = d.Id,
                 TotalCar = databaseContext.SubWarehouseCars.Where(e => e.IdCar == id).Count(),
+                Name = d.Name,
+                Model = d.IdModelNavigation.Name,
+                ColorInSide = d.IdColorInSideNavigation.Name,
+                ColorOutSide = d.IdColorOutSideNavigation.Name,
+                NumberofSeat = d.NumberOfSeat,
+                Version = d.IdVersionNavigation.ReleaseYear,
+                Price = d.Price,
+                Weight = d.Weight,
+                SpeedAbillity = d.SpeedAbility,
+                MaxSpeed = d.MaxSpeed,
+                Form = d.IdFormNavigation.Name,
+                HeightBetween = d.HeightBetween,
+                Condition = d.Condition,
+                Drivertrain = d.Drivertrain,
+                Fuetype = d.FuelType,
+                Engine = d.Engine,
+                MotorSize = d.MotorSize,
+                Bhp = d.Bhp,
+                Mileage = d.Mileage,
+                DateAccept = d.DateAccept.Year,
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
+            }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> GetCarToWareHouse()
+        {
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseCars.Any(m => m.IdCar == d.Id)).Select(d => new
+            {
+                id = d.Id,
+               
                 Name = d.Name,
                 Model = d.IdModelNavigation.Name,
                 ColorInSide = d.IdColorInSideNavigation.Name,

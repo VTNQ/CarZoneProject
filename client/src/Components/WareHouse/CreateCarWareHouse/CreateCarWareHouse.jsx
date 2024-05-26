@@ -38,7 +38,7 @@ function CreateCarWareHouse() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/WareHouse/ShowCar");
+                const response = await axios.get("http://localhost:5278/api/WareHouse/GetCarToWareHouse");
                 setCar(response.data.result)
             } catch (error) {
                 console.log(error)
@@ -67,6 +67,8 @@ function CreateCarWareHouse() {
                 })
                 setSelectCars([]);
                 setSelectShowRoom(null)
+                const response = await axios.get("http://localhost:5278/api/WareHouse/GetCartoShowRoom");
+                setShowCreateCar(response.data.result)
             }
         } catch (error) {
             console.log(error)

@@ -75,6 +75,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("GetCarToWareHouse")]
+        public async Task<IActionResult> GetCarToWareHouse()
+        {
+            try
+            {
+                return Ok(wareHouserService.GetCarToWareHouse());   
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("AddCarShowRoom")]
         [Produces("application/json")]
         public async Task<IActionResult> AddCarShowRoom([FromForm] CreateCarShowRoom createCarShowRoom)

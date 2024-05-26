@@ -86,7 +86,7 @@ function OutOrder() {
         })
         setcarTaxes(newCarTaxes)
     }
-   
+
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -217,41 +217,50 @@ function OutOrder() {
     };
     const AddContract1 = async (event) => {
         event.preventDefault();
-        
-        try {
-            const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: FromData.Condition })
+        if (FromData.Condition == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Condition is Required',
+                showConfirmButton: false,
+                timer: 1500,
             })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add Contract Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                setFromData({
-                    id: '',
-                    Condition: ''
+        } else {
+            try {
+                const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: FromData.Condition })
                 })
-                setPopupVisibility(false)
-            } else {
-                const responseBody = await response.json();
-                if (responseBody.message) {
+                if (response.ok) {
                     Swal.fire({
-                        icon: 'error',
-                        title: responseBody.message || 'Failed to add genre',
+                        icon: 'success',
+                        title: 'Add Contract Success',
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setFromData({
+                        id: '',
+                        Condition: ''
+                    })
+                    setPopupVisibility(false)
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
                 }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
+
     }
 
     return (

@@ -501,7 +501,7 @@ function ManagerAdminCustomer() {
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Phone</label>
-                                    <input type="text" class="form-control" value={FromData.UpdatePhone} onChange={(e) => setFromData({ ...FromData, UpdatePhone: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                    <input type="tel" class="form-control" value={FromData.UpdatePhone} onChange={(e) => setFromData({ ...FromData, UpdatePhone: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
 
 

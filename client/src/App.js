@@ -22,7 +22,7 @@ import { Customer } from './Components/Superadmin/Customer';
 import LayoutHomepage from './Components/Admin/Home/Homepage';
 import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCustomer';
 import Supplier from './Components/Admin/Supplier/Supplier';
-import Color from './Components/Color/Color';
+import Color from './Components/Admin/Color/Color';
 import InOrder from './Components/Admin/InOrder/InOrder';
 import DetailInOrders from './Components/Admin/InOrder/DetailInOrder';
 import OutOrder from './Components/Admin/OutOrder/OutOrder';

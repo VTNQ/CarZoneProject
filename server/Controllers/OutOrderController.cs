@@ -45,12 +45,12 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("DetailOutOrder")]
-        public IActionResult DetailOutOrder()
+        [HttpGet("DetailOutOrder/{id}")]
+        public IActionResult DetailOutOrder(int id)
         {
             try
             {
-                return Ok(_orderService.DetailOutOrder());
+                return Ok(_orderService.DetailOutOrder(id));
             }
             catch
             {
