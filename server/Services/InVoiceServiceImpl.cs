@@ -34,6 +34,6 @@ public class InVoiceServiceImpl:InVoiceService
         {
             idorder=d.IdOrder,
             CreateDate=d.CreateDate,
-        }).ToList();
+        }).OrderByDescending(arg=>arg.CreateDate).ToList();
     }
 }

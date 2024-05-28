@@ -170,7 +170,7 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Employee/ShowContract', {
+                  <a className="nav-link" onClick={() => navigate(`/Employee/ShowContract/${ID}`, {
                     state: {
                       ID: ID,
                       fullName: username,
