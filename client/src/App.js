@@ -43,13 +43,22 @@ import DetailOrder from './Components/WareHouse/InOrder/DetailOrder';
 import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
-import { WarehouseShowroom } from './Components/Superadmin/WarehouseShowroom';
+import { Showroom } from './Components/Superadmin/Showroom';
+import { Warehouse } from './Components/Superadmin/Warehouse';
 import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/CreateCarWareHouse';
 import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
 import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
 import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
+import { BMV } from './Components/Superadmin/BMV';
+import { BrandSpm } from './Components/Superadmin/bmw/Brand';
+import { ModelSpm } from './Components/Superadmin/bmw/Model';
+import { VersionSpm } from './Components/Superadmin/bmw/Version';
+import { CarSpm } from './Components/Superadmin/Car';
+import { FormSpm } from './Components/Superadmin/bmw/Form';
 import RequestWareHouse from './Components/WareHouse/Request/Request';
 import Model from './Components/WareHouse/Model/Model';
+import { CarTable } from './Components/Superadmin/Car/CarTable';
+import { CarDetail } from './Components/Superadmin/Car/CarDetail';
 function App() {
   return (
     <Router>
@@ -70,7 +79,20 @@ function App() {
             <Route path='countriesPage' element={<Countries/>}/>
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
-            <Route path='warehouseShowroom' element={<WarehouseShowroom/>}/>
+            <Route path='showroom' element={<Showroom/>}/>
+            <Route path='warehouse' element={<Warehouse/>}/>
+            <Route path='bmw/' element={<BMV/>}>
+                <Route index element={<BrandSpm/>}></Route>
+                <Route path='model' element={<ModelSpm/>}></Route>
+                <Route path='version' element={<VersionSpm/>}></Route>
+                <Route path='form' element={<FormSpm/>}></Route>
+            </Route>
+            <Route path='car' element={<CarSpm/>}/>
+            <Route path='carTable' element={<CarTable/>}/>
+
+                
+            
+            
           
         </Route>
         <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>

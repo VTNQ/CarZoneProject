@@ -210,5 +210,31 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpPut("updateModel/{id}")]
+        public IActionResult updateModel(int id,[FromBody] UpdateModel updateModel) {
+            try
+            {
+                return Ok(new
+                {
+                    result = wareHouserService.updateModel(id, updateModel)
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("findModelByBrand/{id}")]
+        public IActionResult findModelByBrand(int id)
+        {
+            try
+            {
+                return Ok(wareHouserService.findModelByBrand(id));
+            }
+            catch 
+            {
+                return BadRequest() ;
+            }
+        }
     }
 }

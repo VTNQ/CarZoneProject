@@ -10,9 +10,11 @@ namespace server.Services
         public dynamic ShowBranch();
         public dynamic ShowRoom();
         public dynamic ShowModel();
+        public dynamic findModelByBrand(int idBrand);
         public dynamic DetailCar(int id);
         public dynamic ShowListPicture(int id);
         public bool SendMessage(SendMessage message);
+        public bool updateModel(int id, UpdateModel updateModel);
         public dynamic ShowLatestCar();
        Task<bool> CreateShowRoom(CreateCarShowRoom createCarShowRoom);
         Task<IEnumerable<dynamic>> GetCartoShowRoom();

@@ -68,6 +68,17 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("findDistrictByCity/{id}")]
+        public IActionResult findDistrictByCity(int id)
+        {
+            try
+            {
+                return Ok(districtService.findDistrictByCity(id));
+            }catch
+            {
+                return BadRequest();
+            }
+        }
 
     }
 }

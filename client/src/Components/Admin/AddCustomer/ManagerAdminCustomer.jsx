@@ -82,6 +82,7 @@ function ManagerAdminCustomer() {
             });
         }
     }
+
     const handleUpdateChange = (date) => {
         setUpdateDob(date)
     }
@@ -161,6 +162,9 @@ function ManagerAdminCustomer() {
                 formData.append("Address", FromData.Address);
                 formData.append("IndentityCode", FromData.IdentityCode);
                 formData.append("Sign", FromData.Image)
+                
+                console.log("Form Data before sending:", Object.fromEntries(formData.entries()));
+
                 const response = await fetch("http://localhost:5278/api/Customer/AddCustomer", {
                     method: 'POST',
                     body: formData

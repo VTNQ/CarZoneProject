@@ -9,8 +9,16 @@
       "PackagePath": "staticwebassets\\images\\1fe0cf657635486cb627d91be41c4872.png"
     },
     {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
+      "PackagePath": "staticwebassets\\images\\2a4020bea8004e068c0a73cf0924f0c1.png"
+    },
+    {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
       "PackagePath": "staticwebassets\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
+    },
+    {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4302390f53d94a048e4053088c02f169.png",
+      "PackagePath": "staticwebassets\\images\\4302390f53d94a048e4053088c02f169.png"
     },
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
@@ -19,6 +27,10 @@
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
       "PackagePath": "staticwebassets\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png"
+    },
+    {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\6e1b4c8a1b2c41adbc2c1959ac81b0cb.png",
+      "PackagePath": "staticwebassets\\images\\6e1b4c8a1b2c41adbc2c1959ac81b0cb.png"
     },
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
@@ -37,8 +49,16 @@
       "PackagePath": "staticwebassets\\images\\c1212b58c1ca45dabd1d069524cb6093.png"
     },
     {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\c2c7ea40e6b44248944b0b430dd9b939.png",
+      "PackagePath": "staticwebassets\\images\\c2c7ea40e6b44248944b0b430dd9b939.png"
+    },
+    {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
       "PackagePath": "staticwebassets\\images\\cac934d233e343c3bc30f634240a06c3.png"
+    },
+    {
+      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
+      "PackagePath": "staticwebassets\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png"
     },
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
