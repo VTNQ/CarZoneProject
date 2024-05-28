@@ -208,7 +208,7 @@ function Inventory() {
 
         const includesSearchTerm = product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
         const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
-        // Otherwise, check if SelectBrand includes the product's branch
+        
         if (SelectBrand == '' && SelectCondition == '' && SelectModel == '' &&  SelectShowRoom == '') {
             return true;
         }
