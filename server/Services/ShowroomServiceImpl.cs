@@ -34,22 +34,19 @@ namespace server.Services
         {
             try
             {
-                // Asynchronously executing the query and converting it to List
                 var showrooms = await databaseContext.Showrooms
                     .Select(d => new
                     {
                         Id = d.Id,
                         Name = d.Name,
-                        NameDistrict = d.IdDistrictNavigation.Name // Ensure IdDistrictNavigation is included in the query
+                        NameDistrict = d.IdDistrictNavigation.Name 
                     })
-                    .ToListAsync(); // Using ToListAsync for asynchronous operation
+                    .ToListAsync(); 
                 return showrooms;
             }
             catch (Exception ex)
             {
-                // Log the exception if needed
-                // Return an empty list if there is an exception
-                return new List<dynamic>(); // Ensuring the return type is consistent
+                return new List<dynamic>(); 
             }
         }
 

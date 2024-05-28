@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server.Data;
+using server.Models;
 using server.Services;
 
 namespace server.Controllers
@@ -9,10 +10,12 @@ namespace server.Controllers
     [ApiController]
     public class BrandController : ControllerBase
     {
+        private readonly DatabaseContext db;
         private readonly BrandService _brandService;
-        public BrandController(BrandService brandService)
+        public BrandController(BrandService brandService,DatabaseContext databaseContext)
         {
             _brandService = brandService;
+            db = databaseContext;
         }
         [HttpPut("UpdateBrand/{id}")]
         public IActionResult UpdateBrand(int id, [FromBody] UpdateBrand updateBrand)
@@ -22,6 +25,25 @@ namespace server.Controllers
                 return Ok(new
                 {
                     result = _brandService.UpdateBrand(id, updateBrand)
+                });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpDelete("DeleteBrand/{id}")]
+        public IActionResult DeleteBrand(int id)
+        {
+            try
+            {
+                if(db.Models.Any(d=>d.IdBrand == id))
+                {
+                    return BadRequest(new { message = "Delete Failed" });
+                }
+                return Ok(new
+                {
+                    result = _brandService.DeleteBrand(id)
                 });
             }
             catch

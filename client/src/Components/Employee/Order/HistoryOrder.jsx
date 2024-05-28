@@ -16,6 +16,8 @@ function HistoryOrder() {
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const [Order, setOrder] = useState([]);
+    const [Contract, setContract] = useState([])
+   
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -117,52 +119,75 @@ function HistoryOrder() {
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
-
                         <div className="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
+                                        <button
+                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
+                                            onClick={() => navigate("/Employee/AddOrder", {
+                                                state: {
+                                                    ID: ID,
+                                                    fullName: username,
+                                                    email: email
+                                                }
+                                            })}>Add
+                                        </button>
                                         <h4 class="card-title">History Order</h4>
-                                        <form class="forms-sample" >
+                                        <form class="forms-sample">
                                             <label for="exampleInputUsername1">Search</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Full Name" />
+                                            <input type="text" class="form-control" id="exampleInputUsername1"
+                                                   value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}
+                                                   placeholder="Enter Full Name"/>
                                         </form>
                                         <p class="card-description">
                                         </p>
                                         <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <thead>
-                                                    <tr>
-                                                        <th> # </th>
-                                                        <th> Customer </th>
+                                                <tr>
+                                                    <th> #</th>
+                                                    <th> Customer</th>
 
-                                                        <th> Date of Sale </th>
-                                                        <th> Total Amount</th>
-                                                        <th> Total Tax </th>
-                                                        <th>Payment</th>
-                                                        <th>Delivery type</th>
-                                                        <th>Add Contract</th>
-                                                        <th>Show Contract</th>
+                                                    <th> Date of Sale</th>
+                                                    <th> Total Amount</th>
+                                                    <th> Total Tax</th>
+                                                    <th>Payment</th>
+                                                    <th>Delivery type</th>
+                                                    <th>Add Contract</th>
+                                                    <th>Show Contract</th>
 
-                                                    </tr>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {CurrentOrder.map((order, index) => (
-                                                        <tr>
-                                                            <td>{++index}</td>
-                                                            <td>{order.customer}</td>
-                                                            <td>{new Date(order.dateofSale).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                            <td>{order.totalAmount}</td>
-                                                            <td>{order.totalTax}</td>
-                                                            <td>{order.payment}</td>
-                                                            <td>{order.deliveryType}</td>
-                                                            <td><button
-                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleAddContract(order.id)}
+                                                {CurrentOrder.map((order, index) => (
+                                                    <tr>
+                                                        <td>{++index}</td>
+                                                        <td>{order.customer}</td>
+                                                        <td>{new Date(order.dateofSale).toLocaleString('en-GB', {
+                                                            day: 'numeric',
+                                                            month: 'short',
+                                                            year: 'numeric'
+                                                        })}</td>
+                                                        <td>{order.totalAmount}</td>
+                                                        <td>{order.totalTax}</td>
+                                                        <td>{order.payment}</td>
+                                                        <td>{order.deliveryType}</td>
+                                                        <td>
+                                                            <button
+                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                                onClick={() => handleAddContract(order.id)}
 
                                                             >Add
-                                                            </button></td>
-                                                            <td><button
-                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => navigate(`/Employee/ShowContract/${order.id}`, {
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button disabled={order.idOrder==null}
+                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                                style={{opacity:order.idOrder==null ? 0.5:1,
+                                                                    cursor:order.idOrder==null? 'not-allowed':'pointer'
+                                                                }}
+                                                                onClick={() => navigate(`/Employee/ShowContract/${order.id}`, {
                                                                     state: {
                                                                         ID: ID,
                                                                         fullName: username,
@@ -173,9 +198,10 @@ function HistoryOrder() {
                                                                 })}
 
                                                             >View
-                                                            </button></td>
-                                                        </tr>
-                                                    ))}
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
                                                 </tbody>
                                             </table>
                                             <Pagination

@@ -17,6 +17,9 @@ export const Showroom = () => {
     Name: '',
     IdDistrict: ''
   })
+  const [FormDataUpdate,setFormDataUpdate] = useState({
+    Name: ''
+  })
   const [selectedDistrict, setSelectedDistrict] = useState(null);
 
   const [District,setDistrict] = useState([]);
@@ -76,6 +79,13 @@ export const Showroom = () => {
           setIsClosingPopup(false)
       }, 500);
   }
+  const handleClosepopup1 = () => {
+      setIsClosingPopup(true);
+      setTimeout(() => {
+          setPopupVisibility1(false)
+          setIsClosingPopup(false)
+      }, 500);
+  }
   const FilterShowroom = Showroom.filter(Cus =>
     Cus.Name?.toLowerCase().includes(searchTerm.toLowerCase())
 )
@@ -91,8 +101,10 @@ export const Showroom = () => {
   const indexOflastCustomer = (currentPage + 1) * perPage;
   const indexOfFirtCustomer = indexOflastCustomer - perPage;
   const [isPopupVisible, setPopupVisibility] = useState(false);
-  const handleEditClick = () => {
-    
+  const [isPopupVisible1, setPopupVisibility1] = useState(false);
+  const [idUpdateShowroom,setIdUpdateShowroom] = useState(null);
+  const handleEditClick = (id) => {
+    setIdUpdateShowroom(id);
       setPopupVisibility(true)
   }
   const handleShowroomChange = selectedOption => {
@@ -164,6 +176,9 @@ export const Showroom = () => {
   const handleInputNameChange  = event => {
     setFormDataShowroom({ ...FormDataShowroom, Name: event.target.value });
   };
+  const handleInputNameChange1  = event => {
+    setFormDataUpdate({ ...FormDataUpdate, Name: event.target.value });
+  };
 
 
   const handleCountryChange1 = selectedOption => {
@@ -223,7 +238,48 @@ const FilterCustomer = Showroom.filter(Cus =>
     Cus.name.toLowerCase().includes(searchTerm.toLowerCase())
 )
 const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCustomer)
-
+const handleEditShowroom = () => {
+    setPopupVisibility1(true);
+}
+const handleSubmitUpdateName = async (event,id) => {
+   event.preventDefault();
+    if(FormDataUpdate.Name === ''){
+        Swal.fire({
+            icon:'error',
+            title: 'Insert Name',
+            timer: 1500
+        })
+    }
+    const idShowroom = idUpdateShowroom;
+    const formData = new FormData();
+    formData.append("Name", FormDataUpdate.Name);
+    const response = await fetch(`http://127.0.0.1:5278/api/Showroom/updateShowroom/${idShowroom}`,{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            Name: FormDataUpdate.Name,
+            
+        })
+    });
+    if(response.ok){
+        Swal.fire({
+            icon:'success',
+            title: 'edit name showroom success',
+            timer: 1500
+        })
+        setIdUpdateShowroom('');
+        fetchdata();
+    }else{
+        const bodyResponse = await response.json();
+        Swal.fire({
+            icon:'error',
+            title: 'edit name showroom fail' + bodyResponse.message,
+            timer: 1500
+        })
+    }
+}
   return (
       <>
          
@@ -233,7 +289,7 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                           <div class="col-lg-12 grid-margin stretch-card">
                               <div class="card">
                                   <div class="card-body">
-                                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded mb-6" onClick={() => handleEditClick()}>Add Showroom</button>
+                                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded mb-6" onClick={() => handleEditClick()}><i class="mdi mdi-note-plus mr-2"></i>Add Showroom</button>
                                       <h4 class="card-title">Customer</h4>
                                       <form class="forms-sample">
                                           <label for="exampleInputUsername1">Search</label>
@@ -250,6 +306,7 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                                                       <th> # </th>
                                                       <th> Name Showroom </th>
                                                       <th>District</th>
+                                                      <th>Edit</th>
                                                       
                                                   </tr>
                                               </thead>
@@ -259,6 +316,7 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                                                           <td>{++index}</td>
                                                           <td>{Cus.name}</td>
                                                           <td>{Cus.nameDistrict}</td>
+                                                          <td><button className="btn btn-dark btn-icon-text" onClick={()=>handleEditShowroom(Cus.id)} >Edit<i class="ti-file btn-icon-append"></i></button></td>
                                                       </tr>
                                                   ))}
                                               </tbody>
@@ -298,7 +356,7 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                           <button onClick={handleClosepopup} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded float-right "><i className="fas fa-times"></i></button>
                       </div>
                       <div style={{ marginTop: '16px' }}>
-                          <h3 className="box-title1 mb-9">Create New Showroom</h3>
+                          <h3 className="box-title1 mb-9"><i class="mdi mdi-note-plus"></i>Create New Showroom</h3>
                       </div>
                       <form role="form" onSubmit={handleSubmitShowroom}>
                           <div className="box-body">
@@ -340,7 +398,33 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                               
                           </div>
                           <div className="box-footer">
-                              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " >Add</button>
+                              <button className="btn btn-primary btn-icon-text" ><i class="ti-file btn-icon-prepend"></i>Add</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          )}
+          {isPopupVisible1 && (
+              <div className="popup-container">
+                  <div className="popup-content" style={IsClosingPopup ? { ...popupContentStyle, ...closingAnimation } : popupContentStyle}>
+                      <div className='flex justify-end'>
+                          <button onClick={handleClosepopup1} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded float-right "><i className="fas fa-times"></i></button>
+                      </div>
+                      <div style={{ marginTop: '16px' }}>
+                          <h3 className="box-title1 mb-9">Update Name Showroom</h3>
+                      </div>
+                      <form role="form" onSubmit={handleSubmitUpdateName}>
+                          <div className="box-body">
+                              {/* Form fields go here */}
+                              <div class="form-group">
+                                  <label className='float-left'>Name Showroom</label>
+                                  <input type="text" class="form-control" value={FormDataUpdate.Name} onChange={handleInputNameChange1} id="exampleInputUsername1" placeholder="Showroom Name" />
+                              </div>
+                              
+                              
+                          </div>
+                          <div className="box-footer">
+                              <button className="btn btn-primary btn-icon-text " ><i class="ti-file btn-icon-prepend"></i>Add</button>
                           </div>
                       </form>
                   </div>

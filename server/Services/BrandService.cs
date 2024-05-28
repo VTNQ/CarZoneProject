@@ -8,5 +8,6 @@ namespace server.Services
         public dynamic GetCountry();
         public dynamic ShowBrand();
         public bool UpdateBrand(int id,UpdateBrand updateBrand);
+        public bool DeleteBrand(int id);
     }
 }

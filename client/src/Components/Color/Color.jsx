@@ -141,7 +141,7 @@ function Color() {
       const [searchTerm, setSearchtem] = useState('');
       const [currentPage, setCurrentPage] = useState(0);
       const [perPage, setperPage] = useState(5);
-      
+    
     const filterColor=ShowColor.filter(Sup =>
         Sup.name.toLowerCase().includes(searchTerm.toLowerCase())
     )

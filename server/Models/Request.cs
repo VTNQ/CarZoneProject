@@ -20,10 +20,12 @@ public partial class Request
     [Unicode(false)]
     public string From { get; set; } = null!;
 
-    public bool? Type { get; set; }
+    public bool Type { get; set; }
 
-    public DateOnly? CreateDay { get; set; }
+    public DateOnly CreateDay { get; set; }
 
     [Column(TypeName = "text")]
     public string? Description { get; set; }
+
+    public bool Status { get; set; }
 }

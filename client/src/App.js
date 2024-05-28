@@ -45,6 +45,16 @@ import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
 import { Showroom } from './Components/Superadmin/Showroom';
 import { Warehouse } from './Components/Superadmin/Warehouse';
+import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/CreateCarWareHouse';
+import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
+import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
+import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
+import { BMV } from './Components/Superadmin/BMV';
+import { BrandSpm } from './Components/Superadmin/bmw/Brand';
+import { ModelSpm } from './Components/Superadmin/bmw/Model';
+import { VersionSpm } from './Components/Superadmin/bmw/Version';
+import { CarSpm } from './Components/Superadmin/Car';
+import { FormSpm } from './Components/Superadmin/bmw/Form';
 function App() {
   return (
     <Router>
@@ -67,6 +77,18 @@ function App() {
             <Route path='CustomerPage' element={<Customer/>}/>
             <Route path='showroom' element={<Showroom/>}/>
             <Route path='warehouse' element={<Warehouse/>}/>
+            <Route path='bmw/' element={<BMV/>}>
+                <Route index element={<BrandSpm/>}></Route>
+                <Route path='model' element={<ModelSpm/>}></Route>
+                <Route path='version' element={<VersionSpm/>}></Route>
+                <Route path='form' element={<FormSpm/>}></Route>
+            </Route>
+            <Route path='car' element={<CarSpm/>}/>
+
+                
+            
+            
+          
         </Route>
         <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
         <Route path='/WareHouse/'>
@@ -76,6 +98,10 @@ function App() {
           <Route path='Form' element={<Form/>}/>
           <Route path='Version' element={<Version/>}/>
           <Route path='Brand' element={<Brand/>}/>
+          <Route path='CreateCarWareHouse' element={<CreateCarWareHouse/>}/>
+          <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
+          <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
+          <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
         </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>

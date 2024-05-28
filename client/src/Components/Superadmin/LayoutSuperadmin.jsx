@@ -326,6 +326,18 @@ export const LayoutSuperadmin = () => {
               <span class="menu-title">Warehouse</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/bmw')}>
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Brand-Model-Version</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/car')}>
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Car</span>
+            </a>
+          </li>
         </ul>
       </nav>
       

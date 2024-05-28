@@ -16,7 +16,7 @@ namespace server.Controllers
             this.databaseContext = databaseContext;
             this.showroomService = showroomService;
         }
-
+      
         [HttpPost("addShowroom")]
         [Produces("application/json")]
         public IActionResult addShowroom([FromBody] AddShowroom addShowroom)
@@ -50,8 +50,8 @@ namespace server.Controllers
             }
         }
         [HttpPut("updateShowroom/{id}")]
-        [Produces("application/json")]
-        public IActionResult updateShowroom ([FromBody]int id,UpdateShowroom updateShowroom)
+        [Consumes("application/json")]
+        public IActionResult updateShowroom (int id,[FromBody]UpdateShowroom updateShowroom)
         {
             try
             {

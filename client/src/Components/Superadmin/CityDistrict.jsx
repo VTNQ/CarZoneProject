@@ -50,7 +50,6 @@ export const CityDistrict = () => {
   };
   const handleCountryChange1 = selectedOption => {
     fetchDataCity(selectedOption.value);
-
     setSelectedCountry1(selectedOption);
   };
   const handleCityChange = selectedCityOption => {
