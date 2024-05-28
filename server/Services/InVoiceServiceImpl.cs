@@ -10,6 +10,19 @@ public class InVoiceServiceImpl:InVoiceService
     {
         DatabaseContext = databaseContext;
     }
+
+    public dynamic DetailOutOrder()
+    {
+       return DatabaseContext.DetailOfOutOrders.Select(d => new
+       {
+           deliveryDate=d.DeliveryDay,
+           price=d.Price,
+           car=d.IdCarNavigation.Name,
+           idOrder=d.IdOrder,
+           Tax=d.Tax,
+       }).ToList();
+    }
+
     public dynamic FindAll()
     {
         try

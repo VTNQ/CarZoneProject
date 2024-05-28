@@ -11,23 +11,31 @@ function HistoryInVoice() {
     const [currentPage, setCurrentPage] = useState(0);
     const location = useLocation();
     const [ActiveTab,setActiveTab]=useState(0);
-    const ID=location.state?.ID||"";
-    const idShowroom=location.state?.idShowroom||"";
+    const[sessionData,setSessionData]=useState(null);
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
     const [FromData,setFromData]=useState({
         id:''
     })
     useEffect(() => {
         const fetchdataInVoice = async () => {
-            const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${ID}`);
+            const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${sessionData.ID}`);
             setInVoice(response.data)
         };
-        fetchdataInVoice();
-    }, [])
+        if(sessionData && sessionData.ID){
+            fetchdataInVoice();
+        }
+        
+    }, [sessionData])
   const [DetailOrder,setDetailOrder]=useState([])
   useEffect(()=>{
     const fetchdata=async()=>{
         try{
-            const response=await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder`);
+            const response=await axios.get(`http://localhost:5278/api/InVoice/DetailOutOrder`);
             setDetailOrder(response.data)
         }catch(error){
 
@@ -35,8 +43,9 @@ function HistoryInVoice() {
     }
     fetchdata();
   },[])
+  console.log(DetailOrder)
   const filterDetailOrder=DetailOrder.filter(Detail=>
-    Detail.idorder.toString().toLowerCase().includes(FromData.id.toString().toLowerCase())
+    Detail.idOrder.toString().toLowerCase().includes(FromData.id.toString().toLowerCase())
  )
 
 

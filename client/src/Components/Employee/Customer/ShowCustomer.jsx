@@ -26,9 +26,13 @@ function ShowCustomer() {
     })
     const navigate = useNavigate();
     const location = useLocation();
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const ID=location.state?.ID||'';
+    const[sessionData,setSessionData]=useState(null);
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
     const [Customer, setCustomer] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
@@ -172,7 +176,7 @@ function ShowCustomer() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3" onClick={()=>navigate("/Employee/Create-Customer",{state:{ID:ID,fullName:username,email:email}})}>Add</button>
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3" onClick={()=>navigate("/Employee/Create-Customer",{state:sessionData})}>Add</button>
                                         <h4 class="card-title">Customer</h4>
                                         <form class="forms-sample">
                                             <label for="exampleInputUsername1">Search</label>
