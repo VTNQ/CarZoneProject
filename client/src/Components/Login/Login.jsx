@@ -15,6 +15,7 @@ function Login(){
         Email:'',
         Password:''
     })
+  
     const handleLogin=async (event)=>{
         event.preventDefault();
         try{
@@ -26,6 +27,13 @@ function Login(){
             })
             const responseData = await response.json();
             const { id, fullName,email,role,idShowroom } = responseData;
+            const sessionData = {
+              ID: id,
+              fullName: fullName,
+              email: email,
+              idShowroom: idShowroom,
+          };
+          sessionStorage.setItem('sessionData', JSON.stringify(sessionData));
             if(response.ok){
                 Swal.fire({
                     icon: 'success',
@@ -34,11 +42,11 @@ function Login(){
                     timer: 1500,
                 }).then(()=>{
                     if(role==='Admin'){
-                        navigate('/HomeAdminPage',{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
+                        navigate('/HomeAdminPage',{state:sessionData})
                     }else if (role==="Employee"){
-                        navigate("/Employee/Dashboard",{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
+                        navigate("/Employee/Dashboard",{state:sessionData})
                     }else if(role=='WareHouse'){
-                      navigate("/WareHouse/Dashboard",{state:{ID:id,fullName:fullName,email:email,idShowroom:idShowroom}})
+                      navigate("/WareHouse/Dashboard",{state:sessionData})
                     }
                 })
             }

@@ -149,7 +149,7 @@ namespace server.Services
 
         public dynamic ShowOutOrder(int id)
         {
-           return _dbContext.OutOrders.Where(d => d.IdEmployee == id).Select(d => new
+           return _dbContext.OutOrders.OrderByDescending(d=>d.Id).Where(d => d.IdEmployee == id).Select(d => new
            {
                id=d.Id,
                Customer=d.IdCustomerNavigation.FullName,

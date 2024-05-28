@@ -25729,7 +25729,15 @@ table.dataTable tbody td.select-checkbox:after {
 .tab:not(.active):hover {
   background-color: #e2e8f0; /* Slightly darker gray for hover */
 }
-
+.tab-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
+    flex-direction: column;
+}
 /* Tab content styling */
 .tab-content {
   text-align: left;

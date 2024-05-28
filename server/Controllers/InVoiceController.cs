@@ -29,6 +29,18 @@ namespace server.Controllers
                 throw;
             }
         }
+        [HttpGet("DetailOutOrder")]
+        public IActionResult DetailOutOrder()
+        {
+            try
+            {
+                return Ok(InVoiceService.DetailOutOrder());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("HistoryInVoice")]
         public IActionResult FindAll()
         {

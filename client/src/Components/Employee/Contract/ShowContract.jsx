@@ -6,24 +6,42 @@ import axios from "axios";
 function ShowContract() {
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const idOrder = location.state?.idOrder || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+   
     const [Contract, setContract] = useState([])
     const index=1;
+    const[sessionData,setSessionData]=useState(null);
+    
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/Employee/ShowContract/${ID}`)
-                setContract(response.data)
+                if(sessionData.idOrder==undefined){
+                    const response = await axios.get(`http://localhost:5278/api/Employee/ShowContract/${sessionData.ID}`)
+                    setContract(response.data)
+                }else{
+                    const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.idOrder}`);
+                    setContract(response.data)
+                }
+             
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.ID){
+            fetchdata();
+        }
+      
+    }, [sessionData])
+    const handleBackClick=()=>{
+        const{idOrder,...restSessionData } = sessionData;
+        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        navigate("/Employee/HistoryOrder",{state:restSessionData});
+    }
     return (
         <>
             <LayoutAdmin>
@@ -37,8 +55,8 @@ function ShowContract() {
                                         <h4 class="card-title">Contract</h4>
                                         <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                        onClick={()=>navigate("/Employee/HistoryOrder",{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}
-                                        >Add Contract
+                                        onClick={handleBackClick}
+                                        >Back
                                         </button>
                                         <p class="card-description">
                                         </p>

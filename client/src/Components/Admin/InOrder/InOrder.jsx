@@ -21,22 +21,32 @@ function InOrder() {
     ]
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const [InOrder, setInOrder] = useState([])
+    
+    const [InOrder, setInOrder] = useState([]);
+    const[sessionData,setSessionData]=useState(null);
+      useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, []);
+
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${ID}`)
+                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
                 setInOrder(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+        console.log(sessionData)
+        if(sessionData && sessionData.ID){
+            fetchdata();
+        }
+       
+    }, [sessionData])
+  
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const handleSelectCash = (SelectCash) => {
@@ -138,7 +148,7 @@ function InOrder() {
             const formData = new FormData();
 
             formData.append("IdWarehouse", SelectWareHouse?.value)
-            formData.append("IdEmployee", ID)
+            formData.append("IdEmployee", sessionData.ID)
             formData.append("IdSuplier", SelectSupply?.value)
             formData.append("TotalAmount", totalAmount);
             formData.append("TotalTax", totalTax);
@@ -163,7 +173,7 @@ function InOrder() {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${ID}`)
+                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
                 setInOrder(response.data)
                 setSelectSupply(null)
                 setSelectWareHouse(null)
@@ -172,6 +182,11 @@ function InOrder() {
             }
         }
 
+    }
+    const handleDetailClick=(inorder)=>{
+        const updatedSessionData={...sessionData,IDInorder:inorder.id};
+        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        navigate(`/DetailInOrder/${inorder.id}`,{state:updatedSessionData})
     }
     return (
         <>
@@ -286,7 +301,7 @@ function InOrder() {
                                                             <td>{inorder.payment}</td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                                onClick={() => navigate(`/DetailInOrder/${inorder.id}`, { state: { ID: ID, fullName: username, email: email, IDInorder: inorder.id } })}
+                                                                onClick={() => handleDetailClick(inorder)}
                                                             >Detail
                                                             </button></td>
                                                         </tr>

@@ -48,23 +48,32 @@ function OutOrder() {
     ]
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
+  
     const [searchTerm, setSearchtem] = useState('');
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+   
     const [ShowOutOrder, SetShowOutOrder] = useState([]);
+    const[sessionData,setSessionData]=useState(null);
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
+
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${ID}`)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
                 SetShowOutOrder(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.ID){
+            fetchdata();
+        }
+        
+    }, [sessionData])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -158,8 +167,8 @@ function OutOrder() {
         } else {
             try {
                 formData.append("IdCustomer", SelectCustomer?.value)
-                formData.append("IdShowroom", idShowroom);
-                formData.append("IdEmployee", ID);
+                formData.append("IdShowroom", sessionData.idShowroom);
+                formData.append("IdEmployee", sessionData.ID);
                 Object.keys(carTaxes).forEach((carId) => {
                     const price = Number(carTaxes[carId].price || 0);
                     const tax = Number(carTaxes[carId].tax || 0);
@@ -189,7 +198,7 @@ function OutOrder() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${ID}`)
+                    const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
                     SetShowOutOrder(response.data)
 
                     SetSelectCustomer(null)
@@ -262,7 +271,12 @@ function OutOrder() {
         }
 
     }
-
+    const handleDetailClick=(outorder)=>{
+        
+        const updatedSessionData={...sessionData,IDOutOrder:outorder.id};
+        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        navigate(`/DetailOutOrder/${outorder.id}`,{state:updatedSessionData})
+    }
     return (
         <>
             <LayoutAdmin>
@@ -375,7 +389,7 @@ function OutOrder() {
                                                             <td>{show.deliveryType}</td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                                onClick={() => navigate(`/DetailOutOrder/${show.id}`, { state: { ID: ID, fullName: username, email: email, idShowroom: idShowroom, IDOutOrder: show.id } })}
+                                                                onClick={()=>handleDetailClick(show)}
                                                             >Detail
                                                             </button></td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={() => handleContract(show.id)}>Add Contract</button></td>

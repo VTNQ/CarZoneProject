@@ -9,14 +9,19 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const LayoutAdmin=({children})=> {
   const navigate = useNavigate();
   const location = useLocation();
-  const ID = location.state?.ID || '';
-  const username=location.state?.fullName || '';
-  const email = location.state?.email || '';
-  const idShowroom=location.state?.idShowroom || '';
+  const [sessionData, setSessionData] = useState(null);
+ useEffect(()=>{
+  const data = sessionStorage.getItem('sessionData');
+  if(data){
+    setSessionData(JSON.parse(data));
+  }
+ },[])
+ 
+
   const [showDropdown, setShowDropdown] = useState(false);
   const handleDropdownToggle = () => {
       setShowDropdown(!showDropdown);
@@ -97,7 +102,7 @@ const LayoutAdmin=({children})=> {
               <a href="#" onClick={() => navigate('/Account')}>
                 <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
               </a>
-              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:sessionData})}>
                 <i className="fa fa-user" aria-hidden="true"></i> Account
               </a>
 
@@ -132,67 +137,67 @@ const LayoutAdmin=({children})=> {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Home</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/EmployeeAdmin',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/EmployeeAdmin',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Employee</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/ManagerAdminCustomer',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Customer</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/Supplier',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Supplier</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Color',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/Color',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Color</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/Inorder',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">In Order</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/OutOrder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/OutOrder',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Out Order</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/ShowContact',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/ShowContact',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Contact</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/RequestWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/RequestWareHouse',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Request WareHouse</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/RequestSupplier',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/RequestSupplier',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Request Supplier</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/ShowCarWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/ShowCarWareHouse',{state:sessionData})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car WareHouse</span>
     </a>

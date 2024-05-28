@@ -36,28 +36,28 @@ namespace server.Services
 
         public dynamic ShowCarWareHouse(int idShowroom)
         {
-            return databaseContext.SubWarehouseShowrooms.Where(d => d.IdShowroom == idShowroom).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==idShowroom)).Select(d => new
             {
-                id = d.IdCarNavigation.Id,
-                Name = d.IdCarNavigation.Name,
-                Model = d.IdCarNavigation.IdModelNavigation.Name,
-                ColorInSide = d.IdCarNavigation.IdColorInSideNavigation.Name,
-                ColorOutSide = d.IdCarNavigation.IdColorOutSideNavigation.Name,
-                NumberofSeat = d.IdCarNavigation.NumberOfSeat,
-                Version = d.IdCarNavigation.IdVersionNavigation.ReleaseYear,
-                Price = d.IdCarNavigation.Price,
-                Weight = d.IdCarNavigation.Weight,
-                SpeedAbillity = d.IdCarNavigation.SpeedAbility,
-                MaxSpeed = d.IdCarNavigation.MaxSpeed,
-                Form = d.IdCarNavigation.IdFormNavigation.Name,
-                HeightBetween = d.IdCarNavigation.HeightBetween,
-                Condition = d.IdCarNavigation.Condition,
-                Drivertrain = d.IdCarNavigation.Drivertrain,
-                Fuetype = d.IdCarNavigation.FuelType,
-                Engine = d.IdCarNavigation.Engine,
-                MotorSize = d.IdCarNavigation.MotorSize,
-                Bhp = d.IdCarNavigation.Bhp,
-                Picture = databaseContext.Photos.Where(m => m.IdCar == d.IdCarNavigation.Id && m.Status == 0).Select(m => new
+                id=d.Id,
+                Name=d.Name,
+                Model=d.IdModelNavigation.Name,
+                ColorInSide=d.IdColorInSideNavigation.Name,
+                ColorOutSide=d.IdColorOutSideNavigation.Name,
+                NumberofSeat=d.NumberOfSeat,
+                Version=d.IdVersionNavigation.ReleaseYear,
+                Price=d.Price,
+                Weight=d.Weight,    
+                SpeedAbillity=d.SpeedAbility,
+                MaxSpeed=d.MaxSpeed,
+                Form=d.IdFormNavigation.Name,
+                HeightBetween=d.HeightBetween,
+                Condition=d.Condition,
+                Drivertrain=d.Drivertrain,
+                Fuetype=d.FuelType,
+                Engine=d.Engine,
+                MotorSize=d.MotorSize,
+                Bhp=d.Bhp,
+                Picture=databaseContext.Photos.Where(m=>m.IdCar==d.Id && m.Status == 0).Select(m => new
                 {
                     PictureLink = configuration["ImageUrl"] + m.Link,
                 }).FirstOrDefault(),
@@ -86,6 +86,10 @@ namespace server.Services
                 {
                     PictureLink = configuration["ImageUrl"] + m.Link,
                 }).FirstOrDefault(),
+                idshowRoom = databaseContext.SubWarehouseShowrooms.Where(m => m.IdCar == d.Id).Select(m => new
+                {
+                    idshowroomCar=m.IdShowroom,
+                }).ToList(),
             }).ToList();
         }
 

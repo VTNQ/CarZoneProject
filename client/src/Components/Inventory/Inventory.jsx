@@ -10,6 +10,7 @@ function Inventory() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const navigate = useNavigate();
+    
     const fetchCar = async () => {
         try {
 
@@ -47,6 +48,18 @@ function Inventory() {
         });
     }, []);
     const [sliderValues, setSliderValues] = useState([minPrice, maxPrice]);
+    const[ShowRoom,setShowRoom]=useState([]);
+    useEffect(()=>{
+        const fetchData=async()=>{
+            try{
+                const response=await axios.get("http://localhost:5278/api/WareHouse/GetShowroom");
+                setShowRoom(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchData();
+    },[])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -60,7 +73,10 @@ function Inventory() {
         fetchdata()
     }, [])
     const [SelectBrand, SetSelectBrand] = useState('');
-
+    const [SelectShowRoom,setSelectShowRoom]=useState('');
+    const handleChangeSelectShowRoom=(event)=>{
+        setSelectShowRoom(event.target.value)
+    }
     
     const handleSelectBrand = (event) => {
         SetSelectBrand(event.target.value)
@@ -191,12 +207,15 @@ function Inventory() {
     const filterCar = sortedProducts.filter((product) => {
 
         const includesSearchTerm = product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
+        const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
         // Otherwise, check if SelectBrand includes the product's branch
-        if (SelectBrand == '' && SelectCondition == '' && SelectModel == '') {
+        if (SelectBrand == '' && SelectCondition == '' && SelectModel == '' &&  SelectShowRoom == '') {
             return true;
         }
-        return SelectModel.includes(product.idModel) && SelectBrand.includes(product.branch) && includesSearchTerm &&  product.price >= sliderValues[0] && product.price <= sliderValues[1];
+       
+        return SelectModel.includes(product.idModel) && SelectBrand.includes(product.branch) && includesSearchTerm &&  product.price >= sliderValues[0] && product.price <= sliderValues[1] && matchesShowRoom;
     });
+  console.log(filterCar)
     const handleOpen = (id) => {
         setOpen(prevOpen => {
             const newOpen = !prevOpen;
@@ -277,6 +296,20 @@ function Inventory() {
                                                             </div>
                                                             <form action="">
                                                                 <div className="ap-search-item uk-margin uk-first-column">
+                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
+                                                                       Show Room
+                                                                    </label>
+                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
+                                                                        <div className="acf-taxonomy-field">
+                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectShowRoom} onChange={handleChangeSelectShowRoom}>
+                                                                                {ShowRoom.map(item => (
+                                                                                    <option value={item.id}>{item.name}</option>
+                                                                                ))}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="ap-search-item uk-margin uk-first-column"  style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Product Type
                                                                     </label>

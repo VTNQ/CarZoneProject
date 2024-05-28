@@ -4886,11 +4886,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+      "projectUniqueName": "D:\\CarZoneProject\\server\\server.csproj",
       "projectName": "server",
-      "projectPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+      "projectPath": "D:\\CarZoneProject\\server\\server.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\",
+      "outputPath": "D:\\CarZoneProject\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4913,6 +4913,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

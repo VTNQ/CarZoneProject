@@ -11,6 +11,13 @@ function ManagerAdminCustomer() {
     const handleDob = (date) => {
         setDob(date);
     }
+    const[sessionData,setSessionData]=useState(null);
+      useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, []);
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const [IsCloginImage, setIsClosingImage] = useState(false)
     const [isPopupVisible, setPopupVisibility] = useState(false);
