@@ -114,11 +114,20 @@ namespace server.Services
 
         public dynamic ShowContract(int id)
         {
-            return _dbContext.Contracts.Where(d => d.IdOrder == id).Select(d => new
+            var contracts=_dbContext.Contracts.Where(d => d.IdOrder == id).Select(d => new
             {
                 Condition = d.Condition,
                 CreateDate = d.CreatedDate,
             }).FirstOrDefault();
+            if (contracts != null)
+            {
+                return contracts;
+            }
+            else
+            {
+                return "Not Data";
+            }
+            
         }
 
         public dynamic ShowCustomer()
@@ -140,7 +149,7 @@ namespace server.Services
 
         public dynamic ShowOutOrder(int id)
         {
-           return _dbContext.OutOrders.Where(d => d.IdEmployee == id).Select(d => new
+           return _dbContext.OutOrders.OrderByDescending(d=>d.Id).Where(d => d.IdEmployee == id).Select(d => new
            {
                id=d.Id,
                Customer=d.IdCustomerNavigation.FullName,
@@ -154,7 +163,7 @@ namespace server.Services
                {
                    idorder=m.IdOrder,
                }).FirstOrDefault(),
-           }).ToList();
+           }).OrderByDescending(arg => arg.id).ToList();
         }
 
         public async Task UpdateOrderStatus()

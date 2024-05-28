@@ -20,6 +20,7 @@ namespace server.Services
         Task<IEnumerable<dynamic>> DetailWareHouseCar(int id);
         Task<IEnumerable<dynamic>> CompareCar(int id);
         Task<IEnumerable<dynamic>> GetCarToWareHouse();
+       
      
     }
 }

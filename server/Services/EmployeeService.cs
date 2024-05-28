@@ -9,5 +9,6 @@ namespace server.Services
         public bool UpdateEmployee(int id,UpdateEmployee updateEmployee);
         public bool ResetPasswordEmployee(int id);
         public dynamic FindByID(int id);
+        public dynamic ShowContract(int id);
     }
 }

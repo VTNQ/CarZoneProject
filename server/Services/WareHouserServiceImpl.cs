@@ -86,6 +86,10 @@ namespace server.Services
                 {
                     PictureLink = configuration["ImageUrl"] + m.Link,
                 }).FirstOrDefault(),
+                idshowRoom = databaseContext.SubWarehouseShowrooms.Where(m => m.IdCar == d.Id).Select(m => new
+                {
+                    idshowroomCar=m.IdShowroom,
+                }).ToList(),
             }).ToList();
         }
 

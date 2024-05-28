@@ -138,5 +138,23 @@ namespace server.Services
                 return "Not Exist";
             }
         }
+        public dynamic ShowContract(int id)
+        {
+            var contracts=databaseContext.Contracts.Where(d => d.IdOrderNavigation.IdEmployee == id).Select(d => new
+            {
+                Condition = d.Condition,
+                CreateDate = d.CreatedDate,
+            }).FirstOrDefault();
+            if (contracts != null)
+            {
+                return contracts;
+            }
+            else
+            {
+                return "Not Data";
+            }
+            
+        }
+
     }
 }

@@ -17,7 +17,7 @@ namespace server.Services
               NameCustomer=d.NameCustomer,
               EmailCustomer=d.EmailCustomer,
               Description=d.Description,
-          }).ToList();
+          }).OrderByDescending(arg=>arg.id).ToList();
         }
     }
 }

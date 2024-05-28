@@ -10,6 +10,7 @@ function ShowContract() {
     const [Contract, setContract] = useState([])
     const index=1;
     const[sessionData,setSessionData]=useState(null);
+    
     useEffect(() => {
       const data = sessionStorage.getItem('sessionData');
       if (data) {
@@ -19,13 +20,19 @@ function ShowContract() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.idOrder}`)
-                setContract(response.data)
+                if(sessionData.idOrder==undefined){
+                    const response = await axios.get(`http://localhost:5278/api/Employee/ShowContract/${sessionData.ID}`)
+                    setContract(response.data)
+                }else{
+                    const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.idOrder}`);
+                    setContract(response.data)
+                }
+             
             } catch (error) {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.idOrder){
+        if(sessionData && sessionData.ID){
             fetchdata();
         }
       
