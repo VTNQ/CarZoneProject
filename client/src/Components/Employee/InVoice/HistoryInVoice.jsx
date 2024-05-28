@@ -27,15 +27,19 @@ function HistoryInVoice() {
   useEffect(()=>{
     const fetchdata=async()=>{
         try{
-            const response=await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${FromData.id}`);
+            const response=await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder`);
             setDetailOrder(response.data)
         }catch(error){
 
         }
     }
     fetchdata();
-  },[FromData.id])
- 
+  },[])
+  const filterDetailOrder=DetailOrder.filter(Detail=>
+    Detail.idorder.toString().toLowerCase().includes(FromData.id.toString().toLowerCase())
+ )
+
+
     const indexOflastInVoice = (currentPage + 1) * perPage;
     const indexOfFirtInVoice = indexOflastInVoice - perPage;
     const[isPopupVisible,setPopupVisibility]=useState(false)
@@ -159,23 +163,22 @@ function HistoryInVoice() {
                         </div>
                         <div className="tab-container">
                         <div className="tabs">
-                        {DetailOrder.map((order,index)=>(
+                        {filterDetailOrder.map((order,index)=>(
                             <button key={index}     className={`tab ${ActiveTab === index ? 'active' : ''}`} onClick={()=>handleTabChange(index)}>
                                 {order.car}
                             </button>
                         ))}
                      </div>
                      <div className="tab-content">
-                        {DetailOrder.map((order,index)=>(
-                            ActiveTab==index &&(
-                                <div key={index} className='details-content'>
-                                    <h4>Car Information</h4>
-                                    <p><strong>Delivery Date:</strong>{new Date(order.deliveryDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
-                                    <p><strong>Price:</strong>{order.price}$</p>
-                                    <p><strong>Tax:</strong>{order.tax}</p>
-                                </div>
-                            )
-                        ))}
+                     {filterDetailOrder[ActiveTab] && (
+                        <div>
+                            <h4>Car Information</h4>
+                                    <p><strong>Delivery Date:</strong>{new Date(filterDetailOrder[ActiveTab].deliveryDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                                    <p><strong>Price:</strong>{filterDetailOrder[ActiveTab].price}$</p>
+                                    <p><strong>Tax:</strong>{filterDetailOrder[ActiveTab].tax}</p>
+                         
+                        </div>
+                    )}
                      </div>
                         </div>
                   

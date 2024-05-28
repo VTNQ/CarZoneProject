@@ -22,6 +22,10 @@ public partial class Suplier
 
     public int IdCountry { get; set; }
 
+    [StringLength(200)]
+    [Unicode(false)]
+    public string Email { get; set; } = null!;
+
     [ForeignKey("IdCountry")]
     [InverseProperty("Supliers")]
     public virtual Country IdCountryNavigation { get; set; } = null!;

@@ -117,5 +117,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("ShowContract/{id}")]
+        public IActionResult ShowContract(int id)
+        {
+            try
+            {
+                return Ok(employeeService.ShowContract(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

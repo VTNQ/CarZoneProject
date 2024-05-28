@@ -9,5 +9,6 @@ namespace server.Services
         public dynamic ShowRequestWareHouse();
         public dynamic ShowSupplier();
         public dynamic ShowRequestSupplier(string fullname);
+        public bool UpdateRequest(int id);
     }
 }

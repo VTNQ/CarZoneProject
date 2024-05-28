@@ -21,6 +21,9 @@ namespace server.Controllers
         {
             try
             {
+                if(databaseContext.Cars.Any(d=>d.IdColorInSide==id || d.IdColorOutSide==id)) {
+                    return BadRequest(new { message = "Color Delete Failed" });
+                }
                 return Ok(new
                 {
                     result = colorService.DeleteColor(id)

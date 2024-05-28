@@ -53,25 +53,35 @@ function RequestSupplier() {
     }, [])
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ to: SelectSupplier?.value, from: username, type: false, description: FromData.Description })
+        if (SelectSupplier?.value == null || FromData.Description == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
             })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add success',
-                    showConfirmButton: false,
-                    timer: 1500,
+        } else {
+            try {
+                const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
+                    method: 'Post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ to: SelectSupplier?.value, from: username, type: false, description: FromData.Description })
                 })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
+
     }
     const handleDescriptionChange = (value) => {
         setFromData({
@@ -107,7 +117,7 @@ function RequestSupplier() {
     const closingAnimation = {
         animation: 'flipright 0.5s forwards',
     };
- 
+
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);

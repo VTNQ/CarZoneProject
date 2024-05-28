@@ -33,5 +33,7 @@ namespace server.Data
         public bool OffRoad { get; set; }
         public DateOnly DateAccept {  get; set; }
         public float HeightBetween {  get; set; }
+        public IFormFile MainPhoto { get; set; }
+        public List<IFormFile> SubPhotos { get; set; } = new List<IFormFile>();
     }
 }

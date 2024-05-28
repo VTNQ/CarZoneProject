@@ -47,7 +47,9 @@ export const CarSpm = () => {
         MaxSpeed: '',
         OffRoad: false,
         DateAccept: '',
-        heightBetween: ''
+        heightBetween: '',
+        MainPhoto: null,
+        SubPhotos: []
     });
 
     // fetch car api
@@ -55,7 +57,6 @@ export const CarSpm = () => {
         try {
             const response = await axios.get('http://localhost:5278/api/Car/getCar');
             setCarDataApi(response.data);
-            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -83,7 +84,6 @@ export const CarSpm = () => {
                 value: color.id,
                 label: color.name,
                 color: color.name
-                
             }));
             setColorOutsideApi(colorOptions);
             setColorInsideApi(colorOptions);
@@ -128,7 +128,6 @@ export const CarSpm = () => {
                 value: model.id,
                 label: model.name
             }));
-            console.log("Model options: ", modelOptions); // Add log to debug
             setModelApi(modelOptions);
             setSelectedModel(null);
         } catch (error) {
@@ -209,9 +208,49 @@ export const CarSpm = () => {
             </div>
         </components.Option>
     );
+    const [imagePreView,setImagePreView] = useState(null);
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const render = new FileReader();
+            render.onloadend = () => {
+                setImagePreView(render.result);
+            }
+
+            render.readAsDataURL(file);
+            setCarForm({
+                ...CarForm,
+                MainPhoto: file,
+            });
+        }
+    }
+    const [subPhotoPreviews, setSubPhotoPreviews] = useState([]);
+
+    const handleImageChangeSubphoto = (event) => {
+        const files = event.target.files;
+        let subPhotos = [];
+        let subPhotoPreviewsTemp = [];
+        for (let i = 0; i < files.length; i++) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                subPhotoPreviewsTemp.push(reader.result);
+                if (subPhotoPreviewsTemp.length === files.length) {
+                    setSubPhotoPreviews(subPhotoPreviewsTemp);
+                }
+            };
+            reader.readAsDataURL(files[i]);
+            subPhotos.push(files[i]);
+        }
+        setCarForm({
+            ...CarForm,
+            SubPhotos: subPhotos
+        });
+    };
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(CarForm.Name === '' || CarForm.Price === ''){
+    
+        if (CarForm.Name === '' || CarForm.Price === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'empty field',
@@ -220,63 +259,67 @@ export const CarSpm = () => {
             return;
         }
     
-        const formData = {
-            Name: CarForm.Name,
-            IdModel: CarForm.IdModel,
-            Condition: CarForm.Condition,
-            Engine: CarForm.Engine,
-            Drivertrain: CarForm.Drivertrain,
-            FuelType: CarForm.FuelType,
-            MotorSize: CarForm.MotorSize,
-            Bhp: CarForm.Bhp,
-            IdColorOutSide: CarForm.IdColorOutside,
-            IdColorInSide: CarForm.IdColorInside,
-            Length: CarForm.Length,
-            Height: CarForm.Height,
-            Width: CarForm.Width,
-            NumberOfSeat: CarForm.NumberOfSeat,
-            Mileage: CarForm.Mileage,
-            Transmission: CarForm.Transmisstion,
-            IdVersion: CarForm.IdVersion,
-            IdForm: CarForm.IdForm,
-            Price: CarForm.Price,
-            FuelConsumption: CarForm.FuelConsumption,
-            Weight: CarForm.Weight,
-            SpeedAbility: CarForm.SpeedAbility,
-            MaxSpeed: CarForm.MaxSpeed,
-            OffRoad: CarForm.OffRoad,
-            HeightBetween: CarForm.heightBetween
-        };
+        const formData = new FormData();
+        formData.append("Name", CarForm.Name);
+        formData.append("IdModel", CarForm.IdModel);
+        formData.append("Condition", CarForm.Condition);
+        formData.append("Engine", CarForm.Engine);
+        formData.append("Drivertrain", CarForm.Drivertrain);
+        formData.append("FuelType", CarForm.FuelType);
+        formData.append("MotorSize", CarForm.MotorSize);
+        formData.append("Bhp", CarForm.Bhp);
+        formData.append("IdColorOutSide", CarForm.IdColorOutside);
+        formData.append("IdColorInSide", CarForm.IdColorInside);
+        formData.append("Length", CarForm.Length);
+        formData.append("Height", CarForm.Height);
+        formData.append("Width", CarForm.Width);
+        formData.append("NumberOfSeat", CarForm.NumberOfSeat);
+        formData.append("Mileage", CarForm.Mileage);
+        formData.append("Transmission", CarForm.Transmission);
+        formData.append("IdVersion", CarForm.IdVersion);
+        formData.append("IdForm", CarForm.IdForm);
+        formData.append("Price", CarForm.Price);
+        formData.append("FuelConsumption", CarForm.FuelConsumption);
+        formData.append("Weight", CarForm.Weight);
+        formData.append("SpeedAbility", CarForm.SpeedAbility);
+        formData.append("MaxSpeed", CarForm.MaxSpeed);
+        formData.append("OffRoad", CarForm.OffRoad);
+        formData.append("HeightBetween", CarForm.heightBetween);
+        formData.append("MainPhoto", CarForm.MainPhoto);
     
-        console.log("Form Data before sending: ", JSON.stringify(formData)); // In ra dữ liệu formData trước khi gửi
+        for (let i = 0; i < CarForm.SubPhotos.length; i++) {
+            formData.append("SubPhotos", CarForm.SubPhotos[i]);
+        }
     
-        const response = await fetch('http://127.0.0.1:5278/api/Car/addCar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
+        console.log("Form Data before sending:", Object.fromEntries(formData.entries()));
     
-        if (response.ok) {
-            Swal.fire({
-                icon: 'success',
-                title: 'add car success',
-                timer: 1500
+        try {
+            const response = await fetch('http://127.0.0.1:5278/api/Car/addCar', {
+                method: 'POST',
+                body: formData
             });
-            fetchDataCar();
-        } else {
-            console.log("Form Data after failure: ", JSON.stringify(formData)); // In lại dữ liệu formData khi thất bại
-            Swal.fire({
-                icon: 'error',
-                title: 'add car failed',
-                timer: 1500
-            });
+    
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'add car success',
+                    timer: 1500
+                });
+                fetchDataCar();
+            } else {
+                const responseBody = await response.json();
+                console.log("Form Data after failure: ", responseBody); // In lại dữ liệu formData khi thất bại
+                Swal.fire({
+                    icon: 'error',
+                    title: 'add car failed',
+                    timer: 1500
+                });
+            }
+        } catch (error) {
+            console.error("Error: ", error);
         }
     };
     
-    
-
     return (
         <div className="main-panel">
             <div className="content-wrapper">
@@ -333,6 +376,24 @@ export const CarSpm = () => {
                                                     <input type="text" name="Width" value={CarForm.Width} onChange={handleInputChange} className="form-control" id="width" placeholder="Width" />
                                                     <input type="text" name="Height" value={CarForm.Height} onChange={handleInputChange} className="form-control" id="height" placeholder="Height" />
                                                 </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label>Main Photo</label>
+                                                <input type="file" className="form-control" id='mainPhoto' name='MainPhoto' onChange={handleImageChange} />
+                                                {imagePreView && (
+                                                    <div className="image-preview">
+                                                        <img src={imagePreView} alt="Preview" className="preview-image" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="form-group">
+                                                <label>Sub Photos</label>
+                                                <input type="file" className="form-control" id='subPhotos' name='SubPhotos' multiple onChange={handleImageChangeSubphoto} />
+                                                {subPhotoPreviews.map((photo, index) => (
+                                                    <div key={index} className="image-preview">
+                                                        <img src={photo} alt={`Sub Photo ${index + 1}`} className="preview-image" />
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
                                         <div className="col-md-6">
@@ -447,7 +508,7 @@ export const CarSpm = () => {
                             <div className="card-body">
                                 <div className='flex gap-[30px] items-center'>
                                     <h4 className="card-title">Car Table</h4>
-                                    <button className="btn btn-dark btn-icon-text">Car Page</button>
+                                    <button className="btn btn-dark btn-icon-text" onClick={()=>navigate('/superadmin/carTable')}>Car Page</button>
                                 </div>
                                 <p className="card-description">Hi Superadmin! How are you doing?</p>
                                 <div className="table-responsive">

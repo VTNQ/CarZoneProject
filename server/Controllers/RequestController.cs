@@ -13,6 +13,19 @@ namespace server.Controllers
         public RequestController(RequestService requestService) { 
         _requestService = requestService;
         }
+        [HttpPut("UpdateRequest/{id}")]
+        [Produces("application/json")]
+        public IActionResult UpdateRequest(int id)
+        {
+            try
+            {
+                return Ok(_requestService.UpdateRequest(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("AddRequest")]
         [Produces("application/json")]
         [Consumes("application/json")]

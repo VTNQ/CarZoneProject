@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LayoutAdmin from "../Admin/Layout/Layout";
+import LayoutAdmin from "../Layout/Layout";
 import { ChromePicker } from 'react-color'
 import Swal from 'sweetalert2';
 import axios from "axios";
@@ -113,6 +113,8 @@ function Color() {
                         timer: 1500,
                     })
                     setColor('')
+                    const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
+                    setShowColor(response.data)
                 }else{
                     const responseBody = await response.json();
                     if (responseBody.message) {

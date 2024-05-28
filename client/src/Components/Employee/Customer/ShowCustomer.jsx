@@ -85,6 +85,84 @@ function ShowCustomer() {
         }
         setPopupVisibility(true)
     }
+    const handleUpdateChange = (date) => {
+        setFromData({
+            UpdateDOB:date
+        })
+    }
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        if (FromData.UpdateName==''  || FromData.UpdateEmail == '' || FromData.UpdateAdress == '' || FromData.UpdatePhone == '' || FromData.UpdateDOB == null) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else if (FromData.UpdatePhone.length != 10) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Phone requires 10 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
+            const vietnamStartDate = new Date(FromData.UpdateDOB.getTime() + offsetInMilliseconds);
+
+            try {
+                const response = await fetch(`http://localhost:5278/api/Customer/UpdateCustomer/${FromData.id}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullName: FromData.UpdateName,
+                        email: FromData.UpdateEmail,
+                        address: FromData.UpdateAdress,
+                        phone: FromData.UpdatePhone,
+                        dob: vietnamStartDate.toISOString().split('T')[0]
+                    })
+
+                })
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Update Customer Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setFromData({
+                        UpdateName: '',
+                        UpdateEmail: '',
+                        id: '',
+                        UpdateAdress: '',
+                        UpdatePhone: '',
+                        UpdateIdentityCode: '',
+                        UpdateDOB:''
+                    })
+                    const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
+                    setCustomer(response.data)
+                    
+                    setPopupVisibility(false)
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+    }
     return (
         <>
             <LayoutEmployee>
@@ -195,6 +273,7 @@ function ShowCustomer() {
                                     <label className='float-left'>Birthday</label>
                                     <DatePicker name='Birthday' dateFormat="dd/MM/yyyy"
                                         className="form-control w-[100%]"
+                                        onChange={handleUpdateChange}
                                         selected={FromData.UpdateDOB}
                                         placeholderText="Select Birthday"
                                         showYearDropdown

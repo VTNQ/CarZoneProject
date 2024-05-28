@@ -18,7 +18,7 @@ namespace server.Controllers
         }
         [HttpPost("addCar")]
         [Produces("application/json")]
-        public IActionResult addCar([FromBody]AddCar addCar)
+        public IActionResult addCar([FromForm] AddCar addCar)
         {
             try
             {

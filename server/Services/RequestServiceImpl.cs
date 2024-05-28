@@ -53,6 +53,7 @@ namespace server.Services
                
                Creadate=d.CreateDay,
                Decription=d.Description,
+               status=d.Status,
            }).ToList(); 
         }
 
@@ -72,6 +73,23 @@ namespace server.Services
                id=d.Id,
                Name=d.Name,
            }).ToList(); 
+        }
+
+        public bool UpdateRequest(int id)
+        {
+            try
+            {
+                var Request=databaseContext.Requests.Find(id);
+                if (Request != null)
+                {
+                    Request.Status=true;
+                }
+                return databaseContext.SaveChanges()>0;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

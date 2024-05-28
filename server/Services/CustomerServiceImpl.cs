@@ -57,7 +57,7 @@ namespace server.Services
                 Email=d.Email,
                 IndentityCode=d.IndentityCode,
                 Sign= configuration["ImageUrl"]+d.Sign,
-            }).ToList();
+            }).OrderByDescending(arg=>arg.Id).ToList();
         }
 
         public bool UpdateCustomer(int id,UpdateCustomer updateCustomer)

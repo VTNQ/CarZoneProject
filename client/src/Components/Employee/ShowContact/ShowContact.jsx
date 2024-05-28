@@ -51,12 +51,8 @@ return(
                                             <tr>
                                                 <th> # </th>
                                                 <th> Name Customer </th>
-
                                                 <th> Email Customer </th>
                                                 <th> Description</th>
-                                             
-
-
                                             </tr>
                                         </thead>
                                         <tbody>

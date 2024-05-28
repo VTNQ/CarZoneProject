@@ -24,8 +24,8 @@ const LayoutEmployee=({children})=>{
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <a class="navbar-brand brand-logo me-5" href="index.html"><img src={logo} class="me-2" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+    <a class="navbar-brand brand-logo me-5" onClick={()=>navigate("/Employee/Dashboard")}><img src={logo} class="me-2" alt="logo" /></a>
+    <a class="navbar-brand brand-logo-mini" onClick={()=>navigate("/Employee/Dashboard")}><img src="assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -131,7 +131,7 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/InVoice/HistoryInVoice', {
+                  <a className="nav-link" onClick={() => navigate('/Invoice/HistoryInVoice', {
                     state: {
                       ID: ID,
                       fullName: username,
@@ -154,6 +154,32 @@ const LayoutEmployee=({children})=>{
                   })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Order</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" onClick={() => navigate('/Employee/ShowContact', {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">Contact</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" onClick={() => navigate(`/Employee/ShowContract/${ID}`, {
+                    state: {
+                      ID: ID,
+                      fullName: username,
+                      email: email,
+                      idShowroom: idShowroom
+                    }
+                  })}>
+                    <i className="icon-grid menu-icon"></i>
+                    <span className="menu-title">Contract</span>
                   </a>
                 </li>
               </ul>

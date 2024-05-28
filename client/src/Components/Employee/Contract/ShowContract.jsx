@@ -16,7 +16,7 @@ function ShowContract() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${idOrder}`)
+                const response = await axios.get(`http://localhost:5278/api/Employee/ShowContract/${ID}`)
                 setContract(response.data)
             } catch (error) {
                 console.log(error)
@@ -38,7 +38,7 @@ function ShowContract() {
                                         <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
                                         onClick={()=>navigate("/Employee/HistoryOrder",{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}
-                                        >Back
+                                        >Add Contract
                                         </button>
                                         <p class="card-description">
                                         </p>

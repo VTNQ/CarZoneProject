@@ -28,6 +28,11 @@ namespace server.Controllers
                 {
                     return BadRequest(new { message = "Name already Exist" });
                 }
+                if(databaseContext.Supliers.Any(d=>d.Email== addSupplier.Email))
+                {
+
+                    return BadRequest(new { message = "Email already Exist" });
+                }
                 return Ok(new
                 {
                     result = supplierService.AddSupplier(addSupplier)
@@ -41,6 +46,10 @@ namespace server.Controllers
         [HttpDelete("DeleteSupplier/{id}")]
         public IActionResult DeleteSupplier(int id)
         {
+            if (databaseContext.InOrders.Any(d => d.IdSuplier == id))
+            {
+                return BadRequest(new { message = "Delete Supplier Exist" });
+            }
             try
             {
                 return Ok(new
@@ -59,6 +68,10 @@ namespace server.Controllers
         {
             try
             {
+                if(databaseContext.Supliers.Any(d=>d.Email == updateSupplier.Email && d.Id != id))
+                {
+                    return BadRequest(new { message = "Email already Exist" });
+                }
                 if(databaseContext.Supliers.Any(d=>d.Name==updateSupplier.Name && d.Id != id))
                 {
                     return BadRequest(new { message = "Name already Exist" });

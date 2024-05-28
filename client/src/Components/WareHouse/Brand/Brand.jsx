@@ -64,10 +64,20 @@ function Brand() {
                     Logo: null,
                     HeadQuartes: '',
                 })
-                setSelectCountry(null)
+                setSelectCountry("")
                 document.getElementById('Logo').value = '';
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                 setBrand(response.data)
+            }else{
+                const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
             }
         } catch (error) {
             console.log(error)
@@ -244,6 +254,7 @@ function Brand() {
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Country</label>
                                                 <select className="form-select" aria-label="Default select example" value={SelectCountry} onChange={HandleSelectCountry}>
+                                                    <option value="">Select Country</option>
                                                     {Country.map((country, index) => (
                                                         <option value={country.id} >{country.name}</option>
                                                     ))}

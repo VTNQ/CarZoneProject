@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Pagination from 'react-paginate';
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,6 +13,36 @@ function DetailInventory() {
         height: '100vh',
         width: '100%',
     }
+    const [isPopupVisible, setPopupVisibility] = useState(false);
+    const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const closingAnimation = {
+        animation: 'flipright 0.5s forwards',
+    };
+    const handlePopup=(ID)=>{
+        const SelectCar=DetailCar.find(Detail=>Detail.id==ID);
+        console.log(SelectCar)
+        if(SelectCar){
+            FromData.Image=SelectCar.picture.pictureLink;
+            FromData.name=SelectCar.name;
+            FromData.Price=SelectCar.price;
+            FromData.BHP=SelectCar.bhp;
+            FromData.motorSize=SelectCar.motorSize;
+            FromData.fueType=SelectCar.fuetype;
+            FromData.driveTrain=SelectCar.driveTrain;
+            FromData.engine=SelectCar.engine;
+            FromData.transmission=SelectCar.transmission;
+            FromData.numberSeat=SelectCar.numberofSeat;
+            FromData.condition=SelectCar.condition;
+            FromData.mileage=SelectCar.mileage;
+            FromData.dateAccept=SelectCar.dateAccept;
+            FromData.model=SelectCar.model;
+        }
+        
+        setPopupVisibility(true)
+    }
+    const handlePageclick = (data) => {
+        setCurrentPage(data.selected);
+    };
     const navigate = useNavigate();
     const location = useLocation();
     const ID = location.state?.ID || '';
@@ -61,12 +92,65 @@ function DetailInventory() {
         }
     }
     const [Car, setCar] = useState([])
+
+    const [DetailCar, setDetailCar] = useState([]);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/CompareCar/${ID}`);
+                setDetailCar(response.data.result)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [])
+
     const [ShowImage, setShowImage] = useState([]);
     const [FirstImage, setFirtImage] = useState('');
+    const handleClosepopup = () => {
+        setIsClosingPopup(true);
+        setTimeout(() => {
+
+            setFromData({
+                name:'',
+                Image:'',
+                Price:'',
+                BHP:'',
+                motorSize:'',
+                fueType:'',
+                driveTrain:'',
+                engine:'',
+                transmission:'',
+                numberSeat:'',
+                condition:'',
+                mileage:'',
+                dateAccept:'',
+                model:''
+            })
+
+            setPopupVisibility(false)
+            setIsClosingPopup(false)
+        }, 500);
+    }
     const [FromData, setFromData] = useState({
         Email: '',
         Name: '',
-        Message: ''
+        name:'',
+        Message: '',
+        Image:'',
+        Price:'',
+        BHP:'',
+        motorSize:'',
+        fueType:'',
+        driveTrain:'',
+        engine:'',
+        transmission:'',
+        numberSeat:'',
+        condition:'',
+        mileage:'',
+        dateAccept:'',
+        model:''
     })
     useEffect(() => {
         const fetchdata = async () => {
@@ -91,6 +175,7 @@ function DetailInventory() {
         }
         fetchdata();
     }, [])
+  
     const sliderRef = useRef(null);
     const slideSubRef = useRef(null);
     const gotoPrevSubRef = () => {
@@ -115,6 +200,7 @@ function DetailInventory() {
     const popupContentStyle = {
         display: 'flex',
         animation: 'fadeDown 0.5s ease-out',
+        zIndex: '1000',
     };
     const closepopup = {
         display: 'none',
@@ -405,6 +491,11 @@ function DetailInventory() {
             sliderRef.current.slickGoTo(index);
         }
     }
+    const [perPage, setperPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(0);
+    const indexOfLastCar = (currentPage + 1) * perPage;
+    const indexOfFirstCar = indexOfLastCar - perPage;
+    const currentCars = DetailCar.slice(indexOfFirstCar, indexOfLastCar);
     // Configuration for the slideshow
     const settings = {
         dots: true,
@@ -616,6 +707,40 @@ function DetailInventory() {
                                                                         <span> MAKE AN OFFER PRICE </span>
                                                                     </a>
                                                                 </div>
+                                                            </div>
+                                                            <div className="ap-single-price-box ap-single-side-box " style={{ width: '268%' }}>
+                                                                <div className="ap-single-price">
+                                                                    <div className="ap-single-price  uk-flex-between uk-flex-middle" style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+                                                                        {currentCars.map((car, index) => (
+                                                                            <div className="car-details">
+                                                                                <h3 className="car-name">{car.name}</h3>
+                                                                                <img src={car.picture.pictureLink} alt="Car Image" className="car-image" />
+                                                                                <button className="compare-button" onClick={()=>handlePopup(car.id)}>Compare</button>
+                                                                            </div>
+                                                                        ))}
+                                                                        <Pagination
+                                                                            previousLabel={'previous'}
+                                                                            nextLabel={'next'}
+                                                                            breakLabel={'...'}
+                                                                            pageCount={Math.ceil(currentCars.length / perPage)}
+                                                                            marginPagesDisplayed={2}
+                                                                            pageRangeDisplayed={5}
+                                                                            onPageChange={handlePageclick}
+                                                                            containerClassName={'pagination'}
+                                                                            activeClassName={'active'}
+                                                                            previousClassName={'page-item'}
+                                                                            previousLinkClassName={'page-link'}
+                                                                            nextClassName={'page-item'}
+                                                                            nextLinkClassName={'page-link'}
+                                                                            breakClassName={'page-item'}
+                                                                            breakLinkClassName={'page-link'}
+                                                                            pageClassName={'page-item'}
+                                                                            pageLinkClassName={'page-link'}
+
+                                                                        />
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                             <div className="ap-single-side-box ap-specs ap-box ap-group ap-group-auto-specifications" style={{ width: '268%' }}>
                                                                 <div className="widget-content">
@@ -1097,8 +1222,84 @@ function DetailInventory() {
                     </div>
                 </div>
             </div>
+            {isPopupVisible &&(
+         <div id="popup" class="popup " style={IsClosingPopup ? { ...popupContentStyle, ...closepopup } : popupContentStyle}>
+         <div class="popup-content">
+             <span id="closeButton" class="close" onClick={handleClosepopup}>&times;</span>
+             <h2>Compare Car</h2>
+             <div class="product-container">
+             <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>{Car.name}</th>
+                            <th>{FromData.name}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Image</td>
+                            <td><img src={Car.picture.pictureLink} alt="" style={{width:'50%'}} /></td>
+                            <td><img src={FromData.Image} style={{width:'50%'}} alt="" /></td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>{Car.price}$</td>
+                            <td>{FromData.Price}$</td>
+                        </tr>
+                        <tr>
+                            <td>BHP</td>
+                            <td>{Car.bhp}</td>
+                            <td>{FromData.BHP}</td>
+                        </tr>
+                        <tr>
+                            <td>MotorSize</td>
+                            <td>{Car.motorSize}</td>
+                            <td>{FromData.motorSize}</td>
+                        </tr>
+                        <tr>
+                            <td>Fuetype</td>
+                            <td>{Car.fueType}</td>
+                            <td>{FromData.fueType}</td>
+                        </tr>
+                      <tr>
+                        <td>Engine</td>
+                        <td>{Car.engine}</td>
+                        <td>{FromData.engine}</td>
+                      </tr>
+                      <tr>
+                        <td>Number Seat</td>
+                        <td>{Car.numberSeat}</td>
+                        <td>{FromData.numberSeat}</td>
+                      </tr>
+                      <tr>
+                        <td>Condition</td>
+                        <td>{Car.condition}</td>
+                        <td>{FromData.condition}</td>
+                      </tr>
+                      <tr>
+                        <td>Mileage</td>
+                        <td>{Car.mileage} mil</td>
+                        <td>{FromData.mileage} mil</td>
+                      </tr>
+                      <tr>
+                        <td>Year Accept</td>
+                        <td>{Car.dateAccept}</td>
+                        <td>{FromData.dateAccept}</td>
+                      </tr>
+                      <tr>
+                        <td>Model</td>
+                        <td>{Car.model}</td>
+                        <td>{FromData.model}</td>
+                      </tr>
+                    </tbody>
+                </table>
+             </div>
+         </div>
+     </div>
+    )}
         </>
-
+   
     )
 }
 export default DetailInventory;

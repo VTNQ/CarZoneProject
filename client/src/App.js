@@ -22,7 +22,7 @@ import { Customer } from './Components/Superadmin/Customer';
 import LayoutHomepage from './Components/Admin/Home/Homepage';
 import ManagerAdminCustomer from './Components/Admin/AddCustomer/ManagerAdminCustomer';
 import Supplier from './Components/Admin/Supplier/Supplier';
-import Color from './Components/Color/Color';
+import Color from './Components/Admin/Color/Color';
 import InOrder from './Components/Admin/InOrder/InOrder';
 import DetailInOrders from './Components/Admin/InOrder/DetailInOrder';
 import OutOrder from './Components/Admin/OutOrder/OutOrder';
@@ -55,6 +55,10 @@ import { ModelSpm } from './Components/Superadmin/bmw/Model';
 import { VersionSpm } from './Components/Superadmin/bmw/Version';
 import { CarSpm } from './Components/Superadmin/Car';
 import { FormSpm } from './Components/Superadmin/bmw/Form';
+import RequestWareHouse from './Components/WareHouse/Request/Request';
+import Model from './Components/WareHouse/Model/Model';
+import { CarTable } from './Components/Superadmin/Car/CarTable';
+import { CarDetail } from './Components/Superadmin/Car/CarDetail';
 function App() {
   return (
     <Router>
@@ -84,6 +88,7 @@ function App() {
                 <Route path='form' element={<FormSpm/>}></Route>
             </Route>
             <Route path='car' element={<CarSpm/>}/>
+            <Route path='carTable' element={<CarTable/>}/>
 
                 
             
@@ -102,6 +107,8 @@ function App() {
           <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
           <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
           <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
+          <Route path='RequestWareHouse' element={<RequestWareHouse/>}/>
+          <Route path='Model' element={<Model/>}/>
         </Route>
         <Route path='/Employee/'>
           <Route index path="Dashboard" element={<DashboardEmployee/>}/>

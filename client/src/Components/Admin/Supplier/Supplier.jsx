@@ -17,7 +17,9 @@ function Supplier() {
     const [FromData, setFromData] = useState({
         name: '',
         id: '',
-        UpdateName: ''
+        UpdateName: '',
+        Email:'',
+        UpdateEmail:'',
     })
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const popupContentStyle = {
@@ -55,6 +57,7 @@ function Supplier() {
         if (SelctSsupplier) {
             FromData.UpdateName = SelctSsupplier.name;
             FromData.id = SelctSsupplier.id;
+            FromData.UpdateEmail=SelctSsupplier.email;
             setUpdateSelectCountry(SelctSsupplier.idCountry)
             setUpdateSelectType(SelctSsupplier.type)
 
@@ -138,6 +141,16 @@ function Supplier() {
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
                     setSupplier(response.data)
 
+                }else{
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
                 }
             }
         } catch (error) {
@@ -146,7 +159,7 @@ function Supplier() {
     }
     const SubmitSupplier = async (event) => {
         event.preventDefault();
-        if (FromData.name == '' || SelectType?.label == null || SelectCountry?.value == null) {
+        if (FromData.name == '' || SelectType?.label == null || SelectCountry?.value == null  || FromData.Email=='') {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -163,7 +176,8 @@ function Supplier() {
                     body: JSON.stringify({
                         name: FromData.name,
                         type: SelectType?.label,
-                        idCountry: SelectCountry?.value
+                        idCountry: SelectCountry?.value,
+                        email:FromData.Email
                     })
                 })
                 if (response.ok) {
@@ -174,7 +188,8 @@ function Supplier() {
                         timer: 1500,
                     })
                     setFromData({
-                        name: ''
+                        name: '',
+                        Email:''
                     })
                     setSelectCountry(null)
                     SetSelectType(null)
@@ -199,10 +214,10 @@ function Supplier() {
     }
     const handleUpdate = async (event) => {
         event.preventDefault();
-        if (FromData.UpdateName == '') {
+        if (FromData.UpdateName == '' || FromData.UpdateEmail=='') {
             Swal.fire({
                 icon: 'error',
-                title: 'Name is Required',
+                title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
             })
@@ -216,7 +231,8 @@ function Supplier() {
                     body: JSON.stringify({
                         name: FromData.UpdateName,
                         type: UpdateSelectType,
-                        idCountry: UpdateSelectCountry
+                        idCountry: UpdateSelectCountry,
+                        email:FromData.UpdateEmail
                     })
 
                 })
@@ -231,11 +247,12 @@ function Supplier() {
                         id: '',
                         UpdateName: ''
                     })
+                    setPopupVisibility(false)
                     setUpdateSelectCountry(null);
                     setUpdateSelectType(null);
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
                     setSupplier(response.data)
-                    setPopupVisibility(false)
+                    
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -269,6 +286,10 @@ function Supplier() {
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Name</label>
                                                 <input type="text" class="form-control" value={FromData.name} onChange={(e) => setFromData({ ...FromData, name: e.target.value })} id="exampleInputUsername1" placeholder="Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername1">Email</label>
+                                                <input type="text" class="form-control" value={FromData.Email} onChange={(e) => setFromData({ ...FromData, Email: e.target.value })} id="exampleInputUsername1" placeholder="Email" />
                                             </div>
                                             <div class="form-group" >
                                                 <label for="exampleInputUsername1">Type</label>
@@ -312,6 +333,7 @@ function Supplier() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th>Name</th>
+                                                        <th>Email</th>
                                                         <th>Type</th>
                                                         <th>Country</th>
                                                         <th>Edit</th>
@@ -323,6 +345,7 @@ function Supplier() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{supplier.name}</td>
+                                                            <td>{supplier.email}</td>
                                                             <td>{supplier.type}</td>
                                                             <td>{supplier.country}</td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleEditClick(supplier.id)}>Edit</button></td>
@@ -388,8 +411,12 @@ function Supplier() {
                             <div className="box-body">
                                 {/* Form fields go here */}
                                 <div class="form-group">
-                                    <label className='float-left'>Full Name</label>
+                                    <label className='float-left'>Name</label>
                                     <input type="text" class="form-control" value={FromData.UpdateName} onChange={(e) => setFromData({ ...FromData, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label className='float-left'>Email</label>
+                                    <input type="text" class="form-control" value={FromData.UpdateEmail} onChange={(e) => setFromData({ ...FromData, UpdateEmail: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
 
                                 <div class="form-group">

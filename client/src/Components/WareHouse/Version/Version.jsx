@@ -2,32 +2,32 @@ import React, { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 import LayoutAdmin from "../Layout/Layout";
 import axios from "axios";
-import Pagination from 'react-paginate'; 
+import Pagination from 'react-paginate';
 function Version() {
     const [FromData, setFromData] = useState({
         releaseYear: ''
     })
-    const [Version,setVersion]=useState([])
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get("http://localhost:5278/api/Version/ShowVersion");
+    const [Version, setVersion] = useState([])
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/Version/ShowVersion");
                 setVersion(response.data)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
             }
         }
         fetchdata();
-    },[])
+    }, [])
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
-    const FilterVersion=Version.filter(ver=>
+    const FilterVersion = Version.filter(ver =>
         ver.relaseYear.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    const indexOflastVersion=(currentPage + 1) * perPage;
-    const indexOfFirtVersion=indexOflastVersion-perPage;
-    const currentVersion=FilterVersion.slice(indexOfFirtVersion,indexOflastVersion)
+    const indexOflastVersion = (currentPage + 1) * perPage;
+    const indexOfFirtVersion = indexOflastVersion - perPage;
+    const currentVersion = FilterVersion.slice(indexOfFirtVersion, indexOflastVersion)
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
@@ -48,17 +48,27 @@ function Version() {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                const response=await axios.get("http://localhost:5278/api/Version/ShowVersion");
+                const response = await axios.get("http://localhost:5278/api/Version/ShowVersion");
                 setVersion(response.data)
                 setFromData({
                     releaseYear: ''
                 })
+            } else {
+                const responseBody = await response.json();
+                if (responseBody.message) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: responseBody.message || 'Failed to add genre',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
             }
         } catch (error) {
             console.log(error)
         }
     }
-    const DeleteSubmit=async(ID)=>{
+    const DeleteSubmit = async (ID) => {
         try {
             const confirmation = await Swal.fire({
                 title: 'Are you sure?',
@@ -83,14 +93,24 @@ function Version() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    const response=await axios.get("http://localhost:5278/api/Version/ShowVersion");
+                    const response = await axios.get("http://localhost:5278/api/Version/ShowVersion");
                     setVersion(response.data)
 
+                } else {
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
                 }
             }
-         } catch(error){
+        } catch (error) {
             console.log(error)
-            }
+        }
     }
     return (
         <>
@@ -125,7 +145,7 @@ function Version() {
                                         <h4 class="card-title">Version</h4>
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}  placeholder="Enter Release Year" />
+                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Release Year" />
                                         </form>
                                         <p class="card-description">
                                         </p>
@@ -139,11 +159,11 @@ function Version() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {currentVersion.map((version,index)=>(
+                                                    {currentVersion.map((version, index) => (
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{version.relaseYear}</td>
-                                                            <td><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>DeleteSubmit(version.id)}>Delete</button></td>
+                                                            <td><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => DeleteSubmit(version.id)}>Delete</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
