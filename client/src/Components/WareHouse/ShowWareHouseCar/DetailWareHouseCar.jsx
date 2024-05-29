@@ -115,14 +115,9 @@ function DetailWareHousewarehouse() {
                                                         <th> Model </th>
                                                         <th> ColorInSize</th>
                                                         <th> ColorOutSize </th>
-                                                        <th>Number Seat</th>
-                                                        <th>Version</th>
+                                                      
                                                         <th>Price</th>
-                                                        <th>Weight</th>
-                                                        <th>Speed Ability</th>
-                                                        <th>Max Speed</th>
-                                                        <th>Form</th>
-                                                        <th>Height Between</th>
+                                                        
                                                         <th>Picture</th>
                                                         <th>Quantity</th>
 
@@ -153,14 +148,9 @@ function DetailWareHousewarehouse() {
                                                                     border: '1px solid #000',
                                                                     borderRadius: '40px'
                                                                 }}></div></td>
-                                                            <td>{warehouse.numberofSeat}</td>
-                                                            <td>{warehouse.version}</td>
+                                                          
                                                             <td>{warehouse.price}$</td>
-                                                            <td>{warehouse.weight}</td>
-                                                            <td>{warehouse.speedAbillity}</td>
-                                                            <td>{warehouse.maxSpeed}</td>
-                                                            <td>{warehouse.form}</td>
-                                                            <td>{warehouse.heightBetween}</td>
+                                                          
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleImageClick(warehouse.picture.pictureLink)}>Preview</button></td>
                                                             <td>{warehouse.totalCar}</td>
                                                         </tr>
