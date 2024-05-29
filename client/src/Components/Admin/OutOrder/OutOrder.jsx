@@ -365,7 +365,7 @@ function OutOrder() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th> Customer </th>
-
+                                                        
                                                         <th> Date of Sale </th>
                                                         <th> Total Amount</th>
                                                         <th> Total Tax </th>

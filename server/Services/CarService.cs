@@ -9,6 +9,6 @@ namespace server.Services
         Task<bool> updateCar(int id, UpdateCar updateCar);
         Task<bool> deleteCar(int carId);
 
-        
+        public dynamic findCarById(int carId);
     }
 }

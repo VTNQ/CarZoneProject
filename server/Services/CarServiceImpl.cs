@@ -25,6 +25,7 @@ namespace server.Services
             {
                 var car = new Car()
                 {
+
                     Name = addCar.Name,
                     IdModel = addCar.IdModel,
                     Condition = addCar.Condition,
@@ -156,6 +157,52 @@ namespace server.Services
             
         }
 
+        public dynamic findCarById(int carId)
+        {
+            return databaseContext.Cars.Where(c=>c.Id == carId).Select(c => new
+            {
+                Name = c.Name,
+                NameModel = c.IdModelNavigation.Name,
+                Condition = c.Condition,
+                Engine = c.Engine,
+                Drivertrain = c.Drivertrain,
+                FuelType = c.FuelType,
+                MotorSize = c.MotorSize,
+                Bhp = c.Bhp,
+                IdColorOutSide = c.IdColorOutSideNavigation.Name,
+                IdColorInSide = c.IdColorInSideNavigation.Name,
+                Length = c.Length,
+                Height = c.Height,
+                Width = c.Width,
+                NumberOfSeat = c.NumberOfSeat,
+                Mileage = c.Mileage,
+                Transmission = c.Transmission,
+                NameVersion = c.IdVersionNavigation.ReleaseYear,
+                NameForm = c.IdFormNavigation.Name,
+                NameBrand = c.IdModelNavigation.IdBrandNavigation.Name,
+                Price = c.Price,
+                FuelConsumption = c.FuelConsumption,
+                Weight = c.Weight,
+                SpeedAbility = c.SpeedAbility,
+                MaxSpeed = c.MaxSpeed,
+                OffRoad = c.OffRoad,
+                DateAccept = c.DateAccept,
+                HeightBetween = c.HeightBetween,
+                MainPhoto = databaseContext.Photos
+                        .Where(p => p.IdCar == c.Id && p.Status == 0)
+                        .Select(p => new
+                        {
+                            Link = configuration["ImageUrl"] + p.Link
+                        }).FirstOrDefault(),
+                SubPhotos = databaseContext.Photos
+                        .Where(p => p.IdCar == c.Id && p.Status != 0)
+                        .Select(p => new
+                        {
+                            Link = configuration["ImageUrl"] + p.Link
+                        }).ToList(),
+            }).ToList();
+        }
+
         public dynamic showCar()
         {
             return databaseContext.Cars.Select(c => new
@@ -195,7 +242,7 @@ namespace server.Services
                             Link = configuration["ImageUrl"] + p.Link
                         }).FirstOrDefault(),
                 SubPhotos =databaseContext.Photos
-                        .Where(p=>p.IdCar == c.Id && p.Status !=0)
+                        .Where(p=>p.IdCar == c.Id && p.Status ==1)
                         .Select(p=> new
                         {
                             Link = configuration["ImageUrl"] + p.Link

@@ -89,6 +89,7 @@ function App() {
             </Route>
             <Route path='car' element={<CarSpm/>}/>
             <Route path='carTable' element={<CarTable/>}/>
+            <Route path='carDetail/:id' element={<CarDetail/>}/>
 
                 
             
