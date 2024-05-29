@@ -180,7 +180,10 @@ const FilterCustomer = Showroom.filter(Cus =>
     Cus.name.toLowerCase().includes(searchTerm.toLowerCase())
 )
 const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCustomer)
-
+const handleRowClick = (id) => {
+    navigate(`/superadmin/carDetail/${id}`);
+    
+  }
   return (
       <>
          
@@ -210,15 +213,16 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                                                       <th>Main Image</th>  
                                                       <th>Brand</th>                                                    
                                                       <th>Model</th>                                                      
-                                                      <th>Number Of Seat</th>  
+                                                      <th>Seat Num</th>  
                                                       <th>Created</th>
+                                                      <th>Detail</th>
                                                       <th>Update</th>  
                                                       <th>Delete</th>  
                                                   </tr>
                                               </thead>
                                               <tbody>
                                                   {currentShowroom.map((Cus, index) => (
-                                                      <tr>
+                                                      <tr key={index} >
                                                           <td>{++index}</td>
                                                           
                                                           <td>{Cus.name}</td>
@@ -226,11 +230,14 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                                                           <td>
                                                             <img src={Cus.mainPhoto?.link} alt="Main Photo" width="200px" height="200px" style={{ objectFit: 'cover' }} />
                                                             </td>
-                                                            <td>brand</td>
+                                                            
                                                             <td>{Cus.nameBrand}</td>
+                                                            <td>{Cus.nameModel}</td>
+
                                                             <td>{Cus.numberOfSeat}</td>
-                                                            <td>{Cus.dateAccept}</td>
-                                                      </tr>
+                                                            <td>{new Date(Cus.dateAccept).toLocaleDateString()}</td>  
+                                                            
+                                                            <td><button className="btn btn-dark btn-icon-text" onClick={()=>navigate(`/superadmin/carDetail/${Cus.id}`)}  >Detail<i class="ti-file btn-icon-append"></i></button></td>                      </tr>
                                                   ))}
                                               </tbody>
                                           </table>

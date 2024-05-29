@@ -9,6 +9,6 @@ namespace server.Services
         public bool updateCar(int id, UpdateCar updateCar);
         public bool deleteCar(int carId);
 
-        
+        public dynamic findCarById(int carId);
     }
 }

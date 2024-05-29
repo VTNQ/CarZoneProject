@@ -45,5 +45,15 @@ namespace server.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("findCarById/{id}")]
+        public IActionResult findCar(int id) {
+            try
+            {
+                return Ok(carService.findCarById(id));
+            }catch (Exception ex)
+            {
+                return BadRequest($"Could not find {id} car");
+            }
+        }
     }
 }

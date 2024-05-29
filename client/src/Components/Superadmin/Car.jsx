@@ -524,7 +524,7 @@ export const CarSpm = () => {
                                                 <tr key={car.id}>
                                                     <td>{index + 1}</td>
                                                     <td>{car.name}</td>
-                                                </tr>
+                                                </tr>   
                                             ))}
                                         </tbody>
                                     </table>
