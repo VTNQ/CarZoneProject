@@ -9,12 +9,12 @@
       "PackagePath": "staticwebassets\\images\\1fe0cf657635486cb627d91be41c4872.png"
     },
     {
-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
       "PackagePath": "staticwebassets\\images\\2a4020bea8004e068c0a73cf0924f0c1.png"
     },
     {
-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
-      "PackagePath": "staticwebassets\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\30f9b6149bc44d3f9057b1a7c963beac.png",
+      "PackagePath": "staticwebassets\\images\\30f9b6149bc44d3f9057b1a7c963beac.png"
     },
     {
       "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
@@ -65,11 +65,27 @@
       "PackagePath": "staticwebassets\\images\\dcbae94c5e2941b8b58858f52430ed64.png"
     },
     {
-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png",
+      "PackagePath": "staticwebassets\\images\\d5a2e927430d4a38bf20583f06ae588b.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png",
+      "PackagePath": "staticwebassets\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png",
+      "PackagePath": "staticwebassets\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\dcbae94c5e2941b8b58858f52430ed64.png",
+      "PackagePath": "staticwebassets\\images\\dcbae94c5e2941b8b58858f52430ed64.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
       "PackagePath": "staticwebassets\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png"
     },
     {
-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
       "PackagePath": "staticwebassets\\images\\e02391a72aef445086dfe983dfdb833e.png"
     },
     {

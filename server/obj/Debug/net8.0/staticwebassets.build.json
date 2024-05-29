@@ -55,26 +55,7 @@
       "OriginalItemSpec": "wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png"
     },
     {
-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
-      "SourceId": "server",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
-      "BasePath": "_content/server",
-      "RelativePath": "images/2a4020bea8004e068c0a73cf0924f0c1.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png"
-    },
-    {
-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
       "SourceId": "server",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
@@ -324,9 +305,9 @@
       "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
       "SourceId": "server",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
       "BasePath": "_content/server",
-      "RelativePath": "images/dcfa6797ad4e402ba11236cf6faf68f5.png",
+      "RelativePath": "images/d5a2e927430d4a38bf20583f06ae588b.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -337,10 +318,10 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png"
+      "OriginalItemSpec": "wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png"
     },
     {
-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png",
       "SourceId": "server",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",

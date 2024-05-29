@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
 using server.Services;
@@ -73,6 +74,37 @@ namespace server.Controllers
             catch
             {
                 return BadRequest();
+            }
+        }
+        [HttpPost("addAdmin")]
+        [Produces("application/json")]
+        public IActionResult addAdmin([FromBody] AddAdmin addAdmin)
+        {
+            try
+            {
+                if (DatabaseContext.Employees.Any(c => c.Email == addAdmin.Email && c.IdentityCode == addAdmin.IdentityCode))
+                {
+                    return BadRequest(new {message = "email or identity code existed"});
+                }
+                return Ok(new
+                {
+                    result = _accountService.addAdmin(addAdmin)
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpGet("getAdmin")]
+        public IActionResult getAdmin()
+        {
+            try
+            {
+                return Ok(_accountService.getAdmin());
+            }catch (Exception ex)
+            {
+                return BadRequest(ex);
             }
         }
     }

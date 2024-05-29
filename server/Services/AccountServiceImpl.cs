@@ -1,6 +1,5 @@
 ﻿using server.Data;
 using server.Models;
-using System.Data.SqlTypes;
 
 namespace server.Services
 {
@@ -11,6 +10,74 @@ namespace server.Services
         {
             _dbContext = dbContext;
         }
+        public string GenerateRandomString(int length)
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+            Random random = new Random();
+            char[] StringChars = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                int randomIndex = random.Next(chars.Length);
+                StringChars[i] = chars[randomIndex];
+            }
+            return new string(StringChars);
+        }
+        public bool addAdmin(AddAdmin addAdmin)
+        {
+            if(_dbContext.Employees.Any(c=>c.Email == addAdmin.Email && c.IdentityCode == addAdmin.IdentityCode)) {
+                return false;
+            }
+            string Password = GenerateRandomString(8);
+            var admin = new Employee()
+            {
+                FullName = addAdmin.FullName,
+                Email = addAdmin.Email,
+                IdentityCode = addAdmin.IdentityCode,
+                Address = addAdmin.Address,
+                Phone = addAdmin.Phone,
+                Role = "Admin",
+                Password = BCrypt.Net.BCrypt.HashPassword(Password),
+                IdShowroom = addAdmin.IdShowroom,
+            };
+            //SendEmail(addAdmin.Email, "Reset Information", $"FullName :{addAdmin.FullName}\n Password:{Password}");
+            _dbContext.Employees.Add(admin);
+            return _dbContext.SaveChanges()>0;
+        }
+        private void SendEmail(string to, string subject, string body)
+        {
+            using (var client = new SmtpClient("smtp.gmail.com"))
+            {
+                client.Port = 587;
+                client.Credentials = new NetworkCredential("tranp6648@gmail.com", "czvy qzyc vpes whkj");
+                client.EnableSsl = true;
+                var message = new MailMessage
+                {
+                    From = new MailAddress("tranp6648@gmail.com"),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = false
+                };
+                message.To.Add(to);
+                client.Send(message);
+            }
+        }
+
+        public dynamic getAdmin()
+        {
+            return _dbContext.Employees.Select(c => new
+            {
+                Email = c.Email,
+                IdentityCode = c.IdentityCode,
+                FullName =c.FullName,
+                Address = c.Address,
+                Phone = c.Phone,
+                NameShowroom = _dbContext.Showrooms.Where(d=>d.Id == c.IdShowroom).Select(e => new
+                {
+                    NameShowroom = e.Name
+                }).FirstOrDefault(),
+            }).ToList();
+        }
+
         public Employee Login(string email, string password)
         {
             try
