@@ -71,6 +71,7 @@ function DetailCreateCarWareHouse() {
             image.style.width = (image.clientWidth / 1.2) + 'px'
         }
     }
+    
     return (
         <>
             <LayoutEmployee>
@@ -105,7 +106,14 @@ function DetailCreateCarWareHouse() {
                                                     <tr>
                                                     <th> # </th>
                                                         <th> Name </th>
-
+                                                        <th>Brand</th>
+                                                        <th>Engine</th>
+                                                        <th>Fue type</th>
+                                                        <th>Motor Size</th>
+                                                        <th>Bhp</th>
+                                                        <th>Transmission</th>
+                                                        <th>Driver train</th>
+                                                        <th>Mileage</th>
                                                         <th> Model </th>
                                                         <th> ColorInSize</th>
                                                         <th> ColorOutSize </th>
@@ -117,6 +125,7 @@ function DetailCreateCarWareHouse() {
                                                         <th>Max Speed</th>
                                                         <th>Form</th>
                                                         <th>Height Between</th>
+                                                        <th>Condition</th>
                                                         <th>Picture</th>
                                                         <th>Quantity</th>
 
@@ -127,6 +136,14 @@ function DetailCreateCarWareHouse() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{Car.name}</td>
+                                                            <td>{Car.brand}</td>
+                                                            <td>{Car.engine}</td>
+                                                            <td>{Car.fuetype}</td>
+                                                            <td>{Car.motorSize}</td>
+                                                            <td>{Car.bhp}</td>
+                                                            <td>{Car.transmission}</td>
+                                                            <td>{Car.drivertrain}</td>
+                                                            <td>{Car.mileage}</td>
                                                             <td>{Car.model}</td>
                                                             <td><div
                                                                 style={{
@@ -154,6 +171,7 @@ function DetailCreateCarWareHouse() {
                                                                 <td>{Car.maxSpeed}</td>
                                                                 <td>{Car.form}</td>
                                                                 <td>{Car.heightBetween}</td>
+                                                                <td>{Car.condition}</td>
                                                                 <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleImageClick(Car.picture.pictureLink)}>Preview</button></td>
                                                                 <td>{Car.totalCar}</td>
                                                         </tr>

@@ -111,7 +111,7 @@ function DetailWareHousewarehouse() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th> Name </th>
-
+                                                        <th>Brand</th>
                                                         <th> Model </th>
                                                         <th> ColorInSize</th>
                                                         <th> ColorOutSize </th>
@@ -133,6 +133,7 @@ function DetailWareHousewarehouse() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{warehouse.name}</td>
+                                                            <td>{warehouse.brand}</td>
                                                             <td>{warehouse.model}</td>
                                                             <td><div
                                                                 style={{
