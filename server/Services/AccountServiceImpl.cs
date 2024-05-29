@@ -84,8 +84,8 @@ namespace server.Services
         {
             try
             {
-                var employeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == email );
-                if(employeeLogin != null && BCrypt.Net.BCrypt.Verify(password,employeeLogin.Password))
+                var employeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == email);
+                if (employeeLogin != null && BCrypt.Net.BCrypt.Verify(password, employeeLogin.Password))
                 {
                     var user = new Employee
                     {
