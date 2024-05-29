@@ -7,9 +7,14 @@ function DetailWareHousewarehouse() {
     const navigate = useNavigate();
     const [previewImage, setPreviewImage] = useState(null);
     const location = useLocation();
-    const IDCarWareHouse = location.state?.IDCarWareHouse || '';
-
-    const NameWareHouse = location.state?.NameWareHouse || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
+    console.log(sessionData)
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
@@ -18,20 +23,23 @@ function DetailWareHousewarehouse() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/WareHouse/DetailWareHouseCar/${IDCarWareHouse}`);
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/DetailWareHouseCar/${sessionData.IDCarWareHouse}`);
                 setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
-    const FilterCar=WareHouse.filter(car=>
+        if(sessionData && sessionData.IDCarWareHouse){
+            fetchdata();
+        }
+       
+    }, [sessionData])
+    const FilterCar = WareHouse.filter(car =>
         car.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    const indexoflastCar=(currentPage + 1) * perPage;
-    const indexOfFirtCar=indexoflastCar - perPage;
-    const CurrentCar=FilterCar.slice(indexOfFirtCar,indexoflastCar)
+    const indexoflastCar = (currentPage + 1) * perPage;
+    const indexOfFirtCar = indexoflastCar - perPage;
+    const CurrentCar = FilterCar.slice(indexOfFirtCar, indexoflastCar)
     const handleImageClick = (imageUrl) => {
         setPreviewImage(imageUrl)
     }
@@ -63,6 +71,11 @@ function DetailWareHousewarehouse() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+    const handleBackClick=()=>{
+        const{idOrder,...restSessionData } = sessionData;
+        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        navigate("/WareHouse/ShowWareHouseCar",{state:restSessionData});
+    }
     return (
         <>
             <LayoutEmployee>
@@ -74,11 +87,16 @@ function DetailWareHousewarehouse() {
                                 <div class="card">
 
                                     <div class="card-body">
-                                    <button
+                                        <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
-                                            onClick={() => navigate("/WareHouse/ShowWareHouseCar")}>Back
+                                            onClick={handleBackClick}>Back
                                         </button>
-                                        <h4 class="card-title">Detail WareHouse {NameWareHouse}</h4>
+                                        {sessionData ? (
+                                            <h4 class="card-title">Detail WareHouse {sessionData.NameWareHouse}</h4>
+                                             ) : (
+                                                <h4 class="card-title">Detail WareHouse </h4>
+                                            )}
+                                        
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
@@ -93,18 +111,13 @@ function DetailWareHousewarehouse() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th> Name </th>
-
+                                                        <th>Brand</th>
                                                         <th> Model </th>
                                                         <th> ColorInSize</th>
                                                         <th> ColorOutSize </th>
-                                                        <th>Number Seat</th>
-                                                        <th>Version</th>
+                                                      
                                                         <th>Price</th>
-                                                        <th>Weight</th>
-                                                        <th>Speed Ability</th>
-                                                        <th>Max Speed</th>
-                                                        <th>Form</th>
-                                                        <th>Height Between</th>
+                                                        
                                                         <th>Picture</th>
                                                         <th>Quantity</th>
 
@@ -115,6 +128,7 @@ function DetailWareHousewarehouse() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{warehouse.name}</td>
+                                                            <td>{warehouse.brand}</td>
                                                             <td>{warehouse.model}</td>
                                                             <td><div
                                                                 style={{
@@ -134,14 +148,9 @@ function DetailWareHousewarehouse() {
                                                                     border: '1px solid #000',
                                                                     borderRadius: '40px'
                                                                 }}></div></td>
-                                                            <td>{warehouse.numberofSeat}</td>
-                                                            <td>{warehouse.version}</td>
+                                                          
                                                             <td>{warehouse.price}$</td>
-                                                            <td>{warehouse.weight}</td>
-                                                            <td>{warehouse.speedAbillity}</td>
-                                                            <td>{warehouse.maxSpeed}</td>
-                                                            <td>{warehouse.form}</td>
-                                                            <td>{warehouse.heightBetween}</td>
+                                                          
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleImageClick(warehouse.picture.pictureLink)}>Preview</button></td>
                                                             <td>{warehouse.totalCar}</td>
                                                         </tr>

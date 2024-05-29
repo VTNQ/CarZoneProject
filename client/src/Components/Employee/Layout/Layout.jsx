@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../assets/vendors/feather/feather.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/vendors/css/vendor.bundle.base.css';
@@ -16,10 +16,14 @@ import {useLocation, useNavigate} from "react-router-dom";
 const LayoutEmployee=({children})=>{
   const navigate = useNavigate();
   const location = useLocation();
-  const ID = location.state?.ID || '';
-  const username=location.state?.fullName || '';
-  const email = location.state?.email || '';
-  const idShowroom=location.state?.idShowroom || '';
+  const [sessionData, setSessionData] = useState(null);
+  useEffect(()=>{
+   const data = sessionStorage.getItem('sessionData');
+   if(data){
+     setSessionData(JSON.parse(data));
+   }
+  },[])
+  
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
@@ -119,12 +123,7 @@ const LayoutEmployee=({children})=>{
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" onClick={() => navigate('/Employee/Show-Customer', {
-                    state: {
-                      ID: ID,
-                      fullName: username,
-                      email: email,
-                      idShowroom: idShowroom
-                    }
+                    state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Customer</span>
@@ -132,12 +131,7 @@ const LayoutEmployee=({children})=>{
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" onClick={() => navigate('/Invoice/HistoryInVoice', {
-                    state: {
-                      ID: ID,
-                      fullName: username,
-                      email: email,
-                      idShowroom: idShowroom
-                    }
+                    state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">History InVoice</span>
@@ -145,12 +139,7 @@ const LayoutEmployee=({children})=>{
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" onClick={() => navigate('/Employee/HistoryOrder', {
-                    state: {
-                      ID: ID,
-                      fullName: username,
-                      email: email,
-                      idShowroom: idShowroom
-                    }
+                    state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Order</span>
@@ -158,24 +147,16 @@ const LayoutEmployee=({children})=>{
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" onClick={() => navigate('/Employee/ShowContact', {
-                    state: {
-                      ID: ID,
-                      fullName: username,
-                      email: email,
-                      idShowroom: idShowroom
-                    }
+                    state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Contact</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate(`/Employee/ShowContract/${ID}`, {
+                  <a className="nav-link" onClick={() => navigate(`/Employee/ShowContract/${sessionData.ID}`, {
                     state: {
-                      ID: ID,
-                      fullName: username,
-                      email: email,
-                      idShowroom: idShowroom
+                      sessionData
                     }
                   })}>
                     <i className="icon-grid menu-icon"></i>

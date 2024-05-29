@@ -37,15 +37,36 @@ namespace server.Controllers
             }
         }
         [HttpGet("showShowroom")]
-        public IActionResult ShowShowroom()
+        public async Task<IActionResult> ShowShowroom()
         {
             try
             {
-                return Ok(showroomService.showShowroom());
+                var showrooms = await showroomService.showShowroom(); // Assuming ShowShowroom returns Task<IEnumerable<dynamic>>
+                return Ok(showrooms);
             }
             catch
             {
-                return BadRequest();
+                return BadRequest(new { message = "An error occurred while retrieving showrooms." });
+            }
+        }
+        [HttpPut("updateShowroom/{id}")]
+        [Consumes("application/json")]
+        public IActionResult updateShowroom (int id,[FromBody]UpdateShowroom updateShowroom)
+        {
+            try
+            {
+                if(databaseContext.Showrooms.Any(c => c.Name == updateShowroom.Name))
+                {
+                    return BadRequest(new { Message = "Name has already exist" });
+                }
+                return Ok(new
+                {
+                    result = showroomService.updateShowroom(id, updateShowroom)
+                });
+                
+            }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

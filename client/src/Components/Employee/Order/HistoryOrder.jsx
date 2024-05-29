@@ -7,11 +7,13 @@ import axios from "axios";
 function HistoryOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+    const[sessionData,setSessionData]=useState(null);
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
@@ -21,14 +23,17 @@ function HistoryOrder() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${ID}`)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
                 setOrder(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.ID){
+            fetchdata();
+        }
+       
+    }, [sessionData])
     const [FromData, setFromData] = useState({
         id: '',
         Condition: '',
@@ -64,6 +69,11 @@ function HistoryOrder() {
     const FilterOrder = Order.filter(order =>
         order.customer.toLowerCase().includes(searchTerm.toLowerCase())
     )
+    const DetailContract=(Order)=>{
+        const updatedSessionData={...sessionData,idOrder:Order.id};
+        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        navigate(`/Employee/ShowContract/${Order.id}`,{state:updatedSessionData});
+    }
     const IndexoflastOrder = (currentPage + 1) * perPage;
     const IndexofFirstOrder = IndexoflastOrder - perPage;
     const CurrentOrder = FilterOrder.slice(IndexofFirstOrder, IndexoflastOrder)
@@ -136,11 +146,7 @@ function HistoryOrder() {
                                         <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
                                             onClick={() => navigate("/Employee/AddOrder", {
-                                                state: {
-                                                    ID: ID,
-                                                    fullName: username,
-                                                    email: email
-                                                }
+                                                state: sessionData
                                             })}>Add
                                         </button>
                                         <h4 class="card-title">History Order</h4>
@@ -197,15 +203,7 @@ function HistoryOrder() {
                                                                 style={{opacity:order.idOrder==null ? 0.5:1,
                                                                     cursor:order.idOrder==null? 'not-allowed':'pointer'
                                                                 }}
-                                                                onClick={() => navigate(`/Employee/ShowContract/${order.id}`, {
-                                                                    state: {
-                                                                        ID: ID,
-                                                                        fullName: username,
-                                                                        email: email,
-                                                                        idShowroom: idShowroom,
-                                                                        idOrder: order.id
-                                                                    }
-                                                                })}
+                                                                onClick={()=>DetailContract(order)}
 
                                                             >View
                                                             </button>

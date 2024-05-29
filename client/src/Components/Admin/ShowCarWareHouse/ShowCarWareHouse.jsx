@@ -6,11 +6,17 @@ import axios from "axios";
 function ShowCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+  
     const [IsCloginImage, setIsClosingImage] = useState(false)
-    const username = location.state?.fullName || '';
+   
+    const[sessionData,setSessionData]=useState(null);
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
+
     const[Car,setCar]=useState([])
     const [previewImage, setPreviewImage] = useState(null);
     const [perPage, setperPage] = useState(5);
@@ -43,14 +49,17 @@ function ShowCarWareHouse() {
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
-                const response=await axios.get(`http://localhost:5278/api/WareHouse/ShowWareHouse/${idShowroom}`)
+                const response=await axios.get(`http://localhost:5278/api/WareHouse/ShowWareHouse/${sessionData.idShowroom}`)
                 setCar(response.data)
             }catch(error){
                 console.log(error)
             }
         }
-        fetchdata();
-    },[])
+        if(sessionData && sessionData.idShowroom){
+            fetchdata();
+        }
+        
+    },[sessionData])
     const handleClosePreview = () => {
 
 

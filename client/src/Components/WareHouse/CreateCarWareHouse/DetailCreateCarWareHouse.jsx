@@ -6,8 +6,13 @@ import axios from "axios";
 function DetailCreateCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
-    const IDCarShowroom = location.state?.IDCarShowroom || '';
-    const NameShowroom = location.state?.NameShowroom || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
     const [Car,setCar]=useState([]);
     const [previewImage, setPreviewImage] = useState(null);
     const [perPage, setperPage] = useState(5);
@@ -24,14 +29,17 @@ function DetailCreateCarWareHouse() {
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
-                const response=await axios.get(`http://localhost:5278/api/WareHouse/DetailCartoShowRoom/${IDCarShowroom}`);
+                const response=await axios.get(`http://localhost:5278/api/WareHouse/DetailCartoShowRoom/${sessionData.IDCarShowroom}`);
                 setCar(response.data.result)
             }catch(error){
                 console.log(error)
             }
         }
-        fetchdata();
-    },[])
+        if(sessionData && sessionData.IDCarShowroom){
+            fetchdata();
+        }
+        
+    },[sessionData])
     const FilterCar=Car.filter(car=>
         car.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -63,6 +71,7 @@ function DetailCreateCarWareHouse() {
             image.style.width = (image.clientWidth / 1.2) + 'px'
         }
     }
+    
     return (
         <>
             <LayoutEmployee>
@@ -78,7 +87,12 @@ function DetailCreateCarWareHouse() {
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
                                             onClick={() => navigate("/WareHouse/CreateCarWareHouse")}>Back
                                         </button>
-                                        <h4 class="card-title">Detail {NameShowroom}</h4>
+                                        {sessionData ? (
+                                              <h4 class="card-title">Detail {sessionData.NameShowroom}</h4>
+                                             ) : (
+                                                <h4 class="card-title">Detail </h4>
+                                             )}
+                                      
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
@@ -92,18 +106,15 @@ function DetailCreateCarWareHouse() {
                                                     <tr>
                                                     <th> # </th>
                                                         <th> Name </th>
-
+                                                        <th>Brand</th>
+                                                        <th>Engine</th>
+                                                       
                                                         <th> Model </th>
                                                         <th> ColorInSize</th>
                                                         <th> ColorOutSize </th>
-                                                        <th>Number Seat</th>
-                                                        <th>Version</th>
+                                                       
                                                         <th>Price</th>
-                                                        <th>Weight</th>
-                                                        <th>Speed Ability</th>
-                                                        <th>Max Speed</th>
-                                                        <th>Form</th>
-                                                        <th>Height Between</th>
+                                                       
                                                         <th>Picture</th>
                                                         <th>Quantity</th>
 
@@ -114,6 +125,9 @@ function DetailCreateCarWareHouse() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{Car.name}</td>
+                                                            <td>{Car.brand}</td>
+                                                            <td>{Car.engine}</td>
+                                                          
                                                             <td>{Car.model}</td>
                                                             <td><div
                                                                 style={{
@@ -133,14 +147,9 @@ function DetailCreateCarWareHouse() {
                                                                     border: '1px solid #000',
                                                                     borderRadius: '40px'
                                                                 }}></div></td>
-                                                                 <td>{Car.numberofSeat}</td>
-                                                                 <td>{Car.version}</td>
+                                                                
                                                                 <td>{Car.price}$</td>
-                                                                <td>{Car.weight}</td>
-                                                                <td>{Car.speedAbillity}</td>
-                                                                <td>{Car.maxSpeed}</td>
-                                                                <td>{Car.form}</td>
-                                                                <td>{Car.heightBetween}</td>
+                                                              
                                                                 <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleImageClick(Car.picture.pictureLink)}>Preview</button></td>
                                                                 <td>{Car.totalCar}</td>
                                                         </tr>

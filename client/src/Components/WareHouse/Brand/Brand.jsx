@@ -119,7 +119,6 @@ function Brand() {
             })
             setUpdateSelectCountry(null);
 
-
             setPopupVisibility(false)
             setIsClosingPopup(false)
         }, 500);
@@ -221,7 +220,6 @@ function Brand() {
                     });
                     const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                     setBrand(response.data)
-
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {

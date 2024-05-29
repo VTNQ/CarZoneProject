@@ -6,44 +6,54 @@ import axios from "axios";
 function DetailOutOrders() {
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
+    
     const [searchTerm, setSearchtem] = useState('');
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
-    const IDOutOrder = location.state?.IDOutOrder || '';
+   
     const [DetailOutOrder, setDetailOutOrder] = useState([]);
     const[Invoice,SetInvoice]=useState([]);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const [Contract,setContract]=useState([])
     const [index,setindex]=useState(1);
+    const[sessionData,setSessionData]=useState(null);
+    useEffect(() => {
+      const data = sessionStorage.getItem('sessionData');
+      if (data) {
+          setSessionData(JSON.parse(data));
+      }
+  }, []);
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
-                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${IDOutOrder}`);
+                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.IDOutOrder}`);
                 setContract(response.data)
             }catch(error){
                 console.log(error)
             }
         }
-        fetchdata();
-    },[])
+        if(sessionData && sessionData.IDOutOrder){
+            fetchdata();
+        }
+        
+    },[sessionData])
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
-                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${IDOutOrder}`);
+                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
                 SetInvoice(response.data)
             }catch(error){
                 console.log(error)
             }
         }
-        fetchdata();
-    },[])
+        if(sessionData && sessionData.IDOutOrder){
+            fetchdata();
+        }
+        
+    },[sessionData])
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${IDOutOrder}`)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${sessionData.IDOutOrder}`)
                 setDetailOutOrder(response.data)
             } catch (error) {
                 console.log(error)
@@ -60,6 +70,11 @@ function DetailOutOrders() {
     const IndexoflastDetail = (currentPage + 1) * perPage;
     const IndexOfFirtDetail = IndexoflastDetail - perPage;
     const CurrentDetail = FilterDetailOrder.slice(IndexOfFirtDetail, IndexoflastDetail)
+    const handleBackClick=()=>{
+        const{IDOutOrder,...restSessionData } = sessionData;
+        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        navigate("/Outorder",{state:restSessionData});
+    }
     return (
         <>
             <LayoutAdmin>
@@ -72,7 +87,7 @@ function DetailOutOrders() {
                                     <div class="card-body">
                                     <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                        onClick={()=>navigate("/Outorder",{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}
+                                        onClick={handleBackClick}
                                         >Back
                                         </button>
                                         <h4 class="card-title">Detail Out Order</h4>

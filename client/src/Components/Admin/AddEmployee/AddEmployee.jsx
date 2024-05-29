@@ -6,7 +6,7 @@ import Select from "react-select"
 import axios from 'axios'
 import Pagination from 'react-paginate';
 function AddEmployee() {
- 
+
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const popupContentStyle = {
         background: 'white',
@@ -33,14 +33,20 @@ function AddEmployee() {
     }
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
+    const [sessionData, setSessionData] = useState(null);
+    
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, []);
+    
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
-   
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+
+
     const [FromData, setFromData] = useState({
         FullName: '',
         Email: '',
@@ -57,11 +63,15 @@ function AddEmployee() {
     const [Employee, setEmployee] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
-            const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${idShowroom}`);
+
+            const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
             setEmployee(response.data)
         }
-        fetchdata()
-    }, [])
+        if(sessionData && sessionData.idShowroom){
+            fetchdata()
+        }
+        
+    }, [sessionData])
     const FilterEmployee = Employee.filter(Empl =>
         Empl.fullName.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -114,8 +124,12 @@ function AddEmployee() {
                     UpdatePhone: '',
                     UpdateIdentityCode: ''
                 })
-                const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${idShowroom}`);
-                setEmployee(response.data)
+                const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom
+                    }`);
+                    if(sessionData && sessionData.idShowroom){
+                        setEmployee(response.data)
+                    }
+               
             }
         } catch (error) {
             console.log(error)
@@ -159,7 +173,7 @@ function AddEmployee() {
                         address: FromData.Address,
                         phone: FromData.Phone,
                         identityCode: FromData.IdentityCode,
-                        idShowroom: idShowroom,
+                        idShowroom: sessionData.idShowroom!=null || '',
 
 
                     }),
@@ -178,8 +192,11 @@ function AddEmployee() {
                         Phone: '',
                         IdentityCode: ''
                     })
-                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${idShowroom}`);
-                    setEmployee(response.data)
+                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
+                    if(sessionData && sessionData.idShowroom){
+                        setEmployee(response.data)
+                    }
+                   
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -210,7 +227,7 @@ function AddEmployee() {
                 confirmButtonText: 'Yes, Reset Password',
             });
             if (confirmation.isConfirmed) {
-                const response = await fetch(`http://localhost:5278/api/Employee/ResetPassword/${IdEmployee}`,{
+                const response = await fetch(`http://localhost:5278/api/Employee/ResetPassword/${IdEmployee}`, {
                     method: 'Put',
                     headers: {
                         'Content-Type': 'application/json',
@@ -235,7 +252,7 @@ function AddEmployee() {
             }
 
         } catch (error) {
-           console.log(error)
+            console.log(error)
         }
     }
     return (
@@ -250,7 +267,7 @@ function AddEmployee() {
                                         <h4 class="card-title">Employee</h4>
                                         <p class="card-description"> Basic form layout </p>
                                         <form class="forms-sample" onSubmit={handleOnsubmit}>
-                                      
+
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Full Name</label>
                                                 <input type="text" class="form-control" value={FromData.FullName} onChange={(e) => setFromData({ ...FromData, FullName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
@@ -314,7 +331,7 @@ function AddEmployee() {
                                                             <td>{Emp.address}</td>
                                                             <td>{Emp.identityCode}</td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleEditClick(Emp.id)}>Edit</button></td>
-                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "  onClick={()=>handleResetPassword(Emp.id)}>Reset</button></td>
+                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleResetPassword(Emp.id)}>Reset</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

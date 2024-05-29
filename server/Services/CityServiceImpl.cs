@@ -52,7 +52,7 @@ namespace server.Services
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    IdCountry = c.IdCountry,
+                    
                 }).ToList();
                 
             }catch (Exception ex)
@@ -68,7 +68,8 @@ namespace server.Services
                                   {
                                       Id = c.Id,
                                       Name = c.Name,
-                                      IdCountry =c.IdCountry
+                                      IdCountry =c.IdCountry,
+                                      NameCountry = c.IdCountryNavigation.Name,
                                   })
                                   .ToList();
         }

@@ -10,6 +10,7 @@ function Inventory() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const navigate = useNavigate();
+    
     const fetchCar = async () => {
         try {
 
@@ -47,6 +48,18 @@ function Inventory() {
         });
     }, []);
     const [sliderValues, setSliderValues] = useState([minPrice, maxPrice]);
+    const[ShowRoom,setShowRoom]=useState([]);
+    useEffect(()=>{
+        const fetchData=async()=>{
+            try{
+                const response=await axios.get("http://localhost:5278/api/WareHouse/GetShowroom");
+                setShowRoom(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchData();
+    },[])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -60,7 +73,10 @@ function Inventory() {
         fetchdata()
     }, [])
     const [SelectBrand, SetSelectBrand] = useState('');
-
+    const [SelectShowRoom,setSelectShowRoom]=useState('');
+    const handleChangeSelectShowRoom=(event)=>{
+        setSelectShowRoom(event.target.value)
+    }
     
     const handleSelectBrand = (event) => {
         SetSelectBrand(event.target.value)
@@ -191,12 +207,15 @@ function Inventory() {
     const filterCar = sortedProducts.filter((product) => {
 
         const includesSearchTerm = product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
-        // Otherwise, check if SelectBrand includes the product's branch
-        if (SelectBrand == '' && SelectCondition == '' && SelectModel == '') {
+        const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
+        
+        if (SelectBrand == '' && SelectCondition == '' && SelectModel == '' &&  SelectShowRoom == '') {
             return true;
         }
-        return SelectModel.includes(product.idModel) && SelectBrand.includes(product.branch) && includesSearchTerm &&  product.price >= sliderValues[0] && product.price <= sliderValues[1];
+       
+        return SelectModel.includes(product.idModel) && SelectBrand.includes(product.branch) && includesSearchTerm &&  product.price >= sliderValues[0] && product.price <= sliderValues[1] && matchesShowRoom;
     });
+  console.log(filterCar)
     const handleOpen = (id) => {
         setOpen(prevOpen => {
             const newOpen = !prevOpen;
@@ -278,18 +297,20 @@ function Inventory() {
                                                             <form action="">
                                                                 <div className="ap-search-item uk-margin uk-first-column">
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        Product Type
+                                                                       Show Room
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {Producttype.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
+                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectShowRoom} onChange={handleChangeSelectShowRoom}>
+                                                                            <option value="">All</option>
+                                                                                {ShowRoom.map(item => (
+                                                                                    <option value={item.id}>{item.name}</option>
                                                                                 ))}
                                                                             </select>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Branch
@@ -305,20 +326,7 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        Make
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {Make.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Model
@@ -326,6 +334,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" onChange={handleSelectModel} value={SelectModel}>
+                                                                            <option value="">All</option>
                                                                                 {Model.map(item => (
                                                                                     <option value={item.id}>{item.name}</option>
                                                                                 ))}
@@ -340,6 +349,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectCondition} onChange={handleSelectCondition}>
+                                                                            <option value="">All</option>
                                                                                 {Condition.map(item => (
                                                                                     <option value={item.label}>{item.label}</option>
                                                                                 ))}
@@ -347,34 +357,8 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        EXTERIOR COLOR
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {ExistColor.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        INTERIOR COLOR
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {ExistColor.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                           
+                                                                
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Price
@@ -456,7 +440,7 @@ function Inventory() {
                                                 </div>
                                             </div>
                                             {ChangeSwitch == 1 && (
-                                                <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
+                                                <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                                                     {filterCar.map((car, inex) => (
                                                         <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
                                                             <div className="ap-inner" style={{ width: '97%' }}>
