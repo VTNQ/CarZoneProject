@@ -240,9 +240,10 @@ export const CarSpm = () => {
     const [subPhotoPreviews, setSubPhotoPreviews] = useState([]);
 
     const handleImageChangeSubphoto = (event) => {
-        const files = event.target.files;
+        const files = Array.from(event.target.files).slice(0, 4); // Limit files to first four only
         let subPhotos = [];
         let subPhotoPreviewsTemp = [];
+        
         for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -254,11 +255,22 @@ export const CarSpm = () => {
             reader.readAsDataURL(files[i]);
             subPhotos.push(files[i]);
         }
+        
         setCarForm({
             ...CarForm,
             SubPhotos: subPhotos
         });
+    
+        // Alert the user if more than four images are attempted to be uploaded
+        if (event.target.files.length > 4) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Only the first 4 images are uploaded',
+                showConfirmButton: true
+            });
+        }
     };
+    
     const DeleteCar=async(ID)=>{
         try{
             const confirmation = await Swal.fire({
@@ -358,7 +370,7 @@ export const CarSpm = () => {
         formData.append("Width", CarForm.Width);
         formData.append("NumberOfSeat", CarForm.NumberOfSeat);
         formData.append("Mileage", CarForm.Mileage);
-        formData.append("Transmission", CarForm.Transmission);
+        formData.append("Transmission", CarForm.Transmisstion);
         formData.append("IdVersion", CarForm.IdVersion);
         formData.append("IdForm", CarForm.IdForm);
         formData.append("Price", CarForm.Price);
@@ -370,9 +382,11 @@ export const CarSpm = () => {
         formData.append("HeightBetween", CarForm.heightBetween);
         formData.append("MainPhoto", CarForm.MainPhoto);
     
-        for (let i = 0; i < CarForm.SubPhotos.length; i++) {
-            formData.append("SubPhotos", CarForm.SubPhotos[i]);
-        }
+        CarForm.SubPhotos.forEach((photo, index) => {
+            if (index < 4) {
+                formData.append("SubPhotos", photo);
+            }
+        });
     
         console.log("Form Data before sending:", Object.fromEntries(formData.entries()));
     
@@ -518,13 +532,15 @@ export const CarSpm = () => {
                                                 )}
                                             </div>
                                             <div className="form-group">
-                                                <label>Sub Photos</label>
+                                                <label>Sub Photos (4 pics)</label>
                                                 <input type="file" className="form-control" id='subPhotos' name='SubPhotos' multiple onChange={handleImageChangeSubphoto} />
+                                                <div className='flex '>
                                                 {subPhotoPreviews.map((photo, index) => (
                                                     <div key={index} className="image-preview">
-                                                        <img src={photo} alt={`Sub Photo ${index + 1}`} className="preview-image" />
+                                                        <img src={photo} alt={`Sub Photo ${index + 1}`} className="preview-image " />
                                                     </div>
                                                 ))}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="col-md-6">

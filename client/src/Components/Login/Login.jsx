@@ -47,6 +47,8 @@ function Login(){
                         navigate("/Employee/Dashboard",{state:sessionData})
                     }else if(role=='WareHouse'){
                       navigate("/WareHouse/Dashboard",{state:sessionData})
+                    }else if(role=='Superadmin'){
+                      navigate("/superadmin",{state:sessionData})
                     }
                 })
             }
