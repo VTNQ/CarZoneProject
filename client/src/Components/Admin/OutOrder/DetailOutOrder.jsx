@@ -60,8 +60,11 @@ function DetailOutOrders() {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.IDOutOrder){
+            fetchdata();
+        }
+        
+    }, [sessionData])
     const FilterDetailOrder = DetailOutOrder.filter(Detail =>
         Detail.car.toLowerCase().includes(searchTerm.toLowerCase())
     )
