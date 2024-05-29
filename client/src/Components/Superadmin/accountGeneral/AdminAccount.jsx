@@ -4,12 +4,14 @@ import Swal from 'sweetalert2'
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Pagination from "react-paginate";
 import axios from 'axios';
+import Select from 'react-select';
+
 
 export const AdminAccount = () => {
     const [CountryData, setCountryData] = useState({
         FullName: '',
         Email:'',
-        Password: '',
+        
         IdentityCode: '',
         Address: '',
         Phone: '',
@@ -17,57 +19,42 @@ export const AdminAccount = () => {
     })
     const HandleOnSubmit = async (event) => {
         event.preventDefault();
-       if(CountryData.FullName=='' || CountryData.Email == '' || CountryData.Password=='' ){
-        Swal.fire({
-            icon: 'error',
-            title: 'Please enter complete information',
-            showConfirmButton: false,
-            timer: 1500,
-        })
-       }else{
-        const formData = new FormData();
-       
-        formData.append("FullName", CountryData.FullName); 
-        formData.append("Email", CountryData.Email); 
-        formData.append("IdentityCode", CountryData.IdentityCode); 
-        formData.append("Address", CountryData.Address); 
-        formData.append("Phone", CountryData.Phone); 
-        formData.append("Password", CountryData.Password); 
-        formData.append("IdShowroom", CountryData.IdShowroom); 
-        const response = await fetch("http://127.0.0.1:5278/api/Account/addAdmin", {
-            method: 'POST',
-            body: JSON.stringify(formData)
-        })
-        if(response.ok){
+        if (CountryData.FullName === '' || CountryData.Email === '') {
             Swal.fire({
-                icon: 'success',
-                title: 'Add Admin Success',
+                icon: 'error',
+                title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
             });
-            setCountryData({
-                FullName: '', 
-                Email: '',
-                Password: '',
-                Phone: '',
-                IdentityCode: '',
-                IdShowroom: '',
-                Address: ''
-
-            })
-            
-        }else{
-            const responseBody = await response.json();
-                    if (responseBody.message) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: responseBody.message || 'Failed to add countries',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
+        } else {
+            const response = await fetch("http://127.0.0.1:5278/api/Account/addAdmin", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(CountryData)
+            });
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add Admin Success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                fetchData();
+                // Reset form data
+            } else {
+                const responseBody = await response.json();
+                Swal.fire({
+                    icon: 'error',
+                    title: responseBody.message || 'Failed to add admin',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
         }
-       }}
+    };
+    
 //show countries
     const [perPage, setperPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -82,6 +69,7 @@ export const AdminAccount = () => {
     const fetchData = async () => {
     const response = await axios.get(`http://localhost:5278/api/Account/getAdmin`);
     setCountry(response.data);
+    console.log(response.data);
     };
 
 useEffect(() => {
@@ -208,14 +196,33 @@ useEffect(() => {
             console.log(error.message);
         }
     };
+    const [selectedShowroom,setSelectedShowroom] = useState(null);
+    const handleSelectShowroom = OptionValue =>{
+        setSelectedShowroom(OptionValue);
+        setCountryData({...CountryData,IdShowroom:OptionValue.value});
+    }
+    const [showroom,setShowroom] = useState();
+    useEffect(() => {
+        axios.get('http://localhost:5278/api/Showroom/showShowroom')
+          .then(response => {
+            const countryOptions = response.data.map(showroom => ({
+              value: showroom.id,
+              label: showroom.name
+            }));
+            setShowroom(countryOptions);
+          })
+          .catch(error => {
+            console.error('Error fetching countries:', error);
+          });
+      }, []);
   return (
     <div class="row">
         <div class="col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Create Countries</h4>
+              <h4 class="card-title">Create Admin</h4>
               <p class="card-description">
-                you need to create city and district before create new countries
+                Hello spm !!
               </p>
               <form class="forms-sample" onSubmit={HandleOnSubmit}>
                 <div class="form-group">
@@ -223,13 +230,29 @@ useEffect(() => {
                   <input type="text" value={CountryData.FullName} onChange={(e) => setCountryData({ ...CountryData, FullName: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="Admin Full Name"/>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputUsername1">Country name</label>
-                  <input type="text" value={CountryData.FullName} onChange={(e) => setCountryData({ ...CountryData, FullName: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="Admin Full Name"/>
+                  <label for="exampleInputUsername1">Email</label>
+                  <input type="text" value={CountryData.Email} onChange={(e) => setCountryData({ ...CountryData, Email: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="Email"/>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputUsername1">Country name</label>
-                  <input type="text" value={CountryData.FullName} onChange={(e) => setCountryData({ ...CountryData, FullName: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="Admin Full Name"/>
+                  <label for="exampleInputUsername1">Phone</label>
+                  <input type="text" value={CountryData.Phone} onChange={(e) => setCountryData({ ...CountryData, Phone: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="Phone"/>
                 </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Address</label>
+                  <input type="text" value={CountryData.Address} onChange={(e) => setCountryData({ ...CountryData, Address: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="Address"/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">IdentityCode</label>
+                  <input type="text" value={CountryData.IdentityCode} onChange={(e) => setCountryData({ ...CountryData, IdentityCode: e.target.value })} class="form-control" id="exampleInputUsername1" placeholder="ID code"/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Showroom</label>
+                  <Select
+                    value={selectedShowroom}
+                    onChange={handleSelectShowroom}
+                    options={showroom}
+                    placeholder="Select a country"
+                  />                </div>
                 
                 <div class="form-check form-check-flat form-check-primary">
                   <label class="form-check-label">
@@ -247,38 +270,36 @@ useEffect(() => {
         <div class="col-md-8 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Countries Table</h4>
-                  <p class="card-description">
-                    Hi Superadmin ! how ya doing ?
-                  </p>
+                  <div className='flex justify-between'>
+                    <div>
+                        <h4 class="card-title">Admin Table</h4>
+                    <p class="card-description">
+                        Hi Superadmin ! how ya doing ?
+                    </p>
+                    </div>
+                    <td><button className="btn btn-dark btn-icon-text" onClick={() => navigate(`/superadmin/admin/adminShow`)}  >Detail<i class="ti-file btn-icon-append"></i></button></td>
+
+                  </div>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>Id</th>
-                          <th>Country Name</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
+                          
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Detail</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
                       {Country.map((Emp, index) => (
                         <tr>
-                          <td>{++index}</td>
-                          <td>{Emp.name}</td>
                           
-                          <td>
-                          <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                onClick={() => handleEditClick(Emp.id)}>Edit
-                                        </button>
-                          </td>
-                          <td>
-                          <button
-                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                onClick={() => handleDeleteClick(Emp.id)}>Delete
-                                        </button>
-                          </td>
+                          <td>{Emp.fullName}</td>
+                          <td>{Emp.email}</td>
+                          
+                          <td>{Emp.nameShowroom ? Emp.nameShowroom.nameShowroom : 'No Showroom'}</td>
+
                         </tr>
                         
                         ))}
