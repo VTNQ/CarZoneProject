@@ -7,11 +7,14 @@ function ShowWareHouseCar() {
     const [WareHouse, setWareHouse] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
-   
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
+
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
@@ -26,15 +29,20 @@ function ShowWareHouseCar() {
         }
         fetchdata();
     }, [])
-    const filterWareHouse=WareHouse.filter(ware=>
+    const filterWareHouse = WareHouse.filter(ware =>
         ware.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-    const IndexoflastWareHouse=(currentPage + 1) * perPage;
-    const IndexofFirstWareHouse=IndexoflastWareHouse-perPage;
-    const CurrentWareHouse=filterWareHouse.slice(IndexofFirstWareHouse,IndexoflastWareHouse)
+    const IndexoflastWareHouse = (currentPage + 1) * perPage;
+    const IndexofFirstWareHouse = IndexoflastWareHouse - perPage;
+    const CurrentWareHouse = filterWareHouse.slice(IndexofFirstWareHouse, IndexoflastWareHouse)
+    const DetailWareHouse=(WareHouse)=>{
+        const updatedSessionData={...sessionData,IDCarWareHouse:WareHouse.id,NameWareHouse:WareHouse.name};
+        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        navigate(`/WareHouse/DetailWareHouseCar/${WareHouse.id}`,{state:updatedSessionData});
+    }
     return (
         <>
             <LayoutEmployee>
@@ -51,7 +59,7 @@ function ShowWareHouseCar() {
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
-                                             value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}
+                                                value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}
                                                 placeholder="Enter WareHouse" />
                                         </form>
                                         <p class="card-description">
@@ -69,16 +77,17 @@ function ShowWareHouseCar() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                {CurrentWareHouse.map((warehouse,index)=>(
-                                                    <tr>
-                                                        <td>{++index}</td>
-                                                        <td>{warehouse.name}</td>
-                                                        <td>{warehouse.totalCar}</td>
-                                                        <td><button disabled={warehouse.totalCar<=0}  style={{opacity:warehouse.totalCar<=0 ? 0.5:1,
-                                                                    cursor:warehouse.totalCar<=0? 'not-allowed':'pointer'
-                                                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>navigate(`/WareHouse/DetailWareHouseCar/${warehouse.id}`,{state:{IDCarWareHouse:warehouse.id,NameWareHouse:warehouse.name,ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>Detail</button></td>
-                                                    </tr>
-                                                ))}
+                                                    {CurrentWareHouse.map((warehouse, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{warehouse.name}</td>
+                                                            <td>{warehouse.totalCar}</td>
+                                                            <td><button disabled={warehouse.totalCar <= 0} style={{
+                                                                opacity: warehouse.totalCar <= 0 ? 0.5 : 1,
+                                                                cursor: warehouse.totalCar <= 0 ? 'not-allowed' : 'pointer'
+                                                            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() =>DetailWareHouse(warehouse) }>Detail</button></td>
+                                                        </tr>
+                                                    ))}
                                                 </tbody>
                                             </table>
 

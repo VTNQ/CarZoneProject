@@ -6,11 +6,13 @@ import axios from "axios";
 function DetailOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
-    const IDInorder = location.state?.IDInorder || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
     const [Detail, setDetail] = useState([]);
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
@@ -24,18 +26,25 @@ function DetailOrder() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-
+    const handleBackClick=()=>{
+        const{IDInorder,...restSessionData } = sessionData;
+        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        navigate("/WareHouse/InOrder",{state:restSessionData});
+    }
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/InOrder/DetailInOrder/${IDInorder}`)
+                const response = await axios.get(`http://localhost:5278/api/InOrder/DetailInOrder/${sessionData.IDInorder}`)
                 setDetail(response.data);
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.IDInorder){
+            fetchdata();
+        }
+     
+    }, [sessionData])
     return (
         <>
             <LayoutAdmin>
@@ -48,7 +57,7 @@ function DetailOrder() {
                                     <div class="card-body">
                                     <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                        onClick={()=>navigate("/WareHouse/InOrder",{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}
+                                        onClick={handleBackClick}
                                         >Back
                                         </button>
                                         <h4 class="card-title">Detail</h4>

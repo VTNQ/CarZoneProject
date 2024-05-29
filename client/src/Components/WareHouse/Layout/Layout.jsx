@@ -9,14 +9,18 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const LayoutAdmin=({children})=> {
   const navigate = useNavigate();
   const location = useLocation();
-  const ID = location.state?.ID || '';
-  const username=location.state?.fullName || '';
-  const email = location.state?.email || '';
-  const idShowroom=location.state?.idShowroom || '';
+  const [sessionData, setSessionData] = useState(null);
+  useEffect(()=>{
+   const data = sessionStorage.getItem('sessionData');
+   if(data){
+     setSessionData(JSON.parse(data));
+   }
+  },[])
+ 
   const [showDropdown, setShowDropdown] = useState(false);
   const handleDropdownToggle = () => {
       setShowDropdown(!showDropdown);
@@ -97,7 +101,7 @@ const LayoutAdmin=({children})=> {
               <a href="#" onClick={() => navigate('/Account')}>
                 <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
               </a>
-              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:{sessionData}})}>
                 <i className="fa fa-user" aria-hidden="true"></i> Account
               </a>
 
@@ -132,55 +136,55 @@ const LayoutAdmin=({children})=> {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Home</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/InOrder',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/InOrder',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">In Order</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Form',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/Form',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Form</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Version',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/Version',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Version</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Brand',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/Brand',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Brand</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Model',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/Model',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Model</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/CreateCarWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/CreateCarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car ShowRoom</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/ShowWareHouseCar',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/ShowWareHouseCar',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car WareHouse</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/RequestWareHouse',{state:{ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/RequestWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Request</span>
     </a>

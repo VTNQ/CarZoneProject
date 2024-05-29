@@ -7,10 +7,13 @@ import axios from "axios";
 function InOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
     const [Inorder, setInOrder] = useState([]);
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
@@ -27,14 +30,22 @@ function InOrder() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowOrderWareHouse/${idShowroom}`)
+                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowOrderWareHouse/${sessionData.idShowroom}`)
                 setInOrder(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idShowroom){
+            fetchdata();
+        }
+       
+    }, [sessionData])
+    const DetailInorder=(InOrder)=>{
+        const updatedSessionData={...sessionData,IDInorder:InOrder.id};
+        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        navigate(`/WareHouse/DetaiInOrder/${InOrder.id}`,{state:updatedSessionData});
+    }
    
     return (
         <>
@@ -81,7 +92,7 @@ function InOrder() {
                                                             <td>{inorder.toTalTax}$</td>
                                                             <td>{inorder.payment}</td>
                                                             <td><button
-                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>navigate(`/WareHouse/DetaiInOrder/${inorder.id}`,{ state: { ID: ID, fullName: username, email: email, IDInorder: inorder.id,idShowroom:idShowroom } })}
+                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>DetailInorder(inorder)}
 
                                                             >Detail
                                                             </button></td>

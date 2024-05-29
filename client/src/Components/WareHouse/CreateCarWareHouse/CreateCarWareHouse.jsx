@@ -8,11 +8,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 function CreateCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
    
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
     const [Showroom, setShowroom] = useState([]);
     const [ShowCreateCar, setShowCreateCar] = useState([]);
     const [SelectCars, setSelectCars] = useState([]);
@@ -101,7 +104,11 @@ function CreateCarWareHouse() {
         }
         fetchData();
     }, [])
-
+    const DetailWareHouse=(ShowRoom)=>{
+        const updatedSessionData={...sessionData,IDCarShowroom:ShowRoom.id,NameShowroom:ShowRoom.name};
+        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        navigate(`/WareHouse/DetailCreateCarShowRoom/${ShowRoom.id}`,{state:updatedSessionData});
+    }
     return (
         <>
             <LayoutEmployee>
@@ -173,7 +180,7 @@ function CreateCarWareHouse() {
                                                             <td>{car.totalCar}</td>
                                                             <td><button disabled={car.totalCar<=0}  style={{opacity:car.totalCar<=0 ? 0.5:1,
                                                                     cursor:car.totalCar<=0? 'not-allowed':'pointer'
-                                                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>navigate(`/WareHouse/DetailCreateCarShowRoom/${car.id}`,{state:{IDCarShowroom:car.id,NameShowroom:car.name,ID:ID,fullName:username,email:email,idShowroom:idShowroom}})}>Detail</button></td>
+                                                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>DetailWareHouse(car)}>Detail</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
