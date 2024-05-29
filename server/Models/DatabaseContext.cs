@@ -233,6 +233,7 @@ public partial class DatabaseContext : DbContext
             entity.Property(e => e.Address).HasDefaultValue("");
             entity.Property(e => e.Email).HasDefaultValue("");
             entity.Property(e => e.FullName).HasDefaultValue("");
+            entity.Property(e => e.IdShowroom).HasDefaultValue(0);
             entity.Property(e => e.IdentityCode).HasDefaultValue("");
             entity.Property(e => e.Password).HasDefaultValue("");
             entity.Property(e => e.Phone).HasDefaultValue("");

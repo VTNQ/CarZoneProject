@@ -40,7 +40,9 @@ public partial class Employee
     [Unicode(false)]
     public string Password { get; set; } = null!;
 
-    public int IdShowroom { get; set; }
+    public int? IdShowroom { get; set; }
+
+    public int? IdWarehouse { get; set; }
 
     [InverseProperty("IdEmployeeNavigation")]
     public virtual ICollection<InOrder> InOrders { get; set; } = new List<InOrder>();
