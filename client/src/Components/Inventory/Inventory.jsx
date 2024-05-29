@@ -208,7 +208,7 @@ function Inventory() {
 
         const includesSearchTerm = product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
         const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
-        // Otherwise, check if SelectBrand includes the product's branch
+        
         if (SelectBrand == '' && SelectCondition == '' && SelectModel == '' &&  SelectShowRoom == '') {
             return true;
         }
@@ -302,6 +302,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectShowRoom} onChange={handleChangeSelectShowRoom}>
+                                                                            <option value="">All</option>
                                                                                 {ShowRoom.map(item => (
                                                                                     <option value={item.id}>{item.name}</option>
                                                                                 ))}
@@ -309,20 +310,7 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column"  style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        Product Type
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {Producttype.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Branch
@@ -338,20 +326,7 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        Make
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {Make.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Model
@@ -359,6 +334,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" onChange={handleSelectModel} value={SelectModel}>
+                                                                            <option value="">All</option>
                                                                                 {Model.map(item => (
                                                                                     <option value={item.id}>{item.name}</option>
                                                                                 ))}
@@ -373,6 +349,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectCondition} onChange={handleSelectCondition}>
+                                                                            <option value="">All</option>
                                                                                 {Condition.map(item => (
                                                                                     <option value={item.label}>{item.label}</option>
                                                                                 ))}
@@ -380,34 +357,8 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        EXTERIOR COLOR
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {ExistColor.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
-                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        INTERIOR COLOR
-                                                                    </label>
-                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                        <div className="acf-taxonomy-field">
-                                                                            <select name="" id="acf-field-ap_branch-663e95071b87b">
-                                                                                {ExistColor.map(item => (
-                                                                                    <option key={item.value}>{item.label}</option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                           
+                                                                
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Price
@@ -489,7 +440,7 @@ function Inventory() {
                                                 </div>
                                             </div>
                                             {ChangeSwitch == 1 && (
-                                                <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
+                                                <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                                                     {filterCar.map((car, inex) => (
                                                         <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
                                                             <div className="ap-inner" style={{ width: '97%' }}>

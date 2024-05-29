@@ -6,8 +6,8 @@ namespace server.Services
     {
         public bool addCar(AddCar addCar);
         public dynamic showCar();
-        public bool updateCar(int id, UpdateCar updateCar);
-        public bool deleteCar(int carId);
+        Task<bool> updateCar(int id, UpdateCar updateCar);
+        Task<bool> deleteCar(int carId);
 
         public dynamic findCarById(int carId);
     }

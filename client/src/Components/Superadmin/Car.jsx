@@ -19,8 +19,21 @@ export const CarSpm = () => {
     const [VersionApi, setVersionApi] = useState([]);
     const [selectedIdForm, setSelectedIdForm] = useState(null);
     const [FormApi, setFormApi] = useState([]);
+    const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const navigate = useNavigate();
-
+    const popupContentStyle = {
+        background: 'white',
+        padding: '20px',
+        maxWidth: '400px',
+        textAlign: 'center',
+        borderRadius: '8px',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+        animation: 'flipleft 0.5s',
+        zindex: '1000000' // Default animation
+    };
+    const closingAnimation = {
+        animation: 'flipright 0.5s forwards',
+    };
     const [CarForm, setCarForm] = useState({
         Name: '',
         IdModel: '',
@@ -246,7 +259,77 @@ export const CarSpm = () => {
             SubPhotos: subPhotos
         });
     };
-    
+    const DeleteCar=async(ID)=>{
+        try{
+            const confirmation = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Delete it',
+            });
+            if(confirmation.isConfirmed){
+                const response=await fetch(`http://127.0.0.1:5278/api/Car/DeleteCar/${ID}`,{
+                    method: 'Delete',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                if(response.ok){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Delete Car Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    fetchDataCar();
+                }else{
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
+    const [FromData,setFromData]=useState({
+        id:'',
+        UpdateName:'',
+        UpdatePrice:''
+    })
+    const handleClosepopup = () => {
+        setIsClosingPopup(true);
+        setTimeout(() => {
+
+            setFromData({
+                id:'',
+                UpdateName:'',
+                UpdatePrice:''
+            })
+          
+            setPopupVisibility(false)
+            setIsClosingPopup(false)
+        }, 500);
+    }
+    const [isPopupVisible, setPopupVisibility] = useState(false);
+    const handleEditClick=async(ID)=>{
+        const SelectCar=CarDataApi.find(cardata=>cardata.id==ID);
+        if(SelectCar){
+            FromData.id=SelectCar.id;
+            FromData.UpdateName=SelectCar.name;
+            FromData.UpdatePrice=SelectCar.price;
+        }
+        setPopupVisibility(true)
+    }
     const handleSubmit = async (event) => {
         event.preventDefault();
     
@@ -319,7 +402,55 @@ export const CarSpm = () => {
             console.error("Error: ", error);
         }
     };
-    
+    const handleUpdate=async(event)=>{
+        event.preventDefault();
+        if(FromData.UpdateName=='' || FromData.UpdatePrice==''){
+            Swal.fire({
+                icon: 'error',
+                title: 'Name And Price is required',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        }else{
+            try{
+                const response=await fetch(`http://127.0.0.1:5278/api/Car/UpdateCar/${FromData.id}`,{
+                    method:'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({name:FromData.UpdateName,price:FromData.UpdatePrice})
+                })
+                if(response.ok){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Update Car Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    fetchDataCar();
+                    setPopupVisibility(false)
+                    setFromData({
+                        id:'',
+                        UpdateName:'',
+                        UpdatePrice:''
+                    })
+                    
+                }else{
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            }catch(error){
+                console.log(error)
+            }
+        }
+    }
     return (
         <div className="main-panel">
             <div className="content-wrapper">
@@ -517,6 +648,8 @@ export const CarSpm = () => {
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Car Name</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -524,7 +657,9 @@ export const CarSpm = () => {
                                                 <tr key={car.id}>
                                                     <td>{index + 1}</td>
                                                     <td>{car.name}</td>
-                                                </tr>   
+                                                    <td><button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded' onClick={()=>handleEditClick(car.id)}>Edit</button></td>
+                                                    <td><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={()=>DeleteCar(car.id)}>Delete</button></td>
+                                                </tr>
                                             ))}
                                         </tbody>
                                     </table>
@@ -534,6 +669,48 @@ export const CarSpm = () => {
                     </div>
                 </div>
             </div>
+            {isPopupVisible && (
+                    <div className="popup-container">
+
+                        <div className="popup-content" style={IsClosingPopup ? { ...popupContentStyle, ...closingAnimation } : popupContentStyle}>
+                            <div className='flex justify-end'>
+                                <button onClick={handleClosepopup} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded float-right "><i className="fas fa-times"></i></button>
+                            </div>
+
+                            <div style={{ marginTop: '16px' }}>
+
+                                <h3 className="box-title1">Edit Car</h3>
+                            </div>
+                            <form role="form" onSubmit={handleUpdate}>
+                                <div className="box-body">
+                                    {/* Form fields go here */}
+                                    <div class="form-group">
+                                        <label className='float-left'>Name</label>
+                                        <input type="text" class="form-control" value={FromData.UpdateName} onChange={(e) => setFromData({ ...FromData, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label className='float-left'>Price</label>
+                                        <br />
+                                       
+                                        <input type="number" class="form-control" value={FromData.UpdatePrice} onChange={(e) => setFromData({ ...FromData, UpdatePrice: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                    </div>
+
+
+                                </div>
+
+                                <div className="box-footer">
+                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded ">Update</button>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                )}
+
         </div>
+        
     );
 }

@@ -108,10 +108,53 @@ namespace server.Services
                 throw; // Rethrow the exception to be caught by the global exception handler
             }
         }
-
-        public bool deleteCar(int carId)
+        public void DeletePhoto(string photo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string path = Path.Combine(env.WebRootPath, "images", photo);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting file '{photo}': {ex.Message}");
+            }
+        }
+        public async Task<bool> deleteCar(int carId)
+        {
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Car = databaseContext.Cars.Find(carId);
+                    var Photo=databaseContext.Photos.Where(d=>d.IdCar == carId).ToList();
+                    if (Car != null)
+                    {
+                        if (Photo.Any())
+                        {
+                           foreach(var photo in Photo)
+                            {
+                                DeletePhoto(photo.Link);
+                            }
+                            databaseContext.Photos.RemoveRange(Photo);
+                        }
+                        databaseContext.Cars.Remove(Car);
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
+            
         }
 
         public dynamic findCarById(int carId)
@@ -164,7 +207,7 @@ namespace server.Services
         {
             return databaseContext.Cars.Select(c => new
             {
-                Id = c.Id,
+                id=c.Id,
                 Name = c.Name,
                 NameModel = c.IdModelNavigation.Name,
                 Condition = c.Condition,
@@ -207,9 +250,28 @@ namespace server.Services
             }).ToList();
         }
 
-        public bool updateCar(int id, UpdateCar updateCar)
+        public async Task<bool> updateCar(int id, UpdateCar updateCar)
         {
-            throw new NotImplementedException();
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Car = databaseContext.Cars.Find(id);
+                    if(Car != null)
+                    {
+                        Car.Name=updateCar.Name;
+                        Car.Price=updateCar.Price;
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
         }
     }
 }

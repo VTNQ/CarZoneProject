@@ -16,6 +16,57 @@ namespace server.Controllers
             this.databaseContext = databaseContext;
             this.carService = carService;
         }
+        [HttpPut("UpdateCar/{id}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> UpdateCar(int id, [FromBody]UpdateCar updateCar)
+        {
+            if(databaseContext.Cars.Any(d=>d.Name==updateCar.Name && d.Id!=id)) {
+                return BadRequest(new { message = "name has already exist" });
+            }
+            try
+            {
+                return Ok(new
+                {
+                    result = carService.updateCar(id, updateCar)
+                });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpDelete("DeleteCar/{id}")]
+
+        public async Task<IActionResult> DeleteCar(int id)
+        {
+            if (databaseContext.DetailOfInOrders.Any(d => d.IdCar == id))
+            {
+                return BadRequest(new { message = "Cannot delete car in order" });
+            }
+            if(databaseContext.DetailOfOutOrders.Any(d => d.IdCar == id))
+            {
+                return BadRequest(new { message = "Cannot delete car out order" });
+            }
+            if(databaseContext.SubWarehouseCars.Any(d => d.IdCar == id))
+            {
+                return BadRequest(new { message = "Cannot delete car Sub WareHouse Car" });
+            }
+            if(databaseContext.SubWarehouseShowrooms.Any(d=>d.IdCar == id))
+            {
+                return BadRequest(new { message = "Cannot delete car Sub WareHouse ShowRoom Car" });
+            }
+            try
+            {
+                return Ok(new
+                {
+                    result = carService.deleteCar(id)
+                });
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("addCar")]
         [Produces("application/json")]
         public IActionResult addCar([FromForm] AddCar addCar)
