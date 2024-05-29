@@ -203,9 +203,28 @@ namespace server.Services
             }).ToList();
         }
 
-        public bool updateCar(int id, UpdateCar updateCar)
+        public async Task<bool> updateCar(int id, UpdateCar updateCar)
         {
-            throw new NotImplementedException();
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Car = databaseContext.Cars.Find(id);
+                    if(Car != null)
+                    {
+                        Car.Name=updateCar.Name;
+                        Car.Price=updateCar.Price;
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
         }
     }
 }
