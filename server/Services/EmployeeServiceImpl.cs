@@ -50,7 +50,7 @@ namespace server.Services
                 return false;
             }
         }
-
+    
         public dynamic GetEmployee(int idShowRoom)
         {
             return databaseContext.Employees.Where(d => d.IdShowroom == idShowRoom && d.Role== "Employee").Select(d => new

@@ -1,5 +1,6 @@
 ﻿using server.Data;
 using server.Models;
+using System.Data.SqlTypes;
 
 namespace server.Services
 {
@@ -14,25 +15,22 @@ namespace server.Services
         {
             try
             {
-                var employeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == email );
-                if(employeeLogin != null && BCrypt.Net.BCrypt.Verify(password,employeeLogin.Password))
-                {
-                    var user = new Employee
-                    {
-                        Id = employeeLogin.Id,
-                        FullName = employeeLogin.FullName,
-                        Email = employeeLogin.Email,
-                        Role = employeeLogin.Role,
-                        IdentityCode = employeeLogin.IdentityCode,
-                        IdShowroom = employeeLogin.IdShowroom,
+                var employeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == email);
 
-                    };
-                    return user;
-                }
+                Console.WriteLine(employeeLogin);
+                
                 return null;
             }
-            catch
+            catch (SqlNullValueException ex)
             {
+                // Log the SqlNullValueException details for debugging
+                Console.WriteLine($"SqlNullValueException: {ex.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                // Log the general exception details for debugging
+                Console.WriteLine($"Exception: {ex.Message}");
                 return null;
             }
         }
