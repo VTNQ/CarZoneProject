@@ -7,9 +7,14 @@ function DetailWareHousewarehouse() {
     const navigate = useNavigate();
     const [previewImage, setPreviewImage] = useState(null);
     const location = useLocation();
-    const IDCarWareHouse = location.state?.IDCarWareHouse || '';
-
-    const NameWareHouse = location.state?.NameWareHouse || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
+    console.log(sessionData)
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
@@ -18,20 +23,23 @@ function DetailWareHousewarehouse() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/WareHouse/DetailWareHouseCar/${IDCarWareHouse}`);
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/DetailWareHouseCar/${sessionData.IDCarWareHouse}`);
                 setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
-    const FilterCar=WareHouse.filter(car=>
+        if(sessionData && sessionData.IDCarWareHouse){
+            fetchdata();
+        }
+       
+    }, [sessionData])
+    const FilterCar = WareHouse.filter(car =>
         car.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    const indexoflastCar=(currentPage + 1) * perPage;
-    const indexOfFirtCar=indexoflastCar - perPage;
-    const CurrentCar=FilterCar.slice(indexOfFirtCar,indexoflastCar)
+    const indexoflastCar = (currentPage + 1) * perPage;
+    const indexOfFirtCar = indexoflastCar - perPage;
+    const CurrentCar = FilterCar.slice(indexOfFirtCar, indexoflastCar)
     const handleImageClick = (imageUrl) => {
         setPreviewImage(imageUrl)
     }
@@ -63,6 +71,11 @@ function DetailWareHousewarehouse() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+    const handleBackClick=()=>{
+        const{idOrder,...restSessionData } = sessionData;
+        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        navigate("/WareHouse/ShowWareHouseCar",{state:restSessionData});
+    }
     return (
         <>
             <LayoutEmployee>
@@ -74,11 +87,16 @@ function DetailWareHousewarehouse() {
                                 <div class="card">
 
                                     <div class="card-body">
-                                    <button
+                                        <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
-                                            onClick={() => navigate("/WareHouse/ShowWareHouseCar")}>Back
+                                            onClick={handleBackClick}>Back
                                         </button>
-                                        <h4 class="card-title">Detail WareHouse {NameWareHouse}</h4>
+                                        {sessionData ? (
+                                            <h4 class="card-title">Detail WareHouse {sessionData.NameWareHouse}</h4>
+                                             ) : (
+                                                <h4 class="card-title">Detail WareHouse </h4>
+                                            )}
+                                        
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"

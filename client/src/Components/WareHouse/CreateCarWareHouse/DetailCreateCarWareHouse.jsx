@@ -6,8 +6,13 @@ import axios from "axios";
 function DetailCreateCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
-    const IDCarShowroom = location.state?.IDCarShowroom || '';
-    const NameShowroom = location.state?.NameShowroom || '';
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = sessionStorage.getItem('sessionData');
+        if (data) {
+            setSessionData(JSON.parse(data));
+        }
+    }, [])
     const [Car,setCar]=useState([]);
     const [previewImage, setPreviewImage] = useState(null);
     const [perPage, setperPage] = useState(5);
@@ -24,14 +29,17 @@ function DetailCreateCarWareHouse() {
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
-                const response=await axios.get(`http://localhost:5278/api/WareHouse/DetailCartoShowRoom/${IDCarShowroom}`);
+                const response=await axios.get(`http://localhost:5278/api/WareHouse/DetailCartoShowRoom/${sessionData.IDCarShowroom}`);
                 setCar(response.data.result)
             }catch(error){
                 console.log(error)
             }
         }
-        fetchdata();
-    },[])
+        if(sessionData && sessionData.IDCarShowroom){
+            fetchdata();
+        }
+        
+    },[sessionData])
     const FilterCar=Car.filter(car=>
         car.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -78,7 +86,12 @@ function DetailCreateCarWareHouse() {
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
                                             onClick={() => navigate("/WareHouse/CreateCarWareHouse")}>Back
                                         </button>
-                                        <h4 class="card-title">Detail {NameShowroom}</h4>
+                                        {sessionData ? (
+                                              <h4 class="card-title">Detail {sessionData.NameShowroom}</h4>
+                                             ) : (
+                                                <h4 class="card-title">Detail </h4>
+                                             )}
+                                      
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
