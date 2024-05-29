@@ -22,6 +22,7 @@ function DetailOutOrders() {
           setSessionData(JSON.parse(data));
       }
   }, []);
+
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
