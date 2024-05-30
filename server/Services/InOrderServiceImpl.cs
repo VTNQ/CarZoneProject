@@ -117,7 +117,7 @@ namespace server.Services
 
         public dynamic ShowOrderWareHouse(int id)
         {
-            return databaseContext.InOrders.Where(d=>d.IdEmployeeNavigation.IdShowroom==id && d.IdEmployeeNavigation.Role!= "WareHouse").Select(d => new
+            return databaseContext.InOrders.Where(d=>d.IdWarehouse==id).Select(d => new
             {
                 id = d.Id,
                 WareHouse = d.IdWarehouseNavigation.Name,
@@ -129,5 +129,7 @@ namespace server.Services
                 Payment = d.Payment,
             }).ToList() ;
         }
+
+      
     }
 }

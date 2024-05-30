@@ -5,6 +5,7 @@ import LayoutAdmin from "../Layout/Layout";
 import Swal from "sweetalert2";
 import DatePicker from 'react-datepicker';
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
 import { useLocation, useNavigate } from "react-router-dom";
 function InOrder() {
     const [car, setCar] = useState([]);
@@ -23,13 +24,24 @@ function InOrder() {
     const location = useLocation();
     
     const [InOrder, setInOrder] = useState([]);
-    const[sessionData,setSessionData]=useState(null);
-      useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
-        if (data) {
-            setSessionData(JSON.parse(data));
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
         }
-    }, []);
+        return null;
+    }
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -185,7 +197,7 @@ function InOrder() {
     }
     const handleDetailClick=(inorder)=>{
         const updatedSessionData={...sessionData,IDInorder:inorder.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate(`/DetailInOrder/${inorder.id}`,{state:updatedSessionData})
     }
     return (

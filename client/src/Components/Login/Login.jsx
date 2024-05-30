@@ -7,6 +7,7 @@ import '../Admin/assets/vendors/mdi/css/materialdesignicons.min.css';
 import '../Admin/assets/vendors/ti-icons/css/themify-icons.css';
 import '../Admin/assets/css/style.css';
 import Img from '../Admin/assets/images/logo.svg';
+import Cookies from 'js-cookie'
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 function Login(){
@@ -26,14 +27,16 @@ function Login(){
                 },
             })
             const responseData = await response.json();
-            const { id, fullName,email,role,idShowroom } = responseData;
+            const { id, fullName,email,role,idShowroom,idWarehouse } = responseData;
             const sessionData = {
               ID: id,
               fullName: fullName,
               email: email,
               idShowroom: idShowroom,
+              idWarehouse:idWarehouse
           };
-          sessionStorage.setItem('sessionData', JSON.stringify(sessionData));
+          Cookies.set('UserSession', JSON.stringify(sessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
+        
             if(response.ok){
                 Swal.fire({
                     icon: 'success',

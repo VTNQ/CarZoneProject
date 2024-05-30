@@ -188,9 +188,9 @@ namespace server.Services
             }).Take(3).ToList();
         }
 
-        public dynamic ShowRoom()
+        public dynamic ShowRoom(int id)
         {
-            return databaseContext.Showrooms.Select(d => new
+            return databaseContext.Showrooms.Where(d => databaseContext.Warehouses.Any(m => m.Id == id && m.IdCountry == d.IdDistrictNavigation.IdCityNavigation.IdCountry)).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
@@ -233,9 +233,9 @@ namespace server.Services
             }
         }
 
-        public async Task<IEnumerable<dynamic>> GetCartoShowRoom()
+        public async Task<IEnumerable<dynamic>> GetCartoShowRoom(int id)
         {
-            return databaseContext.Showrooms.Select(d => new
+            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
@@ -277,9 +277,9 @@ namespace server.Services
             }).ToList();
         }
 
-        public async Task<IEnumerable<dynamic>> GetWareHouseCar()
+        public async Task<IEnumerable<dynamic>> GetWareHouseCar(int id)
         {
-            return databaseContext.Warehouses.Select(d => new
+            return databaseContext.Warehouses.Where(d=>d.Id==id).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
@@ -379,9 +379,9 @@ namespace server.Services
                 }).ToList();
             }
 
-            public async Task<IEnumerable<dynamic>> GetCarToWareHouse()
+            public async Task<IEnumerable<dynamic>> GetCarToWareHouse(int id)
             {
-                return databaseContext.Cars.Where(d => databaseContext.SubWarehouseCars.Any(m => m.IdCar == d.Id)).Select(d => new
+                return databaseContext.Cars.Where(d => databaseContext.SubWarehouseCars.Any(m => m.IdCar == d.Id && m.IdWarehouse==id)).Select(d => new
                 {
                     id = d.Id,
 
