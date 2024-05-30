@@ -95,6 +95,25 @@ namespace server.Controllers
             {
                 return BadRequest(ex);
             }
+        }[HttpPost("addWarehouse")]
+        [Produces("application/json")]
+        public IActionResult addWarehouse([FromBody] AddAccountWarehouse addWarehouse)
+        {
+            try
+            {
+                if (DatabaseContext.Employees.Any(c => c.Email == addWarehouse.Email && c.IdentityCode == addWarehouse.IdentityCode))
+                {
+                    return BadRequest(new {message = "email or identity code existed"});
+                }
+                return Ok(new
+                {
+                    result = _accountService.addWarehouse(addWarehouse)
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
         [HttpGet("getAdmin")]
         public IActionResult getAdmin()

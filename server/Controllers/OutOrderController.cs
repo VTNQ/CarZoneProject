@@ -68,6 +68,17 @@ namespace server.Controllers
             {
                 return BadRequest();
             }
+        }[HttpGet("ShowAllContract")]
+        public IActionResult ShowAllContract()
+        {
+            try
+            {
+                return Ok(_orderService.ShowAllContract());
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
         [HttpPost("AddContract/{id}")]
         [Produces("application/json")]
@@ -121,6 +132,18 @@ namespace server.Controllers
             catch
             {
                 return BadRequest();    
+            }
+        }
+        [HttpGet("ShowAllOutOrder")]
+        public IActionResult ShowAllOutOrder()
+        {
+            try
+            {
+                return Ok(_orderService.ShowAllOutOrder());
+            }
+            catch
+            {
+                return BadRequest();
             }
         }
         [HttpGet("ShowCar")]

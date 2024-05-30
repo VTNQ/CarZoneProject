@@ -102,6 +102,25 @@ namespace server.Services
            }).ToList();
         }
 
+        public dynamic ShowAllOutOrder()
+        {
+            return _dbContext.OutOrders.Select(d => new
+            {
+                id = d.Id,
+                Customer = d.IdCustomerNavigation.FullName,
+
+                DateofSale = d.DateOfSale,
+                TotalAmount = d.TotalAmount,
+                TotalTax = d.TotalTax,
+                Payment = d.Payment,
+                DeliveryType = d.DeliveryType,
+                idOrder = _dbContext.Contracts.Where(m => m.IdOrder == d.Id).Select(m => new
+                {
+                    idorder = m.IdOrder,
+                }).FirstOrDefault(),
+            }).OrderByDescending(arg => arg.id).ToList();
+        }
+
         public dynamic ShowCar()
         {
             return _dbContext.Cars.Select(d => new
@@ -115,6 +134,23 @@ namespace server.Services
         public dynamic ShowContract(int id)
         {
             var contracts=_dbContext.Contracts.Where(d => d.IdOrder == id).Select(d => new
+            {
+                Condition = d.Condition,
+                CreateDate = d.CreatedDate,
+            }).FirstOrDefault();
+            if (contracts != null)
+            {
+                return contracts;
+            }
+            else
+            {
+                return "Not Data";
+            }
+            
+        }
+        public dynamic ShowAllContract()
+        {
+            var contracts=_dbContext.Contracts.Select(d => new
             {
                 Condition = d.Condition,
                 CreateDate = d.CreatedDate,
@@ -165,6 +201,7 @@ namespace server.Services
                }).FirstOrDefault(),
            }).OrderByDescending(arg => arg.id).ToList();
         }
+        
 
         public async Task UpdateOrderStatus()
         {

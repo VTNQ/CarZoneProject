@@ -34,6 +34,7 @@ import Counter from '../../SubFeature/Counter'
 import TruncateText from '../../SubFeature/TruncateText'
 import Select from 'react-select';
 import Footer from '../../Footer/Footer';
+import axios from 'axios';
 
 
 export const Homepage = () => {
@@ -121,7 +122,21 @@ export const Homepage = () => {
         }),
       };
       const[transition,setTransition] = useState(false);
-    
+      const [CarData,setCarData] = useState([]);
+      const fetchDataCar = async () => {
+        try {
+          const response = await axios.get('http://localhost:5278/api/Car/getCar');
+          const sortedCars = response.data.sort((a, b) => b.id - a.id);  // Sort by id in descending order
+          const latestCars = sortedCars.slice(0, 6);  // Take the first 6 cars
+          setCarData(latestCars);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error fetching car data:', error);
+        }
+      };
+    useEffect(()=>{
+        fetchDataCar();
+    },[])
     
   return (
     
@@ -189,51 +204,48 @@ export const Homepage = () => {
                 
             </div>
             <div className='slider absolute top-[22%] max-w-[100%] pr-[10%] pl-[4%]'>
-            {cards.slice(currentIndex, currentIndex + cardsPerSlide).concat(
-        cards.slice(0, Math.max(0, cardsPerSlide - (cards.length - currentIndex)))
-    ).map(card => (
-                    <div key={card.id} className="card">
-                        <div className='relative'>
-                        <img className='img-slider' src={car1} alt="" />
-                        <div className='absolute container-mini'>
-                                <h1 className='text-card'>${card.title}</h1>
-                                
-                        </div>
-                        </div>
-                        <div className='absolute top-[63%]  w-full h-[140px] px-4'>
-                            <h1 className='title-section3'>{card.title}</h1>
-                            <h1 className='title1-section3'>{card.description}</h1>
-                        </div>
-                        <div className='absolute bottom-0 w-full  grid grid-cols-3 gap-1'>
-                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
-                                <div className='flex justify-center h-full items-center mt-1'>
-                                    <div className='flex justify-center gap-1'>
-                                    <i class='bx bx-registered text-[1rem]' style={{color:'#ff5500'}}  ></i>
-                                    <h1 className='title3-section3 '>{card.title} mi</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
-                                <div className='flex justify-center h-full items-center mt-1'>
-                                    <div className='flex justify-center gap-1'>
-                                    <i class='bx bx-cog text-[1rem]' style={{color:'#ff5500'}}  ></i>
-                                    <h1 className='title3-section3 '>{card.title} mi</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-full h-[50px] bg-[#F1F1F1]'>
-                                <div className='flex justify-center h-full items-center mt-1'>
-                                    <div className='flex justify-center gap-1'>
-                                    <i class='bx bx-car text-[1rem]' style={{color:'#ff5500'}}  ></i>
-                                    <h1 className='title3-section3 '>{card.title} mi</h1>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            
-                        </div>
-                    </div>
-                ))}
+            {CarData.slice(currentIndex, currentIndex + cardsPerSlide).concat(
+        CarData.slice(0, Math.max(0, cardsPerSlide - (CarData.length - currentIndex)))
+      ).map(card => (
+        <div key={card.id} className="card">
+          <div className='relative'>
+            <img className='img-slider' src={card.mainPhoto?.link} />
+            <div className='absolute container-mini'>
+              <h1 className='text-card'>${card.price}</h1>
+            </div>
+          </div>
+          <div className='absolute top-[63%]  w-full h-[140px] px-4'>
+            <h1 className='title-section3'>{card.name}</h1>
+            <h1 className='title1-section3'>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</h1>
+          </div>
+          <div className='absolute bottom-0 w-full  grid grid-cols-3 gap-1'>
+            <div className='w-full h-[50px] bg-[#F1F1F1]'>
+              <div className='flex justify-center h-full items-center mt-1'>
+                <div className='flex justify-center gap-1'>
+                  <i className='bx bx-registered text-[1rem]' style={{ color: '#ff5500' }}></i>
+                  <h1 className='title3-section3 '>{card.nameVersion}</h1>
+                </div>
+              </div>
+            </div>
+            <div className='w-full h-[50px] bg-[#F1F1F1]'>
+              <div className='flex justify-center h-full items-center mt-1'>
+                <div className='flex justify-center gap-1'>
+                  <i className='bx bx-cog text-[1rem]' style={{ color: '#ff5500' }}></i>
+                  <h1 className='title3-section3 '>{card.mileage}</h1>
+                </div>
+              </div>
+            </div>
+            <div className='w-full h-[50px] bg-[#F1F1F1]'>
+              <div className='flex justify-center h-full items-center mt-1'>
+                <div className='flex justify-center gap-1'>
+                  <i className='bx bx-car text-[1rem]' style={{ color: '#ff5500' }}></i>
+                  <h1 className='title3-section3 '>{card.fuelType}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
             </div>
             <div className="dots absolute bottom-[20%] left-[50%]">
                 {[0, 1, 2,3,4,5].map((dotIndex) => (

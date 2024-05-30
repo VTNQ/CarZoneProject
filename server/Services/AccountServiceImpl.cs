@@ -44,6 +44,26 @@ namespace server.Services
             //SendEmail(addAdmin.Email, "Reset Information", $"FullName :{addAdmin.FullName}\n Password:{Password}");
             _dbContext.Employees.Add(admin);
             return _dbContext.SaveChanges()>0;
+        }public bool addWarehouse(AddAccountWarehouse addWarehouse)
+        {
+            if(_dbContext.Employees.Any(c=>c.Email == addWarehouse.Email && c.IdentityCode == addAdmin.IdentityCode)) {
+                return false;
+            }
+            string Password = GenerateRandomString(8);
+            var admin = new Employee()
+            {
+                FullName = addWarehouse.FullName,
+                Email = addWarehouse.Email,
+                IdentityCode = addWarehouse.IdentityCode,
+                Address = addWarehouse.Address,
+                Phone = addWarehouse.Phone,
+                Role = "WareHouse",
+                Password = BCrypt.Net.BCrypt.HashPassword(Password),
+                 = addWarehouse.IdWarehouse,
+            };
+            //SendEmail(addAdmin.Email, "Reset Information", $"FullName :{addAdmin.FullName}\n Password:{Password}");
+            _dbContext.Employees.Add(admin);
+            return _dbContext.SaveChanges()>0;
         }
         private void SendEmail(string to, string subject, string body)
         {

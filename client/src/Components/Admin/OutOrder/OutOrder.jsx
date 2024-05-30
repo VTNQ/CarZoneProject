@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import Pagination from 'react-paginate';
 import DatePicker from 'react-datepicker';
 import { useLocation, useNavigate } from "react-router-dom";
+
 function OutOrder() {
     const [Customer, setCustomer] = useState([]);
     const [Car, setCar] = useState([]);
