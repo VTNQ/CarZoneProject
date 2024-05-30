@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Models;
 
 namespace server.Services
@@ -50,6 +51,11 @@ namespace server.Services
                 id=d.Id,
                 name=d.Name,
             }).ToList();
+        }
+
+        public async Task<int> TotalColor()
+        {
+            return await _databaseContext.Colors.CountAsync();
         }
 
         public bool UpdateColor(int id, AddColor UpdateColor)

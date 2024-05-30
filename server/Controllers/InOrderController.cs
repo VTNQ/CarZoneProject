@@ -66,6 +66,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalInorder/{id}")]
+        public async Task<IActionResult> TotalInorder(int id)
+        {
+            try
+            {
+                return Ok( await _orderService.TotalInorder(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowSupply")]
         public IActionResult ShowSupply()
         {

@@ -12,6 +12,7 @@ namespace server.Services
         public dynamic DetailInOrder(int id);
          Task UpdateOrderStatus();
         public dynamic ShowOrderWareHouse(int id);
+        Task<int> TotalInorder(int id);
      
     }
 }

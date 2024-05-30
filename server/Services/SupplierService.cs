@@ -9,5 +9,6 @@ namespace server.Services
         public dynamic ShowSupplier();
         public bool UpdateSupplier(int id,AddSupplier updateSuppplier);
         public bool DeleteSupplier(int id);
+        Task<int> TotalSupplier();
     }
 }

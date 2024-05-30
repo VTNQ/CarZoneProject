@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Helper;
 using server.Models;
@@ -272,6 +273,11 @@ namespace server.Services
                     return false;
                 }
             }
+        }
+
+        public async Task<int> TotalCar(int id)
+        {
+            return await databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m => m.IdShowroom == id && d.Id == m.IdCar)).CountAsync();
         }
     }
 }

@@ -45,6 +45,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalOutOrder/{id}")]
+        public async Task<IActionResult> TotalOutOrder(int id)
+        {
+            try
+            {
+                return Ok(await  _orderService.TotalOutOrder(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("DetailOutOrder/{id}")]
         public IActionResult DetailOutOrder(int id)
         {

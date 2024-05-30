@@ -104,7 +104,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-
+        [HttpGet("TotalEmployee/{role}")]
+        public async Task<IActionResult> TotalEmployee(string role)
+        {
+            try
+            {
+                return Ok(await employeeService.CountEmployee(role));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("FindById/{id}")]
         public IActionResult FindById(int id)
         {

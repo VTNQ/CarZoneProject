@@ -17,5 +17,6 @@ namespace server.Services
         public dynamic ShowContract(int id);
         public dynamic ShowAllContract();
         Task UpdateOrderStatus();
+        Task<int> TotalOutOrder(int id);
     }
 }

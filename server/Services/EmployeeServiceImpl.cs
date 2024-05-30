@@ -2,6 +2,7 @@
 using server.Models;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace server.Services
 {
@@ -156,5 +157,9 @@ namespace server.Services
             
         }
 
+        public async Task<int> CountEmployee(string role)
+        {
+            return await databaseContext.Employees.Where(d => d.Role == "Employee").CountAsync();
+        }
     }
 }

@@ -4,7 +4,7 @@ using server.Models;
 
 namespace server.Services
 {
-    public class OutOrderServiceImpl:OutOrderService
+    public class OutOrderServiceImpl : OutOrderService
     {
         private readonly DatabaseContext _dbContext;
         public OutOrderServiceImpl(DatabaseContext dbContext)
@@ -226,6 +226,11 @@ namespace server.Services
                 }
             }
            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<int> TotalOutOrder(int id)
+        {
+            return await _dbContext.OutOrders.Where(d => d.IdShowroom == id).CountAsync();
         }
     }
 }

@@ -130,6 +130,9 @@ namespace server.Services
             }).ToList() ;
         }
 
-      
+        public async Task<int> TotalInorder(int id)
+        {
+            return await databaseContext.InOrders.Where(d => d.IdEmployee == id).CountAsync();
+        }
     }
 }

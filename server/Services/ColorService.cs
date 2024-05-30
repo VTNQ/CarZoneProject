@@ -8,5 +8,6 @@ namespace server.Services
         public dynamic ShowColor();
         public bool UpdateColor(int id, AddColor UpdateColor);
         public bool DeleteColor(int id);
+        Task<int> TotalColor();
     }
 }

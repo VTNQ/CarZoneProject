@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Models;
 
 namespace server.Services
@@ -68,6 +69,11 @@ namespace server.Services
                 IdCountry = d.IdCountry,
                 Email=d.Email,
             }).ToList(); 
+        }
+
+        public async Task<int> TotalSupplier()
+        {
+            return await _databaseContext.Supliers.CountAsync();
         }
 
         public bool UpdateSupplier(int id, AddSupplier updateSuppplier)

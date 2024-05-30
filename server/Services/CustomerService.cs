@@ -7,5 +7,6 @@ namespace server.Services
         public bool AddCustomer(AddCustomer addCustomer);
         public dynamic ShowCustomer();
         public bool UpdateCustomer(int id,UpdateCustomer updateCustomer);
+        Task<int> TotalCustomer();
     }
 }

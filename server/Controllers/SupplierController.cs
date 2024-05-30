@@ -43,6 +43,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("CountSupplier")]
+        public async Task<IActionResult> CountSupplier()
+        {
+            try
+            {
+                return Ok(await supplierService.TotalSupplier());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpDelete("DeleteSupplier/{id}")]
         public IActionResult DeleteSupplier(int id)
         {

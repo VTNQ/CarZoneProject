@@ -34,6 +34,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalColor")]
+        public async Task<IActionResult> TotalColor()
+        {
+            try
+            {
+                return Ok(await colorService.TotalColor());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPut("UpdateColor/{id}")]
         [Produces("application/json")]
         public IActionResult UpdateColor(int id,[FromBody] AddColor UpdateColor)

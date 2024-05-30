@@ -17,6 +17,18 @@ namespace server.Controllers
             this.customerService = customerService;
             this.databaseContext = databaseContext;
         }
+        [HttpGet("CountCustomer")]
+        public async Task<IActionResult> CountCustomer()
+        {
+            try
+            {
+                return Ok(await customerService.TotalCustomer());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPut("UpdateCustomer/{id}")]
         [Produces("application/json")]
         public IActionResult UpdateCustomer(int id,[FromBody]UpdateCustomer updateCustomer)

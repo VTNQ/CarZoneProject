@@ -10,5 +10,6 @@ namespace server.Services
         public bool ResetPasswordEmployee(int id);
         public dynamic FindByID(int id);
         public dynamic ShowContract(int id);
+       Task<int> CountEmployee(string role);
     }
 }

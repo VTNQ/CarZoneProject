@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Helper;
 using server.Models;
@@ -58,6 +59,11 @@ namespace server.Services
                 IndentityCode=d.IndentityCode,
                 Sign= configuration["ImageUrl"]+d.Sign,
             }).OrderByDescending(arg=>arg.Id).ToList();
+        }
+
+        public async Task<int> TotalCustomer()
+        {
+            return await DatabaseContext.Customers.CountAsync();
         }
 
         public bool UpdateCustomer(int id,UpdateCustomer updateCustomer)

@@ -16,6 +16,18 @@ namespace server.Controllers
             this.databaseContext = databaseContext;
             this.carService = carService;
         }
+        [HttpGet("TotalCar/{id}")]
+        public async Task<IActionResult> TotalCar(int id)
+        {
+            try
+            {
+                return Ok(await carService.TotalCar(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPut("UpdateCar/{id}")]
         [Produces("application/json")]
         public async Task<IActionResult> UpdateCar(int id, [FromBody]UpdateCar updateCar)
