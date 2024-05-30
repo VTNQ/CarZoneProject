@@ -125,6 +125,16 @@ namespace server.Controllers
             {
                 return BadRequest(ex);
             }
+        }[HttpGet("getAccountWarehouse")]
+        public IActionResult getAccountWarehouse()
+        {
+            try
+            {
+                return Ok(_accountService.getAccountWarehouse());
+            }catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

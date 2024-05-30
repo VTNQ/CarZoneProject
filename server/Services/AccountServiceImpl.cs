@@ -46,7 +46,7 @@ namespace server.Services
             return _dbContext.SaveChanges()>0;
         }public bool addWarehouse(AddAccountWarehouse addWarehouse)
         {
-            if(_dbContext.Employees.Any(c=>c.Email == addWarehouse.Email && c.IdentityCode == addAdmin.IdentityCode)) {
+            if(_dbContext.Employees.Any(c=>c.Email == addWarehouse.Email && c.IdentityCode == addWarehouse.IdentityCode)) {
                 return false;
             }
             string Password = GenerateRandomString(8);
@@ -59,7 +59,7 @@ namespace server.Services
                 Phone = addWarehouse.Phone,
                 Role = "WareHouse",
                 Password = BCrypt.Net.BCrypt.HashPassword(Password),
-                 = addWarehouse.IdWarehouse,
+                IdWarehouse = addWarehouse.IdWarehouse,
             };
             //SendEmail(addAdmin.Email, "Reset Information", $"FullName :{addAdmin.FullName}\n Password:{Password}");
             _dbContext.Employees.Add(admin);
@@ -86,7 +86,7 @@ namespace server.Services
 
         public dynamic getAdmin()
         {
-            return _dbContext.Employees.Select(c => new
+            return _dbContext.Employees.Where(d=>d.Role == "Admin").Select(c => new
             {
                 Email = c.Email,
                 IdentityCode = c.IdentityCode,
@@ -96,6 +96,24 @@ namespace server.Services
                 NameShowroom = _dbContext.Showrooms.Where(d=>d.Id == c.IdShowroom).Select(e => new
                 {
                     NameShowroom = e.Name
+                }).FirstOrDefault(),
+            }).ToList();
+        }public dynamic getAccountWarehouse()
+        {
+            return _dbContext.Employees.Where(d => d.Role == "WareHouse").Select(c => new
+            {
+                Email = c.Email,
+                IdentityCode = c.IdentityCode,
+                FullName =c.FullName,
+                Address = c.Address,
+                Phone = c.Phone,
+                NameWarehouse = _dbContext.Warehouses.Where(d => d.Id == c.IdWarehouse).Select(e => new
+                {
+                    NameWarehouse = e.Name
+                }).FirstOrDefault(),
+                NameCountry = _dbContext.Countries.Where(d=>d.Id == c.IdWarehouse).Select(e => new
+                {
+                    NameCountry = e.Name
                 }).FirstOrDefault(),
             }).ToList();
         }
