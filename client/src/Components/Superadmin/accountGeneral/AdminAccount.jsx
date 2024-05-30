@@ -287,7 +287,7 @@ useEffect(() => {
                           
                           <th>Name</th>
                           <th>Email</th>
-                          <th>Detail</th>
+                          <th>Showroom</th>
                           
                         </tr>
                       </thead>

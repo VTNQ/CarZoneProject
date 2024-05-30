@@ -35,6 +35,16 @@ const LayoutEmployee=({children})=>{
             navigate('/login');
         }
     }, [navigate]);
+    const handleLogout=()=>{
+      Cookies.remove("UserSession");
+      setSessionData(null);
+      navigate('/login');
+     }
+     const [showDropdown, setShowDropdown] = useState(false);
+     const handleDropdownToggle = () => {
+         setShowDropdown(!showDropdown);
+       };
+   
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
@@ -102,9 +112,21 @@ const LayoutEmployee=({children})=>{
         </div>
       </li>
       <li class="nav-item nav-profile dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+        <a class="nav-link dropdown-toggle" onClick={handleDropdownToggle} data-bs-toggle="dropdown" id="profileDropdown">
           <img src={avatar} alt="profile" />
         </a>
+        {showDropdown && (
+            <div className="dropdown1">
+              <a onClick={handleLogout}>
+                <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+              </a>
+              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:sessionData})}>
+                <i className="fa fa-user" aria-hidden="true"></i> Account
+              </a>
+
+              
+            </div>
+          )}
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item">
             <i class="ti-settings text-primary"></i> Settings </a>

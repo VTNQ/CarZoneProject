@@ -86,7 +86,7 @@ function DetailWareHousewarehouse() {
     };
     const handleBackClick=()=>{
         const{idOrder,...restSessionData } = sessionData;
-        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate("/WareHouse/ShowWareHouseCar",{state:restSessionData});
     }
     return (

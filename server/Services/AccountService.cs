@@ -9,6 +9,9 @@ namespace server.Services
         public dynamic ShowEmployee(int id);
         public bool UpdateEmployee(int id,EditEmployee editEmployee);
         public bool addAdmin (AddAdmin addAdmin);
+        public bool addWarehouse(AddAccountWarehouse addWarehouse);
+
+        public dynamic getAccountWarehouse();
         public dynamic getAdmin();
     }
 }

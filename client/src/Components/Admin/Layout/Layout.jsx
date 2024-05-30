@@ -10,17 +10,34 @@ import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 const LayoutAdmin=({children})=> {
   const navigate = useNavigate();
   const location = useLocation();
   const [sessionData, setSessionData] = useState(null);
- useEffect(()=>{
-  const data = sessionStorage.getItem('sessionData');
-  if(data){
-    setSessionData(JSON.parse(data));
-  }
- },[])
- 
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data) {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
+ const handleLogout=()=>{
+  Cookies.remove("UserSession");
+  setSessionData(null);
+  navigate('/login');
+ }
 
   const [showDropdown, setShowDropdown] = useState(false);
   const handleDropdownToggle = () => {
@@ -99,7 +116,7 @@ const LayoutAdmin=({children})=> {
         </a>
         {showDropdown && (
             <div className="dropdown1">
-              <a href="#" onClick={() => navigate('/Account')}>
+              <a onClick={handleLogout}>
                 <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
               </a>
               <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:sessionData})}>
