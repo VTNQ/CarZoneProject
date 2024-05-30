@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import Select from "react-select"
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import Pagination from 'react-paginate';
 function AddEmployee() {
 
@@ -33,14 +34,24 @@ function AddEmployee() {
     }
     const navigate = useNavigate();
     const location = useLocation();
-    const [sessionData, setSessionData] = useState(null);
-    
-    useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
-        if (data) {
-            setSessionData(JSON.parse(data));
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
         }
-    }, []);
+        return null;
+    }
+    const [sessionData, setSessionData] = useState(null);
+    useEffect(() => {
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');

@@ -51,36 +51,36 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("GetCartoShowRoom")]
-        public async Task<IActionResult> GetCartoShowRoom()
+        [HttpGet("GetCartoShowRoom/{id}")]
+        public async Task<IActionResult> GetCartoShowRoom(int id)
         {
             try
             {
-                return Ok(wareHouserService.GetCartoShowRoom());
+                return Ok(wareHouserService.GetCartoShowRoom(id));
             }
             catch
             {
                 return BadRequest();
             }
         }
-        [HttpGet("GetShowroom")]
-        public async Task<IActionResult> GetShowroom()
+        [HttpGet("GetShowroom/{id}")]
+        public async Task<IActionResult> GetShowroom(int id)
         {
             try
             {
-                return Ok(wareHouserService.ShowRoom());
+                return Ok(wareHouserService.ShowRoom(id));
             }
             catch
             {
                 return BadRequest();
             }
         }
-        [HttpGet("GetCarToWareHouse")]
-        public async Task<IActionResult> GetCarToWareHouse()
+        [HttpGet("GetCarToWareHouse/{id}")]
+        public async Task<IActionResult> GetCarToWareHouse(int id)
         {
             try
             {
-                return Ok(wareHouserService.GetCarToWareHouse());   
+                return Ok(wareHouserService.GetCarToWareHouse(id));   
             }
             catch
             {
@@ -175,11 +175,11 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("GetWareHouseCar")]
-        public async Task<IActionResult> GetWareHouseCar()
+        [HttpGet("GetWareHouseCar/{id}")]
+        public async Task<IActionResult> GetWareHouseCar(int id)
         {
             try {
-                return Ok(wareHouserService.GetWareHouseCar());
+                return Ok(wareHouserService.GetWareHouseCar(id));
             }
             catch
             {

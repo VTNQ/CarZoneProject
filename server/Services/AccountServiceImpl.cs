@@ -2,6 +2,9 @@
 using server.Models;
 using System.Net.Mail;
 using System.Net;
+using System;
+using Newtonsoft.Json;
+
 
 namespace server.Services
 {
@@ -41,7 +44,7 @@ namespace server.Services
                 Password = BCrypt.Net.BCrypt.HashPassword(Password),
                 IdShowroom = addAdmin.IdShowroom,
             };
-            //SendEmail(addAdmin.Email, "Reset Information", $"FullName :{addAdmin.FullName}\n Password:{Password}");
+            SendEmail(addAdmin.Email, "Reset Information", $"FullName :{addAdmin.FullName}\n Password:{Password}");
             _dbContext.Employees.Add(admin);
             return _dbContext.SaveChanges()>0;
         }
@@ -80,7 +83,7 @@ namespace server.Services
             }).ToList();
         }
 
-        public Employee Login(string email, string password)
+        public Employee Login(string email, string password,HttpResponse response)
         {
             try
             {
@@ -95,8 +98,16 @@ namespace server.Services
                         Role = employeeLogin.Role,
                         IdentityCode = employeeLogin.IdentityCode,
                         IdShowroom = employeeLogin.IdShowroom,
+                        IdWarehouse = employeeLogin.IdWarehouse,
 
                     };
+                    var userData =JsonConvert.SerializeObject(user);
+                    response.Cookies.Append("UserSession", userData, new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddMinutes(15),
+                        HttpOnly = true,
+                        Secure = true
+                    });
                     return user;
                 }
                 return null;

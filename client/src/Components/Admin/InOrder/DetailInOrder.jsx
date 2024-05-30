@@ -3,16 +3,28 @@ import LayoutAdmin from "../Layout/Layout";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie';
 function DetailInOrders() {
     const navigate = useNavigate();
     const location = useLocation();
-    const[sessionData,setSessionData]=useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     const [Detail, setDetail] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
@@ -42,7 +54,7 @@ function DetailInOrders() {
     };
     const handleBackClick=()=>{
         const{IDInorder,...restSessionData } = sessionData;
-        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate("/Inorder",{state:restSessionData});
     }
     return (

@@ -3,16 +3,26 @@ import LayoutEmployee from "../Layout/Layout";
 import Pagination from "react-paginate";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie';
 function DetailCreateCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
     const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
+        const data = getUserSession();
         if (data) {
-            setSessionData(JSON.parse(data));
+            setSessionData(data);
+        }else{
+            navigate("/login")
         }
-    }, [])
+    }, [navigate])
     const [Car,setCar]=useState([]);
     const [previewImage, setPreviewImage] = useState(null);
     const [perPage, setperPage] = useState(5);
@@ -71,7 +81,11 @@ function DetailCreateCarWareHouse() {
             image.style.width = (image.clientWidth / 1.2) + 'px'
         }
     }
-    
+    const handleBackClick=()=>{
+        const {IDCarShowroom,NameShowroom,...restSessionData}=sessionData;
+        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
+        navigate("/WareHouse/CreateCarWareHouse");
+    }
     return (
         <>
             <LayoutEmployee>
@@ -85,7 +99,7 @@ function DetailCreateCarWareHouse() {
                                     <div class="card-body">
                                     <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
-                                            onClick={() => navigate("/WareHouse/CreateCarWareHouse")}>Back
+                                            onClick={handleBackClick}>Back
                                         </button>
                                         {sessionData ? (
                                               <h4 class="card-title">Detail {sessionData.NameShowroom}</h4>

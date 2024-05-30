@@ -5,7 +5,7 @@ namespace server.Services
 {
     public interface AccountService
     {
-        public Employee Login(string Email, string password);
+        public Employee Login(string Email, string password, HttpResponse response);
         public dynamic ShowEmployee(int id);
         public bool UpdateEmployee(int id,EditEmployee editEmployee);
         public bool addAdmin (AddAdmin addAdmin);

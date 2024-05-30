@@ -5,16 +5,30 @@ import Swal from 'sweetalert2';
 import Select from "react-select"
 import Pagination from "react-paginate";
 import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 function CreateCarWareHouse() {
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession)
+        }
+        return null;
+    }
+  
     const navigate = useNavigate();
     const location = useLocation();
     const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
+        const data = getUserSession();
+        
         if (data) {
-            setSessionData(JSON.parse(data));
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
         }
-    }, [])
+    }, [navigate]);
+   
    
     const [Showroom, setShowroom] = useState([]);
     const [ShowCreateCar, setShowCreateCar] = useState([]);
@@ -27,28 +41,34 @@ function CreateCarWareHouse() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/WareHouse/GetCartoShowRoom");
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCartoShowRoom/${sessionData.idWarehouse}`);
                 setShowCreateCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idWarehouse){
+            fetchdata();
+        }
+       
+    }, [sessionData])
     const handleChange = (SelectedValue) => {
         setSelectCars(SelectedValue);
     }
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/WareHouse/GetCarToWareHouse");
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCarToWareHouse/${sessionData.idWarehouse}`);
                 setCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idWarehouse){
+            fetchdata();
+        }
+        
+    }, [sessionData])
     const AddSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -70,7 +90,7 @@ function CreateCarWareHouse() {
                 })
                 setSelectCars([]);
                 setSelectShowRoom(null)
-                const response = await axios.get("http://localhost:5278/api/WareHouse/GetCartoShowRoom");
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCartoShowRoom/${sessionData.idWarehouse}`);
                 setShowCreateCar(response.data.result)
             }
         } catch (error) {
@@ -96,17 +116,21 @@ function CreateCarWareHouse() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/WareHouse/GetShowroom");
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetShowroom/${sessionData.idWarehouse}`);
                 setShowroom(response.data);
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchData();
-    }, [])
+        if(sessionData && sessionData.idWarehouse){
+            fetchData();
+        }
+       
+    }, [sessionData])
     const DetailWareHouse=(ShowRoom)=>{
         const updatedSessionData={...sessionData,IDCarShowroom:ShowRoom.id,NameShowroom:ShowRoom.name};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set("UserSession",JSON.stringify(updatedSessionData),{ expires: 0.5, secure: true, sameSite: 'strict' })
+      
         navigate(`/WareHouse/DetailCreateCarShowRoom/${ShowRoom.id}`,{state:updatedSessionData});
     }
     return (

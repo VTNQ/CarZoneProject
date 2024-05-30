@@ -3,17 +3,29 @@ import LayoutEmployee from "../Layout/Layout";
 import Pagination from 'react-paginate';
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function ShowWareHouseCar() {
     const [WareHouse, setWareHouse] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession)
+        }
+        return null;
+    }
     const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
+        const data = getUserSession();
+        
         if (data) {
-            setSessionData(JSON.parse(data));
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
         }
-    }, [])
+    }, [navigate]);
 
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
@@ -21,14 +33,17 @@ function ShowWareHouseCar() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/WareHouse/GetWareHouseCar");
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetWareHouseCar/${sessionData.idWarehouse}`);
                 setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idWarehouse){
+            fetchdata();
+        }
+      
+    }, [sessionData])
     const filterWareHouse = WareHouse.filter(ware =>
         ware.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -40,7 +55,7 @@ function ShowWareHouseCar() {
     const CurrentWareHouse = filterWareHouse.slice(IndexofFirstWareHouse, IndexoflastWareHouse)
     const DetailWareHouse=(WareHouse)=>{
         const updatedSessionData={...sessionData,IDCarWareHouse:WareHouse.id,NameWareHouse:WareHouse.name};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set("UserSession",JSON.stringify(updatedSessionData),{ expires: 0.5, secure: true, sameSite: 'strict' })
         navigate(`/WareHouse/DetailWareHouseCar/${WareHouse.id}`,{state:updatedSessionData});
     }
     return (

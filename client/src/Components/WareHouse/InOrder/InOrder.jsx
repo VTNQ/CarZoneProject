@@ -3,17 +3,31 @@ import Pagination from 'react-paginate';
 import LayoutAdmin from "../Layout/Layout";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 function InOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [sessionData, setSessionData] = useState(null);
-    useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
-        if (data) {
-            setSessionData(JSON.parse(data));
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
         }
-    }, [])
+        return null;
+    }
+    
+    const [sessionData, setSessionData] = useState(null);
+
+    useEffect(() => {
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     const [Inorder, setInOrder] = useState([]);
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
@@ -30,20 +44,20 @@ function InOrder() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowOrderWareHouse/${sessionData.idShowroom}`)
+                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowOrderWareHouse/${sessionData.idWarehouse}`)
                 setInOrder(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.idShowroom){
+        if(sessionData && sessionData.idWarehouse){
             fetchdata();
         }
        
     }, [sessionData])
     const DetailInorder=(InOrder)=>{
         const updatedSessionData={...sessionData,IDInorder:InOrder.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate(`/WareHouse/DetaiInOrder/${InOrder.id}`,{state:updatedSessionData});
     }
    

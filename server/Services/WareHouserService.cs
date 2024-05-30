@@ -8,7 +8,7 @@ namespace server.Services
         Task<IEnumerable<dynamic>> ShowCar();
         Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id);
         public dynamic ShowBranch();
-        public dynamic ShowRoom();
+        public dynamic ShowRoom(int id);
         public dynamic ShowModel();
         public dynamic findModelByBrand(int idBrand);
         public dynamic DetailCar(int id);
@@ -17,11 +17,11 @@ namespace server.Services
         public bool updateModel(int id, UpdateModel updateModel);
         public dynamic ShowLatestCar();
        Task<bool> CreateShowRoom(CreateCarShowRoom createCarShowRoom);
-        Task<IEnumerable<dynamic>> GetCartoShowRoom();
-        Task<IEnumerable<dynamic>> GetWareHouseCar();
+        Task<IEnumerable<dynamic>> GetCartoShowRoom(int id);
+        Task<IEnumerable<dynamic>> GetWareHouseCar(int id);
         Task<IEnumerable<dynamic>> DetailWareHouseCar(int id);
         Task<IEnumerable<dynamic>> CompareCar(int id);
-        Task<IEnumerable<dynamic>> GetCarToWareHouse();
+        Task<IEnumerable<dynamic>> GetCarToWareHouse(int id);
        
      
     }

@@ -3,16 +3,28 @@ import LayoutAdmin from "../Layout/Layout";
 import Pagination from 'react-paginate';
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie';
 function DetailOrder() {
     const navigate = useNavigate();
     const location = useLocation();
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
     const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
+        const data = getUserSession();
+        
         if (data) {
-            setSessionData(JSON.parse(data));
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
         }
-    }, [])
+    }, [navigate]);
     const [Detail, setDetail] = useState([]);
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
@@ -28,7 +40,7 @@ function DetailOrder() {
     };
     const handleBackClick=()=>{
         const{IDInorder,...restSessionData } = sessionData;
-        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+  Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate("/WareHouse/InOrder",{state:restSessionData});
     }
     useEffect(() => {

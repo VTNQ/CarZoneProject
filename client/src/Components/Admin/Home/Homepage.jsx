@@ -8,9 +8,13 @@ function HomePage(){
   const fullName=location.state?.fullName || '';
   const email = location.state?.email || '' ;
   const navigate = useNavigate();
+  const style={
+    minHeight:'auto'
+  }
 return(
     <>
    <LayoutAdmin>
+   
    <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
@@ -37,10 +41,10 @@ return(
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card tale-bg">
-                  <div class="card-people mt-auto">
+            <div class="row col-auto">
+              <div class="col-md-6">
+                <div class=" tale-bg">
+                  <div class="card-people" >
                     <img src={Img} alt="people"/>
                     <div class="weather-info">
                       <div class="d-flex">
@@ -56,10 +60,10 @@ return(
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 grid-margin transparent">
+              <div class="col-md-6 transparent">
                 <div class="row">
-                  <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-tale">
+                  <div class="col-md-6 mb-4 transparent">
+                    <div class="card card-tale" style={style}>
                       <div class="card-body">
                         <p class="mb-4">Today’s Bookings</p>
                         <p class="fs-30 mb-2">4006</p>
@@ -67,9 +71,9 @@ return(
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-dark-blue">
-                      <div class="card-body">
+                  <div class="col-md-6 transparent">
+                    <div class="card card-dark-blue" style={style}>
+                      <div class="card-body" >
                         <p class="mb-4">Total Bookings</p>
                         <p class="fs-30 mb-2">61344</p>
                         <p>22.00% (30 days)</p>
@@ -79,8 +83,8 @@ return(
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                    <div class="card card-light-blue">
-                      <div class="card-body">
+                    <div class="card card-light-blue" style={style}>
+                      <div class="card-body" >
                         <p class="mb-4">Number of Meetings</p>
                         <p class="fs-30 mb-2">34040</p>
                         <p>2.00% (30 days)</p>
@@ -88,8 +92,8 @@ return(
                     </div>
                   </div>
                   <div class="col-md-6 stretch-card transparent">
-                    <div class="card card-light-danger">
-                      <div class="card-body">
+                    <div class="card card-light-danger" style={style}>
+                      <div class="card-body" >
                         <p class="mb-4">Number of Clients</p>
                         <p class="fs-30 mb-2">47033</p>
                         <p>0.22% (30 days)</p>
@@ -100,8 +104,8 @@ return(
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
+              <div class="col-md-6 stretch-card">
+                <div class="card" style={style}>
                   <div class="card-body">
                     <p class="card-title">Order Details</p>
                     <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
@@ -127,8 +131,8 @@ return(
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
+              <div class="col-md-6 stretch-card">
+                <div class="card" style={style}>
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <p class="card-title">Sales Report</p>
@@ -478,8 +482,8 @@ return(
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card">
+              <div class="col-md-4 stretch-card ">
+                <div class="card" style={style}>
                   <div class="card-body">
                     <p class="card-title mb-0">Projects</p>
                     <div class="table-responsive">
@@ -547,10 +551,10 @@ return(
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 stretch-card grid-margin">
+              <div class="col-md-4 stretch-card ">
                 <div class="row">
-                  <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
+                  <div class="col-md-12  stretch-card">
+                    <div class="card" style={style}>
                       <div class="card-body">
                         <p class="card-title">Charts</p>
                         <div class="charts-data">
@@ -594,8 +598,8 @@ return(
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
-                    <div class="card data-icon-card-primary">
+                  <div class="col-md-12 stretch-card">
+                    <div class="card data-icon-card-primary" style={style}>
                       <div class="card-body">
                         <p class="card-title text-white">Number of Meetings</p>
                         <div class="row">
@@ -611,8 +615,8 @@ return(
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card">
+              <div class="col-md-4 stretch-card ">
+                <div class="card" style={style}>
                   <div class="card-body">
                     <p class="card-title">Notifications</p>
                     <ul class="icon-data-list">
