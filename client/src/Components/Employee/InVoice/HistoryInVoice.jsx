@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import LayoutEmployee from '../Layout/Layout';
 import Pagination from "react-paginate";
 import axios from "axios";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie'
 function HistoryInVoice() {
     const [perPage] = useState(5);
     const [InVoice, setInVoice] = useState([]);
@@ -11,13 +12,25 @@ function HistoryInVoice() {
     const [currentPage, setCurrentPage] = useState(0);
     const location = useLocation();
     const [ActiveTab,setActiveTab]=useState(0);
-    const[sessionData,setSessionData]=useState(null);
+    const [sessionData, setSessionData] = useState(null);
+    const navigate = useNavigate();
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+        console.log(data.role)
+        if (data && data.role=='Employee') {
+            setSessionData(data);
+        } else{
+          navigate('/login');
+        }
+    }, [navigate]);
     const [FromData,setFromData]=useState({
         id:''
     })

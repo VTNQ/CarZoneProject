@@ -20,11 +20,10 @@ function ShowContract() {
     const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
         const data = getUserSession();
-        
-        if (data) {
+
+        if (data && data.role == 'Employee') {
             setSessionData(data);
         } else {
-            // If no session data, redirect to login
             navigate('/login');
         }
     }, [navigate]);

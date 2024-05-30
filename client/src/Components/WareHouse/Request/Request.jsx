@@ -3,8 +3,30 @@ import LayoutAdmin from "../Layout/Layout";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 function Request(){
     const[WareHouse,setWareHouse]=useState([]);
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     useEffect(()=>{
         const fetchdata=async()=>{
             try{

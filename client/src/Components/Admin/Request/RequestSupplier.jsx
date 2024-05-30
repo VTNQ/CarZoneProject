@@ -7,14 +7,29 @@ import Pagination from 'react-paginate';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function RequestSupplier() {
     const navigate = useNavigate();
     const location = useLocation();
     const [isPopupVisible, setPopupVisibility] = useState(false);
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
-    const ID = location.state?.ID || '';
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const [Request, setReQuest] = useState([]);
     const [IsDescriptionChange, setIsDescriptionChange] = useState(false)
     const [Supplier, setSupplier] = useState([]);
@@ -32,14 +47,17 @@ function RequestSupplier() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/Request/ShowRequestSupplier/${username}`);
+                const response = await axios.get(`http://localhost:5278/api/Request/ShowRequestSupplier/${sessionData.fullName}`);
                 setReQuest(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.fullName){
+            fetchdata();
+        }
+      
+    }, [sessionData])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -67,7 +85,7 @@ function RequestSupplier() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ to: SelectSupplier?.value, from: username, type: false, description: FromData.Description })
+                    body: JSON.stringify({ to: SelectSupplier?.value, from: sessionData.fullName, type: false, description: FromData.Description })
                 })
                 if (response.ok) {
                     Swal.fire({

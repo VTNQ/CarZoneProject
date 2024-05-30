@@ -26,7 +26,7 @@ const LayoutAdmin=({children})=> {
 useEffect(() => {
     const data = getUserSession();
     
-    if (data) {
+    if (data && data.role=='WareHouse') {
         setSessionData(data);
     } else {
         // If no session data, redirect to login

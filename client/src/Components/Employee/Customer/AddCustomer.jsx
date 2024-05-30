@@ -1,12 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 import LayoutEmployee from "../Layout/Layout";
 import ShowCustomer from "./ShowCustomer";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function AddCustomer() {
     const [Dob, setDob] = useState('');
+    const [sessionData, setSessionData] = useState(null);
     const HandleDob = (event) => {
         setDob(event.target.value);
     };
+    const navigate = useNavigate();
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    
+    useEffect(() => {
+        const data = getUserSession();
+   
+        if (data && data.role=='Employee') {
+            setSessionData(data);
+        } else{
+          navigate('/login');
+        }
+    }, [navigate]);
     const [FromData, setFromData] = useState({
         FullName: '',
         Email: '',

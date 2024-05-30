@@ -8,26 +8,26 @@ function DetailWareHousewarehouse() {
     const navigate = useNavigate();
     const [previewImage, setPreviewImage] = useState(null);
     const location = useLocation();
+ 
     const [sessionData, setSessionData] = useState(null);
     const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
-            return JSON.parse(UserSession);
-        }
-        return null;
-    }
-    
-    useEffect(() => {
-        const data = getUserSession();
-        
-        if (data) {
-            setSessionData(data);
-        } else {
-            // If no session data, redirect to login
-            navigate('/login');
-        }
-    }, [navigate]);
- 
+      const UserSession=Cookies.get("UserSession");
+      if(UserSession){
+          return JSON.parse(UserSession);
+      }
+      return null;
+  }
+  
+  useEffect(() => {
+      const data = getUserSession();
+      
+      if (data && data.role=='WareHouse') {
+          setSessionData(data);
+      } else {
+          // If no session data, redirect to login
+          navigate('/login');
+      }
+  }, [navigate]);
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);

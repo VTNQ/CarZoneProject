@@ -7,24 +7,25 @@ import Cookies from 'js-cookie';
 function DetailOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
-            return JSON.parse(UserSession);
-        }
-        return null;
-    }
     const [sessionData, setSessionData] = useState(null);
-    useEffect(() => {
-        const data = getUserSession();
-        
-        if (data) {
-            setSessionData(data);
-        } else {
-            // If no session data, redirect to login
-            navigate('/login');
-        }
-    }, [navigate]);
+    const getUserSession=()=>{
+      const UserSession=Cookies.get("UserSession");
+      if(UserSession){
+          return JSON.parse(UserSession);
+      }
+      return null;
+  }
+  
+  useEffect(() => {
+      const data = getUserSession();
+      
+      if (data && data.role=='WareHouse') {
+          setSessionData(data);
+      } else {
+          // If no session data, redirect to login
+          navigate('/login');
+      }
+  }, [navigate]);
     const [Detail, setDetail] = useState([]);
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);

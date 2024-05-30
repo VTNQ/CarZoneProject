@@ -16,25 +16,24 @@ function DetailOutOrders() {
     const [currentPage, setCurrentPage] = useState(0);
     const [Contract,setContract]=useState([])
     const [index,setindex]=useState(1);
-    const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
             return JSON.parse(UserSession);
         }
         return null;
     }
-    const [sessionData, setSessionData] = useState(null);
+
     useEffect(() => {
         const data = getUserSession();
-        
-        if (data) {
+
+        if (data && data.role == 'Admin') {
             setSessionData(data);
         } else {
-            // If no session data, redirect to login
             navigate('/login');
         }
     }, [navigate]);
-
     useEffect(()=>{
         const fetchdata=async()=>{
             try{

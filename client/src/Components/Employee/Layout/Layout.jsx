@@ -27,12 +27,11 @@ const LayoutEmployee=({children})=>{
     
     useEffect(() => {
         const data = getUserSession();
-        
-        if (data) {
+        console.log(data.role)
+        if (data && data.role=='Employee') {
             setSessionData(data);
-        } else {
-            // If no session data, redirect to login
-            navigate('/login');
+        } else{
+          navigate('/login');
         }
     }, [navigate]);
     const handleLogout=()=>{

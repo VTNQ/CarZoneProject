@@ -3,12 +3,34 @@ import LayoutAdmin from "../Layout/Layout";
 import Swal from 'sweetalert2';
 import Pagination from 'react-paginate';
 import axios from "axios";
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 function Form() {
     const [FromData, setFromData] = useState({
         Name: '',
         id: '',
         UpdateName: ''
     })
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const popupContentStyle = {

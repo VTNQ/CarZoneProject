@@ -8,26 +8,28 @@ import Cookies from 'js-cookie';
 function InOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
-            return JSON.parse(UserSession);
-        }
-        return null;
-    }
-    
+   
     const [sessionData, setSessionData] = useState(null);
 
-    useEffect(() => {
-        const data = getUserSession();
-        
-        if (data) {
-            setSessionData(data);
-        } else {
-            // If no session data, redirect to login
-            navigate('/login');
-        }
-    }, [navigate]);
+    
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     const [Inorder, setInOrder] = useState([]);
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);

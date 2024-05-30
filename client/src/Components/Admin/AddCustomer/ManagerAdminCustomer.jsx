@@ -5,19 +5,33 @@ import Swal from 'sweetalert2';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
 import Pagination from 'react-paginate';
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function ManagerAdminCustomer() {
     const [Dob, setDob] = useState(null);
     const [UpdateDob, setUpdateDob] = useState(null);
     const handleDob = (date) => {
         setDob(date);
     }
-    const[sessionData,setSessionData]=useState(null);
-      useEffect(() => {
-        const data = sessionStorage.getItem('sessionData');
-        if (data) {
-            setSessionData(JSON.parse(data));
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
         }
-    }, []);
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const [IsCloginImage, setIsClosingImage] = useState(false)
     const [isPopupVisible, setPopupVisibility] = useState(false);

@@ -4,11 +4,32 @@ import Swal from 'sweetalert2';
 import Select from "react-select"
 import LayoutAdmin from "../Layout/Layout";
 import Pagination from 'react-paginate';
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function Brand() {
     const [Country, setCountry] = useState([]);
     const [SelectCountry, setSelectCountry] = useState(null);
     const [Brand, setBrand] = useState([]);
+    const [sessionData, setSessionData] = useState(null);
+    const navigate = useNavigate();
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
 
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     useEffect(() => {
         const fetchdata = async () => {
             try {

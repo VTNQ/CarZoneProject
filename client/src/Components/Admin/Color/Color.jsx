@@ -4,12 +4,33 @@ import { ChromePicker } from 'react-color'
 import Swal from 'sweetalert2';
 import axios from "axios";
 import Pagination from 'react-paginate';
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 function Color() {
     const [color, setColor] = useState('');
     const [UpdateColor, setUpdateColor] = useState('');
     const [ShowColor, setShowColor] = useState([]);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const [FromData,setFromData]=useState({
         id:''
     })
