@@ -9,42 +9,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Contract/AddContract.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Contract/ShowContract.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Contract/ShowContract.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Components/Employee/Layout/Layout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/EmployeeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/EmployeeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/ContactServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/ContactServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/CustomerServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CustomerServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/EmployeeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/EmployeeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/EmployeeServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/EmployeeServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/InVoiceServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/InVoiceServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/OutOrderServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/OutOrderServiceImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/server.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.genruntimeconfig.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/server.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/server.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/server.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/server.csproj.nuget.g.props" afterDir="false" />
     </list>
@@ -72,8 +45,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/Models/DatabaseContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/Services/CustomerServiceImpl.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -167,7 +141,8 @@
       <workItem from="1716604556694" duration="230000" />
       <workItem from="1716604808561" duration="57000" />
       <workItem from="1716862385293" duration="101000" />
-      <workItem from="1716862507409" duration="3757000" />
+      <workItem from="1716862507409" duration="5020000" />
+      <workItem from="1716978825331" duration="299000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -249,7 +224,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716604851197</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1716866540812</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716866540812</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update : SQL">
+      <option name="closed" value="true" />
+      <created>1716978925872</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716978925872</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,10 +265,10 @@
     <MESSAGE value="Update" />
     <MESSAGE value="Fix: SQL" />
     <MESSAGE value="Fix : SQL" />
-    <MESSAGE value="Update : SQL" />
-    <MESSAGE value="Update By Quoc" />
     <MESSAGE value="Update DatabaseContext.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update DatabaseContext.cs" />
+    <MESSAGE value="Update By Quoc" />
+    <MESSAGE value="Update : SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update : SQL" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

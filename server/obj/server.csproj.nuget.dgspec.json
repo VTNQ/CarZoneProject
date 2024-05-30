@@ -93,6 +93,25 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {}
+    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {}
+    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {
+    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {
+        "projectUniqueName": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
+        "projectUniqueName": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+        "projectPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
+        "packagesPath": "C:\\Users\\votan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\obj\\",
+        "projectPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+          "C:\\Users\\votan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
