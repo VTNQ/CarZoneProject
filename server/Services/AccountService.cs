@@ -8,5 +8,7 @@ namespace server.Services
         public Employee Login(string Email, string password);
         public dynamic ShowEmployee(int id);
         public bool UpdateEmployee(int id,EditEmployee editEmployee);
+        public bool addAdmin (AddAdmin addAdmin);
+        public dynamic getAdmin();
     }
 }

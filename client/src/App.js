@@ -59,6 +59,11 @@ import RequestWareHouse from './Components/WareHouse/Request/Request';
 import Model from './Components/WareHouse/Model/Model';
 import { CarTable } from './Components/Superadmin/Car/CarTable';
 import { CarDetail } from './Components/Superadmin/Car/CarDetail';
+import { Admin } from './Components/Superadmin/Admin';
+import { AdminAccount } from './Components/Superadmin/accountGeneral/AdminAccount';
+import { WarehouseAccount } from './Components/Superadmin/accountGeneral/WarehouseAccount';
+import { AdminShow } from './Components/Superadmin/accountGeneral/AdminShow';
+import { Order } from './Components/Superadmin/Order';
 function App() {
   return (
     <Router>
@@ -80,6 +85,7 @@ function App() {
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
             <Route path='showroom' element={<Showroom/>}/>
+            <Route path='order' element={<Order/>}/>
             <Route path='warehouse' element={<Warehouse/>}/>
             <Route path='bmw/' element={<BMV/>}>
                 <Route index element={<BrandSpm/>}></Route>
@@ -87,8 +93,15 @@ function App() {
                 <Route path='version' element={<VersionSpm/>}></Route>
                 <Route path='form' element={<FormSpm/>}></Route>
             </Route>
+            <Route path='admin/' element={<Admin/>}>
+                <Route index element={<AdminAccount/>}></Route>
+                <Route path='warehouse' element={<WarehouseAccount/>}></Route>
+                <Route path='adminShow' element={<AdminShow/>}></Route>
+
+            </Route>
             <Route path='car' element={<CarSpm/>}/>
             <Route path='carTable' element={<CarTable/>}/>
+            
             <Route path='carDetail/:id' element={<CarDetail/>}/>
 
                 

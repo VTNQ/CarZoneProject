@@ -343,7 +343,7 @@ export const CarTable = () => {
 
                                                         <td><button className="btn btn-dark btn-icon-text" onClick={() => navigate(`/superadmin/carDetail/${Cus.id}`)}  >Detail<i class="ti-file btn-icon-append"></i></button></td>
                                                         <td><button className='btn btn-dark btn-icon-text' onClick={() => handleEditClick(Cus.id)}>Edit</button></td>
-                                                        <td><button className='bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded' onClick={() => DeleteCar(Cus.id)}>Edit</button></td>
+                                                        <td><button className='bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded' onClick={() => DeleteCar(Cus.id)}>Delete</button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>

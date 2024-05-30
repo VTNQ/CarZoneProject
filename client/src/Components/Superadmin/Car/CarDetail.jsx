@@ -56,7 +56,7 @@ export const CarDetail = () => {
                   <div className='flex gap-2'>
                   <div className="form-group">
                     <label for="carName">Price</label>
-                    <input type="number" className="form-control form-control-sm" value={Cus.price} id="carName" readOnly />
+                    <input type="number" className="form-control form-control-sm" value={Number(Cus.price).toFixed(2)} id="carName" readOnly />
                   </div>
                   <div className="form-group">
                     <label for="carName">Created </label>
@@ -64,7 +64,7 @@ export const CarDetail = () => {
                   </div>
                   <div className="form-group">
                     <label for="carName">Weight </label>
-                    <input type="text" className="form-control form-control-sm" value={Cus.weight} id="dateAccept" readOnly />
+                    <input type="text" className="form-control form-control-sm" value={Number(Cus.weight).toFixed(2)} id="dateAccept" readOnly />
                   </div>
 
                   </div>
@@ -126,15 +126,15 @@ export const CarDetail = () => {
                   <div className='flex gap-2'>
                         <div className="form-group">
                           <label for="carName">Length</label>
-                          <input type="text" className="form-control form-control-sm" value={Cus.length} id="carName" readOnly />
+                          <input type="text" className="form-control form-control-sm" value={Number(Cus.length).toFixed(2)} id="carName" readOnly />
                         </div>
                         <div className="form-group">
                           <label for="carName">Width</label>
-                          <input type="text" className="form-control form-control-sm" value={Cus.width} id="carName" readOnly />
+                          <input type="text" className="form-control form-control-sm" value={Number(Cus.width).toFixed(2)} id="carName" readOnly />
                         </div>
                         <div className="form-group">
                           <label for="carName">Height</label>
-                          <input type="text" className="form-control form-control-sm" value={Cus.height} id="carName" readOnly />
+                          <input type="text" className="form-control form-control-sm" value={Number(Cus.height).toFixed(2)} id="carName" readOnly />
                         </div>
                   </div>
                   <div className='flex gap-2'>
@@ -158,7 +158,7 @@ export const CarDetail = () => {
                         </div>
                         <div className="form-group">
                           <label for="carName">Height Between</label>
-                          <input type="text" className="form-control form-control-sm" value={Cus.heightbetween} id="carName" readOnly />
+                          <input type="text" className="form-control form-control-sm" value={Number(Cus.heightBetween).toFixed(2)} id="carName" readOnly />
                         </div>
                         
                   </div>
