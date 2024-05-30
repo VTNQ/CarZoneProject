@@ -4,16 +4,29 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-paginate';
 import Swal from "sweetalert2";
 import axios from "axios";
+import Cookies from 'js-cookie';
 function HistoryOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const[sessionData,setSessionData]=useState(null);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
@@ -71,7 +84,7 @@ function HistoryOrder() {
     )
     const DetailContract=(Order)=>{
         const updatedSessionData={...sessionData,idOrder:Order.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate(`/Employee/ShowContract/${Order.id}`,{state:updatedSessionData});
     }
     const IndexoflastOrder = (currentPage + 1) * perPage;

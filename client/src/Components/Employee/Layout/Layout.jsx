@@ -10,20 +10,31 @@ import logo from '../assets/images/logo.svg'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import {useLocation, useNavigate} from "react-router-dom";
-
+import Cookies from 'js-cookie'
 
 
 const LayoutEmployee=({children})=>{
   const navigate = useNavigate();
   const location = useLocation();
   const [sessionData, setSessionData] = useState(null);
-  useEffect(()=>{
-   const data = sessionStorage.getItem('sessionData');
-   if(data){
-     setSessionData(JSON.parse(data));
-   }
-  },[])
-  
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    
+    useEffect(() => {
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     return (
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>

@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import Pagination from 'react-paginate';
 import DatePicker from 'react-datepicker';
 import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function OutOrder() {
     const [Customer, setCustomer] = useState([]);
     const [Car, setCar] = useState([]);
@@ -52,13 +53,24 @@ function OutOrder() {
     const [searchTerm, setSearchtem] = useState('');
    
     const [ShowOutOrder, SetShowOutOrder] = useState([]);
-    const[sessionData,setSessionData]=useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -274,7 +286,7 @@ function OutOrder() {
     const handleDetailClick=(outorder)=>{
         
         const updatedSessionData={...sessionData,IDOutOrder:outorder.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate(`/DetailOutOrder/${outorder.id}`,{state:updatedSessionData})
     }
     return (

@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import LayoutAdmin from "../Layout/Layout";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie'
 
 function ShowContract() {
     const navigate = useNavigate();
@@ -9,14 +10,24 @@ function ShowContract() {
    
     const [Contract, setContract] = useState([])
     const index=1;
-    const[sessionData,setSessionData]=useState(null);
-    
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    const [sessionData, setSessionData] = useState(null);
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+        
+        if (data) {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -39,7 +50,7 @@ function ShowContract() {
     }, [sessionData])
     const handleBackClick=()=>{
         const{idOrder,...restSessionData } = sessionData;
-        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate("/Employee/HistoryOrder",{state:restSessionData});
     }
     return (

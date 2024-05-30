@@ -409,22 +409,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WareHouserServiceImpl.cs",
-              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\WareHouserServiceImpl.cs",
-              "RelativeDocumentMoniker": "Services\\WareHouserServiceImpl.cs",
-              "ToolTip": "D:\\CarZoneProject\\server\\Services\\WareHouserServiceImpl.cs",
-              "RelativeToolTip": "Services\\WareHouserServiceImpl.cs",
-              "ViewState": "AQIAAO0AAAAAAAAAAAAnwBkBAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T08:28:49.285Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -455,6 +441,20 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WareHouserServiceImpl.cs",
+              "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\WareHouserServiceImpl.cs",
+              "RelativeDocumentMoniker": "Services\\WareHouserServiceImpl.cs",
+              "ToolTip": "D:\\CarZoneProject\\server\\Services\\WareHouserServiceImpl.cs",
+              "RelativeToolTip": "Services\\WareHouserServiceImpl.cs",
+              "ViewState": "AQIAAO0AAAAAAAAAAAAnwBkBAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T08:28:49.285Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "AccountService.cs",
               "DocumentMoniker": "D:\\CarZoneProject\\server\\Services\\AccountService.cs",
@@ -463,8 +463,7 @@
               "RelativeToolTip": "Services\\AccountService.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAuwAcAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:15:46.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:15:46.593Z"
             },
             {
               "$type": "Document",
@@ -476,8 +475,7 @@
               "RelativeToolTip": "Services\\AccountServiceImpl.cs",
               "ViewState": "AQIAAG8AAAAAAAAAAAAmwBYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:38:09.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:38:09.652Z"
             },
             {
               "$type": "Document",
@@ -489,8 +487,7 @@
               "RelativeToolTip": "Controllers\\AccountController.cs",
               "ViewState": "AQIAAFgAAAAAAAAAAAAAAGEAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:49:43.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:49:43.896Z"
             },
             {
               "$type": "Document",
@@ -502,8 +499,7 @@
               "RelativeToolTip": "Middleware\\OutOrderMiddeware.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAnwBQAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T03:30:01.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-22T03:30:01.323Z"
             },
             {
               "$type": "Document",
@@ -515,8 +511,7 @@
               "RelativeToolTip": "Controllers\\WareHouseController.cs",
               "ViewState": "AQIAAJcAAAAAAAAAAAAhwLUAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T08:36:57.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T08:36:57.58Z"
             },
             {
               "$type": "Document",
@@ -528,8 +523,7 @@
               "RelativeToolTip": "Services\\WareHouserService.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAywBQAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T08:28:23.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T08:28:23.222Z"
             },
             {
               "$type": "Document",
@@ -541,8 +535,7 @@
               "RelativeToolTip": "Services\\InOrderServiceImpl.cs",
               "ViewState": "AQIAAFUAAAAAAAAAAAAWwHcAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T00:53:41.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T00:53:41.1Z"
             },
             {
               "$type": "Document",
@@ -554,8 +547,7 @@
               "RelativeToolTip": "Services\\InOrderService.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAUwA4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T00:52:29.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T00:52:29.457Z"
             },
             {
               "$type": "Document",
@@ -567,8 +559,7 @@
               "RelativeToolTip": "Models\\Employee.cs",
               "ViewState": "AQIAACIAAAAAAAAAAAAUwCQAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T01:43:41.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T01:43:41.552Z"
             },
             {
               "$type": "Document",
@@ -580,8 +571,7 @@
               "RelativeToolTip": "Services\\ContactService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:53:13.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:53:13.501Z"
             },
             {
               "$type": "Document",
@@ -593,8 +583,7 @@
               "RelativeToolTip": "Services\\BrandService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T16:16:39.197Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T16:16:39.197Z"
             },
             {
               "$type": "Document",
@@ -604,8 +593,7 @@
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
               "ViewState": "AQIAANABAAAAAAAAAAAawNoBAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2024-05-30T02:26:45.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-30T02:26:45.369Z"
             },
             {
               "$type": "Document",
@@ -617,8 +605,7 @@
               "RelativeToolTip": "Services\\EmployeeServiceImpl.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:25:05.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:25:05.513Z"
             },
             {
               "$type": "Document",
@@ -630,8 +617,7 @@
               "RelativeToolTip": "Services\\OutOrderServiceImpl.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAAtwJcAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T08:44:26.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T08:44:26.253Z"
             },
             {
               "$type": "Document",
@@ -643,8 +629,7 @@
               "RelativeToolTip": "Controllers\\BrandController.cs",
               "ViewState": "AQIAAD8AAAAAAAAAAAAkwBkAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T16:33:16.79Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T16:33:16.79Z"
             },
             {
               "$type": "Document",
@@ -656,8 +641,7 @@
               "RelativeToolTip": "Services\\BrandServiceImpl.cs",
               "ViewState": "AQIAAEMAAAAAAAAAAADgvxUAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T16:18:28.631Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T16:18:28.631Z"
             },
             {
               "$type": "Document",
@@ -669,8 +653,7 @@
               "RelativeToolTip": "Services\\WarehouseService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:36:23.472Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:36:23.472Z"
             },
             {
               "$type": "Document",
@@ -682,8 +665,7 @@
               "RelativeToolTip": "Data\\UpdateCar.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAA8wAcAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T02:17:46.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T02:17:46.879Z"
             },
             {
               "$type": "Document",
@@ -695,8 +677,7 @@
               "RelativeToolTip": "Services\\EmployeeService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAIBJwAkAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:24:49.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:24:49.917Z"
             },
             {
               "$type": "Document",
@@ -708,8 +689,7 @@
               "RelativeToolTip": "Services\\RequestServiceImpl.cs",
               "ViewState": "AQIAACEAAAAAAAAAAAAnwCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T08:32:13.563Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-24T08:32:13.563Z"
             },
             {
               "$type": "Document",
@@ -721,8 +701,7 @@
               "RelativeToolTip": "Controllers\\CarController.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAnwBIAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:33:51.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:33:51.582Z"
             },
             {
               "$type": "Document",
@@ -734,8 +713,7 @@
               "RelativeToolTip": "Services\\CarServiceImpl.cs",
               "ViewState": "AQIAAMsAAAAAAAAAAAAvwNsAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:34:52.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:34:52.35Z"
             },
             {
               "$type": "Document",
@@ -747,8 +725,7 @@
               "RelativeToolTip": "Services\\CarService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:34:48.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:34:48.094Z"
             },
             {
               "$type": "Document",
@@ -760,8 +737,7 @@
               "RelativeToolTip": "Services\\SupplierService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T03:00:14.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T03:00:14.385Z"
             },
             {
               "$type": "Document",
@@ -773,8 +749,7 @@
               "RelativeToolTip": "Services\\ShowroomService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:50:35.299Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:50:35.299Z"
             },
             {
               "$type": "Document",
@@ -786,8 +761,7 @@
               "RelativeToolTip": "Services\\OutOrderService.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAqwAsAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T08:44:15.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T08:44:15.702Z"
             },
             {
               "$type": "Document",
@@ -799,8 +773,7 @@
               "RelativeToolTip": "Services\\ModelServiceImpl.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAAgwDUAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T07:03:02.043Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T07:03:02.043Z"
             },
             {
               "$type": "Document",
@@ -812,8 +785,7 @@
               "RelativeToolTip": "Services\\ModelService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T07:01:39.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T07:01:39.263Z"
             },
             {
               "$type": "Document",
@@ -825,8 +797,7 @@
               "RelativeToolTip": "Services\\InVoiceService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T03:06:16.192Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T03:06:16.192Z"
             },
             {
               "$type": "Document",
@@ -838,8 +809,7 @@
               "RelativeToolTip": "Services\\FormServiceImpl.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:03:48.994Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T08:03:48.994Z"
             },
             {
               "$type": "Document",
@@ -851,8 +821,7 @@
               "RelativeToolTip": "Services\\FormService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:01:56.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T08:01:56.978Z"
             },
             {
               "$type": "Document",
@@ -864,8 +833,7 @@
               "RelativeToolTip": "Services\\DistrictService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:53:22.08Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:53:22.08Z"
             },
             {
               "$type": "Document",
@@ -877,8 +845,7 @@
               "RelativeToolTip": "Services\\CountriesService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:53:16.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:53:16.807Z"
             },
             {
               "$type": "Document",
@@ -890,8 +857,7 @@
               "RelativeToolTip": "Services\\CityService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:53:09.396Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:53:09.396Z"
             },
             {
               "$type": "Document",
@@ -903,8 +869,7 @@
               "RelativeToolTip": "Services\\CustomerService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:10:52.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:10:52.16Z"
             },
             {
               "$type": "Document",
@@ -916,8 +881,7 @@
               "RelativeToolTip": "Services\\SupplierServiceImpl.cs",
               "ViewState": "AQIAADoAAAAAAAAAAAAkwEQAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T03:01:30.562Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T03:01:30.562Z"
             },
             {
               "$type": "Document",
@@ -929,8 +893,7 @@
               "RelativeToolTip": "Services\\WarehouseServiceImpl.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:47:08.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:47:08.529Z"
             },
             {
               "$type": "Document",
@@ -942,8 +905,7 @@
               "RelativeToolTip": "Services\\CustomerServiceImpl.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAuwDoAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:15:03.785Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:15:03.785Z"
             },
             {
               "$type": "Document",
@@ -955,8 +917,7 @@
               "RelativeToolTip": "Services\\VersionServiceImpl.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAYwCEAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T12:52:32.926Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T12:52:32.926Z"
             },
             {
               "$type": "Document",
@@ -968,8 +929,7 @@
               "RelativeToolTip": "Data\\AddCar.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAA5wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:34:12.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:34:12.556Z"
             },
             {
               "$type": "Document",
@@ -981,8 +941,7 @@
               "RelativeToolTip": "Controllers\\WarehouseAllController.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAAwBEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:27:33.605Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T14:27:33.605Z"
             },
             {
               "$type": "Document",
@@ -994,8 +953,7 @@
               "RelativeToolTip": "Data\\AddEmployee.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAIBQwAcAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:19:25.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:19:25.836Z"
             },
             {
               "$type": "Document",
@@ -1007,8 +965,7 @@
               "RelativeToolTip": "Controllers\\CustomerController.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAQwEAAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:26:07.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:26:07.287Z"
             },
             {
               "$type": "Document",
@@ -1020,8 +977,7 @@
               "RelativeToolTip": "Services\\InVoiceServiceImpl.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAmwBMAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T03:06:55.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T03:06:55.946Z"
             },
             {
               "$type": "Document",
@@ -1033,8 +989,7 @@
               "RelativeToolTip": "Controllers\\InVoiceController.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAAnwCQAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T03:09:09.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T03:09:09.236Z"
             },
             {
               "$type": "Document",
@@ -1046,8 +1001,7 @@
               "RelativeToolTip": "Controllers\\EmployeeController.cs",
               "ViewState": "AQIAAGUAAAAAAAAAAADgv0YAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T03:33:59.478Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T03:33:59.478Z"
             },
             {
               "$type": "Document",
@@ -1059,8 +1013,7 @@
               "RelativeToolTip": "Controllers\\SupplierController.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAA1wDIAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T03:05:46.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T03:05:46.721Z"
             },
             {
               "$type": "Document",
@@ -1072,8 +1025,7 @@
               "RelativeToolTip": "Controllers\\ColorController.cs",
               "ViewState": "AQIAACEAAAAAAAAAAAAnwBgAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T07:34:33.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T07:34:33.513Z"
             },
             {
               "$type": "Document",
@@ -1085,8 +1037,7 @@
               "RelativeToolTip": "Controllers\\OutOrderController.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAAnwC8AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T08:22:15.757Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T08:22:15.757Z"
             },
             {
               "$type": "Document",
@@ -1098,8 +1049,7 @@
               "RelativeToolTip": "Controllers\\RequestController.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAQwB4AAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T02:11:55.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T02:11:55.085Z"
             },
             {
               "$type": "Document",
@@ -1111,8 +1061,7 @@
               "RelativeToolTip": "Controllers\\VersionController.cs",
               "ViewState": "AQIAADMAAAAAAAAAAAAwwDYAAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T12:58:09.068Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T12:58:09.068Z"
             },
             {
               "$type": "Document",
@@ -1124,8 +1073,7 @@
               "RelativeToolTip": "Data\\AddVersion.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T12:51:21.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T12:51:21.028Z"
             },
             {
               "$type": "Document",
@@ -1137,8 +1085,7 @@
               "RelativeToolTip": "Controllers\\FormController.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAvwEEAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:06:47.424Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T08:06:47.424Z"
             },
             {
               "$type": "Document",
@@ -1150,8 +1097,7 @@
               "RelativeToolTip": "Controllers\\ModelController.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAAgwE8AAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T07:04:30.614Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T07:04:30.614Z"
             },
             {
               "$type": "Document",
@@ -1163,8 +1109,7 @@
               "RelativeToolTip": "Data\\AddModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T07:14:28.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T07:14:28.107Z"
             },
             {
               "$type": "Document",
@@ -1176,8 +1121,7 @@
               "RelativeToolTip": "Data\\AddSupplier.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T03:27:43.437Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T03:27:43.437Z"
             },
             {
               "$type": "Document",
@@ -1189,8 +1133,7 @@
               "RelativeToolTip": "Models\\Suplier.cs",
               "ViewState": "AQIAABUAAAAAAAAAAAAYwBoAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T03:27:20.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T03:27:20.938Z"
             },
             {
               "$type": "Document",
@@ -1202,8 +1145,7 @@
               "RelativeToolTip": "Models\\Model.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAIBJwBIAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T07:14:13.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T07:14:13.585Z"
             },
             {
               "$type": "Document",
@@ -1215,8 +1157,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAArwCIAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T00:18:44.475Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T00:18:44.475Z"
             },
             {
               "$type": "Document",
@@ -1228,8 +1169,7 @@
               "RelativeToolTip": "Services\\RequestService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T02:02:28.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T02:02:28.767Z"
             },
             {
               "$type": "Document",
@@ -1241,8 +1181,7 @@
               "RelativeToolTip": "Data\\AddRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T08:34:33.507Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-24T08:34:33.507Z"
             },
             {
               "$type": "Document",
@@ -1254,8 +1193,7 @@
               "RelativeToolTip": "Data\\AddBrand.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T16:15:29.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T16:15:29.858Z"
             },
             {
               "$type": "Document",
@@ -1267,8 +1205,7 @@
               "RelativeToolTip": "Data\\UpdateEmployee.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T10:57:48.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T10:57:48.465Z"
             },
             {
               "$type": "Document",
@@ -1280,8 +1217,7 @@
               "RelativeToolTip": "Data\\UpdateCountry.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T04:30:01.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-23T04:30:01.123Z"
             },
             {
               "$type": "Document",
@@ -1293,8 +1229,7 @@
               "RelativeToolTip": "Data\\SendMessage.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T09:36:48.906Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T09:36:48.906Z"
             },
             {
               "$type": "Document",
@@ -1306,8 +1241,7 @@
               "RelativeToolTip": "Data\\OutOrder.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAAQwAwAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T09:37:49.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T09:37:49.076Z"
             },
             {
               "$type": "Document",
@@ -1319,8 +1253,7 @@
               "RelativeToolTip": "Data\\InOrder.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAEBUwBMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T02:18:21.731Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T02:18:21.731Z"
             },
             {
               "$type": "Document",
@@ -1332,8 +1265,7 @@
               "RelativeToolTip": "Data\\DetailInOrder.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T02:15:04.325Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T02:15:04.325Z"
             },
             {
               "$type": "Document",
@@ -1345,8 +1277,7 @@
               "RelativeToolTip": "Data\\DetailOutOrder.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T09:36:30.545Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T09:36:30.545Z"
             },
             {
               "$type": "Document",
@@ -1358,8 +1289,7 @@
               "RelativeToolTip": "Data\\UpdateBrand.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T07:59:54.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-21T07:59:54.159Z"
             },
             {
               "$type": "Document",
@@ -1371,8 +1301,7 @@
               "RelativeToolTip": "Data\\CreateCarShowRoom.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T04:01:16.352Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-23T04:01:16.352Z"
             },
             {
               "$type": "Document",
@@ -1384,8 +1313,7 @@
               "RelativeToolTip": "Controllers\\ShowroomController.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAgwBIAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T01:40:37.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-23T01:40:37.552Z"
             },
             {
               "$type": "Document",
@@ -1397,8 +1325,7 @@
               "RelativeToolTip": "Models\\DetailOfInOrder.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAArwCAAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T02:15:23.101Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T02:15:23.101Z"
             },
             {
               "$type": "Document",
@@ -1410,8 +1337,7 @@
               "RelativeToolTip": "Middleware\\InOrderMiddleware.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAArwBUAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T07:57:12.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T07:57:12.427Z"
             },
             {
               "$type": "Document",
@@ -1423,8 +1349,7 @@
               "RelativeToolTip": "Services\\VersionService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T12:49:27.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T12:49:27.228Z"
             },
             {
               "$type": "Document",
@@ -1436,8 +1361,7 @@
               "RelativeToolTip": "server.http",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-05-14T06:56:25.663Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T06:56:25.663Z"
             },
             {
               "$type": "Document",
@@ -1449,8 +1373,7 @@
               "RelativeToolTip": "Data\\AddCustomer.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAA6wAUAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:11:50.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:11:50.37Z"
             },
             {
               "$type": "Document",
@@ -1473,8 +1396,7 @@
               "RelativeToolTip": "Models\\Version.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAIBJwBAAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-18T01:19:16.221Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T01:19:16.221Z"
             },
             {
               "$type": "Document",
@@ -1486,8 +1408,7 @@
               "RelativeToolTip": "Models\\Form.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:02:13.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T08:02:13.154Z"
             },
             {
               "$type": "Document",
@@ -1499,8 +1420,7 @@
               "RelativeToolTip": "Data\\AddForm.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:03:08.022Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T08:03:08.022Z"
             },
             {
               "$type": "Document",
@@ -1512,8 +1432,7 @@
               "RelativeToolTip": "Controllers\\InOrderController.cs",
               "ViewState": "AQIAAEEAAAAAAAAAAAAiwCEAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T01:02:18.231Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T01:02:18.231Z"
             },
             {
               "$type": "Document",
@@ -1525,8 +1444,7 @@
               "RelativeToolTip": "Services\\ContactServiceImpl.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T09:42:18.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T09:42:18.597Z"
             },
             {
               "$type": "Document",
@@ -1538,8 +1456,7 @@
               "RelativeToolTip": "Models\\Car.cs",
               "ViewState": "AQIAAEwAAAAAAAAAAAAkwFEAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-18T09:34:49.227Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T09:34:49.227Z"
             },
             {
               "$type": "Document",
@@ -1551,8 +1468,7 @@
               "RelativeToolTip": "Models\\DatabaseContext.cs",
               "ViewState": "AQIAAD4AAAAAAAAAAAAhwEQAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T04:14:00.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T04:14:00.499Z"
             },
             {
               "$type": "Document",
@@ -1564,8 +1480,7 @@
               "RelativeToolTip": "Models\\Request.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAAwBsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-17T03:14:13.131Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-17T03:14:13.131Z"
             },
             {
               "$type": "Document",
@@ -1577,8 +1492,7 @@
               "RelativeToolTip": "Models\\InVoice.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAIBJwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-18T01:08:26.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T01:08:26.342Z"
             },
             {
               "$type": "Document",
@@ -1590,8 +1504,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAACjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-14T12:59:42.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T12:59:42.066Z"
             },
             {
               "$type": "Document",
@@ -1603,8 +1516,7 @@
               "RelativeToolTip": "Data\\AddContract.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T16:25:58.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T16:25:58.881Z"
             },
             {
               "$type": "Document",
@@ -1616,8 +1528,7 @@
               "RelativeToolTip": "Data\\AddColor.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T07:27:13.088Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T07:27:13.088Z"
             },
             {
               "$type": "Document",
@@ -1629,8 +1540,7 @@
               "RelativeToolTip": "Models\\DetailOfOutOrder.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAAswAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T12:17:39.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T12:17:39.432Z"
             },
             {
               "$type": "Document",
@@ -1642,8 +1552,7 @@
               "RelativeToolTip": "Models\\OutOrder.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAIBJwBIAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T12:06:34.965Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T12:06:34.965Z"
             },
             {
               "$type": "Document",
@@ -1655,8 +1564,7 @@
               "RelativeToolTip": "Data\\UpdateCustomer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T15:08:48.504Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T15:08:48.504Z"
             },
             {
               "$type": "Document",
@@ -1668,8 +1576,7 @@
               "RelativeToolTip": "Models\\InOrder.cs",
               "ViewState": "AQIAACgAAAAAAAAAAAAAwC8AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T02:40:16.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T02:40:16.795Z"
             },
             {
               "$type": "Document",
@@ -1681,8 +1588,7 @@
               "RelativeToolTip": "Services\\ColorServiceImpl.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAYwCYAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T07:31:03.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T07:31:03.256Z"
             },
             {
               "$type": "Document",
@@ -1694,8 +1600,7 @@
               "RelativeToolTip": "Services\\ColorService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAIBJwAkAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T07:26:26.139Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T07:26:26.139Z"
             },
             {
               "$type": "Document",
@@ -1707,8 +1612,7 @@
               "RelativeToolTip": "Models\\Color.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAQwBAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T07:24:31.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T07:24:31.263Z"
             },
             {
               "$type": "Document",
@@ -1720,8 +1624,7 @@
               "RelativeToolTip": "Models\\Customer.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwCcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:12:28.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:12:28.305Z"
             },
             {
               "$type": "Document",
@@ -1733,8 +1636,7 @@
               "RelativeToolTip": "Helper\\FileHelper.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:03:52.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T13:03:52.518Z"
             }
           ]
         }
