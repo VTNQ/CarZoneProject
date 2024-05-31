@@ -8,5 +8,6 @@ namespace server.Services
         public dynamic ShowForm();
         public bool UpdateForm(int id,AddForm UpdateForm);
         public bool DeleteForm(int id);
+        Task<int> TotalForm();
     }
 }

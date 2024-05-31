@@ -153,7 +153,7 @@ useEffect(() => {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/HomeAdminPage',{state:{sessionData}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/Dashboard',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Home</span>
     </a>

@@ -47,6 +47,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalVersion")]
+        public async Task<IActionResult> TotalVersion()
+        {
+            try
+            {
+                return Ok(await versionService.TotalVersion());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpDelete("DeleteVersion/{id}")]
         public IActionResult DeleteVersion(int id)
         {

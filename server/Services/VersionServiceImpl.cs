@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Models;
 
 namespace server.Services
@@ -51,6 +52,11 @@ namespace server.Services
                 id=d.Id,
                 relaseYear=d.ReleaseYear,
             }).ToList();
+        }
+
+        public async Task<int> TotalVersion()
+        {
+            return await databaseContext.Versions.CountAsync();
         }
     }
 }

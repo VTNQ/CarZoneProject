@@ -134,5 +134,20 @@ namespace server.Services
         {
             return await databaseContext.InOrders.Where(d => d.IdEmployee == id).CountAsync();
         }
+
+        public async Task<int> TotalOrderWareHouse(int id)
+        {
+            return await databaseContext.InOrders.Where(d => d.IdWarehouse == id).CountAsync();
+        }
+
+        public async Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime)
+        {
+            return databaseContext.InOrders.Where(p => p.IdWarehouse == id && p.DateOfSale.Month == datetime).GroupBy(o => o.DateOfSale).Select(g => new
+            {
+                OrderDate = g.Key,
+                OrderCount = g.Count()
+            }).OrderBy(x => x.OrderDate)
+            .ToList();
+        }
     }
 }

@@ -45,6 +45,31 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        
+        [HttpGet("TotalContract/{id}")]
+        public async Task<IActionResult> TotalContract(int id)
+        {
+            try
+            {
+                return Ok(await _orderService.TotalContract(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("GetCountOrder/{id}/{month}")]
+        public async Task<IActionResult> GetCountOrder(int id,int month)
+        {
+            try
+            {
+                return Ok(_orderService.GetCountOrder(id,month));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("TotalOutOrder/{id}")]
         public async Task<IActionResult> TotalOutOrder(int id)
         {

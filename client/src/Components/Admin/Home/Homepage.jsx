@@ -4,16 +4,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import LayoutAdmin from "../Layout/Layout";
 import { Bar, Pie } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'; // Import the Chart object from 'chart.js/auto'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { CategoryScale, LinearScale, BarController, Title } from 'chart.js';
 import Cookies from 'js-cookie'
 import axios from "axios";
 function HomePage(){
     const location=useLocation();
-
+    const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const navigate = useNavigate();
   const [Color,setColor]=useState(null)
   const [Supplier,setSupplier]=useState(null);
   const [customer,setCustomer]=useState(null);
+  const[OrderData,setOrderData]=useState([]);
+  Chart.register(ChartDataLabels)
   useEffect(()=>{
     const fetchdata=async()=>{
       try{
@@ -68,6 +71,21 @@ function HomePage(){
       navigate('/login');
     }
   }, [navigate]);
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/OutOrder/GetCountOrder/${sessionData.idShowroom}/${selectedMonth}`)
+        setOrderData(response.data.result);
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.idShowroom){
+      fetchdata();
+    }
+ 
+  },[selectedMonth,sessionData])
+
   const [TotalInorder,setTotalInorder]=useState(null);
   useEffect(()=>{
     const fetchdata=async()=>{
@@ -84,6 +102,29 @@ function HomePage(){
     
 
   },[sessionData])
+  const generateChartData = () => {
+    const daysInMonth = new Date(new Date().getFullYear(), selectedMonth, 0).getDate();
+    const chartData = Array.from({ length: daysInMonth }, (_, index) => 0);
+
+    OrderData.forEach((orderCount) => {
+      const orderDay = new Date(orderCount.orderDate).getDate();
+      chartData[orderDay - 1] = orderCount.orderCount;
+    });
+
+    return chartData;
+  };
+  const chartData = {
+    labels: Array.from({ length: new Date(new Date().getFullYear(), selectedMonth, 0).getDate() }, (_, index) => index + 1),
+    datasets: [
+      {
+        label: 'Number of Unique Orders',
+        data: generateChartData(),
+        backgroundColor: 'rgba(75,192,192,0.6)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderWidth: 1,
+      },
+    ],
+  };
   const[Employee,setEmployee]=useState(null)
   const [OutOrder,setOutOrder]=useState(null);
   useEffect(()=>{
@@ -148,6 +189,31 @@ function HomePage(){
       ],
     }],
   };
+  
+  const chartOptions = {
+    scales: {
+      x: {
+        type: 'category', // Specify the scale type as 'category' for the x-axis
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+  const chartOptions1 = {
+    plugins: {
+      datalabels: {
+        color: '#fff',
+        font: {
+          weight: 'bold',
+          size: 14,
+        },
+        formatter: (value, context) => {
+          return value;
+        },
+      },
+    },
+  };
   const style={
     minHeight:'auto'
   }
@@ -184,20 +250,16 @@ return(
             <div class="row col-auto">
               <div class="col-md-6">
                 <div class=" tale-bg">
-                  <div class="card-people" >
-                    <img src={Img} alt="people"/>
-                    <div class="weather-info">
-                      <div class="d-flex">
-                        <div>
-                          <h2 class="mb-0 font-weight-normal"><i class="icon-sun me-2"></i>31<sup>C</sup></h2>
-                        </div>
-                        <div class="ms-2">
-                          <h4 class="location font-weight-normal">Chicago</h4>
-                          <h6 class="font-weight-normal">Illinois</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <Bar data={chartData} options={chartOptions} />
+                  <label>Select Month:</label>
+                  <select id="selectMonth"
+                    className="form-select" value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+                    {[...Array(12).keys()].map((month) => (
+                      <option key={month + 1} value={month + 1}>
+                        {month + 1}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div class="col-md-6 transparent">
@@ -205,7 +267,7 @@ return(
                   <div class="col-md-12 mb-4 transparent">
                     <div class="card card-tale" style={style}>
                       <div class="card-body">
-                      <Pie data={chartDataProduct} />
+                      <Pie data={chartDataProduct} options={chartOptions1}/>
                       </div>
                     </div>
                   </div>

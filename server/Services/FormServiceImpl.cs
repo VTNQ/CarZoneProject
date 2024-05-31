@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Models;
 
 namespace server.Services
@@ -51,6 +52,11 @@ namespace server.Services
                 id=d.Id,
                 name=d.Name,
             }).ToList();
+        }
+
+        public async Task<int> TotalForm()
+        {
+            return await databaseContext.Forms.CountAsync();
         }
 
         public bool UpdateForm(int id,AddForm UpdateForm)

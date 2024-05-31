@@ -1,4 +1,5 @@
-﻿using server.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Models;
 
 namespace server.Services
 {
@@ -18,6 +19,11 @@ namespace server.Services
               EmailCustomer=d.EmailCustomer,
               Description=d.Description,
           }).OrderByDescending(arg=>arg.id).ToList();
+        }
+
+        public async Task<int> TotalContact()
+        {
+            return await _databaseContext.Contacts.CountAsync();
         }
     }
 }

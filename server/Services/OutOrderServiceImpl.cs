@@ -232,5 +232,20 @@ namespace server.Services
         {
             return await _dbContext.OutOrders.Where(d => d.IdShowroom == id).CountAsync();
         }
+
+        public async Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime)
+        {
+            return _dbContext.OutOrders.Where(p=>p.IdShowroom==id && p.DateOfSale.Month == datetime).GroupBy(o => o.DateOfSale).Select(g => new
+            {
+                OrderDate = g.Key,
+                OrderCount = g.Count()
+            }).OrderBy(x => x.OrderDate)
+            .ToList();
+        }
+
+        public async Task<int> TotalContract(int id)
+        {
+            return await _dbContext.Contracts.Where(d=>d.IdOrderNavigation.IdShowroom==id).CountAsync();
+        }
     }
 }

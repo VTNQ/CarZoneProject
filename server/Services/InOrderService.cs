@@ -13,6 +13,7 @@ namespace server.Services
          Task UpdateOrderStatus();
         public dynamic ShowOrderWareHouse(int id);
         Task<int> TotalInorder(int id);
-     
+        Task<int> TotalOrderWareHouse(int id);
+        Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime);
     }
 }

@@ -55,6 +55,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalForm")]
+        public async Task<IActionResult> TotalForm()
+        {
+            try
+            {
+                return Ok(await _formService.TotalForm());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("AddForm")]
         [Produces("application/json")]
         [Consumes("application/json")]

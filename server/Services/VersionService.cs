@@ -7,5 +7,6 @@ namespace server.Services
         public bool AddVersion(AddVersion addVersion);
         public dynamic ShowVersion();
         public bool DeleteVersion(int id);
+        Task<int> TotalVersion();
     }
 }

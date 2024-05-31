@@ -66,6 +66,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalBrand")]
+        public async Task<IActionResult> TotalBrand()
+        {
+            try
+            {
+                return Ok(await _brandService.TotalBrand());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("GetCountry")]
         public IActionResult GetCountry()
         {

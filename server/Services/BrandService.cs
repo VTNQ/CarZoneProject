@@ -9,5 +9,6 @@ namespace server.Services
         public dynamic ShowBrand();
         public bool UpdateBrand(int id,UpdateBrand updateBrand);
         public bool DeleteBrand(int id);
+        Task<int> TotalBrand();
     }
 }

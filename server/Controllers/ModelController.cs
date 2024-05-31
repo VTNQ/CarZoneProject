@@ -29,6 +29,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalModel")]
+        public async Task<IActionResult> TotalModel()
+        {
+            try
+            {
+                return Ok(await modelService.TotalModel());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpDelete("DeleModel/{id}")]
         public async Task<IActionResult> DeleteModel(int id)
         {

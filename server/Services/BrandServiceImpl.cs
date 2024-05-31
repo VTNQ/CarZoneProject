@@ -1,4 +1,5 @@
-﻿using server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Data;
 using server.Helper;
 using server.Models;
 
@@ -105,6 +106,11 @@ namespace server.Services
             {
                 return false;
             }
+        }
+
+        public async Task<int> TotalBrand()
+        {
+            return await databaseContext.Brands.CountAsync();
         }
     }
 }

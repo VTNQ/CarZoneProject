@@ -26,6 +26,30 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("GetCountOrder/{id}/{time}")]
+        public async Task<IActionResult> GetCountOrder(int id,int time)
+        {
+            try
+            {
+                return Ok( _orderService.GetCountOrder(id,time));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("TotalOrderWareHouse/{id}")]
+        public async Task<IActionResult> TotalOrderWareHouse(int id)
+        {
+            try
+            {
+                return Ok(await _orderService.TotalOrderWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowOrderWareHouse/{id}")]
         public IActionResult ShowOrderWareHouse(int id)
         {

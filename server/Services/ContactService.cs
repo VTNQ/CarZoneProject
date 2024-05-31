@@ -3,5 +3,6 @@
     public interface ContactService
     {
         public dynamic ShowContact();
+        Task<int> TotalContact();
     }
 }
