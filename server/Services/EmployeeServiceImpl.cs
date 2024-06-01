@@ -25,34 +25,40 @@ namespace server.Services
             }
             return new string(StringChars);
         }
-        public bool CreateEmployee(AddEmployee addEmployee)
+        public async Task<bool> CreateEmployee(AddEmployee addEmployee)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                string Password = GenerateRandomString(8);
-
-                var EmployeeAdd = new Employee
+                try
                 {
-                    FullName = addEmployee.FullName,
-                    Email = addEmployee.Email,
-                    Address = addEmployee.Address,
-                    Password=BCrypt.Net.BCrypt.HashPassword(Password) ,
-                    Phone = addEmployee.Phone,
-                    Role= "Employee",
-                    IdentityCode = addEmployee.IdentityCode,
-                    IdShowroom = addEmployee.IdShowroom,
-                };
-                SendEmail(addEmployee.Email, "Reset Information", $"FullName :{addEmployee.FullName}\n Password:{Password}");
-                databaseContext.Employees.Add(EmployeeAdd);
-                return databaseContext.SaveChanges()>0;
+                    string Password = GenerateRandomString(8);
+
+                    var EmployeeAdd = new Employee
+                    {
+                        FullName = addEmployee.FullName,
+                        Email = addEmployee.Email,
+                        Address = addEmployee.Address,
+                        Password = BCrypt.Net.BCrypt.HashPassword(Password),
+                        Phone = addEmployee.Phone,
+                        Role = "Employee",
+                        IdentityCode = addEmployee.IdentityCode,
+                        IdShowroom = addEmployee.IdShowroom,
+                    };
+                    SendEmail(addEmployee.Email, "Reset Information", $"FullName :{addEmployee.FullName}\n Password:{Password}");
+                    databaseContext.Employees.Add(EmployeeAdd);
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+                
         }
     
-        public dynamic GetEmployee(int idShowRoom)
+        public async Task<IEnumerable<dynamic>> GetEmployee(int idShowRoom)
         {
             return databaseContext.Employees.Where(d => d.IdShowroom == idShowRoom && d.Role== "Employee").Select(d => new
             {
@@ -63,7 +69,7 @@ namespace server.Services
                 Phone=d.Phone,
                 IdentityCode=d.IdentityCode,
 
-            });
+            }).ToList();
         }
 
         public bool UpdateEmployee(int id, UpdateEmployee updateEmployee)
@@ -139,7 +145,7 @@ namespace server.Services
                 return "Not Exist";
             }
         }
-        public dynamic ShowContract(int id)
+        public async Task<IEnumerable<dynamic>> ShowContract(int id)
         {
             var contracts=databaseContext.Contracts.Where(d => d.IdOrderNavigation.IdEmployee == id).Select(d => new
             {
@@ -148,11 +154,11 @@ namespace server.Services
             }).FirstOrDefault();
             if (contracts != null)
             {
-                return contracts;
+                return new List<dynamic> { contracts};
             }
             else
             {
-                return "Not Data";
+                return new List<dynamic> { new {Message="No Data"}};
             }
             
         }

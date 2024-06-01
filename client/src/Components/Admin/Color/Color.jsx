@@ -57,7 +57,7 @@ function Color() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
-                setShowColor(response.data)
+                setShowColor(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -90,7 +90,7 @@ function Color() {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
-                    setShowColor(response.data)
+                    setShowColor(response.data.result)
                 }
             }
         }catch(error){
@@ -135,7 +135,7 @@ function Color() {
                     })
                     setColor('')
                     const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
-                    setShowColor(response.data)
+                    setShowColor(response.data.result)
                 }else{
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -194,7 +194,7 @@ function Color() {
                 setUpdateColor('');
                 setPopupVisibility(false)
                 const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
-                setShowColor(response.data)
+                setShowColor(response.data.result)
             }else{
                 const responseBody = await response.json();
                 if (responseBody.message) {

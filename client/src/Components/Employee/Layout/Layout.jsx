@@ -27,7 +27,7 @@ const LayoutEmployee=({children})=>{
     
     useEffect(() => {
         const data = getUserSession();
-        console.log(data.role)
+       
         if (data && data.role=='Employee') {
             setSessionData(data);
         } else{

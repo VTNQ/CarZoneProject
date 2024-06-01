@@ -98,7 +98,7 @@ function Supplier() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                setSupplier(response.data)
+                setSupplier(response.data.result)
 
             } catch (error) {
                 console.log(error)
@@ -127,7 +127,7 @@ function Supplier() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Supplier/ShowCountry");
-                setCountry(response.data)
+                setCountry(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -160,7 +160,7 @@ function Supplier() {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                    setSupplier(response.data)
+                    setSupplier(response.data.result)
 
                 }else{
                     const responseBody = await response.json();
@@ -215,7 +215,7 @@ function Supplier() {
                     setSelectCountry(null)
                     SetSelectType(null)
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                    setSupplier(response.data)
+                    setSupplier(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -272,7 +272,7 @@ function Supplier() {
                     setUpdateSelectCountry(null);
                     setUpdateSelectType(null);
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                    setSupplier(response.data)
+                    setSupplier(response.data.result)
                     
                 } else {
                     const responseBody = await response.json();

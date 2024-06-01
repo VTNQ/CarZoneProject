@@ -20,7 +20,7 @@ namespace server.Controllers
         [HttpPost("AddSupplier")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddSupplier([FromBody] AddSupplier addSupplier)
+        public async Task<IActionResult> AddSupplier([FromBody] AddSupplier addSupplier)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace server.Controllers
             }
         }
         [HttpDelete("DeleteSupplier/{id}")]
-        public IActionResult DeleteSupplier(int id)
+        public async Task<IActionResult> DeleteSupplier(int id)
         {
             if (databaseContext.InOrders.Any(d => d.IdSuplier == id))
             {
@@ -76,7 +76,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateSupplier/{id}")]
         [Produces("application/json")]
-        public IActionResult UpdateSupplier(int id, [FromBody] AddSupplier updateSupplier)
+        public async Task<IActionResult> UpdateSupplier(int id, [FromBody] AddSupplier updateSupplier)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowSupplier")]
-        public IActionResult ShowSupplier()
+        public async Task<IActionResult> ShowSupplier()
         {
             try
             {
@@ -111,7 +111,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowCountry")]
-        public IActionResult ShowCountry()
+        public async Task<IActionResult> ShowCountry()
         {
             try
             {

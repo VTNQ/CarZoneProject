@@ -12,44 +12,57 @@ namespace server.Services
             _databaseContext = databaseContext;
         }
 
-        public bool AddSupplier(AddSupplier addSuppplier)
+        public async Task<bool> AddSupplier(AddSupplier addSuppplier)
         {
-            try
+            using (var traction = await _databaseContext.Database.BeginTransactionAsync())
             {
-                var Supplier = new Suplier
+                try
                 {
-                    Name = addSuppplier.Name,
-                    Type = addSuppplier.Type,
-                    IdCountry = addSuppplier.IdCountry,
-                    Email = addSuppplier.Email,
-                };
-                _databaseContext.Supliers.Add(Supplier);
-                return _databaseContext.SaveChanges()>0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool DeleteSupplier(int id)
-        {
-            try
-            {
-                var Supplier = _databaseContext.Supliers.Find(id);
-                if (Supplier != null)
-                {
-                    _databaseContext.Supliers.Remove(Supplier);
+                    var Supplier = new Suplier
+                    {
+                        Name = addSuppplier.Name,
+                        Type = addSuppplier.Type,
+                        IdCountry = addSuppplier.IdCountry,
+                        Email = addSuppplier.Email,
+                    };
+                    _databaseContext.Supliers.Add(Supplier);
+                    await _databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return _databaseContext.SaveChanges() > 0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+                
         }
 
-        public dynamic ShowCountry()
+        public async Task<bool> DeleteSupplier(int id)
+        {
+            using (var traction = await _databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Supplier = _databaseContext.Supliers.Find(id);
+                    if (Supplier != null)
+                    {
+                        _databaseContext.Supliers.Remove(Supplier);
+                    }
+                    await _databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+                
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowCountry()
         {
             return _databaseContext.Countries.Select(d => new
             {
@@ -58,7 +71,7 @@ namespace server.Services
             }).ToList();    
         }
 
-        public dynamic ShowSupplier()
+        public async Task<IEnumerable<dynamic>> ShowSupplier()
         {
             return _databaseContext.Supliers.Select(d => new
             {
@@ -76,23 +89,30 @@ namespace server.Services
             return await _databaseContext.Supliers.CountAsync();
         }
 
-        public bool UpdateSupplier(int id, AddSupplier updateSuppplier)
+        public async Task<bool> UpdateSupplier(int id, AddSupplier updateSuppplier)
         {
-            try
+            using (var traction = await _databaseContext.Database.BeginTransactionAsync())
             {
-                var Supplier = _databaseContext.Supliers.Find(id);
-                if (Supplier != null)
+
+                try
                 {
-                    Supplier.Name = updateSuppplier.Name;
-                    Supplier.Type = updateSuppplier.Type;
-                    Supplier.IdCountry= updateSuppplier.IdCountry;
-                    Supplier.Email = updateSuppplier.Email;
+                    var Supplier = _databaseContext.Supliers.Find(id);
+                    if (Supplier != null)
+                    {
+                        Supplier.Name = updateSuppplier.Name;
+                        Supplier.Type = updateSuppplier.Type;
+                        Supplier.IdCountry = updateSuppplier.IdCountry;
+                        Supplier.Email = updateSuppplier.Email;
+                    }
+                    await _databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return _databaseContext.SaveChanges() > 0;
-            }
-            catch
-            {
-                return false;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
         }
     }

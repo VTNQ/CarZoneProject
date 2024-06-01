@@ -17,7 +17,7 @@ namespace server.Controllers
             this.databaseContext = databaseContext;
         }
         [HttpDelete("DeleteColor/{id}")]
-        public IActionResult DdeleteColor(int id)
+        public async Task<IActionResult>  DdeleteColor(int id)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateColor/{id}")]
         [Produces("application/json")]
-        public IActionResult UpdateColor(int id,[FromBody] AddColor UpdateColor)
+        public async Task<IActionResult> UpdateColor(int id,[FromBody] AddColor UpdateColor)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace server.Controllers
         [HttpPost("AddColor")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddColor([FromBody] AddColor addColor)
+        public async Task<IActionResult> AddColor([FromBody] AddColor addColor)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowColor")]
-        public IActionResult ShowColor()
+        public async Task<IActionResult> ShowColor()
         {
             try
             {

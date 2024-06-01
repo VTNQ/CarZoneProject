@@ -76,7 +76,7 @@ function AddEmployee() {
         const fetchdata = async () => {
 
             const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-            setEmployee(response.data)
+            setEmployee(response.data.result)
         }
         if(sessionData && sessionData.idShowroom){
             fetchdata()

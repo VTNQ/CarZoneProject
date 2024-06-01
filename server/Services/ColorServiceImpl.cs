@@ -11,40 +11,53 @@ namespace server.Services
         {
             _databaseContext = databaseContext; 
         }
-        public bool AddColor(AddColor addColor)
+        public async Task<bool> AddColor(AddColor addColor)
         {
-            try
+            using (var traction = await _databaseContext.Database.BeginTransactionAsync())
             {
-                var color = new Color
+                try
                 {
-                    Name = addColor.Name,
-                };
-                _databaseContext.Colors.Add(color);
-                return _databaseContext.SaveChanges()>0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool DeleteColor(int id)
-        {
-            try
-            {
-                var Color=_databaseContext.Colors.Find(id);
-                if(Color != null)
-                {
-                    _databaseContext.Colors.Remove(Color);
+                    var color = new Color
+                    {
+                        Name = addColor.Name,
+                    };
+                    _databaseContext.Colors.Add(color);
+                    await _databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return _databaseContext.SaveChanges()>0;
-            }catch
-            {
-                return false ;
+                catch
+                {
+                    return false;
+                }
             }
+                
         }
 
-        public dynamic ShowColor()
+        public async Task<bool> DeleteColor(int id)
+        {
+            using (var traction = await _databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Color = _databaseContext.Colors.Find(id);
+                    if (Color != null)
+                    {
+                        _databaseContext.Colors.Remove(Color);
+                    }
+                    await _databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+              
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowColor()
         {
             return _databaseContext.Colors.Select(d => new
             {
@@ -58,21 +71,25 @@ namespace server.Services
             return await _databaseContext.Colors.CountAsync();
         }
 
-        public bool UpdateColor(int id, AddColor UpdateColor)
+        public async Task<bool> UpdateColor(int id, AddColor UpdateColor)
         {
-            try
+            using (var traction = await _databaseContext.Database.BeginTransactionAsync())
             {
-                var Color = _databaseContext.Colors.Find(id);
-                if (Color != null)
+                try
                 {
-                    Color.Name = UpdateColor.Name;
+                    var Color = _databaseContext.Colors.Find(id);
+                    if (Color != null)
+                    {
+                        Color.Name = UpdateColor.Name;
+                    }
+                    return _databaseContext.SaveChanges() > 0;
                 }
-                return _databaseContext.SaveChanges()>0;    
+                catch
+                {
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+                
         }
     }
 }
