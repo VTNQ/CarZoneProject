@@ -21,7 +21,7 @@ namespace server.Controllers
         [HttpPost("AddVersion")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddVersion([FromBody] AddVersion addVersion)
+        public async Task<IActionResult> AddVersion([FromBody] AddVersion addVersion)
         {
             if(databaseContext.Versions.Any(d=>d.ReleaseYear==addVersion.Version)) {
                 return BadRequest(new { message = "Version already Exist" });
@@ -36,7 +36,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowVersion")]
-        public IActionResult ShowVersion()
+        public async Task<IActionResult> ShowVersion()
         {
             try
             {
@@ -60,7 +60,7 @@ namespace server.Controllers
             }
         }
         [HttpDelete("DeleteVersion/{id}")]
-        public IActionResult DeleteVersion(int id)
+        public async Task<IActionResult> DeleteVersion(int id)
         {
             if(databaseContext.Cars.Any(d=>d.IdVersion==id))
             {

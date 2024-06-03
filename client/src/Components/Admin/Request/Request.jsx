@@ -51,7 +51,7 @@ function Request() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                setReQuest(response.data)
+                setReQuest(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -66,7 +66,7 @@ function Request() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Request/ShowWareHouse");
-                setWareHouse(response.data)
+                setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -133,7 +133,7 @@ function Request() {
                         Description: ''
                     })
                     const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                    setReQuest(response.data)
+                    setReQuest(response.data.result)
                 }
             } catch (error) {
                 console.log(error)

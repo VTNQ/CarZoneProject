@@ -4,11 +4,11 @@ namespace server.Services
 {
     public interface RequestService
     {
-        public bool AddRequest(AddRequest addRequest);
-        public dynamic ShowWareHouse();
-        public dynamic ShowRequestWareHouse();
-        public dynamic ShowSupplier();
-        public dynamic ShowRequestSupplier(string fullname);
-        public bool UpdateRequest(int id);
+        Task<bool> AddRequest(AddRequest addRequest);
+        Task<IEnumerable<dynamic>> ShowWareHouse();
+        Task<IEnumerable<dynamic>> ShowRequestWareHouse();
+        Task<IEnumerable<dynamic>> ShowSupplier();
+        Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname);
+        Task<bool> UpdateRequest(int id);
     }
 }

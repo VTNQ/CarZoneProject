@@ -19,11 +19,11 @@ namespace server.Controllers
             DatabaseContext = databaseContext;
         }
         [HttpGet("ShowEmployee/{id}")]
-        public IActionResult ShowEmployee(int id)
+        public async Task<IActionResult> ShowEmployee(int id)
         {
             try
             {
-                return Ok(_accountService.ShowEmployee(id));
+                return Ok(await _accountService.ShowEmployee(id));
             }
             catch
             {
@@ -32,7 +32,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateProfile/{id}")]
         [Consumes("application/json")]
-        public IActionResult UpdateProfile(int id,[FromBody]EditEmployee editEmployee)
+        public async Task<IActionResult> UpdateProfile(int id,[FromBody]EditEmployee editEmployee)
         {
             if(DatabaseContext.Employees.Any(d=>d.Role== "Employee" && d.Id!=id && d.FullName == editEmployee.FullName))
             {
@@ -65,11 +65,11 @@ namespace server.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("LoginAccount/{Email}/{Password}")]
-        public IActionResult LoginAccount(string Email, string Password)
+        public async Task<IActionResult> LoginAccount(string Email, string Password)
         {
             try
             {
-                return Ok(_accountService.Login(Email,Password,Response));
+                return Ok(await _accountService.Login(Email,Password,Response));
             }
             catch
             {

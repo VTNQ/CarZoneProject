@@ -10,7 +10,7 @@ namespace server.Services
         {
             this.databaseContext = databaseContext;
         }
-        public dynamic ShowWareHouse()
+        public async Task<IEnumerable<dynamic>> ShowWareHouse()
         {
             return databaseContext.Warehouses.Select(d => new
             {
@@ -18,7 +18,7 @@ namespace server.Services
                 Name=d.Name,
             }).ToList();    
         }
-        public dynamic ShowCar()
+        public async Task<IEnumerable<dynamic>> ShowCar()
         {
             return databaseContext.Cars.Select(d => new
             {
@@ -28,7 +28,7 @@ namespace server.Services
             }).ToList();
         }
 
-        public dynamic ShowSupply()
+        public async Task<IEnumerable<dynamic>> ShowSupply()
         {
             return databaseContext.Supliers.Select(d => new
             {
@@ -37,45 +37,52 @@ namespace server.Services
             }).ToList();
         }
 
-        public bool AddInOrder(Data.InOrder inOrder)
+        public async Task<bool> AddInOrder(Data.InOrder inOrder)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var InOrder = new InOrder
+                try
                 {
-                    IdWarehouse = inOrder.IdWarehouse,
-                    IdEmployee = inOrder.IdEmployee,
-                    IdSuplier = inOrder.IdSuplier,
-                    DateOfSale = DateOnly.FromDateTime(DateTime.Now),
-                    TotalAmount = inOrder.TotalAmount,
-                    TotalTax = inOrder.TotalTax,
-                    Payment = inOrder.Payment,
-                    Status = false,
-                };
-                databaseContext.InOrders.Add(InOrder);
-                databaseContext.SaveChanges();
-                foreach(var inor in inOrder.DetailInOrders) {
-                    var DetailIndorder = new DetailOfInOrder
+                    var InOrder = new InOrder
                     {
-                        IdOrder=InOrder.Id,
-                        IdCar = inor.IdCar,
-                        DeliveryDate = inor.DeliveryDate,
-                        Price = inor.Price,
-                        Tax = inor.Tax,
+                        IdWarehouse = inOrder.IdWarehouse,
+                        IdEmployee = inOrder.IdEmployee,
+                        IdSuplier = inOrder.IdSuplier,
+                        DateOfSale = DateOnly.FromDateTime(DateTime.Now),
+                        TotalAmount = inOrder.TotalAmount,
+                        TotalTax = inOrder.TotalTax,
+                        Payment = inOrder.Payment,
+                        Status = false,
                     };
-                   databaseContext.DetailOfInOrders.Add(DetailIndorder);
-                }
-                databaseContext.SaveChanges();
-                return true;
+                    databaseContext.InOrders.Add(InOrder);
+                    await databaseContext.SaveChangesAsync();
+                    foreach (var inor in inOrder.DetailInOrders)
+                    {
+                        var DetailIndorder = new DetailOfInOrder
+                        {
+                            IdOrder = InOrder.Id,
+                            IdCar = inor.IdCar,
+                            DeliveryDate = inor.DeliveryDate,
+                            Price = inor.Price,
+                            Tax = inor.Tax,
+                        };
+                        databaseContext.DetailOfInOrders.Add(DetailIndorder);
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
 
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+                
         }
 
-        public dynamic ShowInOrder(int id)
+        public async Task<IEnumerable<dynamic>> ShowInOrder(int id)
         {
             return databaseContext.InOrders.Where(d => d.IdEmployee == id).Select(d => new
             {
@@ -89,7 +96,7 @@ namespace server.Services
             }).ToList();
         }
        
-        public dynamic DetailInOrder(int id)
+        public async Task<IEnumerable<dynamic>> DetailInOrder(int id)
         {
             return databaseContext.DetailOfInOrders.Where(d => d.IdOrder == id).Select(d => new
             {
@@ -115,7 +122,7 @@ namespace server.Services
             await databaseContext.SaveChangesAsync();
         }
 
-        public dynamic ShowOrderWareHouse(int id)
+        public async Task<IEnumerable<dynamic>> ShowOrderWareHouse(int id)
         {
             return databaseContext.InOrders.Where(d=>d.IdWarehouse==id).Select(d => new
             {
@@ -127,7 +134,7 @@ namespace server.Services
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
                 Payment = d.Payment,
-            }).ToList() ;
+            }).ToList();
         }
 
         public async Task<int> TotalInorder(int id)

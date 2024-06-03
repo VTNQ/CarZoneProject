@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Net;
 using System;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace server.Services
@@ -121,11 +122,12 @@ namespace server.Services
             }).ToList();
         }
 
-        public Employee Login(string email, string password,HttpResponse response)
+        public async Task<Employee> Login(string email, string password,HttpResponse response)
         {
             try
             {
-                var employeeLogin = _dbContext.Employees.FirstOrDefault(d => d.Email == email);
+                var employeeLogin = await _dbContext.Employees.FirstOrDefaultAsync(d => d.Email == email);
+
                 if (employeeLogin != null && BCrypt.Net.BCrypt.Verify(password, employeeLogin.Password))
                 {
                     var user = new Employee
@@ -139,7 +141,7 @@ namespace server.Services
                         IdWarehouse = employeeLogin.IdWarehouse,
 
                     };
-                    var userData =JsonConvert.SerializeObject(user);
+                    var userData = JsonConvert.SerializeObject(user);
                     response.Cookies.Append("UserSession", userData, new CookieOptions
                     {
                         Expires = DateTime.Now.AddMinutes(15),
@@ -156,9 +158,9 @@ namespace server.Services
             }
         }
 
-        public dynamic ShowEmployee(int id)
+        public async Task<dynamic> ShowEmployee(int id)
         {
-            return _dbContext.Employees.Where(d => d.Id == id).Select(d => new
+            return await _dbContext.Employees.Where(d => d.Id == id).Select(d => new
             {
                 FullName = d.FullName,
                 Email = d.Email,
@@ -166,29 +168,36 @@ namespace server.Services
                 Phone = d.Phone,
                 IdentityCode = d.IdentityCode,
 
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
         }
 
-        public bool UpdateEmployee(int id, EditEmployee editEmployee)
+        public async Task<bool> UpdateEmployee(int id, EditEmployee editEmployee)
         {
-            try
+            using (var traction = await _dbContext.Database.BeginTransactionAsync())
             {
-                var employee = _dbContext.Employees.Find(id);
-                if (employee != null)
+                try
                 {
-                    employee.FullName = editEmployee.FullName;
-                    employee.Email = editEmployee.Email;
-                    employee.Address = editEmployee.Address;
-                    employee.Phone = editEmployee.Phone;
-                    employee.IdentityCode = editEmployee.IdentityCode;
-                }
-                return _dbContext.SaveChanges()>0;
+                    var employee = _dbContext.Employees.Find(id);
+                    if (employee != null)
+                    {
+                        employee.FullName = editEmployee.FullName;
+                        employee.Email = editEmployee.Email;
+                        employee.Address = editEmployee.Address;
+                        employee.Phone = editEmployee.Phone;
+                        employee.IdentityCode = editEmployee.IdentityCode;
+                    }
+                    await _dbContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
 
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+              
         }
     }
 }

@@ -76,7 +76,7 @@ function OutOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
-                SetShowOutOrder(response.data)
+                SetShowOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -90,7 +90,7 @@ function OutOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCustomer")
-                setCustomer(response.data)
+                setCustomer(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -112,7 +112,7 @@ function OutOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCar")
-                setCar(response.data)
+                setCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -211,7 +211,7 @@ function OutOrder() {
                         timer: 1500,
                     });
                     const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
-                    SetShowOutOrder(response.data)
+                    SetShowOutOrder(response.data.result)
 
                     SetSelectCustomer(null)
                     setSelectCars([]);

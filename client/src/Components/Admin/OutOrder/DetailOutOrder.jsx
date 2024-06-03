@@ -38,7 +38,7 @@ function DetailOutOrders() {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.IDOutOrder}`);
-                setContract(response.data)
+                setContract(response.data.result)
             }catch(error){
                 console.log(error)
             }
@@ -52,7 +52,7 @@ function DetailOutOrders() {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
-                SetInvoice(response.data)
+                SetInvoice(response.data.result)
             }catch(error){
                 console.log(error)
             }
@@ -66,7 +66,7 @@ function DetailOutOrders() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${sessionData.IDOutOrder}`)
-                setDetailOutOrder(response.data)
+                setDetailOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
             }

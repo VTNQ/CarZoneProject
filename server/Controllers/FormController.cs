@@ -18,7 +18,7 @@ namespace server.Controllers
             _formService = formService;
         }
         [HttpDelete("DeleteForm/{id}")]
-        public IActionResult DeleteForm(int id)
+        public async Task<IActionResult> DeleteForm(int id)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateForm/{id}")]
         [Produces("application/json")]
-        public IActionResult UpdateForm(int id, [FromBody] AddForm UpdateForm)
+        public async Task<IActionResult> UpdateForm(int id, [FromBody] AddForm UpdateForm)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace server.Controllers
         [HttpPost("AddForm")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddForm([FromBody] AddForm addForm)
+        public async Task<IActionResult> AddForm([FromBody] AddForm addForm)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowForm")]
-        public IActionResult ShowForm()
+        public async Task<IActionResult> ShowForm()
         {
             try
             {

@@ -48,7 +48,7 @@ function InOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
-                setInOrder(response.data)
+                setInOrder(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -75,7 +75,7 @@ function InOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/InOrder/ShowSupply");
-                setSupply(response.data)
+                setSupply(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -86,7 +86,7 @@ function InOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/InOrder/ShowWareHouse");
-                setWareHouse(response.data)
+                setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -96,7 +96,7 @@ function InOrder() {
     useEffect(() => {
         const fetchdata = async () => {
             const response = await axios.get("http://localhost:5278/api/InOrder/ShowCar");
-            setCar(response.data)
+            setCar(response.data.result)
         }
         fetchdata();
     }, [])
@@ -187,7 +187,7 @@ function InOrder() {
                     timer: 1500,
                 });
                 const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
-                setInOrder(response.data)
+                setInOrder(response.data.result)
                 setSelectSupply(null)
                 setSelectWareHouse(null)
                 setSelectCars([]);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
+using System;
 
 namespace server.Services
 {
@@ -11,41 +12,55 @@ namespace server.Services
         {
             this.databaseContext = databaseContext;
         }
-        public bool AddForm(AddForm addForm)
+        public async Task<bool> AddForm(AddForm addForm)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var Form = new Form
+                try
                 {
-                    Name = addForm.Name,
-                };
-                databaseContext.Forms.Add(Form);
-                return databaseContext.SaveChanges() > 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool DeleteForm(int id)
-        {
-            try
-            {
-                var Form=databaseContext.Forms.Find(id);
-                if(Form!=null)
-                {
-                    databaseContext.Forms.Remove(Form);
+                    var Form = new Form
+                    {
+                        Name = addForm.Name,
+                    };
+                    databaseContext.Forms.Add(Form);
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return databaseContext.SaveChanges() > 0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+              
         }
 
-        public dynamic ShowForm()
+        public async Task<bool> DeleteForm(int id)
+        {
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Form = databaseContext.Forms.Find(id);
+                    if (Form != null)
+                    {
+                        databaseContext.Forms.Remove(Form);
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
+               
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowForm()
         {
             return databaseContext.Forms.Select(d => new
             {
@@ -59,21 +74,28 @@ namespace server.Services
             return await databaseContext.Forms.CountAsync();
         }
 
-        public bool UpdateForm(int id,AddForm UpdateForm)
+        public async Task<bool> UpdateForm(int id,AddForm UpdateForm)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var Form=databaseContext.Forms.Find(id);
-                if(Form != null)
+                try
                 {
-                    Form.Name = UpdateForm.Name;
+                    var Form = databaseContext.Forms.Find(id);
+                    if (Form != null)
+                    {
+                        Form.Name = UpdateForm.Name;
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return databaseContext.SaveChanges() > 0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+               
         }
     }
 }

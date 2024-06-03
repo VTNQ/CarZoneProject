@@ -199,7 +199,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowWareHouse/{idShowRoom}")]
-        public IActionResult ShowWareHouse(int idShowRoom)
+        public async Task<IActionResult> ShowWareHouse(int idShowRoom)
         {
             try
             {

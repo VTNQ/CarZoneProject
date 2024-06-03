@@ -64,7 +64,7 @@ useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
-                setForm(response.data)
+                setForm(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -110,7 +110,7 @@ useEffect(() => {
                     })
                     setPopupVisibility(false)
                     const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
-                    setForm(response.data)
+                    setForm(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -157,7 +157,7 @@ useEffect(() => {
                         Name: ''
                     })
                     const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
-                    setForm(response.data)
+                    setForm(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -201,7 +201,7 @@ useEffect(() => {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
-                    setForm(response.data)
+                    setForm(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {

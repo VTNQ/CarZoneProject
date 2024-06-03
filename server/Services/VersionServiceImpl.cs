@@ -11,41 +11,55 @@ namespace server.Services
         {
             this.databaseContext = databaseContext;
         }
-        public bool AddVersion(AddVersion addVersion)
+        public async Task<bool> AddVersion(AddVersion addVersion)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var Version = new Models.Version
+                try
                 {
-                    ReleaseYear =addVersion.Version
-                };
-                databaseContext.Versions.Add(Version);
-                return databaseContext.SaveChanges()>0;
-            }
-            catch
-            {
-                return false;   
-            }
-        }
-
-        public bool DeleteVersion(int id)
-        {
-            try
-            {
-                var Version = databaseContext.Versions.Find(id);
-                if (Version != null)
-                {
-                    databaseContext.Versions.Remove(Version);
+                    var Version = new Models.Version
+                    {
+                        ReleaseYear = addVersion.Version
+                    };
+                    databaseContext.Versions.Add(Version);
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return databaseContext.SaveChanges()>0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+                
         }
 
-        public dynamic ShowVersion()
+        public async Task<bool> DeleteVersion(int id)
+        {
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Version = databaseContext.Versions.Find(id);
+                    if (Version != null)
+                    {
+                        databaseContext.Versions.Remove(Version);
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
+                
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowVersion()
         {
             return databaseContext.Versions.Select(d => new
             {

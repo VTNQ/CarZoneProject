@@ -34,7 +34,7 @@ useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                setBrand(response.data)
+                setBrand(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -88,7 +88,7 @@ useEffect(() => {
                 setSelectCountry("")
                 document.getElementById('Logo').value = '';
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                setBrand(response.data)
+                setBrand(response.data.result)
             }else{
                 const responseBody = await response.json();
                     if (responseBody.message) {
@@ -108,7 +108,7 @@ useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Brand/GetCountry");
-                setCountry(response.data)
+                setCountry(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -198,7 +198,7 @@ useEffect(() => {
                 setUpdateSelectCountry(null);
                 setPopupVisibility(false);
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                setBrand(response.data)
+                setBrand(response.data.result)
             } else {
                 const responseBody = await response.json();
                 if (responseBody.message) {
@@ -240,7 +240,7 @@ useEffect(() => {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                    setBrand(response.data)
+                    setBrand(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {

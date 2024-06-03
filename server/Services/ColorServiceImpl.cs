@@ -51,6 +51,7 @@ namespace server.Services
                 }
                 catch
                 {
+                    await traction.RollbackAsync();
                     return false;
                 }
             }
@@ -82,10 +83,13 @@ namespace server.Services
                     {
                         Color.Name = UpdateColor.Name;
                     }
-                    return _databaseContext.SaveChanges() > 0;
+                    await _databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
                 catch
                 {
+                    await traction.RollbackAsync();
                     return false;
                 }
             }

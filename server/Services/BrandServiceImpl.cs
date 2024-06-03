@@ -16,30 +16,37 @@ namespace server.Services
             this.webHostEnvironment = webHostEnvironment;
             this.configuration = configuration;
         }
-        public bool AddBrand(AddBrand addBrand)
+        public async Task<bool> AddBrand(AddBrand addBrand)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-              var FileName=FileHelper.GenerateFileName(addBrand.Logo.FileName);
-                var path = Path.Combine(webHostEnvironment.WebRootPath, "images", FileName);
-                using(var fileStream=new FileStream(path, FileMode.Create))
+                try
                 {
-                    addBrand.Logo.CopyTo(fileStream);
+                    var FileName = FileHelper.GenerateFileName(addBrand.Logo.FileName);
+                    var path = Path.Combine(webHostEnvironment.WebRootPath, "images", FileName);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        addBrand.Logo.CopyTo(fileStream);
+                    }
+                    var brand = new Brand
+                    {
+                        Name = addBrand.Name,
+                        Logo = FileName,
+                        Headquarters = addBrand.headquarters,
+                        IdCountry = addBrand.idCountry,
+                    };
+                    databaseContext.Brands.Add(brand);
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                var brand = new Brand
+                catch
                 {
-                    Name = addBrand.Name,
-                    Logo = FileName,
-                    Headquarters = addBrand.headquarters,
-                    IdCountry = addBrand.idCountry,
-                };
-                databaseContext.Brands.Add(brand);
-                return databaseContext.SaveChanges()>0;
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+                
         }
         public void DeletePhoto(string photo)
         {
@@ -57,18 +64,33 @@ namespace server.Services
                 Console.WriteLine($"Error deleting file '{photo}': {ex.Message}");
             }
         }
-        public bool DeleteBrand(int id)
+        public async Task<bool> DeleteBrand(int id)
         {
-            var Brand = databaseContext.Brands.Find(id);
-            if(Brand != null)
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                DeletePhoto(Brand.Logo);
-                databaseContext.Brands.Remove(Brand);
+                try
+                {
+                    var Brand = databaseContext.Brands.Find(id);
+                    if (Brand != null)
+                    {
+                        DeletePhoto(Brand.Logo);
+                        databaseContext.Brands.Remove(Brand);
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+             
             }
-            return databaseContext.SaveChanges() > 0;   
+              
         }
 
-        public dynamic GetCountry()
+        public async Task<IEnumerable<dynamic>> GetCountry()
         {
            return databaseContext.Countries.Select(d => new
            {
@@ -77,7 +99,7 @@ namespace server.Services
            }).ToList();
         }
 
-        public dynamic ShowBrand()
+        public async Task<IEnumerable<dynamic>> ShowBrand()
         {
            return databaseContext.Brands.Select(d => new
            {
@@ -90,22 +112,30 @@ namespace server.Services
            }).ToList() ;
         }
 
-        public bool UpdateBrand(int id, UpdateBrand updateBrand)
+        public async Task<bool> UpdateBrand(int id, UpdateBrand updateBrand)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var Brand = databaseContext.Brands.Find(id);
-                if(Brand !=null) { 
-                Brand.Name= updateBrand.Name;
-                Brand.Headquarters=updateBrand.headquarters;
-                Brand.IdCountry=updateBrand.idCountry;
+                try
+                {
+                    var Brand = databaseContext.Brands.Find(id);
+                    if (Brand != null)
+                    {
+                        Brand.Name = updateBrand.Name;
+                        Brand.Headquarters = updateBrand.headquarters;
+                        Brand.IdCountry = updateBrand.idCountry;
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return databaseContext.SaveChanges()>0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+             
         }
 
         public async Task<int> TotalBrand()

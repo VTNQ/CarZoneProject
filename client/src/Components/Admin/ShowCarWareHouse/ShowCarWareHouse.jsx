@@ -62,7 +62,7 @@ function ShowCarWareHouse() {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/WareHouse/ShowWareHouse/${sessionData.idShowroom}`)
-                setCar(response.data)
+                setCar(response.data.result)
             }catch(error){
                 console.log(error)
             }

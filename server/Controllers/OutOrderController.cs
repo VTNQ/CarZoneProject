@@ -18,7 +18,7 @@ namespace server.Controllers
             _databaseContext = databaseContext;
         }
         [HttpGet("ShowInvoice/{id}")]
-        public IActionResult ShowInvoice(int id)
+        public async Task<IActionResult> ShowInvoice(int id)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace server.Controllers
         }
         [HttpPost("AddOutOrder")]
         [Produces("application/json")]
-        public IActionResult AddOutOrder([FromForm]Data.OutOrder outOrder)
+        public async Task<IActionResult> AddOutOrder([FromForm]Data.OutOrder outOrder)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("DetailOutOrder/{id}")]
-        public IActionResult DetailOutOrder(int id)
+        public async Task<IActionResult> DetailOutOrder(int id)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowContract/{id}")]
-        public IActionResult ShowContract(int id)
+        public async Task<IActionResult> ShowContract(int id)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace server.Controllers
         [HttpPost("AddContract/{id}")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddContract(int id,[FromBody]AddContract addContract)
+        public async Task<IActionResult> AddContract(int id,[FromBody]AddContract addContract)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace server.Controllers
         [HttpPost("AddInvoice/{id}")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddInvoice(int id)
+        public async Task<IActionResult> AddInvoice(int id)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowOutOrder/{id}")]
-        public IActionResult ShowOutOrder(int id)
+        public async Task<IActionResult> ShowOutOrder(int id)
         {
             try
             {
@@ -184,7 +184,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowCar")]
-        public IActionResult ShowCar()
+        public async Task<IActionResult> ShowCar()
         {
             try
             {
@@ -196,7 +196,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowCustomer")]
-        public IActionResult ShowCustomer()
+        public async Task<IActionResult> ShowCustomer()
         {
             try
             {

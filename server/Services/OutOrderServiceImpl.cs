@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
+using System.Diagnostics.Contracts;
 
 namespace server.Services
 {
@@ -12,83 +13,105 @@ namespace server.Services
             _dbContext = dbContext;
         }
 
-        public bool AddContract(int id,AddContract addContract)
+        public async Task<bool> AddContract(int id,AddContract addContract)
         {
-            try
+            using (var traction = await _dbContext.Database.BeginTransactionAsync())
             {
-                var Contract = new Contract
+                try
                 {
-                    Condition = addContract.Name,
-                    CreatedDate=DateOnly.FromDateTime(DateTime.Now),
-                    IdOrder = id,
-                };
-                _dbContext.Contracts.Add(Contract);
-                return _dbContext.SaveChanges()>0;
-            }
-            catch
-            {
-                return false;   
-            }
-        }
-
-        public bool AddInvoice(int id)
-        {
-            try
-            {
-                var invoice = new InVoice
-                {
-                    IdOrder = id,
-                    CreateDate = DateOnly.FromDateTime(DateTime.Now)
-                };
-                _dbContext.InVoices.Add(invoice);
-                return _dbContext.SaveChanges() > 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool AddOutOrder(Data.OutOrder outOrder)
-        {
-            try
-            {
-                var OutOrder = new Models.OutOrder
-                {
-                    IdCustomer = outOrder.IdCustomer,
-                    IdEmployee = outOrder.IdEmployee,
-                    IdShowroom = outOrder.IdShowroom,
-                    DateOfSale = DateOnly.FromDateTime(DateTime.Now),
-                    TotalAmount = outOrder.TotalAmount,
-                    TotalTax = outOrder.TotalTax,
-                    Payment = outOrder.Payment,
-                    Status = false,
-                    DeliveryType = outOrder.DeliveryType,
-                };
-                _dbContext.OutOrders.Add(OutOrder);
-                _dbContext.SaveChanges();
-                foreach(var outOrd in outOrder.DetailOutOrders)
-                {
-                    var DetailOutOrder = new DetailOfOutOrder
+                    var Contract = new Models.Contract
                     {
-                        IdCar = outOrd.IdCar,
-                        DeliveryDay = outOrd.DeliveryDate,
-                        Price = outOrd.Price,
-                        Tax = outOrd.Tax,
-                        IdOrder= OutOrder.Id
+                        Condition = addContract.Name,
+                        CreatedDate = DateOnly.FromDateTime(DateTime.Now),
+                        IdOrder = id,
                     };
-                  _dbContext.DetailOfOutOrders.Add(DetailOutOrder);
+                    _dbContext.Contracts.Add(Contract);
+                    await _dbContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-
-                return _dbContext.SaveChanges() > 0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+              
         }
 
-        public dynamic DetailOutOrder(int id)
+        public async Task<bool> AddInvoice(int id)
+        {
+            using (var traction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var invoice = new InVoice
+                    {
+                        IdOrder = id,
+                        CreateDate = DateOnly.FromDateTime(DateTime.Now)
+                    };
+                    _dbContext.InVoices.Add(invoice);
+                    await _dbContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
+               
+        }
+
+        public async Task<bool> AddOutOrder(Data.OutOrder outOrder)
+        {
+
+            using (var traction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var OutOrder = new Models.OutOrder
+                    {
+                        IdCustomer = outOrder.IdCustomer,
+                        IdEmployee = outOrder.IdEmployee,
+                        IdShowroom = outOrder.IdShowroom,
+                        DateOfSale = DateOnly.FromDateTime(DateTime.Now),
+                        TotalAmount = outOrder.TotalAmount,
+                        TotalTax = outOrder.TotalTax,
+                        Payment = outOrder.Payment,
+                        Status = false,
+                        DeliveryType = outOrder.DeliveryType,
+                    };
+                    _dbContext.OutOrders.Add(OutOrder);
+                   await _dbContext.SaveChangesAsync();
+                    foreach (var outOrd in outOrder.DetailOutOrders)
+                    {
+                        var DetailOutOrder = new DetailOfOutOrder
+                        {
+                            IdCar = outOrd.IdCar,
+                            DeliveryDay = outOrd.DeliveryDate,
+                            Price = outOrd.Price,
+                            Tax = outOrd.Tax,
+                            IdOrder = OutOrder.Id
+                        };
+                        _dbContext.DetailOfOutOrders.Add(DetailOutOrder);
+                    }
+
+                    await _dbContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
+               
+        }
+
+        public async Task<IEnumerable<dynamic>> DetailOutOrder(int id)
         {
            return _dbContext.DetailOfOutOrders.Where(d=>d.IdOrder==id).Select(d => new
            {
@@ -121,7 +144,7 @@ namespace server.Services
             }).OrderByDescending(arg => arg.id).ToList();
         }
 
-        public dynamic ShowCar()
+        public async Task<IEnumerable<dynamic>> ShowCar()
         {
             return _dbContext.Cars.Select(d => new
             {
@@ -131,7 +154,7 @@ namespace server.Services
             }).ToList();
         }
 
-        public dynamic ShowContract(int id)
+        public async Task<IEnumerable<dynamic>> ShowContract(int id)
         {
             var contracts=_dbContext.Contracts.Where(d => d.IdOrder == id).Select(d => new
             {
@@ -140,11 +163,11 @@ namespace server.Services
             }).FirstOrDefault();
             if (contracts != null)
             {
-                return contracts;
+                return new List<dynamic> { contracts };
             }
             else
             {
-                return "Not Data";
+                return new List<dynamic> { new { Message = "No Data" } };
             }
             
         }
@@ -166,7 +189,7 @@ namespace server.Services
             
         }
 
-        public dynamic ShowCustomer()
+        public async Task<IEnumerable<dynamic>> ShowCustomer()
         {
            return _dbContext.Customers.Select(d => new
            {
@@ -175,15 +198,27 @@ namespace server.Services
            }).ToList();
         }
 
-        public dynamic ShowInvoice(int id)
+        public async Task<IEnumerable<dynamic>> ShowInvoice(int id)
         {
-            return _dbContext.InVoices.Where(d => d.IdOrder == id).Select(d => new
+            var invoice = _dbContext.InVoices
+                .Where(d => d.IdOrder == id)
+                .Select(d => new
+                {
+                    DateCreate = d.CreateDate,
+                })
+                .FirstOrDefault();
+
+            if (invoice != null)
             {
-                DateCreate = d.CreateDate,
-            }).FirstOrDefault();
+                return new List<dynamic> { invoice };
+            }
+            else
+            {
+                return Enumerable.Empty<dynamic>();
+            }
         }
 
-        public dynamic ShowOutOrder(int id)
+        public async Task<IEnumerable<dynamic>> ShowOutOrder(int id)
         {
            return _dbContext.OutOrders.OrderByDescending(d=>d.Id).Where(d => d.IdEmployee == id).Select(d => new
            {

@@ -49,7 +49,7 @@ function ShowCustomer() {
     useEffect(() => {
         const fetchdata = async () => {
             const response = await axios.get(`http://localhost:5278/api/Customer/ShowCustomer`);
-            setCustomer(response.data)
+            setCustomer(response.data.result)
         }
         fetchdata()
     }, [])
@@ -158,7 +158,7 @@ function ShowCustomer() {
                         UpdateDOB:''
                     })
                     const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-                    setCustomer(response.data)
+                    setCustomer(response.data.result)
                     
                     setPopupVisibility(false)
                 } else {

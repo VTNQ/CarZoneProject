@@ -48,7 +48,7 @@ function RequestSupplier() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/Request/ShowRequestSupplier/${sessionData.fullName}`);
-                setReQuest(response.data)
+                setReQuest(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -62,7 +62,7 @@ function RequestSupplier() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Request/ShowSupplier");
-                setSupplier(response.data)
+                setSupplier(response.data.result)
             } catch (error) {
                 console.log(error)
             }

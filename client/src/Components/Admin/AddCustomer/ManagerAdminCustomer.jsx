@@ -77,7 +77,7 @@ function ManagerAdminCustomer() {
     useEffect(() => {
         const fetchdata = async () => {
             const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-            setCustomer(response.data)
+            setCustomer(response.data.result)
         }
         fetchdata();
     }, [])
@@ -199,7 +199,7 @@ function ManagerAdminCustomer() {
                         Phone: ''
                     })
                     const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-                    setCustomer(response.data)
+                    setCustomer(response.data.result)
                     setDob(null)
                     setImagePreView(null)
                     document.getElementById('Sign').value = '';
@@ -274,7 +274,7 @@ function ManagerAdminCustomer() {
                         UpdateIdentityCode: ''
                     })
                     const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-                    setCustomer(response.data)
+                    setCustomer(response.data.result)
                     setUpdateDob(null);
                     setPopupVisibility(false)
                 } else {

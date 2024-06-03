@@ -31,7 +31,7 @@ useEffect(() => {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                setWareHouse(response.data)
+                setWareHouse(response.data.result)
             }catch(error){
                 console.log(error)
             }
@@ -54,7 +54,7 @@ useEffect(() => {
                 timer: 1500,
             })
             const response=await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-            setWareHouse(response.data)
+            setWareHouse(response.data.result)
         }
     }catch(error){
         console.log(error)

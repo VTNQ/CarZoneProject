@@ -18,7 +18,7 @@ namespace server.Controllers
             db = databaseContext;
         }
         [HttpPut("UpdateBrand/{id}")]
-        public IActionResult UpdateBrand(int id, [FromBody] UpdateBrand updateBrand)
+        public async Task<IActionResult> UpdateBrand(int id, [FromBody] UpdateBrand updateBrand)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace server.Controllers
             }
         }
         [HttpDelete("DeleteBrand/{id}")]
-        public IActionResult DeleteBrand(int id)
+        public async Task<IActionResult> DeleteBrand(int id)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("GetBrand")]
-        public IActionResult GetBrand()
+        public async Task<IActionResult> GetBrand()
         {
             try
             {
@@ -79,7 +79,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("GetCountry")]
-        public IActionResult GetCountry()
+        public async Task<IActionResult> GetCountry()
         {
             try
             {

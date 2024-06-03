@@ -4,10 +4,10 @@ namespace server.Services
 {
     public interface FormService
     {
-        public bool AddForm(AddForm addForm);
-        public dynamic ShowForm();
-        public bool UpdateForm(int id,AddForm UpdateForm);
-        public bool DeleteForm(int id);
+        Task<bool> AddForm(AddForm addForm);
+        Task<IEnumerable<dynamic>> ShowForm();
+        Task<bool> UpdateForm(int id,AddForm UpdateForm);
+        Task<bool> DeleteForm(int id);
         Task<int> TotalForm();
     }
 }

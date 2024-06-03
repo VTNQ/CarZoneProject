@@ -48,7 +48,7 @@ function DetailOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/InOrder/DetailInOrder/${sessionData.IDInorder}`)
-                setDetail(response.data);
+                setDetail(response.data.result);
             } catch (error) {
                 console.log(error)
             }

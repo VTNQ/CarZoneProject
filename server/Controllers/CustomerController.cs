@@ -31,7 +31,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateCustomer/{id}")]
         [Produces("application/json")]
-        public IActionResult UpdateCustomer(int id,[FromBody]UpdateCustomer updateCustomer)
+        public async Task<IActionResult> UpdateCustomer(int id,[FromBody]UpdateCustomer updateCustomer)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace server.Controllers
         }
 
         [HttpGet("ShowCustomer")]
-        public IActionResult ShowCustomer()
+        public async Task<IActionResult> ShowCustomer()
         {
             try
             {
@@ -72,7 +72,7 @@ namespace server.Controllers
         [HttpPost("AddCustomer")]
         [Produces("application/json")]
 
-        public IActionResult AddCustomer([FromForm]  AddCustomer addCustomer)
+        public async Task<IActionResult> AddCustomer([FromForm]  AddCustomer addCustomer)
         {
             try
             {

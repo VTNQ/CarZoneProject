@@ -56,7 +56,7 @@ export const BrandSpm = () => {
 
   const fetchDataBrand = async () => {
         const response = await axios.get(`http://127.0.0.1:5278/api/Brand/GetBrand`);
-        setBrand(response.data);
+        setBrand(response.data.result);
         console.log(response.data)
     }
   useEffect(()=>{
