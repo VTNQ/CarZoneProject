@@ -207,7 +207,7 @@ export const Homepage = () => {
             {CarData.slice(currentIndex, currentIndex + cardsPerSlide).concat(
         CarData.slice(0, Math.max(0, cardsPerSlide - (CarData.length - currentIndex)))
       ).map(card => (
-        <div key={card.id} className="card">
+        <div key={card.id} className="card cardhp">
           <div className='relative'>
             <img className='img-slider' src={card.mainPhoto?.link} />
             <div className='absolute container-mini'>
