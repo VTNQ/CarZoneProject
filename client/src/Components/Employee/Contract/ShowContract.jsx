@@ -32,21 +32,23 @@ function ShowContract() {
             try {
                 if(sessionData.idOrder==undefined){
                     const response = await axios.get(`http://localhost:5278/api/Employee/ShowContract/${sessionData.ID}`)
-                    setContract(response.data)
+                    setContract(response.data.result)
                 }else{
                     const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.idOrder}`);
-                    setContract(response.data)
+                    setContract(response.data.result)
                 }
              
             } catch (error) {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.ID){
+        if(sessionData && (sessionData.idOrder || sessionData.ID)){
             fetchdata();
         }
       
     }, [sessionData])
+
+    
     const handleBackClick=()=>{
         const{idOrder,...restSessionData } = sessionData;
         Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
@@ -80,11 +82,15 @@ function ShowContract() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>{index}</td>
-                                                        <td>{Contract.condition}</td>
-                                                        <td>{new Date(Contract.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                    </tr>
+                                                  
+                                                        {Contract.map((contract,index)=>(
+                                                            <tr>
+                                                                <td>{++index}</td>
+                                                                <td>{contract.condition}</td>
+                                                        <td>{new Date(contract.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                            </tr>
+                                                        ))}
+                                                   
                                                 </tbody>
                                             </table>
 

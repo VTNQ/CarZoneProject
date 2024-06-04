@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z0xrHq5m3i8teo4E0L14sK7w3vC7UPbR/wMqsmFmdyT4ssC9noYjvgDKyi7IPEtkVDDZJcZtPdWaA6QLDQ00oA==",
+  "dgSpecHash": "i1pzzI877/h1kVW5mbX/TZbF2YpaUgN9OiUuT5g0hdvi/U1imG/2xhcPjaJ1Sq2ThA2gB5H1vec/Z/9kvHdZEA==",
   "success": true,
-  "projectFilePath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+  "projectFilePath": "D:\\CarZoneProject\\server\\server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
