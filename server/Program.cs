@@ -36,6 +36,7 @@ builder.Services.AddScoped<ShowroomService, ShowroomServiceImpl>();
 builder.Services.AddScoped<WarehouseService, WarehouseServiceImpl>();
 builder.Services.AddScoped<CarService, CarServiceImpl>();
 builder.Services.AddScoped<ModelService, ModelServiceImpl>();
+builder.Services.AddScoped<StatisticService, StatisticServiceImpl>();
 
 
 builder.Services.AddCors(options =>

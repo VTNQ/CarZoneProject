@@ -1,6 +1,54 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 export const Dashboard = () => {
+  const [showroom,setShowroom] = useState([]);
+  const [order,setOrder] = useState([]);
+
+  const fetchDataShowroom = async () => {
+    const response = await axios.get('http://localhost:5278/api/Showroom/showShowroom');
+    setShowroom(response.data);
+    console.log(response.data);
+  }
+  useEffect(()=>{
+    fetchDataShowroom();
+  },[])
+  
+  const [orderAvenue,setOrderAvanue] = useState([]);
+  const [CustomerByPrecious,setCustomerByPrecious] = useState([]);
+  const [NewOrder,setNewOrder] = useState([]);
+  const [totalCar,setTotalCar] = useState(null);
+  useEffect(()=>{
+    const fetchDataAvenue = async () =>{
+      const response = await axios.get('http://localhost:5278/api/Statistic/getAvenueByPrecious');
+      setOrderAvanue(response.data);
+      console.log(response.data);
+    };
+    const fetchDataCustomer = async () =>{
+      const response = await axios.get('http://localhost:5278/api/Statistic/getNewCustomerByPrecious');
+      setCustomerByPrecious(response.data);
+      console.log(response.data);
+    };
+    const fetchDataNewOrder = async () =>{
+      const response = await axios.get('http://localhost:5278/api/Statistic/getNewOrderByPrecious');
+      setNewOrder(response.data);
+      console.log(response.data);
+    };
+    const fetchTotalCar = async () =>{
+      const response = await axios.get('http://localhost:5278/api/Statistic/getTotalCar');
+      setTotalCar(response.data.totalCar);
+      console.log(response.data);
+    };
+    fetchDataAvenue();
+    fetchDataCustomer();
+    fetchDataNewOrder();
+    fetchTotalCar();
+  },[])
+  const getCurrentDate = () => {
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return today.toLocaleDateString(undefined, options);
+  };
   return (
     <>
         <div class="main-panel">
@@ -9,14 +57,14 @@ export const Dashboard = () => {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Aamir</h3>
+                  <h3 class="font-weight-bold">Welcome Superadmin</h3>
                   <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
                   <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                    <i className="mdi mdi-calendar"></i> Today ({getCurrentDate()})
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                       <a class="dropdown-item" href="#">January - March</a>
@@ -36,7 +84,7 @@ export const Dashboard = () => {
                 <div class="card-body">
                   <div className='flex justify-between'>
                     <div>
-                        <h4 class="card-title">Admin Table</h4>
+                        <h4 class="card-title">Showroom Table</h4>
                     <p class="card-description">
                         Hi Superadmin ! how ya doing ?
                     </p>
@@ -44,29 +92,29 @@ export const Dashboard = () => {
                     <td><button className="btn btn-dark btn-icon-text"  >Detail<i class="ti-file btn-icon-append"></i></button></td>
 
                   </div>
-                  <div class="table-responsive">
+                  <div class="table-responsive max-h-[200px]">
                     <table class="table table-hover">
                       <thead>
                         <tr>
                           
+                          <th>id</th>
                           <th>Name</th>
-                          <th>Email</th>
                           <th>Showroom</th>
                           
                         </tr>
                       </thead>
                       <tbody>
-                      {/* {Country.map((Emp, index) => (
+                      {showroom.map((Emp, index) => (
                         <tr>
                           
-                          <td>{Emp.fullName}</td>
-                          <td>{Emp.email}</td>
+                          <td>{index++}</td>
+                          <td>{Emp.name}</td>
                           
-                          <td>{Emp.nameShowroom ? Emp.nameShowroom.nameShowroom : 'No Showroom'}</td>
+                          <td>{Emp.nameDistrict}</td>
 
                         </tr>
                         
-                        ))} */}
+                        ))}
                       </tbody>
                     </table>
                     {/* <Pagination
@@ -96,17 +144,30 @@ export const Dashboard = () => {
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
-                    <div class="card-body">
-                      
-                    </div>
+
+                    
+                      <div class="card-body">
+                      {orderAvenue.length > 0 && (
+                        <>
+                          <p className="mb-4">Total Amount for Q{orderAvenue[0].quarter}</p>
+                          <p className="fs-30 mb-2">{orderAvenue[0].totalAmount?.toFixed(2)}$</p>
+                          <p>{orderAvenue[0].year}</p>
+                        </>
+                      )}
+                      </div>
+                    
                   </div>
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
-                      <p class="mb-4">Total Bookings</p>
-                      <p class="fs-30 mb-2">61344</p>
-                      <p>22.00% (30 days)</p>
+                    {CustomerByPrecious.length > 0 && (
+                        <>
+                          <p className="mb-4">New Customer Of Q{CustomerByPrecious[0].quarter}</p>
+                          <p className="fs-30 mb-2">{CustomerByPrecious[0].newCustomers} Customers</p>
+                          <p>{CustomerByPrecious[0].year}</p>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -115,18 +176,25 @@ export const Dashboard = () => {
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body">
-                      <p class="mb-4">Number of Meetings</p>
-                      <p class="fs-30 mb-2">34040</p>
-                      <p>2.00% (30 days)</p>
+                    {NewOrder.length > 0 && (
+                        <>
+                          <p className="mb-4">Total Amount for Q{NewOrder[0].quarter}</p>
+                          <p className="fs-30 mb-2">{NewOrder[0].totalOrder?.toFixed(2)} / orders</p>
+                          <p>{NewOrder[0].year}</p>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 stretch-card transparent">
                   <div class="card card-light-danger">
                     <div class="card-body">
-                      <p class="mb-4">Number of Clients</p>
-                      <p class="fs-30 mb-2">47033</p>
-                      <p>0.22% (30 days)</p>
+                    {totalCar !== null && (
+                        <>
+                          <p className="mb-4">Total Cars Product</p>
+                          <p className="fs-30 mb-2">{totalCar} Car</p>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

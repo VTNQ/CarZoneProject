@@ -12888,7 +12888,14 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   padding: var(--bs-card-img-overlay-padding);
   border-radius: var(--bs-card-inner-border-radius);
 }
-
+.cardhp {
+  flex: 0 0 33.333%; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-height: 530px;
+  margin: 15px;
+  
+  overflow: hidden;
+}
 .card-img,
 .card-img-top,
 .card-img-bottom {
