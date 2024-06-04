@@ -9,6 +9,7 @@ function Request(){
     const[WareHouse,setWareHouse]=useState([]);
     const navigate = useNavigate();
     const [sessionData, setSessionData] = useState(null);
+    const [loading, setloading] = useState(true);
   const getUserSession=()=>{
     const UserSession=Cookies.get("UserSession");
     if(UserSession){
@@ -34,12 +35,15 @@ useEffect(() => {
                 setWareHouse(response.data.result)
             }catch(error){
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         fetchdata();
     },[])
    const UpdateStatus=async(ID)=>{
     try{
+        setloading(true)
         const response=await fetch(`http://localhost:5278/api/Request/UpdateRequest/${ID}`,{
             method:'PUT',
             headers: {
@@ -47,6 +51,7 @@ useEffect(() => {
             },
         })
         if(response.ok){
+            setloading(false)
             Swal.fire({
                 icon: 'success',
                 title: 'Update Status Success',
@@ -108,6 +113,13 @@ useEffect(() => {
     };
 return(
     <>
+     {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
     <LayoutAdmin>
         <div class="main-panel">
             <div class="content-wrapper">

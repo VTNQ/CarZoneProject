@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 function Color() {
     const [color, setColor] = useState('');
     const [UpdateColor, setUpdateColor] = useState('');
+    const [loading, setloading] = useState(true)
     const [ShowColor, setShowColor] = useState([]);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
@@ -31,8 +32,8 @@ function Color() {
             navigate('/login');
         }
     }, [navigate]);
-    const [FromData,setFromData]=useState({
-        id:''
+    const [FromData, setFromData] = useState({
+        id: ''
     })
     const popupContentStyle = {
         background: 'white',
@@ -50,7 +51,7 @@ function Color() {
     const handleChangeComplete = (newColor) => {
         setColor(newColor.hex);
     };
-    const HandleChangeUpdateComplete=(UpdateColor)=>{
+    const HandleChangeUpdateComplete = (UpdateColor) => {
         setUpdateColor(UpdateColor.hex)
     }
     useEffect(() => {
@@ -60,12 +61,15 @@ function Color() {
                 setShowColor(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
         fetchdata();
     }, [])
-    const handleDeleteColor=async(ID)=>{
-        try{
+    const handleDeleteColor = async (ID) => {
+        try {
+            setloading(true)
             const confirmation = await Swal.fire({
                 title: 'Are you sure?',
                 text: 'You won\'t be able to revert this!',
@@ -75,14 +79,15 @@ function Color() {
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, Delete it',
             });
-            if(confirmation.isConfirmed){
-                const response=await fetch(`http://localhost:5278/api/Color/DeleteColor/${ID}`,{
-                    method:'Delete',
+            if (confirmation.isConfirmed) {
+                setloading(false)
+                const response = await fetch(`http://localhost:5278/api/Color/DeleteColor/${ID}`, {
+                    method: 'Delete',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 })
-                if(response.ok){
+                if (response.ok) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion successful',
@@ -91,9 +96,20 @@ function Color() {
                     });
                     const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
                     setShowColor(response.data.result)
+                }else{
+                    setloading(false)
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
                 }
             }
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -101,21 +117,22 @@ function Color() {
         const SelectColor = ShowColor.find(color => color.id == id);
         if (SelectColor) {
             setUpdateColor(SelectColor.name)
-            FromData.id=SelectColor.id
+            FromData.id = SelectColor.id
         }
-     setPopupVisibility(true)
+        setPopupVisibility(true)
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(color==''){
+        if (color == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Color is required',
                 showConfirmButton: false,
                 timer: 1500,
             })
-        }else{
+        } else {
             try {
+                setloading(true)
                 const response = await fetch("http://localhost:5278/api/Color/AddColor", {
                     method: 'Post',
                     headers: {
@@ -125,8 +142,9 @@ function Color() {
                         name: color
                     })
                 })
-    
+
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Color success',
@@ -136,7 +154,8 @@ function Color() {
                     setColor('')
                     const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
                     setShowColor(response.data.result)
-                }else{
+                } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -151,32 +170,33 @@ function Color() {
                 console.log(error)
             }
         }
-       
+
     }
     const handleClosepopup = () => {
         setIsClosingPopup(true);
         setTimeout(() => {
-         setUpdateColor('')
+            setUpdateColor('')
             setPopupVisibility(false)
             setIsClosingPopup(false)
         }, 500);
     }
-      const [searchTerm, setSearchtem] = useState('');
-      const [currentPage, setCurrentPage] = useState(0);
-      const [perPage, setperPage] = useState(5);
-    
-    const filterColor=ShowColor.filter(Sup =>
+    const [searchTerm, setSearchtem] = useState('');
+    const [currentPage, setCurrentPage] = useState(0);
+    const [perPage, setperPage] = useState(5);
+
+    const filterColor = ShowColor.filter(Sup =>
         Sup.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     const indexOflastSupplier = (currentPage + 1) * perPage;
     const indexOfFirtSupplier = indexOflastSupplier - perPage;
     const currentSupplier = filterColor.slice(indexOfFirtSupplier, indexOflastSupplier)
-    const handleUpdateColor=async(event)=>{
+    const handleUpdateColor = async (event) => {
         event.preventDefault();
-        
-        try{
-            const response=await fetch(`http://localhost:5278/api/Color/UpdateColor/${FromData.id}`,{
-                method:'Put',
+
+        try {
+            setloading(true)
+            const response = await fetch(`http://localhost:5278/api/Color/UpdateColor/${FromData.id}`, {
+                method: 'Put',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -184,7 +204,8 @@ function Color() {
                     name: UpdateColor
                 })
             })
-            if(response.ok){
+            if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Update Color success',
@@ -195,7 +216,8 @@ function Color() {
                 setPopupVisibility(false)
                 const response = await axios.get("http://localhost:5278/api/Color/ShowColor");
                 setShowColor(response.data.result)
-            }else{
+            } else {
+                setloading(false)
                 const responseBody = await response.json();
                 if (responseBody.message) {
                     Swal.fire({
@@ -206,7 +228,7 @@ function Color() {
                     });
                 }
             }
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -215,6 +237,13 @@ function Color() {
     };
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
@@ -258,7 +287,7 @@ function Color() {
                                         <h4 class="card-title">Color</h4>
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1"  value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter  Name" />
+                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter  Name" />
                                         </form>
                                         <p class="card-description">
                                         </p>
@@ -286,8 +315,8 @@ function Color() {
                                                                     border: '1px solid #000',
                                                                     borderRadius: '40px'
                                                                 }}></div></td>
-                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleEditClick(color.id)}>Edit</button></td>
-                                                            <td><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={()=>handleDeleteColor(color.id)}>Delete</button></td>
+                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleEditClick(color.id)}>Edit</button></td>
+                                                            <td><button className="bg-red-500 hover:bg-red-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={() => handleDeleteColor(color.id)}>Delete</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
@@ -349,23 +378,23 @@ function Color() {
                             <div className="box-body">
                                 {/* Form fields go here */}
                                 <div class="form-group">
-                                <label className='float-left'>Color</label>
-                                                <ChromePicker
-                                                    color={UpdateColor}
-                                                   onChangeComplete={HandleChangeUpdateComplete}
-                                                />
-                                             <label className='float-left'>Preview</label>
-                                             <br />
-                                                <div style={{
-                                                    backgroundColor: UpdateColor,
-                                                    width: '100px',
-                                                    height: '100px',
-                                                    marginTop: '10px',
-                                                    border: '1px solid #000'
-                                                }}></div>
+                                    <label className='float-left'>Color</label>
+                                    <ChromePicker
+                                        color={UpdateColor}
+                                        onChangeComplete={HandleChangeUpdateComplete}
+                                    />
+                                    <label className='float-left'>Preview</label>
+                                    <br />
+                                    <div style={{
+                                        backgroundColor: UpdateColor,
+                                        width: '100px',
+                                        height: '100px',
+                                        marginTop: '10px',
+                                        border: '1px solid #000'
+                                    }}></div>
 
-                                            </div>
-                             
+                                </div>
+
 
                             </div>
 

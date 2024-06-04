@@ -4,9 +4,10 @@ import LayoutAdmin from "../Layout/Layout";
 import Cookies from 'js-cookie';
 import Pagination from 'react-paginate';
 import axios from "axios";
-function ShowCarWareHouse(){
+function ShowCarWareHouse() {
     const navigate = useNavigate();
-    const [CarWareHouse,setCarWareHouse]=useState([]);
+    const [loading, setloading] = useState(true)
+    const [CarWareHouse, setCarWareHouse] = useState([]);
     const [sessionData, setSessionData] = useState(null);
     const getUserSession = () => {
         const UserSession = Cookies.get("UserSession");
@@ -34,26 +35,35 @@ function ShowCarWareHouse(){
         }
     }, [navigate]);
 
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get(`http://localhost:5278/api/WareHouse/CarWareHouse/${sessionData.idShowroom}`)
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/CarWareHouse/${sessionData.idShowroom}`)
                 setCarWareHouse(response.data.result)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.idShowroom){
+        if (sessionData && sessionData.idShowroom) {
             fetchdata();
         }
-        
-    },[sessionData])
+
+    }, [sessionData])
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-return(
-    <>
-     <LayoutAdmin>
+    return (
+        <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
+            <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
 
@@ -64,7 +74,7 @@ return(
                                         <h4 class="card-title">Car WareHouse</h4>
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm}  onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Full Name" />
+                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Full Name" />
                                         </form>
                                         <p class="card-description">
                                         </p>
@@ -76,21 +86,21 @@ return(
                                                         <th>Name</th>
                                                         <th>Image</th>
                                                         <th>Quanlity</th>
-                         
-                                                
+
+
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                {currentCar.map((Ware,index)=>(
+                                                    {currentCar.map((Ware, index) => (
 
-                                                    <tr>
-                                                        <td>{++index}</td>
-                                                        <td>{Ware.name}</td>
-                                                        <td><img src={Ware.picture.pictureLink} width="100" height="100" alt="" style={{ objectFit: 'cover', width: '30%', height: '100%', borderRadius: '0%' }} /></td>
-                                                        <td>{Ware.quality}</td>
-                                                    </tr>
-                                                  ))}
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{Ware.name}</td>
+                                                            <td><img src={Ware.picture.pictureLink} width="100" height="100" alt="" style={{ objectFit: 'cover', width: '30%', height: '100%', borderRadius: '0%' }} /></td>
+                                                            <td>{Ware.quality}</td>
+                                                        </tr>
+                                                    ))}
                                                 </tbody>
                                             </table>
                                             <Pagination
@@ -113,7 +123,7 @@ return(
                                                 pageLinkClassName={'page-link'}
 
                                             />
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +142,7 @@ return(
 
 
             </LayoutAdmin>
-    </>
-)
+        </>
+    )
 }
 export default ShowCarWareHouse;

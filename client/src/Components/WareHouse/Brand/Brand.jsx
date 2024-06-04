@@ -12,6 +12,7 @@ function Brand() {
     const [Brand, setBrand] = useState([]);
     const [sessionData, setSessionData] = useState(null);
     const navigate = useNavigate();
+    const [loading,setloading]=useState(true);
   const getUserSession=()=>{
     const UserSession=Cookies.get("UserSession");
     if(UserSession){
@@ -37,6 +38,8 @@ useEffect(() => {
                 setBrand(response.data.result)
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         fetchdata();
@@ -64,6 +67,7 @@ useEffect(() => {
     const AddSubmit = async (event) => {
         event.preventDefault();
         try {
+            setloading(true)
             const formData = new FormData();
             formData.append("Name", FromData.Name);
             formData.append("Logo", FromData.Logo);
@@ -74,6 +78,7 @@ useEffect(() => {
                 body: formData
             })
             if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Add Brand Success',
@@ -90,6 +95,7 @@ useEffect(() => {
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                 setBrand(response.data.result)
             }else{
+                setloading(false)
                 const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -172,6 +178,7 @@ useEffect(() => {
         event.preventDefault();
         console.log(FromData)
         try {
+            setloading(true)
             const response = await fetch(`http://localhost:5278/api/Brand/UpdateBrand/${FromData.id}`, {
                 method: 'PUT',
                 headers: {
@@ -184,6 +191,7 @@ useEffect(() => {
                 })
             })
             if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Update Brand Success',
@@ -200,6 +208,7 @@ useEffect(() => {
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                 setBrand(response.data.result)
             } else {
+                setloading(false)
                 const responseBody = await response.json();
                 if (responseBody.message) {
                     Swal.fire({
@@ -226,6 +235,7 @@ useEffect(() => {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Brand/DeleteBrand/${IDBrand}`, {
                     method: 'Delete',
                     headers: {
@@ -233,6 +243,7 @@ useEffect(() => {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion successful',
@@ -242,6 +253,7 @@ useEffect(() => {
                     const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                     setBrand(response.data.result)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -262,6 +274,13 @@ useEffect(() => {
     };
     return (
         <>
+         {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

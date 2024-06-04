@@ -9,6 +9,7 @@ import Pagination from 'react-paginate';
 function AddEmployee() {
 
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const [loading, setloading] = useState(true)
     const popupContentStyle = {
         background: 'white',
         padding: '20px',
@@ -35,6 +36,22 @@ function AddEmployee() {
     const location = useLocation();
     const navigate = useNavigate();
     const [sessionData, setSessionData] = useState(null);
+    const[CookieData,setCookieData]=useState(null);
+    const EmployeeCookie=()=>{
+        const CookieSession=Cookies.get("EmployeeInfo");
+     
+        if(CookieSession){
+            return JSON.parse(CookieSession);
+        }
+        return null;
+    }
+    useEffect(()=>{
+        const data=EmployeeCookie();
+        if(data){
+            setCookieData(data);
+        }
+    },[]);
+
     const getUserSession = () => {
         const UserSession = Cookies.get("UserSession");
         if (UserSession) {
@@ -52,7 +69,7 @@ function AddEmployee() {
             navigate('/login');
         }
     }, [navigate]);
-    
+
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
@@ -73,15 +90,26 @@ function AddEmployee() {
     })
     const [Employee, setEmployee] = useState([]);
     useEffect(() => {
-        const fetchdata = async () => {
-
-            const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-            setEmployee(response.data.result)
+      
+            const fetchdata = async () => {
+                try {
+                const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
+                setEmployee(response.data.result)
+                
+            }catch(error){
+                console.log(error)
+            }finally{
+                setloading(false)
+            }
         }
-        if(sessionData && sessionData.idShowroom){
-            fetchdata()
-        }
+            if (sessionData && sessionData.idShowroom) {
+                fetchdata()
+            }
+    
+          
         
+
+
     }, [sessionData])
     const FilterEmployee = Employee.filter(Empl =>
         Empl.fullName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -107,44 +135,55 @@ function AddEmployee() {
     }
     const handleUpdateEmployee = async (event) => {
         event.preventDefault();
-        try {
-            const response = await fetch(`http://localhost:5278/api/Employee/UpdateEmployee/${FromData.id}`, {
-                method: 'Put',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fullName: FromData.UpdateName,
-                    email: FromData.UpdateEmail,
-                    address: FromData.UpdateAdress,
-                    phone: FromData.UpdatePhone
-                })
+        if(FromData.UpdateName=='' || FromData.UpdateEmail=='' || FromData.UpdateAdress=='' || FromData.UpdatePhone==''){
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
             })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add success',
-                    showConfirmButton: false,
-                    timer: 1500,
+        }else{
+            try {
+                setloading(true)
+                const response = await fetch(`http://localhost:5278/api/Employee/UpdateEmployee/${FromData.id}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullName: FromData.UpdateName,
+                        email: FromData.UpdateEmail,
+                        address: FromData.UpdateAdress,
+                        phone: FromData.UpdatePhone
+                    })
                 })
-                setPopupVisibility(false)
-                setFromData({
-                    UpdateEmail: '',
-                    id: '',
-                    UpdateAdress: '',
-                    UpdatePhone: '',
-                    UpdateIdentityCode: ''
-                })
-                const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom
-                    }`);
-                    if(sessionData && sessionData.idShowroom){
+                if (response.ok) {
+                    setloading(false)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    setPopupVisibility(false)
+                    setFromData({
+                        UpdateEmail: '',
+                        id: '',
+                        UpdateAdress: '',
+                        UpdatePhone: '',
+                        UpdateIdentityCode: ''
+                    })
+                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
+                    if (sessionData && sessionData.idShowroom) {
                         setEmployee(response.data)
                     }
-               
+    
+                }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
+      
     }
     const handleOnsubmit = async (event) => {
         event.preventDefault();
@@ -173,6 +212,7 @@ function AddEmployee() {
                     timer: 1500,
                 })
             } else {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Employee/AddEmployee`, {
                     method: 'POST',
                     headers: {
@@ -184,12 +224,13 @@ function AddEmployee() {
                         address: FromData.Address,
                         phone: FromData.Phone,
                         identityCode: FromData.IdentityCode,
-                        idShowroom: sessionData.idShowroom!=null || '',
+                        idShowroom: sessionData.idShowroom != null || '',
 
 
                     }),
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add success',
@@ -204,11 +245,12 @@ function AddEmployee() {
                         IdentityCode: ''
                     })
                     const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-                    if(sessionData && sessionData.idShowroom){
+                    if (sessionData && sessionData.idShowroom) {
                         setEmployee(response.data)
                     }
-                   
+
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -238,6 +280,7 @@ function AddEmployee() {
                 confirmButtonText: 'Yes, Reset Password',
             });
             if (confirmation.isConfirmed) {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Employee/ResetPassword/${IdEmployee}`, {
                     method: 'Put',
                     headers: {
@@ -245,6 +288,13 @@ function AddEmployee() {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
+                    const existingCookie = document.cookie.replace(/(?:(?:^|.*;\s*)employeeId\s*=\s*([^;]*).*$)|^.*$/, "$1");
+                    const ids = existingCookie ? existingCookie.split(',') : [];
+                    ids.push(IdEmployee);
+                    const updatedCookieValue = ids.join(',');
+                    const expirationTime = new Date(new Date().getTime() + 1 * 3600 * 1000).toUTCString();
+                    document.cookie = `employeeId=${updatedCookieValue}; expires=${expirationTime}; path=/`;
                     Swal.fire({
                         icon: 'success',
                         title: 'Reset successful',
@@ -252,6 +302,7 @@ function AddEmployee() {
                         timer: 1500,
                     });
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     Swal.fire({
                         icon: 'error',
@@ -266,8 +317,20 @@ function AddEmployee() {
             console.log(error)
         }
     }
+    const isEmployeeIdInCookie = (employeeId) => {
+        const existingCookie = document.cookie.replace(/(?:(?:^|.*;\s*)employeeId\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        const ids = existingCookie.split(',');
+        return ids.includes(employeeId.toString());
+    }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
@@ -342,7 +405,10 @@ function AddEmployee() {
                                                             <td>{Emp.address}</td>
                                                             <td>{Emp.identityCode}</td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleEditClick(Emp.id)}>Edit</button></td>
-                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleResetPassword(Emp.id)}>Reset</button></td>
+                                                            <td><button  disabled={isEmployeeIdInCookie(Emp.id)}   style={{
+                                                                        opacity: isEmployeeIdInCookie(Emp.id) ? 0.5 : 1,
+                                                                        cursor: isEmployeeIdInCookie(Emp.id) ? 'not-allowed' : 'pointer'
+                                                                    }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleResetPassword(Emp.id)}>Reset</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

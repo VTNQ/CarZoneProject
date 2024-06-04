@@ -7,27 +7,28 @@ import Cookies from 'js-cookie'
 function ShowWareHouseCar() {
     const [WareHouse, setWareHouse] = useState([]);
     const navigate = useNavigate();
+    const [loading, setloading] = useState(true);
     const location = useLocation();
-    
+
     const [sessionData, setSessionData] = useState(null);
-    const getUserSession=()=>{
-      const UserSession=Cookies.get("UserSession");
-      if(UserSession){
-          return JSON.parse(UserSession);
-      }
-      return null;
-  }
-  
-  useEffect(() => {
-      const data = getUserSession();
-      
-      if (data && data.role=='WareHouse') {
-          setSessionData(data);
-      } else {
-          // If no session data, redirect to login
-          navigate('/login');
-      }
-  }, [navigate]);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'WareHouse') {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
@@ -39,12 +40,14 @@ function ShowWareHouseCar() {
                 setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.idWarehouse){
+        if (sessionData && sessionData.idWarehouse) {
             fetchdata();
         }
-      
+
     }, [sessionData])
     const filterWareHouse = WareHouse.filter(ware =>
         ware.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -55,13 +58,20 @@ function ShowWareHouseCar() {
     const IndexoflastWareHouse = (currentPage + 1) * perPage;
     const IndexofFirstWareHouse = IndexoflastWareHouse - perPage;
     const CurrentWareHouse = filterWareHouse.slice(IndexofFirstWareHouse, IndexoflastWareHouse)
-    const DetailWareHouse=(WareHouse)=>{
-        const updatedSessionData={...sessionData,IDCarWareHouse:WareHouse.id,NameWareHouse:WareHouse.name};
-        Cookies.set("UserSession",JSON.stringify(updatedSessionData),{ expires: 0.5, secure: true, sameSite: 'strict' })
-        navigate(`/WareHouse/DetailWareHouseCar/${WareHouse.id}`,{state:updatedSessionData});
+    const DetailWareHouse = (WareHouse) => {
+        const updatedSessionData = { ...sessionData, IDCarWareHouse: WareHouse.id, NameWareHouse: WareHouse.name };
+        Cookies.set("UserSession", JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' })
+        navigate(`/WareHouse/DetailWareHouseCar/${WareHouse.id}`, { state: updatedSessionData });
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutEmployee>
                 <div className="main-panel">
                     <div className="content-wrapper">
@@ -102,7 +112,7 @@ function ShowWareHouseCar() {
                                                             <td><button disabled={warehouse.totalCar <= 0} style={{
                                                                 opacity: warehouse.totalCar <= 0 ? 0.5 : 1,
                                                                 cursor: warehouse.totalCar <= 0 ? 'not-allowed' : 'pointer'
-                                                            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() =>DetailWareHouse(warehouse) }>Detail</button></td>
+                                                            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => DetailWareHouse(warehouse)}>Detail</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

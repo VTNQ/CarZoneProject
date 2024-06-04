@@ -11,20 +11,22 @@ function InOrder() {
     const [car, setCar] = useState([]);
     const [SelectCars, setSelectCars] = useState([])
     const [carTaxes, setcarTaxes] = useState({})
-    const [WareHouse, setWareHouse] = useState([]);
-    const [SelectWareHouse, setSelectWareHouse] = useState(null)
+    const [loading, setloading] = useState(true)
+   
+    
     const [SelectSupply, setSelectSupply] = useState(null);
     const [Supply, setSupply] = useState([]);
     const [SelectCash, setSelectCash] = useState(null)
+    const [IDWareHouse,setIDWareHouse]=useState([]);
     const options = [
         { value: 0, label: "cash payment" },
         { value: 1, label: "transfer payments" }
     ]
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const [InOrder, setInOrder] = useState([]);
-   
+
     const [sessionData, setSessionData] = useState(null);
     const getUserSession = () => {
         const UserSession = Cookies.get("UserSession");
@@ -51,15 +53,30 @@ function InOrder() {
                 setInOrder(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        console.log(sessionData)
-        if(sessionData && sessionData.ID){
+
+        if (sessionData && sessionData.ID) {
+            fetchdata();
+        }
+
+    }, [sessionData])
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get(`http://localhost:5278/api/OutOrder/GetWareHouse/${sessionData.idShowroom}`)
+                setIDWareHouse(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        if(sessionData && sessionData.idShowroom){
             fetchdata();
         }
        
-    }, [sessionData])
-  
+    },[sessionData])
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const handleSelectCash = (SelectCash) => {
@@ -68,9 +85,7 @@ function InOrder() {
     const handleSelectSupply = (SelectSupply) => {
         setSelectSupply(SelectSupply)
     }
-    const handleSelectWareHouse = (SelectWareHouse) => {
-        setSelectWareHouse(SelectWareHouse)
-    }
+   
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -82,35 +97,28 @@ function InOrder() {
         }
         fetchdata();
     }, [])
+   
     useEffect(() => {
         const fetchdata = async () => {
-            try {
-                const response = await axios.get("http://localhost:5278/api/InOrder/ShowWareHouse");
-                setWareHouse(response.data.result)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchdata();
-    }, [])
-    useEffect(() => {
-        const fetchdata = async () => {
-            const response = await axios.get("http://localhost:5278/api/InOrder/ShowCar");
+            const response = await axios.get(`http://localhost:5278/api/InOrder/ShowCar/${sessionData.idShowroom}`);
             setCar(response.data.result)
         }
-        fetchdata();
-    }, [])
-        const handleCarChange = (SelectedOptions) => {
-            setSelectCars(SelectedOptions);
-            const newCarTaxes = { ...carTaxes };
-            SelectedOptions.forEach(option => {
-                if (!newCarTaxes[option.value]) {
-                    newCarTaxes[option.value] = { id: option.value, name: option.label, tax:option.price*0.2, price: option.price, delivery: null }
-                }
-            })
-            setcarTaxes(newCarTaxes)
+        if(sessionData && sessionData.idShowroom){
+            fetchdata();
         }
-  
+   
+    }, [sessionData])
+    const handleCarChange = (SelectedOptions) => {
+        setSelectCars(SelectedOptions);
+        const newCarTaxes = { ...carTaxes };
+        SelectedOptions.forEach(option => {
+            if (!newCarTaxes[option.value]) {
+                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price * 0.2, price: option.price, delivery: null }
+            }
+        })
+        setcarTaxes(newCarTaxes)
+    }
+
     const handleDeliveryChange = (carId, deliveryDate) => {
         setcarTaxes(prevCarTaxes => ({
             ...prevCarTaxes,
@@ -140,10 +148,10 @@ function InOrder() {
                 hasInvalidInput = true;
             }
         });
-       
-        const IsSelectCars=SelectCars.length<=0?false:true;
 
-        if (hasInvalidInput==true || IsSelectCars==false  || SelectSupply?.value==null || SelectWareHouse?.value==null  || SelectCash?.value==null) {
+        const IsSelectCars = SelectCars.length <= 0 ? false : true;
+
+        if (hasInvalidInput == true || IsSelectCars == false || SelectSupply?.value == null || SelectCash?.value == null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -151,6 +159,7 @@ function InOrder() {
                 timer: 1500,
             })
         } else {
+            setloading(true)
             Object.keys(carTaxes).forEach((carId) => {
                 const price = Number(carTaxes[carId].price || 0);
                 const tax = Number(carTaxes[carId].tax || 0);
@@ -160,7 +169,7 @@ function InOrder() {
 
             const formData = new FormData();
 
-            formData.append("IdWarehouse", SelectWareHouse?.value)
+            formData.append("IdWarehouse", IDWareHouse.id)
             formData.append("IdEmployee", sessionData.ID)
             formData.append("IdSuplier", SelectSupply?.value)
             formData.append("TotalAmount", totalAmount);
@@ -180,29 +189,40 @@ function InOrder() {
                 body: formData
             })
             if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Add Lecture Success',
                     showConfirmButton: false,
                     timer: 1500,
                 });
+
                 const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
                 setInOrder(response.data.result)
+                const responsedata = await axios.get(`http://localhost:5278/api/InOrder/ShowCar/${sessionData.idShowroom}`);
+                setCar(responsedata.data.result)
                 setSelectSupply(null)
-                setSelectWareHouse(null)
+              
                 setSelectCars([]);
                 setSelectCash(null)
             }
         }
 
     }
-    const handleDetailClick=(inorder)=>{
-        const updatedSessionData={...sessionData,IDInorder:inorder.id};
+    const handleDetailClick = (inorder) => {
+        const updatedSessionData = { ...sessionData, IDInorder: inorder.id };
         Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
-        navigate(`/DetailInOrder/${inorder.id}`,{state:updatedSessionData})
+        navigate(`/DetailInOrder/${inorder.id}`, { state: updatedSessionData })
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
@@ -220,13 +240,7 @@ function InOrder() {
                                                     onChange={(SelectedOption) => handleSelectSupply(SelectedOption)}
                                                 />
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputUsername1">Ware House</label>
-                                                <Select options={WareHouse.map(type => ({ value: type.id, label: type.name }))}
-                                                    value={SelectWareHouse}
-                                                    onChange={(SelectedOption) => handleSelectWareHouse(SelectedOption)}
-                                                />
-                                            </div>
+                                         
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Car</label>
                                                 <Select options={car.map(type => ({ value: type.id, label: type.name, price: type.price }))}
@@ -244,7 +258,7 @@ function InOrder() {
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
                                                             value={carTaxes[car.value]?.tax || ''}
-                                                          
+
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">

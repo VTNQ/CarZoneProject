@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
 function ManagerAdminCustomer() {
     const [Dob, setDob] = useState(null);
+    const [loading,setloading]=useState(true);
     const [UpdateDob, setUpdateDob] = useState(null);
     const handleDob = (date) => {
         setDob(date);
@@ -76,8 +77,15 @@ function ManagerAdminCustomer() {
     const [currentPage, setCurrentPage] = useState(0);
     useEffect(() => {
         const fetchdata = async () => {
-            const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-            setCustomer(response.data.result)
+            try{
+                const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
+                setCustomer(response.data.result)
+            }catch(error){
+                console.log(error)
+            }finally{
+                setloading(false)
+            }
+     
         }
         fetchdata();
     }, [])
@@ -166,6 +174,7 @@ function ManagerAdminCustomer() {
             })
         } else {
             try {
+                setloading(true)
                 const formData = new FormData();
                 const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
                 const vietnamStartDate = new Date(Dob.getTime() + offsetInMilliseconds);
@@ -184,6 +193,7 @@ function ManagerAdminCustomer() {
                     body: formData
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Customer Success',
@@ -204,6 +214,7 @@ function ManagerAdminCustomer() {
                     setImagePreView(null)
                     document.getElementById('Sign').value = '';
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -240,6 +251,7 @@ function ManagerAdminCustomer() {
                 timer: 1500,
             })
         } else {
+            setloading(true);
             const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
             const vietnamStartDate = new Date(UpdateDob.getTime() + offsetInMilliseconds);
 
@@ -259,12 +271,14 @@ function ManagerAdminCustomer() {
 
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Update Customer Success',
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setPopupVisibility(false)
                     setFromData({
                         UpdateName: '',
                         UpdateEmail: '',
@@ -276,8 +290,9 @@ function ManagerAdminCustomer() {
                     const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
                     setCustomer(response.data.result)
                     setUpdateDob(null);
-                    setPopupVisibility(false)
+                   
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -322,6 +337,14 @@ function ManagerAdminCustomer() {
     }
     return (
         <>
+       {loading &&(
+         <div
+         className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{zIndex:'10000'}}>
+         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+     </div>
+
+       )}
+                   
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

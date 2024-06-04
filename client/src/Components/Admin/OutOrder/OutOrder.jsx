@@ -12,6 +12,7 @@ function OutOrder() {
     const [Car, setCar] = useState([]);
     const [SelectCars, setSelectCars] = useState([])
     const [carTaxes, setcarTaxes] = useState({})
+    const [loading, setloading] = useState(true)
     const [SelectCustomer, SetSelectCustomer] = useState(null)
     const [SelectDeliveryType, setSelectDeliveryType] = useState(null);
     const [SelectPayment, SetSelectPayment] = useState(null);
@@ -19,6 +20,8 @@ function OutOrder() {
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
+    
+    
     const [FromData, setFromData] = useState({
         id: '',
         Condition: ''
@@ -49,9 +52,9 @@ function OutOrder() {
     ]
     const navigate = useNavigate();
     const location = useLocation();
-  
+
     const [searchTerm, setSearchtem] = useState('');
-   
+
     const [ShowOutOrder, SetShowOutOrder] = useState([]);
     const [sessionData, setSessionData] = useState(null);
     const getUserSession = () => {
@@ -71,7 +74,8 @@ function OutOrder() {
             navigate('/login');
         }
     }, [navigate]);
-
+   
+   
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -79,12 +83,14 @@ function OutOrder() {
                 SetShowOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.ID){
+        if (sessionData && sessionData.ID) {
             fetchdata();
         }
-        
+
     }, [sessionData])
     useEffect(() => {
         const fetchdata = async () => {
@@ -111,14 +117,17 @@ function OutOrder() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCar")
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowCar/${sessionData.idShowroom}`)
                 setCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idShowroom){
+            fetchdata();
+        }
+     
+    }, [sessionData])
     const handleDeliveryChange = (carId, deliveryDate) => {
         setcarTaxes(prevCarTaxes => ({
             ...prevCarTaxes,
@@ -178,6 +187,7 @@ function OutOrder() {
             })
         } else {
             try {
+                setloading(true)
                 formData.append("IdCustomer", SelectCustomer?.value)
                 formData.append("IdShowroom", sessionData.idShowroom);
                 formData.append("IdEmployee", sessionData.ID);
@@ -204,6 +214,7 @@ function OutOrder() {
                     body: formData
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Order Success',
@@ -247,6 +258,7 @@ function OutOrder() {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
                     method: 'POST',
                     headers: {
@@ -255,6 +267,7 @@ function OutOrder() {
                     body: JSON.stringify({ name: FromData.Condition })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Contract Success',
@@ -267,6 +280,7 @@ function OutOrder() {
                     })
                     setPopupVisibility(false)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -283,14 +297,21 @@ function OutOrder() {
         }
 
     }
-    const handleDetailClick=(outorder)=>{
-        
-        const updatedSessionData={...sessionData,IDOutOrder:outorder.id};
+    const handleDetailClick = (outorder) => {
+
+        const updatedSessionData = { ...sessionData, IDOutOrder: outorder.id };
         Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
-        navigate(`/DetailOutOrder/${outorder.id}`,{state:updatedSessionData})
+        navigate(`/DetailOutOrder/${outorder.id}`, { state: updatedSessionData })
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
@@ -377,7 +398,7 @@ function OutOrder() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th> Customer </th>
-                                                        
+
                                                         <th> Date of Sale </th>
                                                         <th> Total Amount</th>
                                                         <th> Total Tax </th>
@@ -401,7 +422,7 @@ function OutOrder() {
                                                             <td>{show.deliveryType}</td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                                onClick={()=>handleDetailClick(show)}
+                                                                onClick={() => handleDetailClick(show)}
                                                             >Detail
                                                             </button></td>
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded" onClick={() => handleContract(show.id)}>Add Contract</button></td>

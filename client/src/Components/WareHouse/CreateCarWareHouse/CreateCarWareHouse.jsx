@@ -7,31 +7,31 @@ import Pagination from "react-paginate";
 import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 function CreateCarWareHouse() {
-    const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
             return JSON.parse(UserSession)
         }
         return null;
     }
-  
+    const [loading, setloading] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
     const [sessionData, setSessionData] = useState(null);
- 
 
-useEffect(() => {
-    const data = getUserSession();
-    
-    if (data && data.role=='WareHouse') {
-        setSessionData(data);
-    } else {
-        // If no session data, redirect to login
-        navigate('/login');
-    }
-}, [navigate]);
-   
-   
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'WareHouse') {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
+
+
     const [Showroom, setShowroom] = useState([]);
     const [ShowCreateCar, setShowCreateCar] = useState([]);
     const [SelectCars, setSelectCars] = useState([]);
@@ -47,12 +47,14 @@ useEffect(() => {
                 setShowCreateCar(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.idWarehouse){
+        if (sessionData && sessionData.idWarehouse) {
             fetchdata();
         }
-       
+
     }, [sessionData])
     const handleChange = (SelectedValue) => {
         setSelectCars(SelectedValue);
@@ -66,38 +68,50 @@ useEffect(() => {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.idWarehouse){
+        if (sessionData && sessionData.idWarehouse) {
             fetchdata();
         }
-        
+
     }, [sessionData])
     const AddSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const formData = new FormData();
-            SelectCars.forEach((Selectcar) => {
-                formData.append("idCar", Selectcar?.value)
-                formData.append("IdShowRoom", SelectShowRoom?.value)
+        if (SelectCars.length == 0 || SelectShowRoom?.value == null) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
             })
-            const response = await fetch("http://localhost:5278/api/WareHouse/AddCarShowRoom", {
-                method: 'POST',
-                body: formData,
-            })
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add Card to ShowRoom success',
-                    showConfirmButton: false,
-                    timer: 1500,
+        } else {
+            try {
+                setloading(true)
+                const formData = new FormData();
+                SelectCars.forEach((Selectcar) => {
+                    formData.append("idCar", Selectcar?.value)
+                    formData.append("IdShowRoom", SelectShowRoom?.value)
                 })
-                setSelectCars([]);
-                setSelectShowRoom(null)
-                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCartoShowRoom/${sessionData.idWarehouse}`);
-                setShowCreateCar(response.data.result)
+                const response = await fetch("http://localhost:5278/api/WareHouse/AddCarShowRoom", {
+                    method: 'POST',
+                    body: formData,
+                })
+                if (response.ok) {
+                    setloading(false)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add Card to ShowRoom success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    setSelectCars([]);
+                    setSelectShowRoom(null)
+                    const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCartoShowRoom/${sessionData.idWarehouse}`);
+                    setShowCreateCar(response.data.result)
+                }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
+
 
 
     }
@@ -124,19 +138,26 @@ useEffect(() => {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.idWarehouse){
+        if (sessionData && sessionData.idWarehouse) {
             fetchData();
         }
-       
+
     }, [sessionData])
-    const DetailWareHouse=(ShowRoom)=>{
-        const updatedSessionData={...sessionData,IDCarShowroom:ShowRoom.id,NameShowroom:ShowRoom.name};
-        Cookies.set("UserSession",JSON.stringify(updatedSessionData),{ expires: 0.5, secure: true, sameSite: 'strict' })
-      
-        navigate(`/WareHouse/DetailCreateCarShowRoom/${ShowRoom.id}`,{state:updatedSessionData});
+    const DetailWareHouse = (ShowRoom) => {
+        const updatedSessionData = { ...sessionData, IDCarShowroom: ShowRoom.id, NameShowroom: ShowRoom.name };
+        Cookies.set("UserSession", JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' })
+
+        navigate(`/WareHouse/DetailCreateCarShowRoom/${ShowRoom.id}`, { state: updatedSessionData });
     }
     return (
         <>
+         {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutEmployee>
                 <div className="main-panel">
                     <div className="content-wrapper">
@@ -204,9 +225,10 @@ useEffect(() => {
                                                             <td>{++index}</td>
                                                             <td>{car.name}</td>
                                                             <td>{car.totalCar}</td>
-                                                            <td><button disabled={car.totalCar<=0}  style={{opacity:car.totalCar<=0 ? 0.5:1,
-                                                                    cursor:car.totalCar<=0? 'not-allowed':'pointer'
-                                                                }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>DetailWareHouse(car)}>Detail</button></td>
+                                                            <td><button disabled={car.totalCar <= 0} style={{
+                                                                opacity: car.totalCar <= 0 ? 0.5 : 1,
+                                                                cursor: car.totalCar <= 0 ? 'not-allowed' : 'pointer'
+                                                            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => DetailWareHouse(car)}>Detail</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

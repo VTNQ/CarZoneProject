@@ -245,7 +245,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id)
         {
-            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m => m.IdShowroom == id)).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m => m.IdShowroom == id && m.IdCar==d.Id)).Select(d => new
             {
                 id = d.Id,
                 TotalCar = databaseContext.SubWarehouseShowrooms.Where(e => e.IdCar == d.Id).Count(),

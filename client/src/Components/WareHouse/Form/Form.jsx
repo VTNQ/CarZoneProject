@@ -11,6 +11,7 @@ function Form() {
         id: '',
         UpdateName: ''
     })
+    const [loading,setloading]=useState(true);
     const navigate = useNavigate();
     const [sessionData, setSessionData] = useState(null);
   const getUserSession=()=>{
@@ -67,6 +68,8 @@ useEffect(() => {
                 setForm(response.data.result)
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         fetchdata();
@@ -90,6 +93,7 @@ useEffect(() => {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Form/UpdateForm/${FromData.id}`, {
                     method: 'PUT',
                     headers: {
@@ -98,6 +102,7 @@ useEffect(() => {
                     body: JSON.stringify({ name: FromData.UpdateName })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Update Form success',
@@ -112,6 +117,7 @@ useEffect(() => {
                     const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
                     setForm(response.data.result)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -139,6 +145,7 @@ useEffect(() => {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch("http://localhost:5278/api/Form/AddForm", {
                     method: 'POST',
                     headers: {
@@ -147,6 +154,7 @@ useEffect(() => {
                     body: JSON.stringify({ name: FromData.Name })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Form success',
@@ -159,6 +167,7 @@ useEffect(() => {
                     const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
                     setForm(response.data.result)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -187,6 +196,7 @@ useEffect(() => {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Form/DeleteForm/${ID}`, {
                     method: 'Delete',
                     headers: {
@@ -194,6 +204,7 @@ useEffect(() => {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion Form successful',
@@ -203,6 +214,7 @@ useEffect(() => {
                     const response = await axios.get("http://localhost:5278/api/Form/ShowForm");
                     setForm(response.data.result)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -232,6 +244,13 @@ useEffect(() => {
     const CurrentForm = FilterForm.slice(indexOfFirtSupplier, IndexoflastForm)
     return (
         <>
+         {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

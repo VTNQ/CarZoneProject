@@ -8,26 +8,26 @@ function DetailWareHousewarehouse() {
     const navigate = useNavigate();
     const [previewImage, setPreviewImage] = useState(null);
     const location = useLocation();
- 
+    const [loading, setloading] = useState(true);
     const [sessionData, setSessionData] = useState(null);
-    const getUserSession=()=>{
-      const UserSession=Cookies.get("UserSession");
-      if(UserSession){
-          return JSON.parse(UserSession);
-      }
-      return null;
-  }
-  
-  useEffect(() => {
-      const data = getUserSession();
-      
-      if (data && data.role=='WareHouse') {
-          setSessionData(data);
-      } else {
-          // If no session data, redirect to login
-          navigate('/login');
-      }
-  }, [navigate]);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'WareHouse') {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
@@ -40,12 +40,14 @@ function DetailWareHousewarehouse() {
                 setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.IDCarWareHouse){
+        if (sessionData && sessionData.IDCarWareHouse) {
             fetchdata();
         }
-       
+
     }, [sessionData])
     const FilterCar = WareHouse.filter(car =>
         car.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -84,13 +86,20 @@ function DetailWareHousewarehouse() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-    const handleBackClick=()=>{
-        const{idOrder,...restSessionData } = sessionData;
-        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
-        navigate("/WareHouse/ShowWareHouseCar",{state:restSessionData});
+    const handleBackClick = () => {
+        const { idOrder, ...restSessionData } = sessionData;
+        Cookies.set('UserSession', JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
+        navigate("/WareHouse/ShowWareHouseCar", { state: restSessionData });
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutEmployee>
                 <div className="main-panel">
                     <div className="content-wrapper">
@@ -106,10 +115,10 @@ function DetailWareHousewarehouse() {
                                         </button>
                                         {sessionData ? (
                                             <h4 class="card-title">Detail WareHouse {sessionData.NameWareHouse}</h4>
-                                             ) : (
-                                                <h4 class="card-title">Detail WareHouse </h4>
-                                            )}
-                                        
+                                        ) : (
+                                            <h4 class="card-title">Detail WareHouse </h4>
+                                        )}
+
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
@@ -128,9 +137,9 @@ function DetailWareHousewarehouse() {
                                                         <th> Model </th>
                                                         <th> ColorInSize</th>
                                                         <th> ColorOutSize </th>
-                                                      
+
                                                         <th>Price</th>
-                                                        
+
                                                         <th>Picture</th>
                                                         <th>Quantity</th>
 
@@ -161,9 +170,9 @@ function DetailWareHousewarehouse() {
                                                                     border: '1px solid #000',
                                                                     borderRadius: '40px'
                                                                 }}></div></td>
-                                                          
+
                                                             <td>{warehouse.price}$</td>
-                                                          
+
                                                             <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleImageClick(warehouse.picture.pictureLink)}>Preview</button></td>
                                                             <td>{warehouse.totalCar}</td>
                                                         </tr>

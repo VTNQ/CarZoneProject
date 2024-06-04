@@ -7,9 +7,10 @@ import axios from "axios";
 function ShowCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
-  
+    const [loading, setloading] = useState(true)
+
     const [IsCloginImage, setIsClosingImage] = useState(false)
-   
+
     const [sessionData, setSessionData] = useState(null);
     const getUserSession = () => {
         const UserSession = Cookies.get("UserSession");
@@ -29,12 +30,12 @@ function ShowCarWareHouse() {
         }
     }, [navigate]);
 
-    const[Car,setCar]=useState([])
+    const [Car, setCar] = useState([])
     const [previewImage, setPreviewImage] = useState(null);
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
-    const handleImageClick=(imageUrl)=>{
+    const handleImageClick = (imageUrl) => {
         setPreviewImage(imageUrl)
     }
     const FilterCar = Car.filter(Empl =>
@@ -58,20 +59,22 @@ function ShowCarWareHouse() {
             image.style.width = (image.clientWidth * 1.2) + 'px';
         }
     };
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get(`http://localhost:5278/api/WareHouse/ShowWareHouse/${sessionData.idShowroom}`)
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/ShowWareHouse/${sessionData.idShowroom}`)
                 setCar(response.data.result)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.idShowroom){
+        if (sessionData && sessionData.idShowroom) {
             fetchdata();
         }
-        
-    },[sessionData])
+
+    }, [sessionData])
     const handleClosePreview = () => {
 
 
@@ -87,6 +90,13 @@ function ShowCarWareHouse() {
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
@@ -121,13 +131,13 @@ function ShowCarWareHouse() {
                                                         <th>Form</th>
                                                         <th>Height Between</th>
                                                         <th>Picture</th>
-                         
-                                                
+
+
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {currentCar.map((car,index)=>(
+                                                    {currentCar.map((car, index) => (
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{car.name}</td>
@@ -150,16 +160,16 @@ function ShowCarWareHouse() {
                                                                     border: '1px solid #000',
                                                                     borderRadius: '40px'
                                                                 }}></div></td>
-                                                                <td>{car.numberofSeat}</td>
-                                                                <td>{car.version}</td>
-                                                                <td>{car.price}$</td>
-                                                                <td>{car.weight}</td>
-                                                                <td>{car.speedAbillity}</td>
-                                                                <td>{car.maxSpeed}</td>
-                                                                <td>{car.form}</td>
-                                                                <td>{car.heightBetween}</td>
-                                                                <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={()=>handleImageClick(car.picture.pictureLink)}>Preview</button></td>
-                                                             
+                                                            <td>{car.numberofSeat}</td>
+                                                            <td>{car.version}</td>
+                                                            <td>{car.price}$</td>
+                                                            <td>{car.weight}</td>
+                                                            <td>{car.speedAbillity}</td>
+                                                            <td>{car.maxSpeed}</td>
+                                                            <td>{car.form}</td>
+                                                            <td>{car.heightBetween}</td>
+                                                            <td><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => handleImageClick(car.picture.pictureLink)}>Preview</button></td>
+
                                                         </tr>
                                                     ))}
                                                 </tbody>

@@ -11,24 +11,25 @@ function Model() {
     const [SelectBrand, SetSelectBrand] = useState(null)
     const navigate = useNavigate();
     const [sessionData, setSessionData] = useState(null);
-  const getUserSession=()=>{
-    const UserSession=Cookies.get("UserSession");
-    if(UserSession){
-        return JSON.parse(UserSession);
+    const [loading, setloading] = useState(true);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
     }
-    return null;
-}
 
-useEffect(() => {
-    const data = getUserSession();
-    
-    if (data && data.role=='WareHouse') {
-        setSessionData(data);
-    } else {
-        // If no session data, redirect to login
-        navigate('/login');
-    }
-}, [navigate]);
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'WareHouse') {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     const handleSelectBrand = (SelectBrand) => {
         SetSelectBrand(SelectBrand)
     }
@@ -40,6 +41,8 @@ useEffect(() => {
                 setModel(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
         fetchdata();
@@ -66,15 +69,16 @@ useEffect(() => {
     }, [])
     const SubmitBrand = async (event) => {
         event.preventDefault();
-        if(FromData.name=='' || SelectBrand?.value==null){
+        if (FromData.name == '' || SelectBrand?.value == null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
             })
-        }else{
+        } else {
             try {
+                setloading(true)
                 const response = await fetch("http://localhost:5278/api/Model/AddModel", {
                     method: 'POST',
                     headers: {
@@ -83,6 +87,7 @@ useEffect(() => {
                     body: JSON.stringify({ name: FromData.name, idBrand: SelectBrand?.value })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Model Success',
@@ -92,11 +97,12 @@ useEffect(() => {
                     setFromData({
                         name: ''
                     })
-                    
+
                     SetSelectBrand(null)
                     const response = await axios.get("http://localhost:5278/api/Model/ShowModel");
                     setModel(response.data.result)
-                }else{
+                } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -111,7 +117,7 @@ useEffect(() => {
                 console.log(error)
             }
         }
-      
+
     }
     const [FromData, setFromData] = useState({
         id: '',
@@ -174,6 +180,7 @@ useEffect(() => {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Model/DeleModel/${ID}`, {
                     method: 'Delete',
                     headers: {
@@ -181,6 +188,7 @@ useEffect(() => {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion Form successful',
@@ -190,6 +198,7 @@ useEffect(() => {
                     const response = await axios.get("http://localhost:5278/api/Model/ShowModel");
                     setModel(response.data.result)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -217,6 +226,7 @@ useEffect(() => {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Model/UpdateModel/${FromData.id}`, {
                     method: 'PUT',
                     headers: {
@@ -225,6 +235,7 @@ useEffect(() => {
                     body: JSON.stringify({ name: FromData.updateName, idBrand: UpdateBrand })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Update Model Success',
@@ -239,7 +250,8 @@ useEffect(() => {
                     setPopupVisibility(false)
                     const response = await axios.get("http://localhost:5278/api/Model/ShowModel");
                     setModel(response.data.result)
-                }else{
+                } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -258,6 +270,13 @@ useEffect(() => {
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

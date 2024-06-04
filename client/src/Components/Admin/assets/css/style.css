@@ -25870,6 +25870,7 @@ preview-content img {
   right: auto;
   left: 30px;
 }
+
 @media (max-width: 991px) {
   #settings-trigger {
     display: none;

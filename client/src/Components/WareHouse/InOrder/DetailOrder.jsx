@@ -8,6 +8,7 @@ function DetailOrder() {
     const navigate = useNavigate();
     const location = useLocation();
     const [sessionData, setSessionData] = useState(null);
+    const [loading,setloading]=useState(true);
     const getUserSession=()=>{
       const UserSession=Cookies.get("UserSession");
       if(UserSession){
@@ -51,6 +52,8 @@ function DetailOrder() {
                 setDetail(response.data.result);
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         if(sessionData && sessionData.IDInorder){
@@ -60,6 +63,13 @@ function DetailOrder() {
     }, [sessionData])
     return (
         <>
+         {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
