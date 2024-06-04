@@ -220,6 +220,13 @@ const LayoutAdmin = ({ children }) => {
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link" onClick={() => navigate('/ShowCarShowRoom', { state: sessionData })}>
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Car ShowRoom</span>
+              </a>
+            </li>
+            
 
           </ul>
         </nav>

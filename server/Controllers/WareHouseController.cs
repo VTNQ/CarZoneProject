@@ -210,6 +210,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("CarWareHouse/{id}")]
+        public async Task<IActionResult> CarWareHouse(int id)
+        {
+            try
+            {
+                return Ok(wareHouserService.CarWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPut("updateModel/{id}")]
         public IActionResult updateModel(int id,[FromBody] UpdateModel updateModel) {
             try

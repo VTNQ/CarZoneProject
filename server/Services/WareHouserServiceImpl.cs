@@ -412,7 +412,21 @@ namespace server.Services
                 }).ToList();
 
             }
+
+        public async Task<IEnumerable<dynamic>> CarWareHouse(int idshowroom)
+        {
+            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(a => a.Id == idshowroom && databaseContext.SubWarehouseCars.Any(e => e.IdCar == d.Id && a.IdDistrictNavigation.IdCityNavigation.IdCountry == e.IdWarehouseNavigation.IdCountry))).Select(d => new
+            {
+                id=d.Id,
+                Name=d.Name,
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
+                Quality=databaseContext.SubWarehouseCars.Where(a=>a.IdCar==d.Id).Count(),
+            }).ToList();
         }
+    }
     
         
     
