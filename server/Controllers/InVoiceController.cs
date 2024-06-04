@@ -29,6 +29,18 @@ namespace server.Controllers
                 throw;
             }
         }
+        [HttpGet("TotalInvoice/{idshowroom}")]
+        public async Task<IActionResult>ToTalInvoice(int idshowroom)
+        {
+            try
+            {
+                return Ok(await InVoiceService.TotalInvoice(idshowroom));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("DetailOutOrder")]
         public IActionResult DetailOutOrder()
         {

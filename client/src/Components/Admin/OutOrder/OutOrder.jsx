@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import Pagination from 'react-paginate';
 import DatePicker from 'react-datepicker';
 import { useLocation, useNavigate } from "react-router-dom";
-
+import Cookies from 'js-cookie'
 function OutOrder() {
     const [Customer, setCustomer] = useState([]);
     const [Car, setCar] = useState([]);
@@ -53,19 +53,30 @@ function OutOrder() {
     const [searchTerm, setSearchtem] = useState('');
    
     const [ShowOutOrder, SetShowOutOrder] = useState([]);
-    const[sessionData,setSessionData]=useState(null);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
-                SetShowOutOrder(response.data)
+                SetShowOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -79,7 +90,7 @@ function OutOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCustomer")
-                setCustomer(response.data)
+                setCustomer(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -101,7 +112,7 @@ function OutOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCar")
-                setCar(response.data)
+                setCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -200,7 +211,7 @@ function OutOrder() {
                         timer: 1500,
                     });
                     const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
-                    SetShowOutOrder(response.data)
+                    SetShowOutOrder(response.data.result)
 
                     SetSelectCustomer(null)
                     setSelectCars([]);
@@ -275,7 +286,7 @@ function OutOrder() {
     const handleDetailClick=(outorder)=>{
         
         const updatedSessionData={...sessionData,IDOutOrder:outorder.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate(`/DetailOutOrder/${outorder.id}`,{state:updatedSessionData})
     }
     return (

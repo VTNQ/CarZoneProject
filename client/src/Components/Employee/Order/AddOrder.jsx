@@ -5,6 +5,7 @@ import Select from "react-select"
 import Swal from "sweetalert2";
 import DatePicker from 'react-datepicker';
 import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 function AddOrder() {
     const [Customer, setCustomer] = useState([]);
     const [carArray, setcarArray] = useState({})
@@ -14,9 +15,25 @@ function AddOrder() {
     const [SelectPayment, SetSelectPayment] = useState(null);
     const [SelectDeliveryType, setSelectDeliveryType] = useState(null);
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const idShowroom = location.state?.idShowroom || '';
-
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    
+    useEffect(() => {
+        const data = getUserSession();
+        
+        if (data && data.role=='Employee') {
+            setSessionData(data);
+        } else{
+          navigate('/login');
+        }
+    }, [navigate]);
     const handleSelectDeliveryType = (SelectDeliveryType) => {
         setSelectDeliveryType(SelectDeliveryType)
     }
@@ -61,8 +78,8 @@ function AddOrder() {
         } else {
             try {
                 formData.append("IdCustomer", SelectCustomer?.value);
-                formData.append("IdShowroom", idShowroom);
-                formData.append("IdEmployee", ID);
+                formData.append("IdShowroom", sessionData.idShowroom);
+                formData.append("IdEmployee", sessionData.ID);
                 Object.keys(carArray).forEach((carId) => {
                     const price = Number(carArray[carId].price || 0);
                     const tax = Number(carArray[carId].tax || 0);

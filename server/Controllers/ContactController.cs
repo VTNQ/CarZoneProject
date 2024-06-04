@@ -13,6 +13,18 @@ namespace server.Controllers
         {
             _contactService = contactService;
         }
+        [HttpGet("CountContact")]
+        public async Task<IActionResult> CountTotal()
+        {
+            try
+            {
+                return Ok(await _contactService.TotalContact());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowContact")]
         public IActionResult ShowContact()
         {

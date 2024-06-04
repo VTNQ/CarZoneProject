@@ -5,17 +5,20 @@ namespace server.Services
 {
     public interface OutOrderService
     {
-        public dynamic ShowCustomer();
-        public dynamic ShowCar();
-        public bool AddOutOrder(Data.OutOrder outOrder);
-        public dynamic ShowOutOrder(int id);
+        Task<IEnumerable<dynamic>>  ShowCustomer();
+        Task<IEnumerable<dynamic>> ShowCar();
+        Task<bool> AddOutOrder(Data.OutOrder outOrder);
+        Task<IEnumerable<dynamic>> ShowOutOrder(int id);
         public dynamic ShowAllOutOrder();
-        public dynamic DetailOutOrder(int id);
-        public bool AddInvoice(int id);
-        public dynamic ShowInvoice(int id);
-        public bool AddContract(int id,AddContract addContract);
-        public dynamic ShowContract(int id);
+        Task<IEnumerable<dynamic>> DetailOutOrder(int id);
+        Task<bool> AddInvoice(int id);
+        Task<IEnumerable<dynamic>> ShowInvoice(int id);
+        Task<bool> AddContract(int id,AddContract addContract);
+        Task<IEnumerable<dynamic>> ShowContract(int id);
+        Task<int> TotalContract(int id);
         public dynamic ShowAllContract();
         Task UpdateOrderStatus();
+        Task<int> TotalOutOrder(int id);
+        Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime);
     }
 }

@@ -34,7 +34,7 @@ namespace server.Services
             }
         }
 
-        public dynamic ShowCarWareHouse(int idShowroom)
+        public async Task<IEnumerable<dynamic>> ShowCarWareHouse(int idShowroom)
         {
             return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==idShowroom)).Select(d => new
             {

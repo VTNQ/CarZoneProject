@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import {useLocation, useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie'
 
 function ShowCustomer() {
     const [perPage] = useState(5);
@@ -27,17 +28,28 @@ function ShowCustomer() {
     const navigate = useNavigate();
     const location = useLocation();
     const[sessionData,setSessionData]=useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+   
+        if (data && data.role=='Employee') {
+            setSessionData(data);
+        } else{
+          navigate('/login');
+        }
+    }, [navigate]);
     const [Customer, setCustomer] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
             const response = await axios.get(`http://localhost:5278/api/Customer/ShowCustomer`);
-            setCustomer(response.data)
+            setCustomer(response.data.result)
         }
         fetchdata()
     }, [])
@@ -146,7 +158,7 @@ function ShowCustomer() {
                         UpdateDOB:''
                     })
                     const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
-                    setCustomer(response.data)
+                    setCustomer(response.data.result)
                     
                     setPopupVisibility(false)
                 } else {

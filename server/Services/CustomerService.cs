@@ -4,8 +4,9 @@ namespace server.Services
 {
     public interface CustomerService
     {
-        public bool AddCustomer(AddCustomer addCustomer);
-        public dynamic ShowCustomer();
-        public bool UpdateCustomer(int id,UpdateCustomer updateCustomer);
+        Task<bool> AddCustomer(AddCustomer addCustomer);
+        Task<IEnumerable<dynamic>> ShowCustomer();
+        Task<bool> UpdateCustomer(int id,UpdateCustomer updateCustomer);
+        Task<int> TotalCustomer();
     }
 }

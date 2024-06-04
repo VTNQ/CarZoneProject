@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Helper;
 using server.Models;
@@ -16,36 +17,43 @@ namespace server.Services
             DatabaseContext = databaseContext;
             this.configuration = configuration;
         }
-        public bool AddCustomer(AddCustomer addCustomer)
+        public async Task<bool> AddCustomer(AddCustomer addCustomer)
         {
-            try
+            using (var traction = await DatabaseContext.Database.BeginTransactionAsync())
             {
-                var FileName = FileHelper.GenerateFileName(addCustomer.Sign.FileName);
-                var path = Path.Combine(env.WebRootPath, "images", FileName);
-                using(var fileStream=new FileStream(path,FileMode.Create))
+                try
                 {
-                    addCustomer.Sign.CopyTo(fileStream);
+                    var FileName = FileHelper.GenerateFileName(addCustomer.Sign.FileName);
+                    var path = Path.Combine(env.WebRootPath, "images", FileName);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        addCustomer.Sign.CopyTo(fileStream);
+                    }
+                    var Customer = new Customer
+                    {
+                        FullName = addCustomer.FullName,
+                        Address = addCustomer.Address,
+                        Dob = addCustomer.Dob,
+                        Phone = addCustomer.Phone,
+                        Email = addCustomer.Email,
+                        IndentityCode = addCustomer.IndentityCode,
+                        Sign = FileName,
+                    };
+                    DatabaseContext.Customers.Add(Customer);
+                    await DatabaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                var Customer = new Customer
+                catch
                 {
-                    FullName = addCustomer.FullName,
-                    Address = addCustomer.Address,
-                    Dob = addCustomer.Dob,
-                    Phone = addCustomer.Phone,
-                    Email = addCustomer.Email,
-                    IndentityCode = addCustomer.IndentityCode,
-                    Sign = FileName,
-                };
-                DatabaseContext.Customers.Add(Customer);
-                return DatabaseContext.SaveChanges() > 0;
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;   
-            }
+               
         }
 
-        public dynamic ShowCustomer()
+        public async Task<IEnumerable<dynamic>> ShowCustomer()
         {
             return DatabaseContext.Customers.Select(d => new
             {
@@ -60,25 +68,37 @@ namespace server.Services
             }).OrderByDescending(arg=>arg.Id).ToList();
         }
 
-        public bool UpdateCustomer(int id,UpdateCustomer updateCustomer)
+        public async Task<int> TotalCustomer()
         {
-            try
+            return await DatabaseContext.Customers.CountAsync();
+        }
+
+        public async Task<bool> UpdateCustomer(int id,UpdateCustomer updateCustomer)
+        {
+            using (var traction = await DatabaseContext.Database.BeginTransactionAsync())
             {
-                var Customer = DatabaseContext.Customers.Find(id);
-                if(Customer !=null)
+                try
                 {
-                    Customer.Address = updateCustomer.Address;
-                    Customer.FullName = updateCustomer.FullName;
-                    Customer.Dob = updateCustomer.Dob;
-                    Customer.Phone = updateCustomer.Phone;
-                    Customer.Email = updateCustomer.Email;
+                    var Customer = DatabaseContext.Customers.Find(id);
+                    if (Customer != null)
+                    {
+                        Customer.Address = updateCustomer.Address;
+                        Customer.FullName = updateCustomer.FullName;
+                        Customer.Dob = updateCustomer.Dob;
+                        Customer.Phone = updateCustomer.Phone;
+                        Customer.Email = updateCustomer.Email;
+                    }
+                    await DatabaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return DatabaseContext.SaveChanges() > 0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+               
         }
     }
 }

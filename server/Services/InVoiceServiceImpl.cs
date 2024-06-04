@@ -1,4 +1,5 @@
-﻿using server.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using server.Models;
 
 namespace server.Services;
 
@@ -48,5 +49,10 @@ public class InVoiceServiceImpl:InVoiceService
             idorder=d.IdOrder,
             CreateDate=d.CreateDate,
         }).OrderByDescending(arg=>arg.CreateDate).ToList();
+    }
+
+    public async Task<int> TotalInvoice(int idshowroom)
+    {
+        return await DatabaseContext.InVoices.Where(d => d.IdOrderNavigation.IdShowroom == idshowroom).CountAsync();
     }
 }

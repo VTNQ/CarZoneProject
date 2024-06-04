@@ -4,10 +4,11 @@ namespace server.Services
 {
     public interface SupplierService
     {
-        public dynamic ShowCountry();
-        public bool AddSupplier(AddSupplier addSuppplier);
-        public dynamic ShowSupplier();
-        public bool UpdateSupplier(int id,AddSupplier updateSuppplier);
-        public bool DeleteSupplier(int id);
+        Task<IEnumerable<dynamic>> ShowCountry();
+        Task<bool> AddSupplier(AddSupplier addSuppplier);
+        Task<IEnumerable<dynamic>> ShowSupplier();
+        Task<bool> UpdateSupplier(int id,AddSupplier updateSuppplier);
+        Task<bool> DeleteSupplier(int id);
+        Task<int> TotalSupplier();
     }
 }

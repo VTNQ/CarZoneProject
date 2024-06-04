@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
 using System;
@@ -79,6 +80,11 @@ namespace server.Services
                 idBrand = d.IdBrand,
                 Brand = d.IdBrandNavigation.Name,
             }).ToList();
+        }
+
+        public async Task<int> TotalModel()
+        {
+            return await databaseContext.Models.CountAsync();
         }
 
         public async Task<bool> UpdateModel(int id, AddModel UpdateModel)

@@ -4,22 +4,35 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-paginate';
 import Swal from "sweetalert2";
 import axios from "axios";
+import Cookies from 'js-cookie';
 function HistoryOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-    const[sessionData,setSessionData]=useState(null);
+
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+
+        if (data && data.role == 'Employee') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const [Order, setOrder] = useState([]);
     const [Contract, setContract] = useState([])
-   
+
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -29,10 +42,10 @@ function HistoryOrder() {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.ID){
+        if (sessionData && sessionData.ID) {
             fetchdata();
         }
-       
+
     }, [sessionData])
     const [FromData, setFromData] = useState({
         id: '',
@@ -69,10 +82,10 @@ function HistoryOrder() {
     const FilterOrder = Order.filter(order =>
         order.customer.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    const DetailContract=(Order)=>{
-        const updatedSessionData={...sessionData,idOrder:Order.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
-        navigate(`/Employee/ShowContract/${Order.id}`,{state:updatedSessionData});
+    const DetailContract = (Order) => {
+        const updatedSessionData = { ...sessionData, idOrder: Order.id };
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
+        navigate(`/Employee/ShowContract/${Order.id}`, { state: updatedSessionData });
     }
     const IndexoflastOrder = (currentPage + 1) * perPage;
     const IndexofFirstOrder = IndexoflastOrder - perPage;
@@ -89,7 +102,7 @@ function HistoryOrder() {
                 showConfirmButton: false,
                 timer: 1500,
             })
-        }else{
+        } else {
             try {
                 const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
                     method: 'POST',
@@ -125,7 +138,7 @@ function HistoryOrder() {
                 console.log(error)
             }
         }
-        
+
     }
     const handleAddContract = (ID) => {
         const SelectOrder = Order.find(order => order.id == ID);
@@ -153,63 +166,64 @@ function HistoryOrder() {
                                         <form class="forms-sample">
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
-                                                   value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}
-                                                   placeholder="Enter Full Name"/>
+                                                value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}
+                                                placeholder="Enter Full Name" />
                                         </form>
                                         <p class="card-description">
                                         </p>
                                         <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <thead>
-                                                <tr>
-                                                    <th> #</th>
-                                                    <th> Customer</th>
+                                                    <tr>
+                                                        <th> #</th>
+                                                        <th> Customer</th>
 
-                                                    <th> Date of Sale</th>
-                                                    <th> Total Amount</th>
-                                                    <th> Total Tax</th>
-                                                    <th>Payment</th>
-                                                    <th>Delivery type</th>
-                                                    <th>Add Contract</th>
-                                                    <th>Show Contract</th>
+                                                        <th> Date of Sale</th>
+                                                        <th> Total Amount</th>
+                                                        <th> Total Tax</th>
+                                                        <th>Payment</th>
+                                                        <th>Delivery type</th>
+                                                        <th>Add Contract</th>
+                                                        <th>Show Contract</th>
 
-                                                </tr>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                {CurrentOrder.map((order, index) => (
-                                                    <tr>
-                                                        <td>{++index}</td>
-                                                        <td>{order.customer}</td>
-                                                        <td>{new Date(order.dateofSale).toLocaleString('en-GB', {
-                                                            day: 'numeric',
-                                                            month: 'short',
-                                                            year: 'numeric'
-                                                        })}</td>
-                                                        <td>{order.totalAmount}</td>
-                                                        <td>{order.totalTax}</td>
-                                                        <td>{order.payment}</td>
-                                                        <td>{order.deliveryType}</td>
-                                                        <td>
-                                                            <button
-                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                                onClick={() => handleAddContract(order.id)}
+                                                    {CurrentOrder.map((order, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{order.customer}</td>
+                                                            <td>{new Date(order.dateofSale).toLocaleString('en-GB', {
+                                                                day: 'numeric',
+                                                                month: 'short',
+                                                                year: 'numeric'
+                                                            })}</td>
+                                                            <td>{order.totalAmount}</td>
+                                                            <td>{order.totalTax}</td>
+                                                            <td>{order.payment}</td>
+                                                            <td>{order.deliveryType}</td>
+                                                            <td>
+                                                                <button
+                                                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                                    onClick={() => handleAddContract(order.id)}
 
-                                                            >Add
-                                                            </button>
-                                                        </td>
-                                                        <td>
-                                                            <button disabled={order.idOrder==null}
-                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                                                style={{opacity:order.idOrder==null ? 0.5:1,
-                                                                    cursor:order.idOrder==null? 'not-allowed':'pointer'
-                                                                }}
-                                                                onClick={()=>DetailContract(order)}
+                                                                >Add
+                                                                </button>
+                                                            </td>
+                                                            <td>
+                                                                <button disabled={order.idOrder == null}
+                                                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                                    style={{
+                                                                        opacity: order.idOrder == null ? 0.5 : 1,
+                                                                        cursor: order.idOrder == null ? 'not-allowed' : 'pointer'
+                                                                    }}
+                                                                    onClick={() => DetailContract(order)}
 
-                                                            >View
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
+                                                                >View
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
                                                 </tbody>
                                             </table>
                                             <Pagination

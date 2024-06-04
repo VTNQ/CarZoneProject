@@ -2,11 +2,32 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "../Layout/Layout";
 import Pagination from 'react-paginate';
 import axios from "axios";
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 function ShowContact(){
     const [ShowContact,setShowContact]=useState([]);
+    const navigate = useNavigate();
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     useEffect(()=>{
         const fetchdata=async()=>{
             try{

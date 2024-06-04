@@ -4,8 +4,9 @@ namespace server.Services
 {
     public interface VersionService
     {
-        public bool AddVersion(AddVersion addVersion);
-        public dynamic ShowVersion();
-        public bool DeleteVersion(int id);
+        Task<bool> AddVersion(AddVersion addVersion);
+        Task<IEnumerable<dynamic>> ShowVersion();
+        Task<bool> DeleteVersion(int id);
+        Task<int> TotalVersion();
     }
 }

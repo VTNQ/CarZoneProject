@@ -4,16 +4,37 @@ import Swal from 'sweetalert2';
 import Select from "react-select"
 import LayoutAdmin from "../Layout/Layout";
 import Pagination from 'react-paginate';
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function Brand() {
     const [Country, setCountry] = useState([]);
     const [SelectCountry, setSelectCountry] = useState(null);
     const [Brand, setBrand] = useState([]);
+    const [sessionData, setSessionData] = useState(null);
+    const navigate = useNavigate();
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
 
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                setBrand(response.data)
+                setBrand(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -67,7 +88,7 @@ function Brand() {
                 setSelectCountry("")
                 document.getElementById('Logo').value = '';
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                setBrand(response.data)
+                setBrand(response.data.result)
             }else{
                 const responseBody = await response.json();
                     if (responseBody.message) {
@@ -87,7 +108,7 @@ function Brand() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Brand/GetCountry");
-                setCountry(response.data)
+                setCountry(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -177,7 +198,7 @@ function Brand() {
                 setUpdateSelectCountry(null);
                 setPopupVisibility(false);
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                setBrand(response.data)
+                setBrand(response.data.result)
             } else {
                 const responseBody = await response.json();
                 if (responseBody.message) {
@@ -219,7 +240,7 @@ function Brand() {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
-                    setBrand(response.data)
+                    setBrand(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {

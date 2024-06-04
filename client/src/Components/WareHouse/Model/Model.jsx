@@ -4,9 +4,31 @@ import Select from "react-select"
 import Swal from 'sweetalert2';
 import axios from "axios";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 function Model() {
     const [Brand, setBrand] = useState([]);
     const [SelectBrand, SetSelectBrand] = useState(null)
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     const handleSelectBrand = (SelectBrand) => {
         SetSelectBrand(SelectBrand)
     }

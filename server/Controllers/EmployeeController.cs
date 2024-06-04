@@ -62,7 +62,7 @@ namespace server.Controllers
         [HttpPost("AddEmployee")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddEmployee([FromBody]  AddEmployee addEmployee)
+        public async Task<IActionResult> AddEmployee([FromBody]  AddEmployee addEmployee)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("GetEmployee/{IdShowRoom}")]
-        public IActionResult GetEmployee(int IdShowRoom)
+        public async Task<IActionResult> GetEmployee(int IdShowRoom)
         {
             try
             {
@@ -104,7 +104,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-
+        [HttpGet("TotalEmployee/{role}")]
+        public async Task<IActionResult> TotalEmployee(string role)
+        {
+            try
+            {
+                return Ok(await employeeService.CountEmployee(role));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("FindById/{id}")]
         public IActionResult FindById(int id)
         {
@@ -119,7 +130,7 @@ namespace server.Controllers
         }
 
         [HttpGet("ShowContract/{id}")]
-        public IActionResult ShowContract(int id)
+        public async Task<IActionResult> ShowContract(int id)
         {
             try
             {

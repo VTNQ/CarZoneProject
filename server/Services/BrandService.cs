@@ -4,10 +4,11 @@ namespace server.Services
 {
     public interface BrandService
     {
-        public bool AddBrand(AddBrand addBrand);
-        public dynamic GetCountry();
-        public dynamic ShowBrand();
-        public bool UpdateBrand(int id,UpdateBrand updateBrand);
-        public bool DeleteBrand(int id);
+        Task<bool> AddBrand(AddBrand addBrand);
+        Task<IEnumerable<dynamic>> GetCountry();
+        Task<IEnumerable<dynamic>> ShowBrand();
+        Task<bool> UpdateBrand(int id,UpdateBrand updateBrand);
+        Task<bool> DeleteBrand(int id);
+        Task<int> TotalBrand();
     }
 }

@@ -3,13 +3,29 @@ import LayoutAdmin from "../Layout/Layout";
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie'
 function EditProfile() {
     const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const location = useLocation();
-    const ID = location.state?.ID || '';
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
+
 
     const [FromData, setFromData] = useState({
         FullName: '',
@@ -21,7 +37,7 @@ function EditProfile() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/Account/ShowEmployee/${ID}`)
+                const response = await axios.get(`http://localhost:5278/api/Account/ShowEmployee/${sessionData.ID}`)
                 setFromData({
                     FullName: response.data.fullName,
                     Email: response.data.email,
@@ -33,8 +49,11 @@ function EditProfile() {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.ID){
+            fetchdata();
+        }
+       
+    }, [sessionData])
     const handleUpdate = async (event) => {
         event.preventDefault();
         if (FromData.FullName == '' || FromData.Email == '' || FromData.Address == '' || FromData.Phone == '' || FromData.IdentityCode == '') {
@@ -60,7 +79,7 @@ function EditProfile() {
             })
         } else {
             try {
-                const response = await fetch(`http://localhost:5278/api/Account/UpdateProfile/${ID}`, {
+                const response = await fetch(`http://localhost:5278/api/Account/UpdateProfile/${sessionData.ID}`, {
                     method: 'Put',
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,7 +94,7 @@ function EditProfile() {
                         showConfirmButton: false,
                         timer: 1500,
                     })
-                    const response = await axios.get(`http://localhost:5278/api/Account/ShowEmployee/${ID}`)
+                    const response = await axios.get(`http://localhost:5278/api/Account/ShowEmployee/${sessionData.ID}`)
                     setFromData({
                         FullName: response.data.fullName,
                         Email: response.data.email,

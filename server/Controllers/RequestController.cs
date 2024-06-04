@@ -15,7 +15,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateRequest/{id}")]
         [Produces("application/json")]
-        public IActionResult UpdateRequest(int id)
+        public async Task<IActionResult> UpdateRequest(int id)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace server.Controllers
         [HttpPost("AddRequest")]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public IActionResult AddRequest(AddRequest addRequest)
+        public async Task<IActionResult> AddRequest(AddRequest addRequest)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowRequestSupplier/{Employee}")]
-        public IActionResult ShowRequestSupplier(string Employee)
+        public async Task<IActionResult> ShowRequestSupplier(string Employee)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowSupplier")]
-        public IActionResult ShowSupplier()
+        public async Task<IActionResult> ShowSupplier()
         {
             try
             {
@@ -68,7 +68,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowRequestWareHouse")]
-        public IActionResult ShowRequestWareHouse()
+        public async Task<IActionResult> ShowRequestWareHouse()
         {
             try
             {
@@ -81,7 +81,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowWareHouse")]
-        public IActionResult ShowWareHouse()
+        public async Task<IActionResult> ShowWareHouse()
         {
             try
             {

@@ -8,6 +8,7 @@ namespace server.Services
         Task<bool>AddModel(AddModel addModel);
         Task<IEnumerable<dynamic>> ShowModel();
         Task<bool> UpdateModel(int id, AddModel UpdateModel);
-        Task<bool> DeleteModel(int id); 
+        Task<bool> DeleteModel(int id);
+        Task<int> TotalModel();
     }
 }

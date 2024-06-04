@@ -1,13 +1,219 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
 import LayoutAdmin from "../Layout/Layout";
+import { Bar, Pie } from 'react-chartjs-2';
+import Chart from 'chart.js/auto'; // Import the Chart object from 'chart.js/auto'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { CategoryScale, LinearScale, BarController, Title } from 'chart.js';
+import Cookies from 'js-cookie'
+import axios from "axios";
 function HomePage(){
     const location=useLocation();
-  const ID = location.state?.ID || '';
-  const fullName=location.state?.fullName || '';
-  const email = location.state?.email || '' ;
+    const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const navigate = useNavigate();
+  const [Color,setColor]=useState(null)
+  const [Supplier,setSupplier]=useState(null);
+  const [customer,setCustomer]=useState(null);
+  const[OrderData,setOrderData]=useState([]);
+  Chart.register(ChartDataLabels)
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get("http://localhost:5278/api/Supplier/CountSupplier");
+        setSupplier(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    fetchdata();
+  },[])
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get("http://localhost:5278/api/Customer/CountCustomer");
+        setCustomer(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    fetchdata();
+  },[])
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get("http://localhost:5278/api/Color/TotalColor");
+        setColor(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    fetchdata();
+
+  },[])
+ 
+
+  const [sessionData, setSessionData] = useState(null);
+  const getUserSession = () => {
+    const UserSession = Cookies.get("UserSession");
+    if (UserSession) {
+      return JSON.parse(UserSession);
+    }
+    return null;
+  }
+
+  useEffect(() => {
+    const data = getUserSession();
+
+    if (data && data.role == 'Admin') {
+      setSessionData(data);
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/OutOrder/GetCountOrder/${sessionData.idShowroom}/${selectedMonth}`)
+        setOrderData(response.data.result);
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.idShowroom){
+      fetchdata();
+    }
+ 
+  },[selectedMonth,sessionData])
+
+  const [TotalInorder,setTotalInorder]=useState(null);
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/InOrder/TotalInorder/${sessionData.ID}`);
+        setTotalInorder(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.ID){
+      fetchdata();
+    }
+    
+
+  },[sessionData])
+  const generateChartData = () => {
+    const daysInMonth = new Date(new Date().getFullYear(), selectedMonth, 0).getDate();
+    const chartData = Array.from({ length: daysInMonth }, (_, index) => 0);
+
+    OrderData.forEach((orderCount) => {
+      const orderDay = new Date(orderCount.orderDate).getDate();
+      chartData[orderDay - 1] = orderCount.orderCount;
+    });
+
+    return chartData;
+  };
+  const chartData = {
+    labels: Array.from({ length: new Date(new Date().getFullYear(), selectedMonth, 0).getDate() }, (_, index) => index + 1),
+    datasets: [
+      {
+        label: 'Number of Unique Orders',
+        data: generateChartData(),
+        backgroundColor: 'rgba(75,192,192,0.6)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+  const[Employee,setEmployee]=useState(null)
+  const [OutOrder,setOutOrder]=useState(null);
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/OutOrder/TotalOutOrder/${sessionData.idShowroom}`);
+        setOutOrder(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.idShowroom){
+      fetchdata();
+    }
+    
+
+  },[sessionData])
+  const [Car,setCar]=useState(null);
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/Car/TotalCar/${sessionData.idShowroom}`);
+        setCar(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.idShowroom){
+      fetchdata();
+    }
+    
+
+  },[sessionData])
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/Employee/TotalEmployee/${sessionData.role}`);
+        setEmployee(response.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.role){
+      fetchdata();
+    }
+    
+
+  },[sessionData])
+  const chartDataProduct = {
+    labels: ['Color','Supplier','Customer','Employee','InOrder','OutOrder','Car'],
+    datasets: [{
+      data: [Color,Supplier,customer,Employee,TotalInorder,OutOrder,Car],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(199, 199, 199, 0.6)',
+        // Add more colors if you have more categories
+      ],
+    }],
+  };
+  
+  const chartOptions = {
+    scales: {
+      x: {
+        type: 'category', // Specify the scale type as 'category' for the x-axis
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+  const chartOptions1 = {
+    plugins: {
+      datalabels: {
+        color: '#fff',
+        font: {
+          weight: 'bold',
+          size: 14,
+        },
+        formatter: (value, context) => {
+          return value;
+        },
+      },
+    },
+  };
   const style={
     minHeight:'auto'
   }
@@ -44,63 +250,30 @@ return(
             <div class="row col-auto">
               <div class="col-md-6">
                 <div class=" tale-bg">
-                  <div class="card-people" >
-                    <img src={Img} alt="people"/>
-                    <div class="weather-info">
-                      <div class="d-flex">
-                        <div>
-                          <h2 class="mb-0 font-weight-normal"><i class="icon-sun me-2"></i>31<sup>C</sup></h2>
-                        </div>
-                        <div class="ms-2">
-                          <h4 class="location font-weight-normal">Chicago</h4>
-                          <h6 class="font-weight-normal">Illinois</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <Bar data={chartData} options={chartOptions} />
+                  <label>Select Month:</label>
+                  <select id="selectMonth"
+                    className="form-select" value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+                    {[...Array(12).keys()].map((month) => (
+                      <option key={month + 1} value={month + 1}>
+                        {month + 1}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div class="col-md-6 transparent">
                 <div class="row">
-                  <div class="col-md-6 mb-4 transparent">
+                  <div class="col-md-12 mb-4 transparent">
                     <div class="card card-tale" style={style}>
                       <div class="card-body">
-                        <p class="mb-4">Today’s Bookings</p>
-                        <p class="fs-30 mb-2">4006</p>
-                        <p>10.00% (30 days)</p>
+                      <Pie data={chartDataProduct} options={chartOptions1}/>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6 transparent">
-                    <div class="card card-dark-blue" style={style}>
-                      <div class="card-body" >
-                        <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
-                        <p>22.00% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
+                 
                 </div>
-                <div class="row">
-                  <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                    <div class="card card-light-blue" style={style}>
-                      <div class="card-body" >
-                        <p class="mb-4">Number of Meetings</p>
-                        <p class="fs-30 mb-2">34040</p>
-                        <p>2.00% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 stretch-card transparent">
-                    <div class="card card-light-danger" style={style}>
-                      <div class="card-body" >
-                        <p class="mb-4">Number of Clients</p>
-                        <p class="fs-30 mb-2">47033</p>
-                        <p>0.22% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+             
               </div>
             </div>
             <div class="row">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "../Layout/Layout";
 import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
 import axios from "axios";
 function DetailOutOrders() {
     const navigate = useNavigate();
@@ -15,19 +16,29 @@ function DetailOutOrders() {
     const [currentPage, setCurrentPage] = useState(0);
     const [Contract,setContract]=useState([])
     const [index,setindex]=useState(1);
-    const[sessionData,setSessionData]=useState(null);
-    useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
 
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.IDOutOrder}`);
-                setContract(response.data)
+                setContract(response.data.result)
             }catch(error){
                 console.log(error)
             }
@@ -41,7 +52,7 @@ function DetailOutOrders() {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
-                SetInvoice(response.data)
+                SetInvoice(response.data.result)
             }catch(error){
                 console.log(error)
             }
@@ -55,7 +66,7 @@ function DetailOutOrders() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${sessionData.IDOutOrder}`)
-                setDetailOutOrder(response.data)
+                setDetailOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -76,7 +87,7 @@ function DetailOutOrders() {
     const CurrentDetail = FilterDetailOrder.slice(IndexOfFirtDetail, IndexoflastDetail)
     const handleBackClick=()=>{
         const{IDOutOrder,...restSessionData } = sessionData;
-        sessionStorage.setItem('sessionData',JSON.stringify(restSessionData));
+        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate("/Outorder",{state:restSessionData});
     }
     return (

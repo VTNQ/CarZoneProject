@@ -18,16 +18,18 @@ function CreateCarWareHouse() {
     const navigate = useNavigate();
     const location = useLocation();
     const [sessionData, setSessionData] = useState(null);
-    useEffect(() => {
-        const data = getUserSession();
-        
-        if (data) {
-            setSessionData(data);
-        } else {
-            // If no session data, redirect to login
-            navigate('/login');
-        }
-    }, [navigate]);
+ 
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
    
    
     const [Showroom, setShowroom] = useState([]);

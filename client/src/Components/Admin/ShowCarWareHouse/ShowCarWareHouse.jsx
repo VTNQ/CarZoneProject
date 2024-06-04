@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LayoutAdmin from "../Layout/Layout";
 import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
 import axios from "axios";
 function ShowCarWareHouse() {
     const navigate = useNavigate();
@@ -9,13 +10,24 @@ function ShowCarWareHouse() {
   
     const [IsCloginImage, setIsClosingImage] = useState(false)
    
-    const[sessionData,setSessionData]=useState(null);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
-      }
-  }, []);
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const[Car,setCar]=useState([])
     const [previewImage, setPreviewImage] = useState(null);
@@ -50,7 +62,7 @@ function ShowCarWareHouse() {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/WareHouse/ShowWareHouse/${sessionData.idShowroom}`)
-                setCar(response.data)
+                setCar(response.data.result)
             }catch(error){
                 console.log(error)
             }

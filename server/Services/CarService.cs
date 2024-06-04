@@ -10,5 +10,6 @@ namespace server.Services
         Task<bool> deleteCar(int carId);
 
         public dynamic findCarById(int carId);
+        Task<int> TotalCar(int id);
     }
 }

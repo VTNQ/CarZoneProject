@@ -3,16 +3,38 @@ import Swal from 'sweetalert2';
 import LayoutAdmin from "../Layout/Layout";
 import axios from "axios";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 function Version() {
     const [FromData, setFromData] = useState({
         releaseYear: ''
     })
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+  const getUserSession=()=>{
+    const UserSession=Cookies.get("UserSession");
+    if(UserSession){
+        return JSON.parse(UserSession);
+    }
+    return null;
+}
+
+useEffect(() => {
+    const data = getUserSession();
+    
+    if (data && data.role=='WareHouse') {
+        setSessionData(data);
+    } else {
+        // If no session data, redirect to login
+        navigate('/login');
+    }
+}, [navigate]);
     const [Version, setVersion] = useState([])
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Version/ShowVersion");
-                setVersion(response.data)
+                setVersion(response.data.result)
             } catch (error) {
                 console.log(error)
             }

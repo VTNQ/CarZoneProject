@@ -15,7 +15,7 @@ namespace server.Controllers
             _orderService = orderService;
         }
         [HttpGet("ShowInOrder/{id}")]
-        public IActionResult ShowInOrder(int id)
+        public async Task<IActionResult> ShowInOrder(int id)
         {
             try
             {
@@ -26,8 +26,32 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("GetCountOrder/{id}/{time}")]
+        public async Task<IActionResult> GetCountOrder(int id,int time)
+        {
+            try
+            {
+                return Ok( _orderService.GetCountOrder(id,time));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("TotalOrderWareHouse/{id}")]
+        public async Task<IActionResult> TotalOrderWareHouse(int id)
+        {
+            try
+            {
+                return Ok(await _orderService.TotalOrderWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowOrderWareHouse/{id}")]
-        public IActionResult ShowOrderWareHouse(int id)
+        public async Task<IActionResult> ShowOrderWareHouse(int id)
         {
             try
             {
@@ -40,7 +64,7 @@ namespace server.Controllers
         }
         [HttpPost("AddInorder")]
         [Produces("application/json")]
-        public IActionResult AddInorder([FromForm] InOrder inOrder)
+        public async Task<IActionResult> AddInorder([FromForm] InOrder inOrder)
         {
             try
             {
@@ -55,7 +79,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("DetailInOrder/{id}")]
-        public IActionResult DetailInOrder(int id)
+        public async Task<IActionResult> DetailInOrder(int id)
         {
             try
             {
@@ -66,8 +90,20 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("TotalInorder/{id}")]
+        public async Task<IActionResult> TotalInorder(int id)
+        {
+            try
+            {
+                return Ok( await _orderService.TotalInorder(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowSupply")]
-        public IActionResult ShowSupply()
+        public async Task<IActionResult> ShowSupply()
         {
             try
             {
@@ -79,7 +115,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowWareHouse")]
-        public IActionResult ShowWareHouse()
+        public async Task<IActionResult> ShowWareHouse()
         {
             try
             {
@@ -91,7 +127,7 @@ namespace server.Controllers
             }
         }
         [HttpGet("ShowCar")]
-        public IActionResult ShowCar()
+        public async Task<IActionResult> ShowCar()
         {
             try
             {

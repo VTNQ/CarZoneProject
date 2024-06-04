@@ -32,23 +32,23 @@ function AddEmployee() {
             setIsClosingPopup(false)
         }, 500);
     }
-    const navigate = useNavigate();
     const location = useLocation();
-    const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
             return JSON.parse(UserSession);
         }
         return null;
     }
-    const [sessionData, setSessionData] = useState(null);
+
     useEffect(() => {
         const data = getUserSession();
-        
-        if (data) {
+
+        if (data && data.role == 'Admin') {
             setSessionData(data);
         } else {
-            // If no session data, redirect to login
             navigate('/login');
         }
     }, [navigate]);
@@ -76,7 +76,7 @@ function AddEmployee() {
         const fetchdata = async () => {
 
             const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-            setEmployee(response.data)
+            setEmployee(response.data.result)
         }
         if(sessionData && sessionData.idShowroom){
             fetchdata()

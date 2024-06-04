@@ -10,29 +10,37 @@ namespace server.Services
         {
             this.databaseContext = databaseContext;
         }
-        public bool AddRequest(AddRequest addRequest)
+
+        public async Task<bool> AddRequest(AddRequest addRequest)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var Request = new Request
+                try
                 {
-                    To = addRequest.To,
-                    From = addRequest.From,
-                    Type=addRequest.Type,
-                    CreateDay=DateOnly.FromDateTime(DateTime.Now),
-                    Description=addRequest.Description,
-                    Status=false,
-                };
-                databaseContext.Requests.Add(Request);
-                return databaseContext.SaveChanges()>0;
+                    var Request = new Request
+                    {
+                        To = addRequest.To,
+                        From = addRequest.From,
+                        Type = addRequest.Type,
+                        CreateDay = DateOnly.FromDateTime(DateTime.Now),
+                        Description = addRequest.Description,
+                        Status = false,
+                    };
+                    databaseContext.Requests.Add(Request);
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+           
         }
 
-        public dynamic ShowRequestSupplier(string fullname)
+        public async Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname)
         {
             return databaseContext.Requests.Where(d => d.Type == false && d.From==fullname).Select(d => new
             {
@@ -44,20 +52,19 @@ namespace server.Services
             }).ToList();
         }
 
-        public dynamic ShowRequestWareHouse()
+        public async Task<IEnumerable<dynamic>> ShowRequestWareHouse()
         {
            return databaseContext.Requests.Where(d => d.Type == true).Select(d => new
            {
                id=d.Id,
                To=d.To,
-               
                Creadate=d.CreateDay,
                Decription=d.Description,
                status=d.Status,
            }).ToList(); 
         }
 
-        public dynamic ShowSupplier()
+        public async Task<IEnumerable<dynamic>> ShowSupplier()
         {
             return databaseContext.Supliers.Select(d => new
             {
@@ -66,7 +73,7 @@ namespace server.Services
             }).ToList();
         }
 
-        public dynamic ShowWareHouse()
+        public async Task<IEnumerable<dynamic>> ShowWareHouse()
         {
            return databaseContext.Warehouses.Select(d => new
            {
@@ -75,21 +82,30 @@ namespace server.Services
            }).ToList(); 
         }
 
-        public bool UpdateRequest(int id)
+        public async Task<bool> UpdateRequest(int id)
         {
-            try
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
-                var Request=databaseContext.Requests.Find(id);
-                if (Request != null)
+                try
                 {
-                    Request.Status=true;
+                    var Request = databaseContext.Requests.Find(id);
+                    if (Request != null)
+                    {
+                        Request.Status = true;
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
                 }
-                return databaseContext.SaveChanges()>0;
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+              
         }
+
+      
     }
 }

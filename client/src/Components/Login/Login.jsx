@@ -32,6 +32,7 @@ function Login(){
               ID: id,
               fullName: fullName,
               email: email,
+              role:role,
               idShowroom: idShowroom,
               idWarehouse:idWarehouse
           };

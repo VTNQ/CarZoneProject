@@ -4,6 +4,8 @@ import Select from "react-select"
 import axios from "axios";
 import Swal from 'sweetalert2';
 import Pagination from 'react-paginate';
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'
 function Supplier() {
     const [Country, setCountry] = useState([])
     const options = [
@@ -14,6 +16,7 @@ function Supplier() {
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
     const [isPopupVisible, setPopupVisibility] = useState(false);
+    const navigate = useNavigate();
     const [FromData, setFromData] = useState({
         name: '',
         id: '',
@@ -73,11 +76,29 @@ function Supplier() {
         setUpdateSelectType(event.target.value)
     }
     const [Supplier, setSupplier] = useState([])
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                setSupplier(response.data)
+                setSupplier(response.data.result)
 
             } catch (error) {
                 console.log(error)
@@ -106,7 +127,7 @@ function Supplier() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Supplier/ShowCountry");
-                setCountry(response.data)
+                setCountry(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -139,7 +160,7 @@ function Supplier() {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                    setSupplier(response.data)
+                    setSupplier(response.data.result)
 
                 }else{
                     const responseBody = await response.json();
@@ -194,7 +215,7 @@ function Supplier() {
                     setSelectCountry(null)
                     SetSelectType(null)
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                    setSupplier(response.data)
+                    setSupplier(response.data.result)
                 } else {
                     const responseBody = await response.json();
                     if (responseBody.message) {
@@ -251,7 +272,7 @@ function Supplier() {
                     setUpdateSelectCountry(null);
                     setUpdateSelectType(null);
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
-                    setSupplier(response.data)
+                    setSupplier(response.data.result)
                     
                 } else {
                     const responseBody = await response.json();

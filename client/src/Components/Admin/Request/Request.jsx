@@ -7,14 +7,29 @@ import ReactQuill from 'react-quill';
 import Pagination from 'react-paginate';
 import { useLocation, useNavigate } from "react-router-dom";
 import 'react-quill/dist/quill.snow.css';
+import Cookies from 'js-cookie'
 function Request() {
     const [WareHouse, setWareHouse] = useState([])
     const navigate = useNavigate();
     const location = useLocation();
-    const username = location.state?.fullName || '';
-    const email = location.state?.email || '';
-    const idShowroom = location.state?.idShowroom || '';
-    const ID = location.state?.ID || '';
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'Admin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const [SelectWareHouse, setSelectWareHouse] = useState(null)
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const handleSelectWareHouse = (SelectWareHouse) => {
@@ -36,7 +51,7 @@ function Request() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                setReQuest(response.data)
+                setReQuest(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -51,7 +66,7 @@ function Request() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/Request/ShowWareHouse");
-                setWareHouse(response.data)
+                setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
             }
@@ -104,7 +119,7 @@ function Request() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ to: SelectWareHouse?.value , from:username, type: true, description: FromData.Description })
+                    body: JSON.stringify({ to: SelectWareHouse?.value , from:sessionData.fullName, type: true, description: FromData.Description })
                 })
                 if (response.ok) {
                     Swal.fire({
@@ -118,7 +133,7 @@ function Request() {
                         Description: ''
                     })
                     const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                    setReQuest(response.data)
+                    setReQuest(response.data.result)
                 }
             } catch (error) {
                 console.log(error)

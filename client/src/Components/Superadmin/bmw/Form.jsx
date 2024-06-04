@@ -17,7 +17,7 @@ export const FormSpm = () => {
 
   const fetchDataVersion = async () => {
         const response = await axios.get(`http://127.0.0.1:5278/api/Form/ShowForm`);
-        setVersion(response.data);
+        setVersion(response.data.result);
         console.log(response.data)
     }
   useEffect(()=>{

@@ -7,21 +7,22 @@ import Cookies from 'js-cookie';
 function DetailInOrders() {
     const navigate = useNavigate();
     const location = useLocation();
-    const getUserSession=()=>{
-        const UserSession=Cookies.get("UserSession");
-        if(UserSession){
+
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
             return JSON.parse(UserSession);
         }
         return null;
     }
-    const [sessionData, setSessionData] = useState(null);
+
     useEffect(() => {
         const data = getUserSession();
-        
-        if (data) {
+
+        if (data && data.role == 'Admin') {
             setSessionData(data);
         } else {
-            // If no session data, redirect to login
             navigate('/login');
         }
     }, [navigate]);
@@ -30,7 +31,7 @@ function DetailInOrders() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/InOrder/DetailInOrder/${sessionData.IDInorder}`)
-                setDetail(response.data)
+                setDetail(response.data.result)
             } catch (error) {
                 console.log(error)
             }
