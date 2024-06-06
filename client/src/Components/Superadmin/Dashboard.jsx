@@ -266,7 +266,7 @@ export const Dashboard = () => {
                       <div class="card-body">
                       {orderAvenue.length > 0 && (
                         <>
-                          <p className="mb-4">Total Amount for Q{orderAvenue[0].quarter}</p>
+                          <p className="mb-4">All Order Of Q{orderAvenue[0].quarter}</p>
                           <p className="fs-30 mb-2">{orderAvenue[0].totalAmount?.toFixed(2)}$</p>
                           <p>{orderAvenue[0].year}</p>
                         </>
@@ -337,7 +337,7 @@ export const Dashboard = () => {
               <div class="card">
                 <div class="card-body">
                  <div class="d-flex justify-content-between">
-                  <p class="card-title">Detail Customer</p>
+                  <p class="card-title">Detail Customer By Month</p>
                   <a href="#" class="text-info">View all</a>
                  </div>
                   <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
@@ -388,6 +388,11 @@ export const Dashboard = () => {
                                         <div class="progress-bar bg-primary" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                     </td> */}
+                                     <td className="w-100 px-0">
+                                          <div className="progress progress-md mx-4">
+                                            <div className="progress-bar bg-primary" role="progressbar" style={{ width: `${av.percentage}%` }} aria-valuenow={av.percentage} aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
                                       <td><p class="mb-0"><span class="font-weight-bold mr-2">{av.totalAvenue}</span>({av.percentage}%)</p></td>
                                   </tr>
                                   ) )}
