@@ -36,7 +36,15 @@ export const LayoutSuperadmin = () => {
       }
   }, [navigate]);
 
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const handleDropdownToggle = () => {
+    setShowDropdown(!showDropdown);
+  };
+  const handleLogout = () => {
+    Cookies.remove("UserSession");
+    setSessionData(null);
+    navigate('/login');
+  }
   return (
     <div class="container-scroller">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
@@ -110,9 +118,21 @@ export const LayoutSuperadmin = () => {
             </div>
           </li>
           <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+            <a class="nav-link dropdown-toggle" onClick={handleDropdownToggle} data-toggle="dropdown" id="profileDropdown">
               <img src="images/faces/face28.jpg" alt="profile"/>
             </a>
+            {showDropdown && (
+                <div className="dropdown1">
+                  <a onClick={handleLogout}>
+                    <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+                  </a>
+                  <a style={{ cursor: 'pointer' }} onClick={() => navigate('/EditProfile', { state: sessionData })}>
+                    <i className="fa fa-user" aria-hidden="true"></i> Account
+                  </a>
+
+                  {/* Các mục khác của dropdown có thể được thêm vào đây */}
+                </div>
+              )}
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>

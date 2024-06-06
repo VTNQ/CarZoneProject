@@ -149,12 +149,21 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime)
         {
-            return databaseContext.InOrders.Where(p => p.IdWarehouse == id && p.DateOfSale.Month == datetime).GroupBy(o => o.DateOfSale).Select(g => new
+            return databaseContext.InOrders.Where(p => p.IdWarehouse == id && p.DateOfSale.Month == datetime && p.Status==true).GroupBy(o => o.DateOfSale).Select(g => new
             {
                 OrderDate = g.Key,
                 OrderCount = g.Count()
             }).OrderBy(x => x.OrderDate)
             .ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> GetCountinOrder(int id, int datetime)
+        {
+            return databaseContext.InOrders.Where(d => d.DateOfSale.Month == datetime && d.Status == true && databaseContext.Showrooms.Any(m => m.Id == id && m.IdDistrictNavigation.IdCityNavigation.IdCountry == d.IdWarehouseNavigation.IdCountry)).GroupBy(o => o.DateOfSale).Select(d => new
+            {
+                OrderDate = d.Key,
+                OrderCount = d.Count()
+            }).OrderBy(x => x.OrderDate).ToList();
         }
     }
 }

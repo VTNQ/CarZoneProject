@@ -68,6 +68,7 @@ import ShowCarWareHouse from './Components/Admin/ShowCarWareHouse/ShowCarWareHou
 import { Order } from './Components/Superadmin/Order';
 import { DetailOrderSpm } from './Components/Superadmin/DetailOrder';
 import { WarehouseShow } from './Components/Superadmin/accountGeneral/WarehouseShow';
+import { AddCustomer } from './Components/Superadmin/AddCustomer';
 function App() {
   return (
     <Router>

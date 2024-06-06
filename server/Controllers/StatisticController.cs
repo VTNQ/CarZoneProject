@@ -24,7 +24,20 @@ namespace server.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception here
+                
+                return BadRequest(ex.Message);
+            }
+        }[HttpGet("getAvenueByMonth")]
+        public IActionResult GetAvenueByMonth()
+        {
+            try
+            {
+                var result = _statisticService.getAvenueByMonth();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+               
                 return BadRequest(ex.Message);
             }
         }
@@ -38,7 +51,7 @@ namespace server.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception here
+                
                 return BadRequest(ex.Message);
             }
         }
@@ -52,7 +65,20 @@ namespace server.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception here
+                
+                return BadRequest(ex.Message);
+            }
+        }[HttpGet("getCustomerByMonth")]
+        public IActionResult getCustomerByMonth()
+        {
+            try
+            {
+                var result = _statisticService.getNewCustomerByMonth();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                
                 return BadRequest(ex.Message);
             }
         }
@@ -66,7 +92,75 @@ namespace server.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception here
+                
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getDataEachCar")]
+        public IActionResult getDataEachCar()
+        {
+            try
+            {
+                var result = _statisticService.getDataBrand();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getAvenueEachShowroom")]
+        public IActionResult getAvenueEachShowroom()
+        {
+            try
+            {
+                var result = _statisticService.getAvenueEachShowroom();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+               
+                return BadRequest(ex.Message);
+            }
+        }[HttpGet("getTopCar")]
+        public IActionResult getTopCar()
+        {
+            try
+            {
+                var result = _statisticService.getTopSellCar();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+               
+                return BadRequest(ex.Message);
+            }
+        }[HttpGet("getAvenueByCountry")]
+        public IActionResult getAvenueByCountry()
+        {
+            try
+            {
+                var result = _statisticService.getAvenueByCountry();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+               
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("getHighestAvenueCountry")]
+        public IActionResult getHighestAvenueCountry()
+        {
+            try
+            {
+                var result = _statisticService.getHighestAvenueCountry();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest(ex.Message);
             }
         }

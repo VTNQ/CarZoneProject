@@ -11,6 +11,7 @@ import axios from "axios";
 function HomePage(){
     const location=useLocation();
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+    const [selectedMonthInorder, setSelectedMonthInorder] = useState(new Date().getMonth() + 1);
   const navigate = useNavigate();
   const [Color,setColor]=useState(null)
   const [Supplier,setSupplier]=useState(null);
@@ -71,6 +72,7 @@ function HomePage(){
       navigate('/login');
     }
   }, [navigate]);
+  const [inorder,setinorder]=useState([])
   useEffect(()=>{
     const fetchdata=async()=>{
       try{
@@ -85,6 +87,20 @@ function HomePage(){
     }
  
   },[selectedMonth,sessionData])
+  useEffect(()=>{
+    const fetchdata=async()=>{
+      try{
+        const response=await axios.get(`http://localhost:5278/api/InOrder/GetCountinOrder/${sessionData.idShowroom}/${selectedMonthInorder}`)
+        setinorder(response.data.result);
+      }catch(error){
+        console.log(error)
+      }
+    }
+    if(sessionData && sessionData.idShowroom){
+      fetchdata();
+    }
+ 
+  },[selectedMonthInorder,sessionData])
 
   const [TotalInorder,setTotalInorder]=useState(null);
   useEffect(()=>{
@@ -113,12 +129,35 @@ function HomePage(){
 
     return chartData;
   };
+  const generateInorderChartData = () => {
+    const daysInMonth = new Date(new Date().getFullYear(), selectedMonth, 0).getDate();
+    const chartData = Array.from({ length: daysInMonth }, (_, index) => 0);
+
+    inorder.forEach((orderCount) => {
+      const orderDay = new Date(orderCount.orderDate).getDate();
+      chartData[orderDay - 1] = orderCount.orderCount;
+    });
+
+    return chartData;
+  };
   const chartData = {
     labels: Array.from({ length: new Date(new Date().getFullYear(), selectedMonth, 0).getDate() }, (_, index) => index + 1),
     datasets: [
       {
         label: 'Number of Unique Orders',
         data: generateChartData(),
+        backgroundColor: 'rgba(75,192,192,0.6)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+  const chartInorderData = {
+    labels: Array.from({ length: new Date(new Date().getFullYear(), selectedMonthInorder, 0).getDate() }, (_, index) => index + 1),
+    datasets: [
+      {
+        label: 'Number of Unique Orders',
+        data: generateInorderChartData(),
         backgroundColor: 'rgba(75,192,192,0.6)',
         borderColor: 'rgba(75,192,192,1)',
         borderWidth: 1,
@@ -276,7 +315,32 @@ return(
              
               </div>
             </div>
+            <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Avenue By Month</p>
+                  <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                  <div class="d-flex flex-wrap pt-10">
+                    
+                  <Bar data={chartInorderData} options={chartOptions} />
+                  <label>Select Month:</label>
+                  <select id="selectMonth"
+                    className="form-select" value={selectedMonthInorder} onChange={(e) => setSelectedMonthInorder(e.target.value)}>
+                    {[...Array(12).keys()].map((month) => (
+                      <option key={month + 1} value={month + 1}>
+                        {month + 1}
+                      </option>
+                    ))}
+                  </select>
+                  <canvas id="order-chart"></canvas>
+                </div>
+              </div>
+            </div>
           
+          </div>
+          
+          </div>
           </div>
       
           <footer class="footer">

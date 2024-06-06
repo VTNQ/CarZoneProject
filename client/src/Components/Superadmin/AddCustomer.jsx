@@ -192,7 +192,6 @@ function AddCustomer() {
                             </div>
 
                         </div>
-
                     </div>
 
                     <footer className="footer">
