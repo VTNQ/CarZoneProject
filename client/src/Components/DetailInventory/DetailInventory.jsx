@@ -1,5 +1,6 @@
 import Menu from "../Menu/Menu";
 import './DetailInventory.css';
+import Select from "react-select"
 import Swal from 'sweetalert2';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -8,6 +9,7 @@ import Pagination from 'react-paginate';
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { keyframes } from "@emotion/react";
 function DetailInventory() {
     const mapstyles = {
         height: '100vh',
@@ -59,9 +61,38 @@ function DetailInventory() {
         }
         fetchdata();
     }, [])
+    const SendRequest=async()=>{
+        try{
+            setloading(true)
+            const response=await fetch("http://localhost:5278/api/Request/AddRequest",{
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ to: SelectWareHouse?.value, from: FromData.NameRequest, type: true, description: FromData.CommentRequest })
+            })
+            if(response.ok){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                })
+                setloading(false)
+                setSelectWareHouse(null)
+                setFromData({
+                    NameRequest:'',
+                    CommentRequest:''
+                })
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
     const handleSubmit = async () => {
 
         try {
+            setloading(true)
             const response = await fetch("http://localhost:5278/api/WareHouse/SendMessage", {
                 method: 'POST',
                 headers: {
@@ -75,6 +106,7 @@ function DetailInventory() {
                 })
             })
             if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Send Success',
@@ -150,8 +182,23 @@ function DetailInventory() {
         condition: '',
         mileage: '',
         dateAccept: '',
-        model: ''
+        model: '',
+        NameRequest:'',
+        CommentRequest:'',
+
     })
+    const [WareHouse, setWareHouse] = useState([]);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/Request/ShowWareHouse");
+                setWareHouse(response.data.result)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [])
     const [loading, setloading] = useState(true);
     const [Image,setImage]=useState([]);
     useEffect(() => {
@@ -504,6 +551,10 @@ function DetailInventory() {
         }
 
     };
+    const [SelectWareHouse, setSelectWareHouse] = useState(null)
+    const handleSelectWareHouse = (SelectWareHouse) => {
+        setSelectWareHouse(SelectWareHouse);
+    }
     const [ActiveTab, setActiveTab] = useState('Overview');
     const handleTabChange = (tabID) => {
         setActiveTab(tabID);
@@ -537,7 +588,7 @@ function DetailInventory() {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: Image < 5 ? Image : 5,
+        slidesToShow: Image.length < 5 ? Image.length : 5,
         slidesToScroll: 1,
 
         arrows: false,
@@ -551,7 +602,7 @@ function DetailInventory() {
 
         arrows: false,
     }
-
+  
     return (
         <>
             {loading && (
@@ -696,18 +747,26 @@ function DetailInventory() {
                                                                                 </span>
                                                                             </p>
                                                                             <div className="comment-form-comment">
-                                                                                <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', marginBottom: '14px' }} />
+                                                                            <label for="exampleInputUsername1">Ware House</label>
+                                                <Select options={WareHouse.map(ware => ({ value: ware.name, label: ware.name }))}
+                                                    value={SelectWareHouse}
+                                                    onChange={(SelectedOption) => handleSelectWareHouse(SelectedOption)}
+                                                />
                                                                             </div>
+                                                                            <br />
                                                                             <div className="content-form uk-child-width-1-2@s uk-grid-small uk-grid">
-                                                                                <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
-                                                                                    <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+                                                                                <div className="comment-form-author uk-first-column" style={{ width: '100%' }}>
+                                                                                    <input type="text" id="wpforms-14099-field_1" value={FromData.NameRequest} onChange={(e) => setFromData({ ...FromData, NameRequest: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
                                                                                 </div>
-                                                                                <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
-                                                                                    <input type="email" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Email" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', marginLeft: '3px' }} />
-                                                                                </div>
+                                                                              
                                                                             </div>
+                                                                            <br />
+                                                                            <div className="comment-form-comment">
+                                                                                <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" value={FromData.CommentRequest} onChange={(e) => setFromData({ ...FromData, CommentRequest: e.target.value })}  placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', marginBottom: '14px' }} />
+                                                                            </div>
+                                                                           
                                                                             <div className="wpforms-submit-container" style={{ marginTop: "10px" }}>
-                                                                                <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Post Comment</button>
+                                                                                <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }} onClick={()=>SendRequest()}>Post Comment</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>

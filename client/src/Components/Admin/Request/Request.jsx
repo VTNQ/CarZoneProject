@@ -31,22 +31,15 @@ function Request() {
             navigate('/login');
         }
     }, [navigate]);
-    const [SelectWareHouse, setSelectWareHouse] = useState(null)
+
     const [isPopupVisible, setPopupVisibility] = useState(false);
-    const handleSelectWareHouse = (SelectWareHouse) => {
-        setSelectWareHouse(SelectWareHouse);
-    }
+  
     const [IsDescriptionChange, setIsDescriptionChange] = useState(false)
     const [FromData, setFromData] = useState({
         Description: '',
         ShowDescription: ''
     })
-    const handleDescriptionChange = (value) => {
-        setFromData({
-            ...FormData,
-            Description: value
-        })
-    }
+  
     const [Request, setReQuest] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
@@ -106,48 +99,7 @@ function Request() {
     const indexOflastRequest = (currentPage + 1) * perPage;
     const indexOfFirtRequest = indexOflastRequest - perPage;
     const currentRequest = filterRequest.slice(indexOfFirtRequest, indexOflastRequest);
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (SelectWareHouse?.value == null || FromData.Description == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Please enter complete information',
-                showConfirmButton: false,
-                timer: 1500,
-            })
-        } else {
-            try {
-                setloading(true)
-                const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
-                    method: 'Post',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ to: SelectWareHouse?.value, from: sessionData.fullName, type: true, description: FromData.Description })
-                })
-                if (response.ok) {
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Add success',
-                        showConfirmButton: false,
-                        timer: 1500,
-                    })
-                    setloading(false)
-                    setSelectWareHouse(null)
-                    setFromData({
-                        Description: ''
-                    })
-                    const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-                    setReQuest(response.data.result)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-
-    }
     const closingAnimation = {
         animation: 'flipright 0.5s forwards',
     };
@@ -166,41 +118,7 @@ function Request() {
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
-                        <div class="row">
-                            <div class="col-md-12 grid-margin stretch-card">
-                                <div class="card" style={{ height: 'auto' }}>
-                                    <div class="card-body">
-                                        <h4 class="card-title">Request WareHouse</h4>
-                                        <p class="card-description"> Basic form layout </p>
-                                        <form class="forms-sample" onSubmit={handleSubmit}>
-
-                                            <div class="form-group" >
-                                                <label for="exampleInputUsername1">Ware House</label>
-                                                <Select options={WareHouse.map(ware => ({ value: ware.name, label: ware.name }))}
-                                                    value={SelectWareHouse}
-                                                    onChange={(SelectedOption) => handleSelectWareHouse(SelectedOption)}
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label for="exampleInputUsername1">Descrtion</label>
-                                                <ReactQuill
-                                                    theme="snow"
-                                                    value={FromData.Description}
-                                                    onChange={handleDescriptionChange}
-                                                    placeholder='Enter Description'
-
-
-
-                                                />
-                                            </div>
-                                            <button type="submit" class="btn btn-primary me-2">Submit</button>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                     
                         <div className="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
