@@ -1,10 +1,34 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Line } from 'react-chartjs-2';
+import { PolarArea } from 'react-chartjs-2';
+import 'chart.js/auto';
+
 
 export const Dashboard = () => {
   const [showroom,setShowroom] = useState([]);
   const [order,setOrder] = useState([]);
-
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [{
+      label: 'Monthly Revenue',
+      data: [],
+      backgroundColor: 'rgba(75,192,192,0.2)',
+      borderColor: 'rgba(75,192,192,1)',
+      tension: 0.1
+    }]
+  });
+  const [chartData1, setChartData1] = useState({
+    labels: [],
+    datasets: [{
+      label: 'Monthly Revenue',
+      data: [],
+      backgroundColor: 'rgba(200,200,200,0.2)',
+      borderColor: 'rgba(75,192,192,1)',
+      tension: 0.1
+    }]
+  });
+  
   const fetchDataShowroom = async () => {
     const response = await axios.get('http://localhost:5278/api/Showroom/showShowroom');
     setShowroom(response.data);
@@ -18,6 +42,11 @@ export const Dashboard = () => {
   const [CustomerByPrecious,setCustomerByPrecious] = useState([]);
   const [NewOrder,setNewOrder] = useState([]);
   const [totalCar,setTotalCar] = useState(null);
+  const [EachCar,setEachCar] = useState([]);
+  const [EachShowroom,setEachShowroom] = useState([]);
+  const [TopCar,setTopCar] = useState([]);
+  const [AvenueCountry,setAvenueCountry] = useState([]);
+  const [HighestAvenueCountry,setHighestAvenueCountry] = useState(null);
   useEffect(()=>{
     const fetchDataAvenue = async () =>{
       const response = await axios.get('http://localhost:5278/api/Statistic/getAvenueByPrecious');
@@ -49,6 +78,112 @@ export const Dashboard = () => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return today.toLocaleDateString(undefined, options);
   };
+
+
+  useEffect(() => {
+    const fetchDataChart = async () => {
+      try {
+        const response = await axios.get('http://localhost:5278/api/Statistic/getAvenueByMonth');
+        const months = response.data.map(item => `Month ${item.month}`);
+        const amounts = response.data.map(item => item.totalAmount);
+  
+        setChartData({
+          labels: months,
+          datasets: [{
+            label: 'Monthly Revenue',
+            data: amounts,
+            fill: true,
+            backgroundColor: 'rgba(75,192,192,0.2)',
+            borderColor: 'rgba(75,192,192,1)',
+            tension: 0.1
+          }]
+        });
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+    };
+  
+    fetchDataChart();
+  }, []);
+  useEffect(() => {
+    const fetchDataChartCustomer = async () => {
+      try {
+        const response = await axios.get('http://localhost:5278/api/Statistic/getCustomerByMonth');
+        const formattedData = response.data.map(item => ({
+          label: `${item.month}/${item.year}`, 
+          newCustomers: item.newCustomers, 
+        }));
+  
+        setChartData1({
+          labels: formattedData.map(item => item.label), 
+          datasets: [{
+            label: 'Monthly New Customers', 
+            data: formattedData.map(item => item.newCustomers), 
+            fill: true,
+            backgroundColor: 'rgba(255, 192, 203, 0.2)',
+    borderColor: 'rgba(255, 192, 203, 1)',
+            tension: 0.1
+          }]
+        });
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+    };
+    const fetchDataEachCar = async () => {
+      const response = await axios.get('http://localhost:5278/api/Statistic/getDataEachCar');
+      setEachCar(response.data);
+    }
+    const fetchDataAvenueShowroom = async () => {
+      const response = await axios.get('http://localhost:5278/api/Statistic/getAvenueEachShowroom');
+      setEachShowroom(response.data);
+    }
+    const fetchDataTopCar = async () => {
+      const response = await axios.get('http://localhost:5278/api/Statistic/getTopCar');
+      setTopCar(response.data);
+    }
+    const fetchDataAvenueCountry = async () => {
+      const response = await axios.get('http://localhost:5278/api/Statistic/getAvenueByCountry');
+      setAvenueCountry(response.data);
+
+    }
+    const fetchDataAvenueHighestCountry = async () => {
+      const response = await axios.get('http://localhost:5278/api/Statistic/getHighestAvenueCountry');
+      setHighestAvenueCountry(response.data);
+
+    }
+  
+    fetchDataChartCustomer();
+    fetchDataEachCar();
+    fetchDataAvenueShowroom();
+    fetchDataTopCar();
+    fetchDataAvenueCountry();
+    fetchDataAvenueHighestCountry();
+  }, []); 
+  const data = {
+    labels: AvenueCountry.map(item => item.countryName),
+    datasets: [{
+      data: AvenueCountry.map(item => item.totalAvenue),
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    }]
+  };
+  
+  
   return (
     <>
         <div class="main-panel">
@@ -117,25 +252,7 @@ export const Dashboard = () => {
                         ))}
                       </tbody>
                     </table>
-                    {/* <Pagination
-                                                previousLabel={'previous'}
-                                                nextLabel={'next'}
-                                                breakLabel={'...'}
-                                                pageCount={Math.ceil(Country.length / perPage)}
-                                                marginPagesDisplayed={2}
-                                                pageRangeDisplayed={5}
-                                                onPageChange={handlePageclick}
-                                                containerClassName={'pagination'}
-                                                activeClassName={'active'}
-                                                previousClassName={'page-item'}
-                                                previousLinkClassName={'page-link'}
-                                                nextClassName={'page-item'}
-                                                nextLinkClassName={'page-link'}
-                                                breakClassName={'page-item'}
-                                                breakLinkClassName={'page-link'}
-                                                pageClassName={'page-item'}
-                                                pageLinkClassName={'page-link'}
-                                            /> */}
+                    
                   </div>
                 </div>
               </div>
@@ -194,6 +311,7 @@ export const Dashboard = () => {
                           <p className="mb-4">Total Cars Product</p>
                           <p className="fs-30 mb-2">{totalCar} Car</p>
                         </>
+                        
                       )}
                     </div>
                   </div>
@@ -205,25 +323,11 @@ export const Dashboard = () => {
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Order Details</p>
+                  <p class="card-title">Avenue By Month</p>
                   <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                  <div class="d-flex flex-wrap mb-5">
-                    <div class="mr-5 mt-3">
-                      <p class="text-muted">Order value</p>
-                      <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                    </div>
-                    <div class="mr-5 mt-3">
-                      <p class="text-muted">Orders</p>
-                      <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
-                    </div>
-                    <div class="mr-5 mt-3">
-                      <p class="text-muted">Users</p>
-                      <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
-                    </div>
-                    <div class="mt-3">
-                      <p class="text-muted">Downloads</p>
-                      <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
-                    </div> 
+                  <div class="d-flex flex-wrap pt-10">
+                    
+                  <Line data={chartData} />
                   </div>
                   <canvas id="order-chart"></canvas>
                 </div>
@@ -233,12 +337,14 @@ export const Dashboard = () => {
               <div class="card">
                 <div class="card-body">
                  <div class="d-flex justify-content-between">
-                  <p class="card-title">Sales Report</p>
+                  <p class="card-title">Detail Customer</p>
                   <a href="#" class="text-info">View all</a>
                  </div>
                   <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                  <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-                  <canvas id="sales-chart"></canvas>
+                  <div class="d-flex flex-wrap pt-10">
+                    
+                  <Line data={chartData1} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -252,78 +358,44 @@ export const Dashboard = () => {
                       <div class="carousel-item active">
                         <div class="row">
                           <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                            <div class="ml-xl-4 mt-3">
+                             
+
+                            <div class="ml-xl-4 mt-16">
+                                {HighestAvenueCountry && (
+                            <>
                             <p class="card-title">Detailed Reports</p>
-                              <h1 class="text-primary">$34040</h1>
-                              <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
+                            <h1 class="text-primary">${HighestAvenueCountry.totalAvenue}</h1>
+                              <h3 class="font-weight-500 mb-xl-4 text-primary">{HighestAvenueCountry.countryName}</h3>
                               <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                              
+                            </>
+                      )}
                             </div>  
+
                             </div>
                           <div class="col-md-12 col-xl-9">
                             <div class="row">
                               <div class="col-md-6 border-right">
                                 <div class="table-responsive mb-3 mb-md-0 mt-3">
                                   <table class="table table-borderless report-table">
-                                    <tr>
-                                      <td class="text-muted">Illinois</td>
-                                      <td class="w-100 px-0">
-                                        <div class="progress progress-md mx-4">
-                                          <div class="progress-bar bg-primary" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                      </td>
-                                      <td><h5 class="font-weight-bold mb-0">713</h5></td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-muted">Washington</td>
-                                      <td class="w-100 px-0">
-                                        <div class="progress progress-md mx-4">
-                                          <div class="progress-bar bg-warning" role="progressbar"  style={{width: '30%'}} aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                      </td>
-                                      <td><h5 class="font-weight-bold mb-0">583</h5></td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-muted">Mississippi</td>
-                                      <td class="w-100 px-0">
-                                        <div class="progress progress-md mx-4">
-                                          <div class="progress-bar bg-danger" role="progressbar"  style={{width: '95%'}} aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                      </td>
-                                      <td><h5 class="font-weight-bold mb-0">924</h5></td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-muted">California</td>
-                                      <td class="w-100 px-0">
-                                        <div class="progress progress-md mx-4">
-                                          <div class="progress-bar bg-info" role="progressbar" style={{width: '60%'}} aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                      </td>
-                                      <td><h5 class="font-weight-bold mb-0">664</h5></td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-muted">Maryland</td>
-                                      <td class="w-100 px-0">
-                                        <div class="progress progress-md mx-4">
-                                          <div class="progress-bar bg-primary" role="progressbar"  style={{width: '40%'}} aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                      </td>
-                                      <td><h5 class="font-weight-bold mb-0">560</h5></td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-muted">Alaska</td>
-                                      <td class="w-100 px-0">
-                                        <div class="progress progress-md mx-4">
-                                          <div class="progress-bar bg-danger" role="progressbar"  style={{width: '75%'}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                      </td>
-                                      <td><h5 class="font-weight-bold mb-0">793</h5></td>
-                                    </tr>
+                                    
+                                    
+                                    {AvenueCountry.map((av,index)=>(
+                                    <tr key={index}>
+                                    <td class="text-muted">{av.countryName}</td>
+                                    {/* <td class="w-100 px-0">
+                                      <div class="progress progress-md mx-4">
+                                        <div class="progress-bar bg-primary" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+                                    </td> */}
+                                      <td><p class="mb-0"><span class="font-weight-bold mr-2">{av.totalAvenue}</span>({av.percentage}%)</p></td>
+                                  </tr>
+                                  ) )}
                                   </table>
                                 </div>
                               </div>
                               <div class="col-md-6 mt-3">
-                                <canvas id="north-america-chart"></canvas>
-                                <div id="north-america-legend"></div>
+                              <PolarArea data={data} />
                               </div>
                             </div>
                           </div>
@@ -410,14 +482,7 @@ export const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-                    <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
+                   
                   </div>
                 </div>
               </div>
@@ -434,53 +499,21 @@ export const Dashboard = () => {
                         <tr>
                           <th>Product</th>
                           <th>Price</th>
-                          <th>Date</th>
-                          <th>Status</th>
+                          <th>Brand</th>
+                          <th>Total Sold</th>
                         </tr>  
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Search Engine Marketing</td>
-                          <td class="font-weight-bold">$362</td>
-                          <td>21 Sep 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                        <tr>
-                          <td>Search Engine Optimization</td>
-                          <td class="font-weight-bold">$116</td>
-                          <td>13 Jun 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                        <tr>
-                          <td>Display Advertising</td>
-                          <td class="font-weight-bold">$551</td>
-                          <td>28 Sep 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>Pay Per Click Advertising</td>
-                          <td class="font-weight-bold">$523</td>
-                          <td>30 Jun 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>E-Mail Marketing</td>
-                          <td class="font-weight-bold">$781</td>
-                          <td>01 Nov 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-danger">Cancelled</div></td>
-                        </tr>
-                        <tr>
-                          <td>Referral Marketing</td>
-                          <td class="font-weight-bold">$283</td>
-                          <td>20 Mar 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>Social media marketing</td>
-                          <td class="font-weight-bold">$897</td>
-                          <td>26 Oct 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
+                        {TopCar.map((car,index)=>(
+                        <tr key={index}>
+                       <td>{car.nameCar}</td>
+                          <td class="font-weight-bold">${car.price}</td>
+                          <td>{car.brand}</td>
+                          <td class="font-weight-medium">{car.totalCar}</td>
+                        
+                      </tr>
+                       ) )}
+                       
                       </tbody>
                     </table>
                   </div>
@@ -552,52 +585,25 @@ export const Dashboard = () => {
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-0">Projects</p>
+                  <p class="card-title mb-0">Total Brand</p>
                   <div class="table-responsive">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless mt-6">
                       <thead>
                         <tr>
-                          <th class="pl-0  pb-2 border-bottom">Places</th>
-                          <th class="border-bottom pb-2">Orders</th>
-                          <th class="border-bottom pb-2">Users</th>
+                          <th class="pl-0  pb-2 border-bottom">NameBrand</th>
+                          <th class="border-bottom pb-2">car</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="pl-0">Kentucky</td>
-                          <td><p class="mb-0"><span class="font-weight-bold mr-2">65</span>(2.15%)</p></td>
-                          <td class="text-muted">65</td>
-                        </tr>
-                        <tr>
-                          <td class="pl-0">Ohio</td>
-                          <td><p class="mb-0"><span class="font-weight-bold mr-2">54</span>(3.25%)</p></td>
-                          <td class="text-muted">51</td>
-                        </tr>
-                        <tr>
-                          <td class="pl-0">Nevada</td>
-                          <td><p class="mb-0"><span class="font-weight-bold mr-2">22</span>(2.22%)</p></td>
-                          <td class="text-muted">32</td>
-                        </tr>
-                        <tr>
-                          <td class="pl-0">North Carolina</td>
-                          <td><p class="mb-0"><span class="font-weight-bold mr-2">46</span>(3.27%)</p></td>
-                          <td class="text-muted">15</td>
-                        </tr>
-                        <tr>
-                          <td class="pl-0">Montana</td>
-                          <td><p class="mb-0"><span class="font-weight-bold mr-2">17</span>(1.25%)</p></td>
-                          <td class="text-muted">25</td>
-                        </tr>
-                        <tr>
-                          <td class="pl-0">Nevada</td>
-                          <td><p class="mb-0"><span class="font-weight-bold mr-2">52</span>(3.11%)</p></td>
-                          <td class="text-muted">71</td>
-                        </tr>
-                        <tr>
-                          <td class="pl-0 pb-0">Louisiana</td>
-                          <td class="pb-0"><p class="mb-0"><span class="font-weight-bold mr-2">25</span>(1.32%)</p></td>
-                          <td class="pb-0">14</td>
-                        </tr>
+                       {EachCar.map((brand,index)=>(
+                        <tr key={index}>
+                        <td class="pl-0">{brand.brandName}</td>
+                        <td><p class="mb-0"><span class="font-weight-bold mr-2">{brand.carCount}</span>({brand.percentage}%)</p></td>
+                        
+                      </tr>
+                       ) )}
+                        
                       </tbody>
                     </table>
                   </div>
@@ -670,95 +676,34 @@ export const Dashboard = () => {
             </div>
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Notifications</p>
-                  <ul class="icon-data-list">
-                    <li>
-                      <div class="d-flex">
-                        <img src="images/faces/face1.jpg" alt="user"/>
-                        <div>
-                          <p class="text-info mb-1">Isabella Becker</p>
-                          <p class="mb-0">Sales dashboard have been created</p>
-                          <small>9:30 am</small>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex">
-                        <img src="images/faces/face2.jpg" alt="user"/>
-                        <div>
-                          <p class="text-info mb-1">Adam Warren</p>
-                          <p class="mb-0">You have done a great job #TW111</p>
-                          <small>10:30 am</small>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex">
-                      <img src="images/faces/face3.jpg" alt="user"/>
-                     <div>
-                      <p class="text-info mb-1">Leonard Thornton</p>
-                      <p class="mb-0">Sales dashboard have been created</p>
-                      <small>11:30 am</small>
-                     </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex">
-                        <img src="images/faces/face4.jpg" alt="user"/>
-                        <div>
-                          <p class="text-info mb-1">George Morrison</p>
-                          <p class="mb-0">Sales dashboard have been created</p>
-                          <small>8:50 am</small>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex">
-                        <img src="images/faces/face5.jpg" alt="user"/>
-                        <div>
-                        <p class="text-info mb-1">Ryan Cortez</p>
-                        <p class="mb-0">Herbs are fun and easy to grow.</p>
-                        <small>9:00 am</small>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+              <div class="card-body">
+                  <p class="card-title mb-0">Avenue Each Showroom</p>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mt-6">
+                      <thead>
+                        <tr>
+                          <th class="pl-0  pb-2 border-bottom">Name Showroom</th>
+                          <th class="border-bottom pb-2">Avenue</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                       {EachShowroom.map((sr,index)=>(
+                        <tr key={index}>
+                        <td class="pl-0">{sr.nameShowroom}</td>
+                        <td><p class="mb-0">${sr.avenueShowroom}</p></td>
+                        
+                      </tr>
+                       ) )}
+                        
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Advanced Table</p>
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table id="example" class="display expandable-table"  style={{width: '100%'}}>
-                          <thead>
-                            <tr>
-                              <th>Quote#</th>
-                              <th>Product</th>
-                              <th>Business type</th>
-                              <th>Policy holder</th>
-                              <th>Premium</th>
-                              <th>Status</th>
-                              <th>Updated at</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-
-                
-              </div>
-            </div>
+         
         </div>
       
         <footer class="footer">

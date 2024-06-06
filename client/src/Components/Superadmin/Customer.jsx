@@ -8,84 +8,100 @@ import {useLocation, useNavigate} from "react-router-dom";
 
 
 export const Customer = () => {
-  const [perPage] = useState(5);
-  const [searchTerm, setSearchtem] = useState('');
-  const [currentPage, setCurrentPage] = useState(0);
-  const [FromData, setFromData] = useState({
-      FullName: '',
-      Email: '',
-      Address: '',
-      Phone: '',
-      IdentityCode: '',
-      UpdateName: '',
-      UpdateEmail: '',
-      id: '',
-      UpdateAdress: '',
-      UpdatePhone: '',
-      UpdateIdentityCode: '',
-      UpdateDOB: '',
-  })
-  const navigate = useNavigate();
-  const location = useLocation();
-  const username = location.state?.fullName || '';
-  const email = location.state?.email || '';
-  const ID=location.state?.ID||'';
-  const [Customer, setCustomer] = useState([]);
-  useEffect(() => {
-      const fetchdata = async () => {
-          const response = await axios.get(`http://localhost:5278/api/Customer/ShowCustomer`);
-          setCustomer(response.data)
-      }
-      fetchdata()
-  }, [])
-  const [IsClosingPopup, setIsClosingPopup] = useState(false);
-  const popupContentStyle = {
-      background: 'white',
-      padding: '20px',
-      maxWidth: '400px',
-      textAlign: 'center',
-      borderRadius: '8px',
-      boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-      animation: 'flipleft 0.5s',
-      zindex: '1000000' // Default animation
-  };
-  const closingAnimation = {
-      animation: 'flipright 0.5s forwards',
-  };
-  const handleClosepopup = () => {
-      setIsClosingPopup(true);
-      setTimeout(() => {
-          setPopupVisibility(false)
-          setIsClosingPopup(false)
-      }, 500);
-  }
-  const FilterCustomer = Customer.filter(Cus =>
-      Cus.fullName.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+    const [perPage] = useState(5);
+    const [searchTerm, setSearchtem] = useState('');
+    const [currentPage, setCurrentPage] = useState(0);
+    const [FromData, setFromData] = useState({
+        FullName: '',
+        Email: '',
+        Address: '',
+        Phone: '',
+        IdentityCode: '',
+        UpdateName: '',
+        UpdateEmail: '',
+        id: '',
+        UpdateAdress: '',
+        UpdatePhone: '',
+        UpdateIdentityCode: '',
+        UpdateDOB: '',
+    });
+    const navigate = useNavigate();
+    const location = useLocation();
+    const username = location.state?.fullName || '';
+    const email = location.state?.email || '';
+    const ID = location.state?.ID || '';
+    const [Customer, setCustomer] = useState([]);
 
-  const handlePageclick = (data) => {
-      setCurrentPage(data.selected);
-  };
-  const indexOflastEmployee = (currentPage + 1) * perPage; 
-  const indexOfFirtEmployee = indexOflastEmployee - perPage;
-  // const currentEmployee = FilterEmployee.slice(indexOfFirtEmployee, indexOflastEmployee);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/Customer/ShowCustomer`);
+                if (response.data && Array.isArray(response.data.result)) {
+                    setCustomer(response.data.result);
+                } else {
+                    console.error("API response is not an array:", response.data);
+                    setCustomer([]);
+                }
+            } catch (error) {
+                console.log(error);
+                setCustomer([]);
+            }
+        };
+        fetchdata();
+    }, []);
 
-  const indexOflastCustomer = (currentPage + 1) * perPage;
-  const indexOfFirtCustomer = indexOflastCustomer - perPage;
-  const currentCustomer = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCustomer)
-  const [isPopupVisible, setPopupVisibility] = useState(false);
-  const handleEditClick = (id) => {
-      const SelectCustomer = Customer.find(Customer => Customer.id === id)
-      if (SelectCustomer) {
-          FromData.id = SelectCustomer.id;
-          FromData.UpdateName = SelectCustomer.fullName;
-          FromData.UpdateAdress = SelectCustomer.address;
-          FromData.UpdateEmail = SelectCustomer.email;
-          FromData.UpdatePhone = SelectCustomer.phone;
-          FromData.UpdateDOB = SelectCustomer.dob;
-      }
-      setPopupVisibility(true)
-  }
+    const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const popupContentStyle = {
+        background: 'white',
+        padding: '20px',
+        maxWidth: '400px',
+        textAlign: 'center',
+        borderRadius: '8px',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+        animation: 'flipleft 0.5s',
+        zindex: '1000000' // Default animation
+    };
+    const closingAnimation = {
+        animation: 'flipright 0.5s forwards',
+    };
+    const handleClosepopup = () => {
+        setIsClosingPopup(true);
+        setTimeout(() => {
+            setPopupVisibility(false);
+            setIsClosingPopup(false);
+        }, 500);
+    };
+
+    const FilterCustomer = Array.isArray(Customer)
+        ? Customer.filter(Cus =>
+            Cus.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        : [];
+
+    const handlePageclick = (data) => {
+        setCurrentPage(data.selected);
+    };
+
+    const indexOflastCustomer = (currentPage + 1) * perPage;
+    const indexOfFirtCustomer = indexOflastCustomer - perPage;
+    const currentCustomer = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCustomer);
+
+    const [isPopupVisible, setPopupVisibility] = useState(false);
+    const handleEditClick = (id) => {
+        const SelectCustomer = Customer.find(Customer => Customer.id === id);
+        if (SelectCustomer) {
+            setFromData({
+                ...FromData,
+                id: SelectCustomer.id,
+                UpdateName: SelectCustomer.fullName,
+                UpdateAdress: SelectCustomer.address,
+                UpdateEmail: SelectCustomer.email,
+                UpdatePhone: SelectCustomer.phone,
+                UpdateDOB: SelectCustomer.dob,
+            });
+            setPopupVisibility(true);
+        }
+    };
   return (
       <>
          
@@ -95,7 +111,7 @@ export const Customer = () => {
                           <div class="col-lg-12 grid-margin stretch-card">
                               <div class="card">
                                   <div class="card-body">
-                                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded mb-6" onClick={()=>navigate("/Employee/Create-Customer",{state:{ID:ID,fullName:username,email:email}})}>Add Customer</button>
+                                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded mb-6" onClick={()=>navigate("/superadmin/addCustomer",{state:{ID:ID,fullName:username,email:email}})}>Add Customer</button>
                                       <h4 class="card-title">Customer</h4>
                                       <form class="forms-sample">
                                           <label for="exampleInputUsername1">Search</label>

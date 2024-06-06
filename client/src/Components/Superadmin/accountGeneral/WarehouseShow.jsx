@@ -114,7 +114,7 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                               <div class="card">
                                   <div class="card-body">
                                       <div className="flex justify-between">
-                                      <h4 class="card-title">Admin List</h4>
+                                      <h4 class="card-title">Account Warehouse List</h4>
                                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded mb-6" onClick={() => navigate(`/superadmin/admin/warehouse`)}><i class="mdi mdi-note-plus mr-2"></i>Back</button>
 
                                       </div>
