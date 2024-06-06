@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2';
 import { PolarArea } from 'react-chartjs-2';
 import 'chart.js/auto';
-
+import LinearProgress from '@mui/material/LinearProgress'
 
 export const Dashboard = () => {
   const [showroom,setShowroom] = useState([]);
@@ -388,11 +388,7 @@ export const Dashboard = () => {
                                         <div class="progress-bar bg-primary" role="progressbar" style={{width: '70%'}} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                     </td> */}
-                                     <td className="w-100 px-0">
-                                          <div className="progress progress-md mx-4">
-                                            <div className="progress-bar bg-primary" role="progressbar" style={{ width: `${av.percentage}%` }} aria-valuenow={av.percentage} aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
+                                     
                                       <td><p class="mb-0"><span class="font-weight-bold mr-2">{av.totalAvenue}</span>({av.percentage}%)</p></td>
                                   </tr>
                                   ) )}
