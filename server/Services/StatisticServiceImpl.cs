@@ -41,8 +41,8 @@ namespace server.Services
                     Quarter = g.Key.Quarter,
                     TotalAmount = g.Sum(order => order.TotalAmount)
                 })
-                .OrderBy(g => g.Year)
-                .ThenBy(g => g.Quarter)
+                .OrderByDescending(g => g.Quarter)
+                .ThenBy(g => g.Year)
                 .ToList();
 
             
@@ -62,8 +62,8 @@ namespace server.Services
                     Quarter = g.Key.Quarter,
                     NewCustomers = g.Select(order => order.IdCustomer).Distinct().Count()
                 })
-                .OrderBy(g => g.Year)
-                .ThenBy(g => g.Quarter)
+                .OrderByDescending(g => g.Year)
+                .ThenByDescending(g => g.Quarter)
                 .ToList();
         }public dynamic getNewCustomerByMonth()
         {
@@ -98,7 +98,7 @@ namespace server.Services
                 Quarter = g.Key.Quarter,
                 TotalOrder = g.Count()
 ,
-            }).OrderBy(g => g.Year).ThenBy(g => g.Quarter).ToList();
+            }).OrderByDescending(g => g.Year).ThenByDescending(g => g.Quarter).ToList();
         }
 
         public dynamic getTotalCar()
