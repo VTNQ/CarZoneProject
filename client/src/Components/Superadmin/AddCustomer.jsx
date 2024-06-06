@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
+
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
-export const AddCustomer = () => {
+function AddCustomer() {
     const [Dob, setDob] = useState('');
-    // const [sessionData, setSessionData] = useState(null);
+    const [sessionData, setSessionData] = useState(null);
     const HandleDob = (event) => {
         setDob(event.target.value);
     };
+    const [loading, setloading] = useState(false);
     const navigate = useNavigate();
-    // const getUserSession=()=>{
-    //     const UserSession=Cookies.get("UserSession");
-    //     if(UserSession){
-    //         return JSON.parse(UserSession);
-    //     }
-    //     return null;
-    // }
-    
-    // useEffect(() => {
-    //     const data = getUserSession();
-   
-    //     if (data && data.role=='Employee') {
-    //         setSessionData(data);
-    //     } else{
-    //       navigate('/login');
-    //     }
-    // }, [navigate]);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data &&  data.role=='Superadmin') {
+            setSessionData(data);
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
     const [FromData, setFromData] = useState({
         FullName: '',
         Email: '',
@@ -46,74 +48,77 @@ export const AddCustomer = () => {
     }
     const HandleOnSubmit = async (event) => {
         event.preventDefault();
-       if(FromData.FullName=='' || FromData.Phone=='' || FromData.Address=='' || FromData.Email=='' || FromData.IdentityCode=='' || FromData.Sign==null || Dob==''){
-        Swal.fire({
-            icon: 'error',
-            title: 'Please enter complete information',
-            showConfirmButton: false,
-            timer: 1500,
-        })
-       }else if(FromData.IdentityCode.length !=12){
-        Swal.fire({
-            icon: 'error',
-            title: 'ID card requires 12 digits',
-            showConfirmButton: false,
-            timer: 1500,
-        })
-       }else if(FromData.Phone.length !=10){
-        Swal.fire({
-            icon: 'error',
-            title: 'Phone requires 10 digits',
-            showConfirmButton: false,
-            timer: 1500,
-        })
-       }else{
-        const formData = new FormData();
-        const vietnamStartDate = new Date(Dob);
-        console.log(vietnamStartDate.toISOString().split('T')[0]); 
-        formData.append("fullName",FromData.FullName);
-        formData.append("Dob",vietnamStartDate.toISOString().split('T')[0])
-        formData.append("Phone",FromData.Phone);
-        formData.append("Email",FromData.Email);
-        formData.append("Address",FromData.Address);
-        formData.append("IndentityCode",FromData.IdentityCode);
-        formData.append("Sign",FromData.Sign);
-        
-        const response = await fetch("http://localhost:5278/api/Customer/AddCustomer", {
-            method: 'POST',
-          
-            body: formData
-        })
-        if(response.ok){
+        if (FromData.FullName == '' || FromData.Phone == '' || FromData.Address == '' || FromData.Email == '' || FromData.IdentityCode == '' || FromData.Sign == null || Dob == '') {
             Swal.fire({
-                icon: 'success',
-                title: 'Add Customer Success',
+                icon: 'error',
+                title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
-            });
-            setFromData({
-                FullName: '',
-                Email: '',
-                Phone: '',
-                Address: '',
-                IdentityCode: '',
-                Sign: null
-        
             })
-            setDob('')
-            document.getElementById('Sign').value = '';
-        }else{
-            const responseBody = await response.json();
-                    if (responseBody.message) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: responseBody.message || 'Failed to add genre',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
+        } else if (FromData.IdentityCode.length != 12) {
+            Swal.fire({
+                icon: 'error',
+                title: 'ID card requires 12 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else if (FromData.Phone.length != 10) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Phone requires 10 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            setloading(true)
+            const formData = new FormData();
+            const vietnamStartDate = new Date(Dob);
+            console.log(vietnamStartDate.toISOString().split('T')[0]);
+            formData.append("fullName", FromData.FullName);
+            formData.append("Dob", vietnamStartDate.toISOString().split('T')[0])
+            formData.append("Phone", FromData.Phone);
+            formData.append("Email", FromData.Email);
+            formData.append("Address", FromData.Address);
+            formData.append("IndentityCode", FromData.IdentityCode);
+            formData.append("Sign", FromData.Sign);
+
+            const response = await fetch("http://localhost:5278/api/Customer/AddCustomer", {
+                method: 'POST',
+
+                body: formData
+            })
+            if (response.ok) {
+                setloading(false)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add Customer Success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                setFromData({
+                    FullName: '',
+                    Email: '',
+                    Phone: '',
+                    Address: '',
+                    IdentityCode: '',
+                    Sign: null
+
+                })
+                setDob('')
+                document.getElementById('Sign').value = '';
+            } else {
+                setloading(false)
+                const responseBody = await response.json();
+                if (responseBody.message) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: responseBody.message || 'Failed to add genre',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            }
         }
-       }
     }
     const today = new Date();
 
@@ -121,6 +126,14 @@ export const AddCustomer = () => {
     const maxDateString = MaxDate.toISOString().split('T')[0];
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
+       
                 <div className="main-panel">
                     <div className="content-wrapper">
                         <div className="row">
@@ -179,7 +192,6 @@ export const AddCustomer = () => {
                             </div>
 
                         </div>
-                      
                     </div>
 
                     <footer className="footer">
@@ -194,7 +206,9 @@ export const AddCustomer = () => {
                 </div>
 
 
+          
         </>
     )
 }
 
+export default AddCustomer;

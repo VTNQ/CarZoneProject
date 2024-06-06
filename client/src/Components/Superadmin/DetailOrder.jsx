@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
 import axios from "axios";
 
 export const DetailOrderSpm = () => {
@@ -12,20 +13,69 @@ export const DetailOrderSpm = () => {
     const [Invoice, SetInvoice] = useState({});
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
-    const [Contract, setContract] = useState({});
+    const [Contract,setContract]=useState([])
+    const [index,setindex]=useState(1);
+    const [sessionData, setSessionData] = useState(null);
     const IDOutOrder = location.state?.IDOutOrder;
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
 
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowAllContract/`);
+                setContract(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        if(sessionData && sessionData.IDOutOrder){
+            fetchdata();
+        }
+        
+    },[sessionData])
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
+                SetInvoice(response.data.result)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        if(sessionData && sessionData.IDOutOrder){
+            fetchdata();
+        }
+        
+    },[sessionData])
+    const[loading,setloading]=useState(true)
     useEffect(() => {
         const fetchContract = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowAllContract/`);
-                setContract(response.data); // Access the first result object
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${sessionData.IDOutOrder}`)
+                setDetailOutOrder(response.data.result)
             } catch (error) {
-                console.log(error);
+                console.log(error)
+            }finally{
+                setloading(false)
             }
         };
         fetchContract();
-    }, [IDOutOrder]);
+    }, [sessionData]);
 
     useEffect(() => {
         const fetchInvoice = async () => {
@@ -77,12 +127,20 @@ export const DetailOrderSpm = () => {
 
     return (
         <>
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div className="row">
-                        <div class="col-lg-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
+             {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
+                <div class="main-panel">
+                    <div class="content-wrapper">
+
+                        <div className="row">
+                            <div class="col-lg-6 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
                                     <div className="flex justify-between">
                                         <h4 class="card-title">Detail Out Order</h4>
                                         <button

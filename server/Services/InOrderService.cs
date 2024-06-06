@@ -15,5 +15,6 @@ namespace server.Services
         Task<int> TotalInorder(int id);
         Task<int> TotalOrderWareHouse(int id);
         Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime);
+        Task<IEnumerable<dynamic>> GetCountinOrder(int id, int datetime);
     }
 }

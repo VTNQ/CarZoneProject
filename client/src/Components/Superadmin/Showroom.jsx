@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import {useLocation, useNavigate} from "react-router-dom";
 import Select from 'react-select';
+import Cookies from 'js-cookie'
 
 
 export const Showroom = () => {
@@ -20,12 +21,30 @@ export const Showroom = () => {
   const [FormDataUpdate,setFormDataUpdate] = useState({
     Name: ''
   })
+  const [loading,setloading]=useState(true)
   const [selectedDistrict, setSelectedDistrict] = useState(null);
 
   const [District,setDistrict] = useState([]);
 
 
   const navigate = useNavigate();
+  const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
   const location = useLocation();
   const username = location.state?.fullName || '';
   const email = location.state?.email || '';
@@ -49,9 +68,15 @@ export const Showroom = () => {
   const [CityShow,setCityShow] = useState([]);
 
   const fetchdata = async () => {
+  try{
     const response = await axios.get(`http://localhost:5278/api/Showroom/showShowroom`);
     setShowroom(response.data)
     console.log(response.data);
+  }catch(error){
+    console.log(error)
+  }finally{
+    setloading(false)
+  }
 }
   useEffect(() => {
       
@@ -282,7 +307,13 @@ const handleSubmitUpdateName = async (event,id) => {
 }
   return (
       <>
-         
+           {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
               <div className="main-panel">
                   <div className="content-wrapper">
                       <div className="row">

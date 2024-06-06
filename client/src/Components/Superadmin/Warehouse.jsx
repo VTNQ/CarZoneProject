@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import {useLocation, useNavigate} from "react-router-dom";
 import Select from 'react-select';
-
+import Cookies from 'js-cookie'
 
 export const Warehouse = () => {
   const [perPage] = useState(5);
@@ -46,9 +46,15 @@ export const Warehouse = () => {
   const [CityShow,setCityShow] = useState([]);
 
   const fetchdata = async () => {
-    const response = await axios.get(`http://localhost:5278/api/WarehouseAll/getWarehouse`);
-    setShowroom(response.data)
-    console.log(response.data);
+    try{
+        const response = await axios.get(`http://localhost:5278/api/WarehouseAll/getWarehouse`);
+        setShowroom(response.data)
+        console.log(response.data);
+    }catch(error){
+        console.log(error)
+    }finally{
+        setloading(false)
+    }
 }
   useEffect(() => {
       
@@ -87,7 +93,7 @@ export const Warehouse = () => {
   const indexOflastEmployee = (currentPage + 1) * perPage; 
   const indexOfFirtEmployee = indexOflastEmployee - perPage;
   // const currentEmployee = FilterEmployee.slice(indexOfFirtEmployee, indexOflastEmployee);
-
+const[loading,setloading]=useState(true)
   const indexOflastCustomer = (currentPage + 1) * perPage;
   const indexOfFirtCustomer = indexOflastCustomer - perPage;
   const [isPopupVisible, setPopupVisibility] = useState(false);
@@ -100,6 +106,23 @@ export const Warehouse = () => {
     setFormDataShowroom({... FormDataShowroom, IdDistrict: selectedOption.value})
 
   };
+  const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
   useEffect(() => {
     axios.get('http://localhost:5278/api/District/showDistrict')
       .then(response => {
@@ -195,7 +218,13 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
 
   return (
       <>
-         
+           {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
               <div className="main-panel">
                   <div className="content-wrapper">
                       <div className="row">

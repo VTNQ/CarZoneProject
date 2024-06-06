@@ -1,5 +1,6 @@
 import Menu from "../Menu/Menu";
 import './DetailInventory.css';
+import Select from "react-select"
 import Swal from 'sweetalert2';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -8,6 +9,7 @@ import Pagination from 'react-paginate';
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { keyframes } from "@emotion/react";
 function DetailInventory() {
     const mapstyles = {
         height: '100vh',
@@ -18,26 +20,26 @@ function DetailInventory() {
     const closingAnimation = {
         animation: 'flipright 0.5s forwards',
     };
-    const handlePopup=(ID)=>{
-        const SelectCar=DetailCar.find(Detail=>Detail.id==ID);
+    const handlePopup = (ID) => {
+        const SelectCar = DetailCar.find(Detail => Detail.id == ID);
         console.log(SelectCar)
-        if(SelectCar){
-            FromData.Image=SelectCar.picture.pictureLink;
-            FromData.name=SelectCar.name;
-            FromData.Price=SelectCar.price;
-            FromData.BHP=SelectCar.bhp;
-            FromData.motorSize=SelectCar.motorSize;
-            FromData.fueType=SelectCar.fuetype;
-            FromData.driveTrain=SelectCar.driveTrain;
-            FromData.engine=SelectCar.engine;
-            FromData.transmission=SelectCar.transmission;
-            FromData.numberSeat=SelectCar.numberofSeat;
-            FromData.condition=SelectCar.condition;
-            FromData.mileage=SelectCar.mileage;
-            FromData.dateAccept=SelectCar.dateAccept;
-            FromData.model=SelectCar.model;
+        if (SelectCar) {
+            FromData.Image = SelectCar.picture.pictureLink;
+            FromData.name = SelectCar.name;
+            FromData.Price = SelectCar.price;
+            FromData.BHP = SelectCar.bhp;
+            FromData.motorSize = SelectCar.motorSize;
+            FromData.fueType = SelectCar.fuetype;
+            FromData.driveTrain = SelectCar.driveTrain;
+            FromData.engine = SelectCar.engine;
+            FromData.transmission = SelectCar.transmission;
+            FromData.numberSeat = SelectCar.numberofSeat;
+            FromData.condition = SelectCar.condition;
+            FromData.mileage = SelectCar.mileage;
+            FromData.dateAccept = SelectCar.dateAccept;
+            FromData.model = SelectCar.model;
         }
-        
+
         setPopupVisibility(true)
     }
     const handlePageclick = (data) => {
@@ -59,9 +61,38 @@ function DetailInventory() {
         }
         fetchdata();
     }, [])
+    const SendRequest=async()=>{
+        try{
+            setloading(true)
+            const response=await fetch("http://localhost:5278/api/Request/AddRequest",{
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ to: SelectWareHouse?.value, from: FromData.NameRequest, type: true, description: FromData.CommentRequest })
+            })
+            if(response.ok){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                })
+                setloading(false)
+                setSelectWareHouse(null)
+                setFromData({
+                    NameRequest:'',
+                    CommentRequest:''
+                })
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
     const handleSubmit = async () => {
 
         try {
+            setloading(true)
             const response = await fetch("http://localhost:5278/api/WareHouse/SendMessage", {
                 method: 'POST',
                 headers: {
@@ -75,6 +106,7 @@ function DetailInventory() {
                 })
             })
             if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Send Success',
@@ -113,20 +145,20 @@ function DetailInventory() {
         setTimeout(() => {
 
             setFromData({
-                name:'',
-                Image:'',
-                Price:'',
-                BHP:'',
-                motorSize:'',
-                fueType:'',
-                driveTrain:'',
-                engine:'',
-                transmission:'',
-                numberSeat:'',
-                condition:'',
-                mileage:'',
-                dateAccept:'',
-                model:''
+                name: '',
+                Image: '',
+                Price: '',
+                BHP: '',
+                motorSize: '',
+                fueType: '',
+                driveTrain: '',
+                engine: '',
+                transmission: '',
+                numberSeat: '',
+                condition: '',
+                mileage: '',
+                dateAccept: '',
+                model: ''
             })
 
             setPopupVisibility(false)
@@ -136,30 +168,68 @@ function DetailInventory() {
     const [FromData, setFromData] = useState({
         Email: '',
         Name: '',
-        name:'',
+        name: '',
         Message: '',
-        Image:'',
-        Price:'',
-        BHP:'',
-        motorSize:'',
-        fueType:'',
-        driveTrain:'',
-        engine:'',
-        transmission:'',
-        numberSeat:'',
-        condition:'',
-        mileage:'',
-        dateAccept:'',
-        model:''
+        Image: '',
+        Price: '',
+        BHP: '',
+        motorSize: '',
+        fueType: '',
+        driveTrain: '',
+        engine: '',
+        transmission: '',
+        numberSeat: '',
+        condition: '',
+        mileage: '',
+        dateAccept: '',
+        model: '',
+        NameRequest:'',
+        CommentRequest:'',
+
     })
+    const [WareHouse, setWareHouse] = useState([]);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/Request/ShowWareHouse");
+                setWareHouse(response.data.result)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [])
+    const [loading, setloading] = useState(true);
+    const [Image,setImage]=useState([]);
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/WareHouse/ShowListPicture/${ID}`)
-                setShowImage(response.data)
+               setImage(response.data)
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setloading(false)
+            }
+        }
+        fetchdata();
+    }, [])
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/ShowListPicture/${ID}`)
+                const images = response.data;
+                if (images.length > 0) {
+                    
+                    setShowImage(images.slice(1));
+                } else {
+                    setShowImage([]);
+                }
                 setFirtImage(response.data[0].link)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
         fetchdata();
@@ -175,7 +245,7 @@ function DetailInventory() {
         }
         fetchdata();
     }, [])
-  
+
     const sliderRef = useRef(null);
     const slideSubRef = useRef(null);
     const gotoPrevSubRef = () => {
@@ -481,6 +551,10 @@ function DetailInventory() {
         }
 
     };
+    const [SelectWareHouse, setSelectWareHouse] = useState(null)
+    const handleSelectWareHouse = (SelectWareHouse) => {
+        setSelectWareHouse(SelectWareHouse);
+    }
     const [ActiveTab, setActiveTab] = useState('Overview');
     const handleTabChange = (tabID) => {
         setActiveTab(tabID);
@@ -503,8 +577,7 @@ function DetailInventory() {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-
-        arrows: false, // Hide arrows for navigation
+        arrows: false,// Hide arrows for navigation
     };
     useEffect(() => {
         if (sliderRef.current) {
@@ -515,7 +588,7 @@ function DetailInventory() {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: ShowImage.length < 5 ? ShowImage.length : 5,
+        slidesToShow: Image.length < 5 ? Image.length : 5,
         slidesToScroll: 1,
 
         arrows: false,
@@ -529,9 +602,16 @@ function DetailInventory() {
 
         arrows: false,
     }
-
+  
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <div className="templaza-content">
                 <div className="templaza-layout templaza-layout-wide">
                     <div className="templaza-wrapper">
@@ -582,19 +662,17 @@ function DetailInventory() {
                                                                             <div id="tns1-mw" className="tns-ovh tns-ah" style={{ height: '461px' }}>
                                                                                 <div className="tns-inner" id="tns1-iw">
                                                                                     <Slider {...settings} ref={sliderRef}>
-                                                                                        {ShowImage.map((Image, index) => (
-                                                                                            <div >
-                                                                                                <img src={Image.link} width={800} height={533} alt="Slide 1" />
-                                                                                            </div>
-                                                                                        ))}
-                                                                                        <div style={{ opacity: '0' }}>
+                                                                                    <div style={{ display:'none' }}>
                                                                                             <img src={FirstImage} width={800} height={533} alt="Slide 1" />
                                                                                         </div>
-
-
+                                                                                        {ShowImage.map((image, index) => (
+                                                                                            <div key={index}>
+                                                                                                <img src={image.link} width={800} height={533} alt={`Slide ${index + 1}`} />
+                                                                                            </div>
+                                                                                        ))}
+                                                                                       
 
                                                                                     </Slider>
-
                                                                                 </div>
 
                                                                             </div>
@@ -613,7 +691,7 @@ function DetailInventory() {
                                                                             <div id="tns2-mw" className="tns-ovh">
                                                                                 <div className="tz-ap-thumbnails  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style={{ transitionDuration: '0s', transform: 'translate3d(0%, 0px, 0px)' }}>
                                                                                     <Slider {...settingshow} ref={slideSubRef}>
-                                                                                        {ShowImage.map((Image, index) => (
+                                                                                        {Image.map((Image, index) => (
                                                                                             <div className="ap-tiny-slider-thumbnail tns-item tns-slide-active tns-nav-active" style={{ padding: '20px' }} onClick={() => handleThumbnailClick(index)}>
                                                                                                 <div className="thumb-img-wrap">
                                                                                                     <img src={Image.link} width={161} height={107} alt="" />
@@ -669,18 +747,26 @@ function DetailInventory() {
                                                                                 </span>
                                                                             </p>
                                                                             <div className="comment-form-comment">
-                                                                                <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', marginBottom: '14px' }} />
+                                                                            <label for="exampleInputUsername1">Ware House</label>
+                                                <Select options={WareHouse.map(ware => ({ value: ware.name, label: ware.name }))}
+                                                    value={SelectWareHouse}
+                                                    onChange={(SelectedOption) => handleSelectWareHouse(SelectedOption)}
+                                                />
                                                                             </div>
+                                                                            <br />
                                                                             <div className="content-form uk-child-width-1-2@s uk-grid-small uk-grid">
-                                                                                <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
-                                                                                    <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+                                                                                <div className="comment-form-author uk-first-column" style={{ width: '100%' }}>
+                                                                                    <input type="text" id="wpforms-14099-field_1" value={FromData.NameRequest} onChange={(e) => setFromData({ ...FromData, NameRequest: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
                                                                                 </div>
-                                                                                <div className="comment-form-author uk-first-column" style={{ width: '50%' }}>
-                                                                                    <input type="email" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Enter Your Email" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', marginLeft: '3px' }} />
-                                                                                </div>
+                                                                              
                                                                             </div>
+                                                                            <br />
+                                                                            <div className="comment-form-comment">
+                                                                                <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" value={FromData.CommentRequest} onChange={(e) => setFromData({ ...FromData, CommentRequest: e.target.value })}  placeholder="Your Comment" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px', marginBottom: '14px' }} />
+                                                                            </div>
+                                                                           
                                                                             <div className="wpforms-submit-container" style={{ marginTop: "10px" }}>
-                                                                                <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Post Comment</button>
+                                                                                <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }} onClick={()=>SendRequest()}>Post Comment</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -715,7 +801,7 @@ function DetailInventory() {
                                                                             <div className="car-details">
                                                                                 <h3 className="car-name">{car.name}</h3>
                                                                                 <img src={car.picture.pictureLink} alt="Car Image" className="car-image" />
-                                                                                <button className="compare-button" onClick={()=>handlePopup(car.id)}>Compare</button>
+                                                                                <button className="compare-button" onClick={() => handlePopup(car.id)}>Compare</button>
                                                                             </div>
                                                                         ))}
                                                                         <Pagination
@@ -1222,84 +1308,84 @@ function DetailInventory() {
                     </div>
                 </div>
             </div>
-            {isPopupVisible &&(
-         <div id="popup" class="popup " style={IsClosingPopup ? { ...popupContentStyle, ...closepopup } : popupContentStyle}>
-         <div class="popup-content">
-             <span id="closeButton" class="close" onClick={handleClosepopup}>&times;</span>
-             <h2>Compare Car</h2>
-             <div class="product-container">
-             <table class="product-table">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>{Car.name}</th>
-                            <th>{FromData.name}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Image</td>
-                            <td><img src={Car.picture.pictureLink} alt="" style={{width:'50%'}} /></td>
-                            <td><img src={FromData.Image} style={{width:'50%'}} alt="" /></td>
-                        </tr>
-                        <tr>
-                            <td>Price</td>
-                            <td>{Car.price}$</td>
-                            <td>{FromData.Price}$</td>
-                        </tr>
-                        <tr>
-                            <td>BHP</td>
-                            <td>{Car.bhp}</td>
-                            <td>{FromData.BHP}</td>
-                        </tr>
-                        <tr>
-                            <td>MotorSize</td>
-                            <td>{Car.motorSize}</td>
-                            <td>{FromData.motorSize}</td>
-                        </tr>
-                        <tr>
-                            <td>Fuetype</td>
-                            <td>{Car.fueType}</td>
-                            <td>{FromData.fueType}</td>
-                        </tr>
-                      <tr>
-                        <td>Engine</td>
-                        <td>{Car.engine}</td>
-                        <td>{FromData.engine}</td>
-                      </tr>
-                      <tr>
-                        <td>Number Seat</td>
-                        <td>{Car.numberSeat}</td>
-                        <td>{FromData.numberSeat}</td>
-                      </tr>
-                      <tr>
-                        <td>Condition</td>
-                        <td>{Car.condition}</td>
-                        <td>{FromData.condition}</td>
-                      </tr>
-                      <tr>
-                        <td>Mileage</td>
-                        <td>{Car.mileage} mil</td>
-                        <td>{FromData.mileage} mil</td>
-                      </tr>
-                      <tr>
-                        <td>Year Accept</td>
-                        <td>{Car.dateAccept}</td>
-                        <td>{FromData.dateAccept}</td>
-                      </tr>
-                      <tr>
-                        <td>Model</td>
-                        <td>{Car.model}</td>
-                        <td>{FromData.model}</td>
-                      </tr>
-                    </tbody>
-                </table>
-             </div>
-         </div>
-     </div>
-    )}
+            {isPopupVisible && (
+                <div id="popup" class="popup " style={IsClosingPopup ? { ...popupContentStyle, ...closepopup } : popupContentStyle}>
+                    <div class="popup-content">
+                        <span id="closeButton" class="close" onClick={handleClosepopup}>&times;</span>
+                        <h2>Compare Car</h2>
+                        <div class="product-container">
+                            <table class="product-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>{Car.name}</th>
+                                        <th>{FromData.name}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Image</td>
+                                        <td><img src={Car.picture.pictureLink} alt="" style={{ width: '50%' }} /></td>
+                                        <td><img src={FromData.Image} style={{ width: '50%' }} alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>{Car.price}$</td>
+                                        <td>{FromData.Price}$</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BHP</td>
+                                        <td>{Car.bhp}</td>
+                                        <td>{FromData.BHP}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MotorSize</td>
+                                        <td>{Car.motorSize}</td>
+                                        <td>{FromData.motorSize}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fuetype</td>
+                                        <td>{Car.fueType}</td>
+                                        <td>{FromData.fueType}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Engine</td>
+                                        <td>{Car.engine}</td>
+                                        <td>{FromData.engine}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Number Seat</td>
+                                        <td>{Car.numberSeat}</td>
+                                        <td>{FromData.numberSeat}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Condition</td>
+                                        <td>{Car.condition}</td>
+                                        <td>{FromData.condition}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mileage</td>
+                                        <td>{Car.mileage} mil</td>
+                                        <td>{FromData.mileage} mil</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Year Accept</td>
+                                        <td>{Car.dateAccept}</td>
+                                        <td>{FromData.dateAccept}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model</td>
+                                        <td>{Car.model}</td>
+                                        <td>{FromData.model}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
-   
+
     )
 }
 export default DetailInventory;
