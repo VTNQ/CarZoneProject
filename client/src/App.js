@@ -9,6 +9,7 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import Footer from './Components/Footer/Footer';
 import DashboardEmployee from './Components/Employee/Dashboard/Dashboard';
 import CreateCustomer from './Components/Employee/Customer/AddCustomer';
+import CreateCustomerSuperadmin from  './Components/Superadmin/AddCustomer';
 import ShowCustomer from './Components/Employee/Customer/ShowCustomer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
@@ -88,6 +89,7 @@ function App() {
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
             <Route path='showroom' element={<Showroom/>}/>
+            <Route path='Create' element={<CreateCustomerSuperadmin/>}/>
             <Route path='order' element={<Order/>}/>
             <Route path='Detailorder/:id' element={<DetailOrderSpm/>}/>
             <Route path='warehouse' element={<Warehouse/>}/>

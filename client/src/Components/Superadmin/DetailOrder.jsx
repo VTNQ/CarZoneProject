@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from 'react-paginate';
+import Cookies from 'js-cookie'
 import axios from "axios";
 export const DetailOrderSpm = () => {
     const navigate = useNavigate();
@@ -14,13 +15,23 @@ export const DetailOrderSpm = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [Contract,setContract]=useState([])
     const [index,setindex]=useState(1);
-    const[sessionData,setSessionData]=useState(null);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
       }
-  }, []);
+  }, [navigate]);
 
     useEffect(()=>{
         const fetchdata=async()=>{
@@ -40,7 +51,7 @@ export const DetailOrderSpm = () => {
         const fetchdata=async()=>{
             try{
                 const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
-                SetInvoice(response.data)
+                SetInvoice(response.data.result)
             }catch(error){
                 console.log(error)
             }
@@ -50,13 +61,16 @@ export const DetailOrderSpm = () => {
         }
         
     },[sessionData])
+    const[loading,setloading]=useState(true)
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/OutOrder/DetailOutOrder/${sessionData.IDOutOrder}`)
-                setDetailOutOrder(response.data)
+                setDetailOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         if(sessionData && sessionData.IDOutOrder){
@@ -80,7 +94,13 @@ export const DetailOrderSpm = () => {
     }
     return (
         <>
-            
+             {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
                 <div class="main-panel">
                     <div class="content-wrapper">
 
@@ -166,7 +186,7 @@ export const DetailOrderSpm = () => {
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        
+                                                        <th>#</th>
                                                       <th>Date Create</th>
 
 
@@ -174,10 +194,17 @@ export const DetailOrderSpm = () => {
                                                 </thead>
                                                 <tbody>
                                                
-                                                    <tr>
+                                                 
                                                         
-                                                        <td>{new Date(Invoice.dateCreate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                    </tr>
+                                                    {Invoice.map((Invoice, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{new Date(Invoice.dateCreate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                        </tr>
+                                                    ))}
+
+
+                                         
                                         
                                                 </tbody>
                                             </table>

@@ -108,7 +108,8 @@ namespace server.Services
             {
                 id = d.Id,
                 name = d.Name,
-                nameBrand = d.IdBrandNavigation.Name
+                nameBrand = d.IdBrandNavigation.Name,
+                idBrand=d.IdBrand,
             }).ToList();
         }
 
@@ -424,6 +425,16 @@ namespace server.Services
                     PictureLink = configuration["ImageUrl"] + m.Link,
                 }).FirstOrDefault(),
                 Quality=databaseContext.SubWarehouseCars.Where(a=>a.IdCar==d.Id).Count(),
+            }).ToList();
+        }
+
+        public dynamic GetShowRoom()
+        {
+            return databaseContext.Showrooms.Select(d => new
+            {
+                id = d.Id,
+                Name = d.Name,
+                District = d.IdDistrictNavigation.Name,
             }).ToList();
         }
     }

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import { useLocation, useNavigate } from "react-router-dom";
 import Select from 'react-select';
+import Cookies from 'js-cookie'
 
 
 export const CarTable = () => {
@@ -28,6 +29,7 @@ export const CarTable = () => {
     const email = location.state?.email || '';
     const ID = location.state?.ID || '';
     const [Showroom, setShowroom] = useState([]);
+    const [loading, setloading] = useState(true)
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState(null);
@@ -46,9 +48,15 @@ export const CarTable = () => {
     const [CityShow, setCityShow] = useState([]);
 
     const fetchdata = async () => {
-        const response = await axios.get(`http://localhost:5278/api/Car/getCar`);
-        setShowroom(response.data)
-        console.log(response.data);
+        try {
+            const response = await axios.get(`http://localhost:5278/api/Car/getCar`);
+            setShowroom(response.data)
+            console.log(response.data);
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setloading(false)
+        }
     }
     useEffect(() => {
 
@@ -96,8 +104,8 @@ export const CarTable = () => {
         UpdateName: '',
         UpdatePrice: ''
     })
-        const DeleteCar=async(ID)=>{
-        try{
+    const DeleteCar = async (ID) => {
+        try {
             const confirmation = await Swal.fire({
                 title: 'Are you sure?',
                 text: 'You won\'t be able to revert this!',
@@ -107,14 +115,16 @@ export const CarTable = () => {
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, Delete it',
             });
-            if(confirmation.isConfirmed){
-                const response=await fetch(`http://127.0.0.1:5278/api/Car/DeleteCar/${ID}`,{
+            if (confirmation.isConfirmed) {
+                setloading(true)
+                const response = await fetch(`http://127.0.0.1:5278/api/Car/DeleteCar/${ID}`, {
                     method: 'Delete',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 })
-                if(response.ok){
+                if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Delete Car Success',
@@ -123,7 +133,8 @@ export const CarTable = () => {
                     });
                     const response = await axios.get(`http://localhost:5278/api/Car/getCar`);
                     setShowroom(response.data)
-                }else{
+                } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -135,7 +146,7 @@ export const CarTable = () => {
                     }
                 }
             }
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -249,6 +260,7 @@ export const CarTable = () => {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch(`http://127.0.0.1:5278/api/Car/UpdateCar/${FromData.id}`, {
                     method: 'PUT',
                     headers: {
@@ -257,6 +269,7 @@ export const CarTable = () => {
                     body: JSON.stringify({ name: FromData.UpdateName, price: FromData.UpdatePrice })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Update Car Success',
@@ -273,6 +286,7 @@ export const CarTable = () => {
                     })
 
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -288,9 +302,32 @@ export const CarTable = () => {
             }
         }
     }
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
 
+            )}
             <div className="main-panel">
                 <div className="content-wrapper">
                     <div className="row">

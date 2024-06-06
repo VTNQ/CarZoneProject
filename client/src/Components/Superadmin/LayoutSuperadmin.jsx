@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie'
 // import '../Superadmin/assets/vendors/feather/feather.css'
 // import '../Superadmin/assets/vendors/ti-icons/css/themify-icons.css'
 // import '../Superadmin/assets/vendors/css/vendor.bundle.base.css'
@@ -17,12 +18,28 @@ import {useLocation, useNavigate} from "react-router-dom";
 export const LayoutSuperadmin = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const ID = location.state?.ID || '';
-  const username=location.state?.fullName || '';
+  const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
+
 
   return (
     <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
@@ -291,61 +308,61 @@ export const LayoutSuperadmin = () => {
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href=""onClick={()=>navigate('/superadmin')}>
+            <a class="nav-link" onClick={()=>navigate('/superadmin')}>
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title" >Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/countriesPage')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/countriesPage')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Country management</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/CityDistrictPage')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/CityDistrictPage')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">City&District management</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/CustomerPage')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/CustomerPage')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Customer</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/showroom')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/showroom')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Showroom</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/warehouse')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/warehouse')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Warehouse</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/bmw')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/bmw')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Brand-Model-Version</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/car')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/car')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Car</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/admin')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/admin')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Admin</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" onClick={()=>navigate('/superadmin/order')}>
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/order')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Order</span>
             </a>

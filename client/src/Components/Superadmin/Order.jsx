@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import Pagination from 'react-paginate';
 import DatePicker from 'react-datepicker';
 import { useLocation, useNavigate } from "react-router-dom";
-
+import Cookies from 'js-cookie'
 
 export const Order = () => {
     const [Customer, setCustomer] = useState([]);
@@ -39,16 +39,25 @@ export const Order = () => {
     const location = useLocation();
   
     const [searchTerm, setSearchtem] = useState('');
-   
+    const[loading,setloading]=useState(true)
     const [ShowOutOrder, SetShowOutOrder] = useState([]);
-    const[sessionData,setSessionData]=useState(null);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
     useEffect(() => {
-      const data = sessionStorage.getItem('sessionData');
-      if (data) {
-          setSessionData(JSON.parse(data));
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
       }
-  }, []);
-
+  }, [navigate]);
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -56,6 +65,8 @@ export const Order = () => {
                 SetShowOutOrder(response.data)
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         // if(sessionData && sessionData.ID){
@@ -179,7 +190,13 @@ export const Order = () => {
     }
     return (
         <>
-            
+             {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
                 <div class="main-panel">
                     <div class="content-wrapper">
                         

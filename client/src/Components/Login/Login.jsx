@@ -16,10 +16,12 @@ function Login(){
         Email:'',
         Password:''
     })
+    const [loading, setloading] = useState(false);
   
     const handleLogin=async (event)=>{
         event.preventDefault();
         try{
+          setloading(true)
             const response=await fetch(`http://localhost:5278/api/Account/LoginAccount/${FromData.Email}/${FromData.Password}`,{
                 method:'POST',
                 headers: {
@@ -39,6 +41,7 @@ function Login(){
           Cookies.set('UserSession', JSON.stringify(sessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         
             if(response.ok){
+              setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Login success',
@@ -57,6 +60,7 @@ function Login(){
                 })
             }
         }catch(error){
+          setloading(false)
             Swal.fire({
                 icon: 'error',
                 title: 'Login Failed',
@@ -66,6 +70,14 @@ function Login(){
         }
     }
 return(
+  <>
+   {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
     <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
@@ -111,6 +123,8 @@ return(
     </div>
    
   </div>
+  </>
+  
 )
 }
 export default Login;
