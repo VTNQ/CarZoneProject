@@ -5,6 +5,7 @@ namespace server.Services
     public interface WareHouserService
     {
         Task<IEnumerable<dynamic>> ShowCarWareHouse(int idShowroom);
+        Task<IEnumerable<dynamic>> CarWareHouse(int idshowroom);
         Task<IEnumerable<dynamic>> ShowCar();
         Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id);
         public dynamic ShowBranch();

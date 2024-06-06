@@ -12,6 +12,7 @@ function HistoryInVoice() {
     const [currentPage, setCurrentPage] = useState(0);
     const location = useLocation();
     const [ActiveTab,setActiveTab]=useState(0);
+    const [loading, setloading] = useState(true);
     const [sessionData, setSessionData] = useState(null);
     const navigate = useNavigate();
     const getUserSession=()=>{
@@ -36,8 +37,14 @@ function HistoryInVoice() {
     })
     useEffect(() => {
         const fetchdataInVoice = async () => {
+           try{
             const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${sessionData.ID}`);
             setInVoice(response.data)
+           }catch(error){
+            console.log(error)
+           }finally{
+            setloading(false)
+           }
         };
         if(sessionData && sessionData.ID){
             fetchdataInVoice();
@@ -110,6 +117,13 @@ function HistoryInVoice() {
     };
     return(
         <>
+         {loading &&(
+         <div
+         className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{zIndex:'10000'}}>
+         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+     </div>
+
+       )}
          <LayoutEmployee>
             <div className="main-panel">
                 <div className="content-wrapper">

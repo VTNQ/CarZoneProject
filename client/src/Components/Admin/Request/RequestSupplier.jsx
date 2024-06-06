@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
 function RequestSupplier() {
     const navigate = useNavigate();
+    const [loading, setloading] = useState(true)
     const location = useLocation();
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [sessionData, setSessionData] = useState(null);
@@ -51,12 +52,14 @@ function RequestSupplier() {
                 setReQuest(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.fullName){
+        if (sessionData && sessionData.fullName) {
             fetchdata();
         }
-      
+
     }, [sessionData])
     useEffect(() => {
         const fetchdata = async () => {
@@ -80,6 +83,7 @@ function RequestSupplier() {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
                     method: 'Post',
                     headers: {
@@ -88,6 +92,7 @@ function RequestSupplier() {
                     body: JSON.stringify({ to: SelectSupplier?.value, from: sessionData.fullName, type: false, description: FromData.Description })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add success',
@@ -147,6 +152,13 @@ function RequestSupplier() {
     const currentRequest = filterRequest.slice(indexOfFirtRequest, indexOflastRequest);
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

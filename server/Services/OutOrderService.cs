@@ -6,7 +6,8 @@ namespace server.Services
     public interface OutOrderService
     {
         Task<IEnumerable<dynamic>>  ShowCustomer();
-        Task<IEnumerable<dynamic>> ShowCar();
+        Task<IEnumerable<dynamic>> ShowCar(int id);
+        public dynamic GetWareHouse(int id);
         Task<bool> AddOutOrder(Data.OutOrder outOrder);
         Task<IEnumerable<dynamic>> ShowOutOrder(int id);
         public dynamic ShowAllOutOrder();

@@ -15,6 +15,7 @@ function Supplier() {
     const [perPage, setperPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
+    const [loading, setloading] = useState(true)
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const navigate = useNavigate();
     const [FromData, setFromData] = useState({
@@ -102,6 +103,8 @@ function Supplier() {
 
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false);
             }
         }
         fetchdata();
@@ -146,6 +149,7 @@ function Supplier() {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Supplier/DeleteSupplier/${IDsuppier}`, {
                     method: 'Delete',
                     headers: {
@@ -153,6 +157,7 @@ function Supplier() {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion successful',
@@ -163,6 +168,7 @@ function Supplier() {
                     setSupplier(response.data.result)
 
                 }else{
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -189,6 +195,7 @@ function Supplier() {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch("http://localhost:5278/api/Supplier/AddSupplier", {
                     method: 'Post',
                     headers: {
@@ -202,12 +209,14 @@ function Supplier() {
                     })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Supplier Success',
                         showConfirmButton: false,
                         timer: 1500,
                     })
+                    setPopupVisibility(false)
                     setFromData({
                         name: '',
                         Email:''
@@ -217,6 +226,7 @@ function Supplier() {
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
                     setSupplier(response.data.result)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -244,6 +254,7 @@ function Supplier() {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Supplier/UpdateSupplier/${FromData.id}`, {
                     method: 'Put',
                     headers: {
@@ -258,6 +269,8 @@ function Supplier() {
 
                 })
                 if (response.ok) {
+                    setloading(false)
+                    setPopupVisibility(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Supplier Success',
@@ -268,13 +281,14 @@ function Supplier() {
                         id: '',
                         UpdateName: ''
                     })
-                    setPopupVisibility(false)
+                   
                     setUpdateSelectCountry(null);
                     setUpdateSelectType(null);
                     const response = await axios.get("http://localhost:5278/api/Supplier/ShowSupplier")
                     setSupplier(response.data.result)
                     
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -294,6 +308,13 @@ function Supplier() {
     
     return (
         <>
+         {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

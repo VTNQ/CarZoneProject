@@ -9,26 +9,27 @@ function Version() {
     const [FromData, setFromData] = useState({
         releaseYear: ''
     })
+    const [loading, setloading] = useState(true);
     const navigate = useNavigate();
     const [sessionData, setSessionData] = useState(null);
-  const getUserSession=()=>{
-    const UserSession=Cookies.get("UserSession");
-    if(UserSession){
-        return JSON.parse(UserSession);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
     }
-    return null;
-}
 
-useEffect(() => {
-    const data = getUserSession();
-    
-    if (data && data.role=='WareHouse') {
-        setSessionData(data);
-    } else {
-        // If no session data, redirect to login
-        navigate('/login');
-    }
-}, [navigate]);
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'WareHouse') {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
     const [Version, setVersion] = useState([])
     useEffect(() => {
         const fetchdata = async () => {
@@ -37,6 +38,8 @@ useEffect(() => {
                 setVersion(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
         fetchdata();
@@ -56,6 +59,7 @@ useEffect(() => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            setloading(true)
             const response = await fetch("http://localhost:5278/api/Version/AddVersion", {
                 method: 'POST',
                 headers: {
@@ -64,6 +68,7 @@ useEffect(() => {
                 body: JSON.stringify({ version: FromData.releaseYear })
             })
             if (response.ok) {
+                setloading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Add Version successful',
@@ -76,6 +81,7 @@ useEffect(() => {
                     releaseYear: ''
                 })
             } else {
+                setloading(false)
                 const responseBody = await response.json();
                 if (responseBody.message) {
                     Swal.fire({
@@ -102,6 +108,7 @@ useEffect(() => {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/Version/DeleteVersion/${ID}`, {
                     method: 'Delete',
                     headers: {
@@ -109,6 +116,7 @@ useEffect(() => {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion successful',
@@ -119,6 +127,7 @@ useEffect(() => {
                     setVersion(response.data)
 
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -136,6 +145,13 @@ useEffect(() => {
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

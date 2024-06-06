@@ -24,7 +24,7 @@ function AddOrder() {
         }
         return null;
     }
-    
+    const [loading, setloading] = useState(false);
     useEffect(() => {
         const data = getUserSession();
         
@@ -77,6 +77,7 @@ function AddOrder() {
             })
         } else {
             try {
+                setloading(true)
                 formData.append("IdCustomer", SelectCustomer?.value);
                 formData.append("IdShowroom", sessionData.idShowroom);
                 formData.append("IdEmployee", sessionData.ID);
@@ -103,6 +104,7 @@ function AddOrder() {
                     body: formData
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Order Success',
@@ -138,7 +140,7 @@ function AddOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCustomer");
-                setCustomer(response.data)
+                setCustomer(response.data.result)
             } catch (error) {
                 console.log(error)
             }

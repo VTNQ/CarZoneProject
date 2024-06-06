@@ -11,6 +11,7 @@ function ShowCustomer() {
     const [perPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
+    const [loading, setloading] = useState(true);
     const [FromData, setFromData] = useState({
         FullName: '',
         Email: '',
@@ -48,8 +49,15 @@ function ShowCustomer() {
     const [Customer, setCustomer] = useState([]);
     useEffect(() => {
         const fetchdata = async () => {
-            const response = await axios.get(`http://localhost:5278/api/Customer/ShowCustomer`);
-            setCustomer(response.data.result)
+            try{
+                const response = await axios.get(`http://localhost:5278/api/Customer/ShowCustomer`);
+                setCustomer(response.data.result)
+            }catch(error){
+                console.log(error)
+            }finally{
+                setloading(false)
+            }
+           
         }
         fetchdata()
     }, [])
@@ -123,6 +131,7 @@ function ShowCustomer() {
                 timer: 1500,
             })
         } else {
+            setloading(true)
             const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
             const vietnamStartDate = new Date(FromData.UpdateDOB.getTime() + offsetInMilliseconds);
 
@@ -142,6 +151,7 @@ function ShowCustomer() {
 
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Update Customer Success',
@@ -162,6 +172,7 @@ function ShowCustomer() {
                     
                     setPopupVisibility(false)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -181,6 +192,13 @@ function ShowCustomer() {
     }
     return (
         <>
+         {loading &&(
+         <div
+         className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{zIndex:'10000'}}>
+         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+     </div>
+
+       )}
             <LayoutEmployee>
                 <div className="main-panel">
                     <div className="content-wrapper">
@@ -278,7 +296,7 @@ function ShowCustomer() {
 
                             <h3 className="box-title1">Edit Customer</h3>
                         </div>
-                        <form role="form" >
+                        <form role="form" onSubmit={handleUpdate}>
                             <div className="box-body">
                                 {/* Form fields go here */}
                                 <div class="form-group">

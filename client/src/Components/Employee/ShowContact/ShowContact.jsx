@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 function ShowContact(){
     const [ShowContact,setShowContact]=useState([]);
     const [searchTerm, setSearchtem] = useState('');
+    const [loading,setloading]=useState(true);
     const [perPage, setperPage] = useState(5);
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(0);
@@ -35,6 +36,8 @@ function ShowContact(){
                 setShowContact(response.data)
             }catch(error){
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         fetchdata();
@@ -50,6 +53,13 @@ function ShowContact(){
     };
 return(
     <>
+     {loading &&(
+         <div
+         className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{zIndex:'10000'}}>
+         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+     </div>
+
+       )}
     <LayoutEmployee>
         <div class="main-panel">
             <div class="content-wrapper">

@@ -245,7 +245,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id)
         {
-            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m => m.IdShowroom == id)).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m => m.IdShowroom == id && m.IdCar==d.Id)).Select(d => new
             {
                 id = d.Id,
                 TotalCar = databaseContext.SubWarehouseShowrooms.Where(e => e.IdCar == d.Id).Count(),
@@ -412,7 +412,21 @@ namespace server.Services
                 }).ToList();
 
             }
+
+        public async Task<IEnumerable<dynamic>> CarWareHouse(int idshowroom)
+        {
+            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(a => a.Id == idshowroom && databaseContext.SubWarehouseCars.Any(e => e.IdCar == d.Id && a.IdDistrictNavigation.IdCityNavigation.IdCountry == e.IdWarehouseNavigation.IdCountry))).Select(d => new
+            {
+                id=d.Id,
+                Name=d.Name,
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
+                Quality=databaseContext.SubWarehouseCars.Where(a=>a.IdCar==d.Id).Count(),
+            }).ToList();
         }
+    }
     
         
     

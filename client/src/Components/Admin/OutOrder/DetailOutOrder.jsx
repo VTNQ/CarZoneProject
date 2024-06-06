@@ -7,15 +7,16 @@ import axios from "axios";
 function DetailOutOrders() {
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const [searchTerm, setSearchtem] = useState('');
-   
+
     const [DetailOutOrder, setDetailOutOrder] = useState([]);
-    const[Invoice,SetInvoice]=useState([]);
+    const [Invoice, SetInvoice] = useState([]);
+    const [loading, setloading] = useState(true)
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
-    const [Contract,setContract]=useState([])
-    const [index,setindex]=useState(1);
+    const [Contract, setContract] = useState([])
+    const [index, setindex] = useState(1);
     const [sessionData, setSessionData] = useState(null);
     const getUserSession = () => {
         const UserSession = Cookies.get("UserSession");
@@ -34,34 +35,38 @@ function DetailOutOrders() {
             navigate('/login');
         }
     }, [navigate]);
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.IDOutOrder}`);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.IDOutOrder}`);
                 setContract(response.data.result)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.IDOutOrder){
+        if (sessionData && sessionData.IDOutOrder) {
             fetchdata();
         }
-        
-    },[sessionData])
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
+
+    }, [sessionData])
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowInvoice/${sessionData.IDOutOrder}`);
                 SetInvoice(response.data.result)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.IDOutOrder){
+        if (sessionData && sessionData.IDOutOrder) {
             fetchdata();
         }
-        
-    },[sessionData])
+
+    }, [sessionData])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -69,12 +74,14 @@ function DetailOutOrders() {
                 setDetailOutOrder(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
-        if(sessionData && sessionData.IDOutOrder){
+        if (sessionData && sessionData.IDOutOrder) {
             fetchdata();
         }
-        
+
     }, [sessionData])
     const FilterDetailOrder = DetailOutOrder.filter(Detail =>
         Detail.car.toLowerCase().includes(searchTerm.toLowerCase())
@@ -85,13 +92,20 @@ function DetailOutOrders() {
     const IndexoflastDetail = (currentPage + 1) * perPage;
     const IndexOfFirtDetail = IndexoflastDetail - perPage;
     const CurrentDetail = FilterDetailOrder.slice(IndexOfFirtDetail, IndexoflastDetail)
-    const handleBackClick=()=>{
-        const{IDOutOrder,...restSessionData } = sessionData;
-        Cookies.set('UserSession',JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
-        navigate("/Outorder",{state:restSessionData});
+    const handleBackClick = () => {
+        const { IDOutOrder, ...restSessionData } = sessionData;
+        Cookies.set('UserSession', JSON.stringify(restSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
+        navigate("/Outorder", { state: restSessionData });
     }
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">
@@ -100,9 +114,9 @@ function DetailOutOrders() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                    <button
+                                        <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
-                                        onClick={handleBackClick}
+                                            onClick={handleBackClick}
                                         >Back
                                         </button>
                                         <h4 class="card-title">Detail Out Order</h4>
@@ -170,9 +184,9 @@ function DetailOutOrders() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                   
+
                                         <h4 class="card-title">Invoice</h4>
-                                     
+
                                         <p class="card-description">
                                         </p>
                                         <div class="table-responsive">
@@ -180,22 +194,24 @@ function DetailOutOrders() {
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                      <th>Date Create</th>
+                                                        <th>Date Create</th>
 
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                               
-                                                    <tr>
-                                                        <td>{index}</td>
-                                                        <td>{new Date(Invoice.dateCreate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                    </tr>
-                                        
+                                                    {Invoice.map((Invoice, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{new Date(Invoice.dateCreate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                        </tr>
+                                                    ))}
+
+
                                                 </tbody>
                                             </table>
 
-                                           
+
 
                                         </div>
                                     </div>
@@ -206,9 +222,9 @@ function DetailOutOrders() {
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                   
+
                                         <h4 class="card-title">Contract</h4>
-                                     
+
                                         <p class="card-description">
                                         </p>
                                         <div class="table-responsive">
@@ -216,24 +232,26 @@ function DetailOutOrders() {
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                      <th>Condition</th>
-                                                      <th>create Date</th>
+                                                        <th>Condition</th>
+                                                        <th>create Date</th>
 
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                               
-                                                    <tr>
-                                                        <td>{index}</td>
-                                                        <td>{Contract.condition}</td>
-                                                        <td>{new Date(Contract.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                    </tr>
-                                        
+                                                    {Contract.map((Contrac, index) => (
+                                                        <tr>
+                                                            <td>{++index}</td>
+                                                            <td>{Contrac.condition}</td>
+                                                            <td>{new Date(Contrac.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                        </tr>
+                                                    ))}
+
+
                                                 </tbody>
                                             </table>
 
-                                           
+
 
                                         </div>
                                     </div>

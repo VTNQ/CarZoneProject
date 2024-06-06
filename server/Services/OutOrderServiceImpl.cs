@@ -87,6 +87,8 @@ namespace server.Services
                    await _dbContext.SaveChangesAsync();
                     foreach (var outOrd in outOrder.DetailOutOrders)
                     {
+                        var showRoomCar=_dbContext.SubWarehouseShowrooms.FirstOrDefault(d=>d.IdCar==outOrd.IdCar && d.IdShowroom==outOrder.IdShowroom);
+
                         var DetailOutOrder = new DetailOfOutOrder
                         {
                             IdCar = outOrd.IdCar,
@@ -96,6 +98,10 @@ namespace server.Services
                             IdOrder = OutOrder.Id
                         };
                         _dbContext.DetailOfOutOrders.Add(DetailOutOrder);
+                        if (showRoomCar != null)
+                        {
+                            _dbContext.SubWarehouseShowrooms.Remove(showRoomCar);
+                        }
                     }
 
                     await _dbContext.SaveChangesAsync();
@@ -144,9 +150,9 @@ namespace server.Services
             }).OrderByDescending(arg => arg.id).ToList();
         }
 
-        public async Task<IEnumerable<dynamic>> ShowCar()
+        public async Task<IEnumerable<dynamic>> ShowCar(int id)
         {
-            return _dbContext.Cars.Select(d => new
+            return _dbContext.Cars.Where(d=>_dbContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==id && m.IdCar==d.Id)).Select(d => new
             {
                 Id=d.Id,
                 Name=d.Name,
@@ -281,6 +287,14 @@ namespace server.Services
         public async Task<int> TotalContract(int id)
         {
             return await _dbContext.Contracts.Where(d=>d.IdOrderNavigation.IdShowroom==id).CountAsync();
+        }
+
+        public dynamic GetWareHouse(int id)
+        {
+            return _dbContext.Warehouses.Where(d => _dbContext.Showrooms.Any(m => m.Id == id && m.IdDistrictNavigation.IdCityNavigation.IdCountry == d.IdCountry)).Select(d => new
+            {
+                id = d.Id,
+            }).FirstOrDefault();
         }
     }
 }

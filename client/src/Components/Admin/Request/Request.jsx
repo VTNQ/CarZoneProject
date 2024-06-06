@@ -10,6 +10,7 @@ import 'react-quill/dist/quill.snow.css';
 import Cookies from 'js-cookie'
 function Request() {
     const [WareHouse, setWareHouse] = useState([])
+    const [loading, setloading] = useState(true)
     const navigate = useNavigate();
     const location = useLocation();
     const [sessionData, setSessionData] = useState(null);
@@ -54,6 +55,8 @@ function Request() {
                 setReQuest(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
         fetchdata();
@@ -97,37 +100,40 @@ function Request() {
     const [searchTerm, setSearchtem] = useState('');
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
-    const filterRequest=Request.filter(Re=>
+    const filterRequest = Request.filter(Re =>
         Re.to.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    const indexOflastRequest=(currentPage + 1) * perPage;
-    const indexOfFirtRequest= indexOflastRequest - perPage;
-    const currentRequest=filterRequest.slice(indexOfFirtRequest, indexOflastRequest);
+    const indexOflastRequest = (currentPage + 1) * perPage;
+    const indexOfFirtRequest = indexOflastRequest - perPage;
+    const currentRequest = filterRequest.slice(indexOfFirtRequest, indexOflastRequest);
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(SelectWareHouse?.value==null || FromData.Description==''){
+        if (SelectWareHouse?.value == null || FromData.Description == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
                 showConfirmButton: false,
                 timer: 1500,
             })
-        }else{
+        } else {
             try {
+                setloading(true)
                 const response = await fetch("http://localhost:5278/api/Request/AddRequest", {
                     method: 'Post',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ to: SelectWareHouse?.value , from:sessionData.fullName, type: true, description: FromData.Description })
+                    body: JSON.stringify({ to: SelectWareHouse?.value, from: sessionData.fullName, type: true, description: FromData.Description })
                 })
                 if (response.ok) {
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Add success',
                         showConfirmButton: false,
                         timer: 1500,
                     })
+                    setloading(false)
                     setSelectWareHouse(null)
                     setFromData({
                         Description: ''
@@ -139,7 +145,7 @@ function Request() {
                 console.log(error)
             }
         }
-       
+
 
     }
     const closingAnimation = {
@@ -150,6 +156,13 @@ function Request() {
     };
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

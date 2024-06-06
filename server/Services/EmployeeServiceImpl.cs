@@ -119,7 +119,7 @@ namespace server.Services
                 string Pass = GenerateRandomString(8);
                 if (Employee != null)
                 {
-                    Console.WriteLine(Pass);
+                    
                     Employee.Password = BCrypt.Net.BCrypt.HashPassword(Pass);
                     SendEmail(Employee.Email, "Reset Information", $"FullName :{Employee.FullName}\n Password:{Pass}");
                 }

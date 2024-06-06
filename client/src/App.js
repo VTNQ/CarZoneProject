@@ -31,7 +31,7 @@ import ShowContact from './Components/Admin/ShowContact/ShowContact';
 import Request from './Components/Admin/Request/Request';
 import EditProfile from './Components/Admin/EditProfile/EditProfile';
 import RequestSupplier from './Components/Admin/Request/RequestSupplier';
-import ShowCarWareHouse from './Components/Admin/ShowCarWareHouse/ShowCarWareHouse';
+import ShowCarShowRoom from './Components/Admin/ShowCarShowRoom/ShowCarShowRoom';
 import HistoryInVoice from './Components/Employee/InVoice/HistoryInVoice';
 import AddOrder from './Components/Employee/Order/AddOrder';
 import HistoryOrder from './Components/Employee/Order/HistoryOrder';
@@ -63,6 +63,7 @@ import { Admin } from './Components/Superadmin/Admin';
 import { AdminAccount } from './Components/Superadmin/accountGeneral/AdminAccount';
 import { WarehouseAccount } from './Components/Superadmin/accountGeneral/WarehouseAccount';
 import { AdminShow } from './Components/Superadmin/accountGeneral/AdminShow';
+import ShowCarWareHouse from './Components/Admin/ShowCarWareHouse/ShowCarWareHouse';
 import { Order } from './Components/Superadmin/Order';
 import { DetailOrderSpm } from './Components/Superadmin/DetailOrder';
 import { WarehouseShow } from './Components/Superadmin/accountGeneral/WarehouseShow';
@@ -150,6 +151,7 @@ function App() {
         <Route path='/RequestWareHouse' element={<Request/>}/>
         <Route path='/EditProfile' element={<EditProfile/>}/>
         <Route path='/RequestSupplier' element={<RequestSupplier/>}/>
+        <Route path='/ShowCarShowRoom' element={<ShowCarShowRoom/>}/>
         <Route path='/ShowCarWareHouse' element={<ShowCarWareHouse/>}/>
       
       </Routes>

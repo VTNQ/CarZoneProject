@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 function HistoryOrder() {
     const navigate = useNavigate();
     const location = useLocation();
-
+    const [loading, setloading] = useState(true);
     const [sessionData, setSessionData] = useState(null);
     const getUserSession = () => {
         const UserSession = Cookies.get("UserSession");
@@ -37,9 +37,11 @@ function HistoryOrder() {
         const fetchdata = async () => {
             try {
                 const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
-                setOrder(response.data)
+                setOrder(response.data.result)
             } catch (error) {
                 console.log(error)
+            }finally{
+                setloading(false)
             }
         }
         if (sessionData && sessionData.ID) {
@@ -104,6 +106,7 @@ function HistoryOrder() {
             })
         } else {
             try {
+                setloading(true)
                 const response = await fetch(`http://localhost:5278/api/OutOrder/AddContract/${FromData.id}`, {
                     method: 'POST',
                     headers: {
@@ -124,6 +127,7 @@ function HistoryOrder() {
                     })
                     setPopupVisibility(false)
                 } else {
+                    setloading(false)
                     const responseBody = await response.json();
                     if (responseBody.message) {
                         Swal.fire({
@@ -149,6 +153,13 @@ function HistoryOrder() {
     }
     return (
         <>
+         {loading &&(
+         <div
+         className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{zIndex:'10000'}}>
+         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+     </div>
+
+       )}
             <LayoutAdmin>
                 <div class="main-panel">
                     <div class="content-wrapper">

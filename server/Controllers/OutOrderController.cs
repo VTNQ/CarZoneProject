@@ -183,12 +183,24 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("ShowCar")]
-        public async Task<IActionResult> ShowCar()
+        [HttpGet("GetWareHouse/{id}")]
+        public IActionResult GetWareHouse(int id)
         {
             try
             {
-                return Ok(_orderService.ShowCar());
+                return Ok(_orderService.GetWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowCar/{id}")]
+        public async Task<IActionResult> ShowCar(int id)
+        {
+            try
+            {
+                return Ok(_orderService.ShowCar(id));
             }
             catch
             {
