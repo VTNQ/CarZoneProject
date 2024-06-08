@@ -11,9 +11,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { keyframes } from "@emotion/react";
 function DetailInventory() {
+    
     const mapstyles = {
         height: '100vh',
         width: '100%',
+    }
+    const[SelectCity,setSelectcity]=useState(null);
+    const handleSelectCity=(SelectCity)=>{
+     setSelectcity(SelectCity)
     }
     const [isPopupVisible, setPopupVisibility] = useState(false);
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
@@ -45,6 +50,19 @@ function DetailInventory() {
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
+    const [District,setDistrict]=useState([]);
+   
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get(`http://localhost:5278/api/Request/ShowDistrict/${SelectCity?.value}`);
+                setDistrict(response.data.result)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchdata();
+    },[SelectCity?.value])
     const navigate = useNavigate();
     const location = useLocation();
     const ID = location.state?.ID || '';
@@ -61,6 +79,17 @@ function DetailInventory() {
         }
         fetchdata();
     }, [])
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get("http://localhost:5278/api/City/showCity");
+                setcity(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchdata();
+    },[])
     const SendRequest=async()=>{
         try{
             setloading(true)
@@ -69,7 +98,7 @@ function DetailInventory() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ to: SelectWareHouse?.value, from: FromData.NameRequest, type: true, description: FromData.CommentRequest })
+                body: JSON.stringify({ to: SelectWareHouse?.label, from: FromData.NameRequest, type: true, description: FromData.CommentRequest })
             })
             if(response.ok){
                 Swal.fire({
@@ -84,6 +113,8 @@ function DetailInventory() {
                     NameRequest:'',
                     CommentRequest:''
                 })
+                setSelectDistrict(null)
+                setSelectcity(null)
             }
         }catch(error){
             console.log(error)
@@ -187,18 +218,22 @@ function DetailInventory() {
         CommentRequest:'',
 
     })
-    const [WareHouse, setWareHouse] = useState([]);
+    const [ShowRoom, setShowRoom] = useState([]);
+    const [SelectDistrict,setSelectDistrict]=useState(null);
+    const handleSelectDistrict=(SelectDistrict)=>{
+        setSelectDistrict(SelectDistrict)
+    }
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/Request/ShowWareHouse");
-                setWareHouse(response.data.result)
+                const response = await axios.get(`http://localhost:5278/api/Request/ShowShowRoom/${SelectDistrict?.value}`);
+                setShowRoom(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchdata();
-    }, [])
+    }, [SelectDistrict?.value])
     const [loading, setloading] = useState(true);
     const [Image,setImage]=useState([]);
     useEffect(() => {
@@ -288,6 +323,18 @@ function DetailInventory() {
             }
         }
     }
+    const[city,setcity]=useState([]);
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            try{
+                const response=await axios.get(`http://localhost:5278/api/City/showCity`);
+                setcity(response.data)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchdata();
+    },[])
     const renderTabContent = () => {
         switch (ActiveTab) {
             case 'Overview':
@@ -482,49 +529,49 @@ function DetailInventory() {
                         </li>
                     </ul>
                 )
-            case 'Request':
-                return (
-                    <ul className="uk-switcher uk-margin-medium-top">
-                        <li id="uk-tab-6">
-                            <div className="su-gmap su-u-responsive-media-yes">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1485195313026!2d106.71160187480542!3d10.806689089343907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529ed00409f09%3A0x11f7708a5c77d777!2zQXB0ZWNoIENvbXB1dGVyIEVkdWNhdGlvbiAtIEjhu4cgVGjhu5FuZyDEkMOgbyB04bqhbyBM4bqtcCBUcsOsbmggVmnDqm4gUXXhu5FjIHThur8gQXB0ZWNo!5e1!3m2!1svi!2s!4v1715393973056!5m2!1svi!2s" width="600" height="450" style={mapstyles} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                            <div className="wpforms-container wpforms-container-full" id="wpforms-10201">
-                                <form className="wpforms-validate wpforms-form wpforms-ajax-form">
-                                    <div className="wpforms-field-container">
-                                        <div id="wpforms-10201-field_1-container" className="wpforms-field wpforms-field-text wpforms-one-half wpforms-first">
-                                            <label htmlFor="" className="wpforms-field-label">Your Name
-                                                <span className="wpforms-required-label">*</span>
-                                            </label>
-                                            <input type="text" id="wpforms-14099-field_1" value={FromData.Name} onChange={(e) => setFromData({ ...FromData, Name: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                        </div>
-                                        <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px' }}>
-                                            <label htmlFor="" className="wpforms-field-label">Your Email
-                                                <span className="wpforms-required-label">*</span>
-                                            </label>
-                                            <input type="text" id="wpforms-14099-field_1" value={FromData.Email} onChange={(e) => setFromData({ ...FromData, Email: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                        </div>
-                                        {/* <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px', width: '100%' }}>
-                                            <label htmlFor="" className="wpforms-field-label">Subject
+            // case 'Request':
+            //     return (
+            //         <ul className="uk-switcher uk-margin-medium-top">
+            //             <li id="uk-tab-6">
+            //                 <div className="su-gmap su-u-responsive-media-yes">
+            //                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1485195313026!2d106.71160187480542!3d10.806689089343907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529ed00409f09%3A0x11f7708a5c77d777!2zQXB0ZWNoIENvbXB1dGVyIEVkdWNhdGlvbiAtIEjhu4cgVGjhu5FuZyDEkMOgbyB04bqhbyBM4bqtcCBUcsOsbmggVmnDqm4gUXXhu5FjIHThur8gQXB0ZWNo!5e1!3m2!1svi!2s!4v1715393973056!5m2!1svi!2s" width="600" height="450" style={mapstyles} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            //                 </div>
+            //                 <div className="wpforms-container wpforms-container-full" id="wpforms-10201">
+            //                     <form className="wpforms-validate wpforms-form wpforms-ajax-form">
+            //                         <div className="wpforms-field-container">
+            //                             <div id="wpforms-10201-field_1-container" className="wpforms-field wpforms-field-text wpforms-one-half wpforms-first">
+            //                                 <label htmlFor="" className="wpforms-field-label">Your Name
+            //                                     <span className="wpforms-required-label">*</span>
+            //                                 </label>
+            //                                 <input type="text" id="wpforms-14099-field_1" value={FromData.Name} onChange={(e) => setFromData({ ...FromData, Name: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+            //                             </div>
+            //                             <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px' }}>
+            //                                 <label htmlFor="" className="wpforms-field-label">Your Email
+            //                                     <span className="wpforms-required-label">*</span>
+            //                                 </label>
+            //                                 <input type="text" id="wpforms-14099-field_1" value={FromData.Email} onChange={(e) => setFromData({ ...FromData, Email: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+            //                             </div>
+            //                             {/* <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px', width: '100%' }}>
+            //                                 <label htmlFor="" className="wpforms-field-label">Subject
 
-                                            </label>
-                                            <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                        </div> */}
-                                        <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px', width: '100%' }}>
-                                            <label htmlFor="" className="wpforms-field-label">Message
+            //                                 </label>
+            //                                 <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
+            //                             </div> */}
+            //                             <div id="wpforms-10201-field_2-container" className="wpforms-field wpforms-field-text wpforms-one-half" style={{ marginLeft: '5px', width: '100%' }}>
+            //                                 <label htmlFor="" className="wpforms-field-label">Message
 
-                                            </label>
-                                            <textarea id="wpforms-14099-field_1" value={FromData.Message} onChange={(e) => setFromData({ ...FromData, Message: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px' }} />
-                                        </div>
-                                    </div>
-                                    <div className="wpforms-submit-container">
-                                        <button type="button" id="wpforms-submit-14099" onClick={handleSubmit} className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Send Message</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                )
+            //                                 </label>
+            //                                 <textarea id="wpforms-14099-field_1" value={FromData.Message} onChange={(e) => setFromData({ ...FromData, Message: e.target.value })} className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px' }} />
+            //                             </div>
+            //                         </div>
+            //                         <div className="wpforms-submit-container">
+            //                             <button type="button" id="wpforms-submit-14099" onClick={handleSubmit} className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Send Message</button>
+            //                         </div>
+            //                     </form>
+            //                 </div>
+            //             </li>
+            //         </ul>
+            //     )
         }
     }
     const goToPrev = () => {
@@ -724,9 +771,9 @@ function DetailInventory() {
                                                                 <li className={`${ActiveTab == 'Featured' ? 'uk-active' : ''}`} onClick={() => handleTabChange("Featured")}>
                                                                     <a style={{ textDecoration: "none" }}> Features & Options </a>
                                                                 </li>
-                                                                <li className={`${ActiveTab == 'Request' ? 'uk-active' : ''}`} onClick={() => handleTabChange("Request")}>
+                                                                {/* <li className={`${ActiveTab == 'Request' ? 'uk-active' : ''}`} onClick={() => handleTabChange("Request")}>
                                                                     <a style={{ textDecoration: "none" }}>  Request information  </a>
-                                                                </li>
+                                                                </li> */}
                                                             </ul>
                                                             {renderTabContent()}
                                                         </div>
@@ -747,8 +794,23 @@ function DetailInventory() {
                                                                                 </span>
                                                                             </p>
                                                                             <div className="comment-form-comment">
-                                                                            <label for="exampleInputUsername1">Ware House</label>
-                                                <Select options={WareHouse.map(ware => ({ value: ware.name, label: ware.name }))}
+                                                                            <label for="exampleInputUsername1">City </label>
+                                                <Select options={city.map(ware => ({ value: ware.id, label: ware.name }))}
+                                                    value={SelectCity}
+                                                    onChange={(SelectedOption) => handleSelectCity(SelectedOption)}
+                                                />
+                                                                            </div>
+                                                                            <br />
+                                                                            <div className="comment-form-comment">
+                                                                            <label for="exampleInputUsername1">District </label>
+                                                <Select options={District.map(ware => ({ value: ware.id, label: ware.name }))}
+                                                    value={SelectDistrict}
+                                                    onChange={(SelectedOption) => handleSelectDistrict(SelectedOption)}
+                                                />
+                                                                            </div>
+                                                                            <div className="comment-form-comment">
+                                                                            <label for="exampleInputUsername1">Showroom </label>
+                                                <Select options={ShowRoom.map(ware => ({ value: ware.name, label: ware.name }))}
                                                     value={SelectWareHouse}
                                                     onChange={(SelectedOption) => handleSelectWareHouse(SelectedOption)}
                                                 />
