@@ -23,7 +23,7 @@ function AddCustomer() {
     useEffect(() => {
         const data = getUserSession();
 
-        if (data && data.role == 'Employee') {
+        if (data && (data.role == 'Employee' || data.role=='Superadmin')) {
             setSessionData(data);
         } else {
             navigate('/login');

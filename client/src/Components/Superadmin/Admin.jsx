@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react'
 import Swal from 'sweetalert2'
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Pagination from "react-paginate";
+import Cookies from 'js-cookie'
 import axios from 'axios';
 
 export const Admin = () => {
@@ -15,6 +16,24 @@ export const Admin = () => {
         Phone: '',
         IdShowroom: ''
     })
+    const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
     const HandleOnSubmit = async (event) => {
         event.preventDefault();
        if(CountryData.Name==''){
@@ -63,7 +82,7 @@ export const Admin = () => {
         Name: ''
         
     })
-    const navigate = useNavigate();
+
     const location = useLocation();
     const [Country,setCountry] = useState([]);
 

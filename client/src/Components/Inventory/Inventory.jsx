@@ -3,6 +3,7 @@ import Menu from "../Menu/Menu";
 import './Inventory.css';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import Pagination from 'react-paginate';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Inventory() {
@@ -10,7 +11,8 @@ function Inventory() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const navigate = useNavigate();
-    
+    const [loading, setloading] = useState(true)
+
     const fetchCar = async () => {
         try {
 
@@ -48,18 +50,18 @@ function Inventory() {
         });
     }, []);
     const [sliderValues, setSliderValues] = useState([minPrice, maxPrice]);
-    const[ShowRoom,setShowRoom]=useState([]);
-    useEffect(()=>{
-        const fetchData=async()=>{
-            try{
-                const response=await axios.get("http://localhost:5278/api/WareHouse/GetShowroom");
+    const [ShowRoom, setShowRoom] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/WareHouse/GetShowroom");
                 setShowRoom(response.data)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
             }
         }
         fetchData();
-    },[])
+    }, [])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -73,11 +75,11 @@ function Inventory() {
         fetchdata()
     }, [])
     const [SelectBrand, SetSelectBrand] = useState('');
-    const [SelectShowRoom,setSelectShowRoom]=useState('');
-    const handleChangeSelectShowRoom=(event)=>{
+    const [SelectShowRoom, setSelectShowRoom] = useState('');
+    const handleChangeSelectShowRoom = (event) => {
         setSelectShowRoom(event.target.value)
     }
-    
+
     const handleSelectBrand = (event) => {
         SetSelectBrand(event.target.value)
 
@@ -153,6 +155,8 @@ function Inventory() {
                 setCar(response.data.result)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setloading(false)
             }
         }
         fetchdata();
@@ -188,34 +192,38 @@ function Inventory() {
     const [sortedProducts, setSortedProducts] = useState([]);
     const [selectedSortOption, setSelectedSortOption] = useState('Date:Newest First');
     useEffect(() => {
-        const CopyCar=[...Car];
-        if(selectedSortOption==='Date:Newest First'){
-            CopyCar.sort((a,b)=>b.dateAccept-a.dateAccept)
-        }else if(selectedSortOption==='Date:Oldest First'){
-            CopyCar.sort((a,b)=>a.dateAccept-b.dateAccept)
-        }else if(selectedSortOption==='Title:A-Z'){
-            CopyCar.sort((a,b)=>a.name.localeCompare(b.name))
-        }else if(selectedSortOption==='Title:Z-A'){
-            CopyCar.sort((a,b)=>b.name.localeCompare(a.name))
-        }else if(selectedSortOption==='Price:High To Low'){
-            CopyCar.sort((a,b)=>a.price-b.price);
-        }else if(selectedSortOption==='Price:Low To High'){
-            CopyCar.sort((a,b)=>b.price-a.price);
+        const CopyCar = [...Car];
+        if (selectedSortOption === 'Date:Newest First') {
+            CopyCar.sort((a, b) => b.dateAccept - a.dateAccept)
+        } else if (selectedSortOption === 'Date:Oldest First') {
+            CopyCar.sort((a, b) => a.dateAccept - b.dateAccept)
+        } else if (selectedSortOption === 'Title:A-Z') {
+            CopyCar.sort((a, b) => a.name.localeCompare(b.name))
+        } else if (selectedSortOption === 'Title:Z-A') {
+            CopyCar.sort((a, b) => b.name.localeCompare(a.name))
+        } else if (selectedSortOption === 'Price:High To Low') {
+            CopyCar.sort((a, b) => a.price - b.price);
+        } else if (selectedSortOption === 'Price:Low To High') {
+            CopyCar.sort((a, b) => b.price - a.price);
         }
         setSortedProducts(CopyCar);
-    }, [Car, selectedSortOption, SelectBrand,SelectModel,SelectCondition,sliderValues]);
+    }, [Car, selectedSortOption, SelectBrand, SelectModel, SelectCondition, sliderValues]);
     const filterCar = sortedProducts.filter((product) => {
-
-        const includesSearchTerm = product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
+        const includesSearchTerm = SelectCondition === '' || product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
         const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
-        
-        if (SelectBrand == '' && SelectCondition == '' && SelectModel == '' &&  SelectShowRoom == '') {
+        const matchesBrand = SelectBrand === '' || SelectBrand.includes(product.branch);
+        const matchesModel = SelectModel === '' || SelectModel.includes(product.idModel);
+        const withinPriceRange = product.price >= sliderValues[0] && product.price <= sliderValues[1];
+    
+        // If all filters are empty, return all products
+        if (SelectBrand === '' && SelectCondition === '' && SelectModel === '' && SelectShowRoom === '') {
             return true;
         }
-       
-        return SelectModel.includes(product.idModel) && SelectBrand.includes(product.branch) && includesSearchTerm &&  product.price >= sliderValues[0] && product.price <= sliderValues[1] && matchesShowRoom;
+    
+        // Check all conditions
+        return includesSearchTerm && matchesShowRoom && matchesBrand && matchesModel && withinPriceRange;
     });
-  console.log(filterCar)
+    console.log(filterCar)
     const handleOpen = (id) => {
         setOpen(prevOpen => {
             const newOpen = !prevOpen;
@@ -241,10 +249,15 @@ function Inventory() {
 
     }
     const handleSliderChange = (values) => {
-		setSliderValues(values);
+        setSliderValues(values);
 
 
-	}
+    }
+    const [currentPage, setCurrentPage] = useState(0);
+    const handlePageclick = (data) => {
+        setCurrentPage(data.selected);
+    };
+    const [perPage, setperPage] = useState(5);
     const popupContentStyle = {
         display: 'flex',
         animation: 'fadeDown 0.5s ease-out',
@@ -253,8 +266,18 @@ function Inventory() {
         display: 'none',
         animation: 'fadeUp 0.5s ease-out', // Specify the animation properties
     };
+    const indexOflastEmployee = (currentPage + 1) * perPage;
+    const indexOfFirtEmployee = indexOflastEmployee - perPage;
+    const currentEmployee = filterCar.slice(indexOfFirtEmployee, indexOflastEmployee)
     return (
         <>
+            {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
             <div className="templaza-content">
                 <div className="templaza-layout templaza-layout-wide">
                     <div className="templaza-wrapper">
@@ -297,12 +320,12 @@ function Inventory() {
                                                             <form action="">
                                                                 <div className="ap-search-item uk-margin uk-first-column">
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                       Show Room
+                                                                        Show Room
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectShowRoom} onChange={handleChangeSelectShowRoom}>
-                                                                            <option value="">All</option>
+                                                                                <option value="">All</option>
                                                                                 {ShowRoom.map(item => (
                                                                                     <option value={item.id}>{item.name}</option>
                                                                                 ))}
@@ -310,7 +333,7 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Branch
@@ -326,7 +349,7 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Model
@@ -334,7 +357,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" onChange={handleSelectModel} value={SelectModel}>
-                                                                            <option value="">All</option>
+                                                                                <option value="">All</option>
                                                                                 {Model.map(item => (
                                                                                     <option value={item.id}>{item.name}</option>
                                                                                 ))}
@@ -349,7 +372,7 @@ function Inventory() {
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectCondition} onChange={handleSelectCondition}>
-                                                                            <option value="">All</option>
+                                                                                <option value="">All</option>
                                                                                 {Condition.map(item => (
                                                                                     <option value={item.label}>{item.label}</option>
                                                                                 ))}
@@ -357,17 +380,17 @@ function Inventory() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                           
-                                                                
+
+
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Price
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
-                                                                    <div className='price-labels flex justify-between'>
-												<label className='minprice' htmlFor="minPrice">{sliderValues[0]}$</label>
-												<label className='maxprice' htmlFor="maxPrice">{sliderValues[1]}$</label>
-											</div>
+                                                                        <div className='price-labels flex justify-between'>
+                                                                            <label className='minprice' htmlFor="minPrice">{sliderValues[0]}$</label>
+                                                                            <label className='maxprice' htmlFor="maxPrice">{sliderValues[1]}$</label>
+                                                                        </div>
                                                                         <div className='filter-price-container'>
 
                                                                             <Slider
@@ -440,86 +463,88 @@ function Inventory() {
                                                 </div>
                                             </div>
                                             {ChangeSwitch == 1 && (
-                                                <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                                                    {filterCar.map((car, inex) => (
-                                                        <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
-                                                            <div className="ap-inner" style={{ width: '97%' }}>
-                                                                <div className="ap-info">
-                                                                    <div className="uk-inline">
-                                                                        <div className="ap-ribbon sale Default">
-                                                                            <span className="ap-ribbon-content">For Sale</span>
-                                                                        </div>
-                                                                        <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
-                                                                            <a onClick={()=>navigate(`/DetailInventory/${car.id}`,{ state: { ID:car.id,Name:car.name } })} style={{ color: '#222222' }}>
-                                                                                <img src={car.picture.pictureLink} width={580} height={387} className="attachment-medium_large size-medium_large wp-post-image" alt="" />
-                                                                            </a>
-                                                                            <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
-                                                                                <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                    <i className="fas fa-not-equal js-ap-icon"></i>
-                                                                                </a>
-                                                                                <a className="uk-icon-button" style={{ textDecoration: 'none' }} onClick={() => handleOpen(car.id)}>
-                                                                                    <i className="fas fa-eye"></i>
-                                                                                </a>
+                                                <>
+
+                                                    <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                                                        {currentEmployee.map((car, inex) => (
+                                                            <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
+                                                                <div className="ap-inner" style={{ width: '97%' }}>
+                                                                    <div className="ap-info">
+                                                                        <div className="uk-inline">
+                                                                            <div className="ap-ribbon sale Default">
+                                                                                <span className="ap-ribbon-content">For Sale</span>
                                                                             </div>
-                                                                        </div>
-                                                                        <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
-                                                                            <div className="ap-price-box">
-                                                                                <span className="ap-field-label">Total Price</span>
-                                                                                <span className="ap-price">
-                                                                                    <b></b>
-                                                                                    $ {car.price}
-                                                                                </span>
-                                                                                {/* <span className="ap-price-msrp">
+                                                                            <div className="uk-card-media-top uk-position-relative uk-transition-toggle ">
+                                                                                <a onClick={() => navigate(`/DetailInventory/${car.id}`, { state: { ID: car.id, Name: car.name } })} style={{ color: '#222222' }}>
+                                                                                    <img src={car.picture.pictureLink} width={580} height={387} className="attachment-medium_large size-medium_large wp-post-image" alt="" />
+                                                                                </a>
+                                                                                <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade">
+                                                                                    <a onClick={() => navigate(`/DetailInventory/${car.id}`, { state: { ID: car.id, Name: car.name } })} className="uk-icon-button" style={{ textDecoration: 'none' }}>
+                                                                                        <i className="fas fa-not-equal js-ap-icon"></i>
+                                                                                    </a>
+                                                                                    <a className="uk-icon-button" style={{ textDecoration: 'none' }} onClick={() => handleOpen(car.id)}>
+                                                                                        <i className="fas fa-eye"></i>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="uk-position-bottom-left uk-padding-small tz-theme-bg-color ap-price-wrap">
+                                                                                <div className="ap-price-box">
+                                                                                    <span className="ap-field-label">Total Price</span>
+                                                                                    <span className="ap-price">
+                                                                                        <b></b>
+                                                                                        $ {car.price}
+                                                                                    </span>
+                                                                                    {/* <span className="ap-price-msrp">
                                                                                     <span>&nbsp; MSRP: </span>
                                                                                     $96,500
                                                                                 </span> */}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
-                                                                        <div className="ap-title-info">
-                                                                            <h2 className="ap-title">
-                                                                                <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textTransform: 'uppercase', lineHeight: '1.2em' }}>{car.name}</a>
-                                                                            </h2>
+                                                                        <div className="ap-info-inner ap-info-top uk-flex uk-flex-middle uk-flex-between">
+                                                                            <div className="ap-title-info">
+                                                                                <h2 className="ap-title">
+                                                                                    <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', textTransform: 'uppercase', lineHeight: '1.2em' }}>{car.name}</a>
+                                                                                </h2>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="ap-info-inner ap-info-desc">
-                                                                        <p style={{ marginBottom: '0', lineHeight: '1.7', fontSize: '16px', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
-                                                                    </div>
-                                                                    <div className="ap-info-inner ap-info-bottom" style={{ padding: '2px' }}>
-                                                                        <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
-                                                                            <div className="ap-spec-item uk-flex uk-flex-column uk-first-column">
-                                                                                <span className="ap-spec-value">
-                                                                                    <span className="ap-style4-icon">
-                                                                                        <i className="far fa-registered"></i>
+                                                                        <div className="ap-info-inner ap-info-desc">
+                                                                            <p style={{ marginBottom: '0', lineHeight: '1.7', fontSize: '16px', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
+                                                                        </div>
+                                                                        <div className="ap-info-inner ap-info-bottom" style={{ padding: '2px' }}>
+                                                                            <div className="ap-specification ap-specification-style4 uk-child-width-1-3 uk-grid-collapse uk-grid">
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column uk-first-column">
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="far fa-registered"></i>
+                                                                                        </span>
+                                                                                        {car.dateAccept}
                                                                                     </span>
-                                                                                    {car.dateAccept}
-                                                                                </span>
-                                                                            </div>
-                                                                            <div className="ap-spec-item uk-flex uk-flex-column">
-                                                                                <span className="ap-spec-value">
-                                                                                    <span className="ap-style4-icon">
-                                                                                        <i className="fas fa-car"></i>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column">
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="fas fa-car"></i>
+                                                                                        </span>
+                                                                                        New
                                                                                     </span>
-                                                                                    New
-                                                                                </span>
-                                                                            </div>
-                                                                            <div className="ap-spec-item uk-flex uk-flex-column">
-                                                                                <span className="ap-spec-value">
-                                                                                    <span className="ap-style4-icon">
-                                                                                        <i className="fas fa-cog"></i>
+                                                                                </div>
+                                                                                <div className="ap-spec-item uk-flex uk-flex-column">
+                                                                                    <span className="ap-spec-value">
+                                                                                        <span className="ap-style4-icon">
+                                                                                            <i className="fas fa-cog"></i>
+                                                                                        </span>
+                                                                                        {car.mileage} mi
                                                                                     </span>
-                                                                                    {car.mileage} mi
-                                                                                </span>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    ))}
+                                                        ))}
 
-                                                    {/* <div className="ap-item ap-item-style4  templazaFadeInUp">
+                                                        {/* <div className="ap-item ap-item-style4  templazaFadeInUp">
                                                         <div className="ap-inner" style={{ width: '98%' }}>
                                                             <div className="ap-info">
                                                                 <div className="uk-inline">
@@ -744,95 +769,143 @@ function Inventory() {
                                                             </div>
                                                         </div>
                                                     </div> */}
-                                                </div>
+                                                    </div>
+
+                                                    <Pagination
+                                                        previousLabel={'previous'}
+                                                        nextLabel={'next'}
+                                                        breakLabel={'...'}
+                                                        pageCount={Math.ceil(filterCar.length / perPage)}
+                                                        marginPagesDisplayed={2}
+                                                        pageRangeDisplayed={5}
+                                                        onPageChange={handlePageclick}
+                                                        containerClassName={'pagination'}
+                                                        activeClassName={'active'}
+                                                        previousClassName={'page-item'}
+                                                        previousLinkClassName={'page-link'}
+                                                        nextClassName={'page-item'}
+                                                        nextLinkClassName={'page-link'}
+                                                        breakClassName={'page-item'}
+                                                        breakLinkClassName={'page-link'}
+                                                        pageClassName={'page-item'}
+                                                        pageLinkClassName={'page-link'}
+
+                                                    />
+                                                </>
+
+
                                             )}
                                             {ChangeSwitch == 2 && (
-                                                <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-1@l uk-child-width-1-1@xl uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-default uk-grid uk-grid-stack">
-                                                    {filterCar.map((car, index) => (
-                                                        <div className="ap-item ap-item-style5 ap-item-list templazaFadeInUp uk-first-column" style={{ animationDelay: '0ms' }}>
-                                                            <div className="ap-inner">
-                                                                <div className="uk-card uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '35px', marginBottom: '28px' }}>
-                                                                    <div className="uk-card-media-left uk-cover-container uk-width-2-5@s uk-transition-toggle uk-first-column">
-                                                                        <div className="uk-position-relative uk-height-1-1">
-                                                                            <div className="ap-ribbon sale Default">
-                                                                                <span className="ap-ribbon-content"> For Sale </span>
-                                                                            </div>
-                                                                            <img src={car.picture.pictureLink} className="attachment-medium_large size-medium_large wp-post-image" width={580} height={387} alt="" />
-                                                                            <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade" style={{ top: '258px', right: '0' }}>
-                                                                                <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
-                                                                                    <i className="fas fa-not-equal js-ap-icon"></i>
-                                                                                </a>
-                                                                                <a className="uk-icon-button" onClick={() => handleOpen(car.id)} style={{ textDecoration: 'none' }}>
-                                                                                    <i className="fas fa-eye"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div className="ap-info uk-width-3-5@s">
-                                                                        <div className="ap-info-inner ap-info-top">
-                                                                            <h2 className="ap-title">
-                                                                                <a href="" style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>{car.name}</a>
-                                                                            </h2>
-                                                                        </div>
-                                                                        <div className="ap-info-inner ap-info-desc">
-                                                                            <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
-                                                                        </div>
-                                                                        <div className="ap-info-inner ap">
-                                                                            <div className="ap-specification uk-grid-column-small uk-grid-row-collapse ap-specification-style5 uk-child-width-1-2 uk-grid" style={{ justifyContent: 'space-between' }}>
-                                                                                <div className="ap-spec-item uk-first-column">
-                                                                                    <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                        <span className="ap-style5-icon">
-                                                                                            <i className="far fa-registered"></i>
-                                                                                        </span>
-                                                                                        Registration Date:
-                                                                                    </span>
-                                                                                    <span className="ap-spec-value"> {car.dateAccept}</span>
+                                                <>
+                                                    <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-1@l uk-child-width-1-1@xl uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-default uk-grid uk-grid-stack">
+                                                        {currentEmployee.map((car, index) => (
+                                                            <div className="ap-item ap-item-style5 ap-item-list templazaFadeInUp uk-first-column" style={{ animationDelay: '0ms' }}>
+                                                                <div className="ap-inner">
+                                                                    <div className="uk-card uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '35px', marginBottom: '28px' }}>
+                                                                        <div className="uk-card-media-left uk-cover-container uk-width-2-5@s uk-transition-toggle uk-first-column">
+                                                                            <div className="uk-position-relative uk-height-1-1">
+                                                                                <div className="ap-ribbon sale Default">
+                                                                                    <span className="ap-ribbon-content"> For Sale </span>
                                                                                 </div>
-                                                                                <div className="ap-spec-item">
-                                                                                    <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                        <span className="ap-style5-icon">
-                                                                                            <i className="fas fa-car"></i>
-                                                                                        </span>
-                                                                                        Condition:
-                                                                                    </span>
-                                                                                    <span className="ap-spec-value"> {car.condition}</span>
+                                                                                <img src={car.picture.pictureLink} className="attachment-medium_large size-medium_large wp-post-image" width={580} height={387} alt="" />
+                                                                                <div className="uk-position-bottom-right ap-archive-btn-action uk-transition-fade" style={{ top: '258px', right: '0' }}>
+                                                                                    <a href="" className="uk-icon-button" style={{ textDecoration: 'none' }}>
+                                                                                        <i className="fas fa-not-equal js-ap-icon"></i>
+                                                                                    </a>
+                                                                                    <a className="uk-icon-button" onClick={() => handleOpen(car.id)} style={{ textDecoration: 'none' }}>
+                                                                                        <i className="fas fa-eye"></i>
+                                                                                    </a>
                                                                                 </div>
-                                                                                <div className="ap-spec-item uk-grid-margin uk-first-column">
-                                                                                    <span className="ap-field-label" style={{ fontWeight: '400' }}>
-                                                                                        <span className="ap-style5-icon">
-                                                                                            <i className="fas fa-cog"></i>
-                                                                                        </span>
-                                                                                        Mileage:
-                                                                                    </span>
-                                                                                    <span className="ap-spec-value">
-                                                                                        {car.mileage}
-                                                                                        <span className="custom-field-append">
-                                                                                            mi
-                                                                                        </span>
-                                                                                    </span>
-                                                                                </div>
-
                                                                             </div>
+
                                                                         </div>
-                                                                        <div className="ap-info-inner  ap-info-bottom uk-flex uk-flex-between uk-flex-middle">
-                                                                            <div className="ap-price-box">
-                                                                                <span className="ap-field-label" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif' }}>Total Price</span>
-                                                                                <span className="ap-price" style={{ fontWeight: 'bold', fontSize: '1.2em' }}> ${car.price} </span>
-
+                                                                        <div className="ap-info uk-width-3-5@s">
+                                                                            <div className="ap-info-inner ap-info-top">
+                                                                                <h2 className="ap-title">
+                                                                                    <a onClick={() => navigate(`/DetailInventory/${car.id}`, { state: { ID: car.id, Name: car.name } })} style={{ color: '#222222', textDecoration: 'none', fontSize: '16px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>{car.name}</a>
+                                                                                </h2>
                                                                             </div>
-                                                                            <div className="ap-readmore-box">
-                                                                                <a href="" className="templaza-btn">View more</a>
+                                                                            <div className="ap-info-inner ap-info-desc">
+                                                                                <p style={{ lineHeight: '1.7', fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400', fontSize: '16px', color: '#555555' }}>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</p>
+                                                                            </div>
+                                                                            <div className="ap-info-inner ap">
+                                                                                <div className="ap-specification uk-grid-column-small uk-grid-row-collapse ap-specification-style5 uk-child-width-1-2 uk-grid" style={{ justifyContent: 'space-between' }}>
+                                                                                    <div className="ap-spec-item uk-first-column">
+                                                                                        <span className="ap-field-label" style={{ fontWeight: '400' }}>
+                                                                                            <span className="ap-style5-icon">
+                                                                                                <i className="far fa-registered"></i>
+                                                                                            </span>
+                                                                                            Registration Date:
+                                                                                        </span>
+                                                                                        <span className="ap-spec-value"> {car.dateAccept}</span>
+                                                                                    </div>
+                                                                                    <div className="ap-spec-item">
+                                                                                        <span className="ap-field-label" style={{ fontWeight: '400' }}>
+                                                                                            <span className="ap-style5-icon">
+                                                                                                <i className="fas fa-car"></i>
+                                                                                            </span>
+                                                                                            Condition:
+                                                                                        </span>
+                                                                                        <span className="ap-spec-value"> {car.condition}</span>
+                                                                                    </div>
+                                                                                    <div className="ap-spec-item uk-grid-margin uk-first-column">
+                                                                                        <span className="ap-field-label" style={{ fontWeight: '400' }}>
+                                                                                            <span className="ap-style5-icon">
+                                                                                                <i className="fas fa-cog"></i>
+                                                                                            </span>
+                                                                                            Mileage:
+                                                                                        </span>
+                                                                                        <span className="ap-spec-value">
+                                                                                            {car.mileage}
+                                                                                            <span className="custom-field-append">
+                                                                                                mi
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="ap-info-inner  ap-info-bottom uk-flex uk-flex-between uk-flex-middle">
+                                                                                <div className="ap-price-box">
+                                                                                    <span className="ap-field-label" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif' }}>Total Price</span>
+                                                                                    <span className="ap-price" style={{ fontWeight: 'bold', fontSize: '1.2em' }}> ${car.price} </span>
+
+                                                                                </div>
+                                                                                <div className="ap-readmore-box">
+                                                                                    <a onClick={() => navigate(`/DetailInventory/${car.id}`, { state: { ID: car.id, Name: car.name } })} className="templaza-btn">View more</a>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    ))}
+                                                        ))}
 
 
-                                                </div>
+                                                    </div>
+
+                                                    <Pagination
+                                                        previousLabel={'previous'}
+                                                        nextLabel={'next'}
+                                                        breakLabel={'...'}
+                                                        pageCount={Math.ceil(filterCar.length / perPage)}
+                                                        marginPagesDisplayed={2}
+                                                        pageRangeDisplayed={5}
+                                                        onPageChange={handlePageclick}
+                                                        containerClassName={'pagination'}
+                                                        activeClassName={'active'}
+                                                        previousClassName={'page-item'}
+                                                        previousLinkClassName={'page-link'}
+                                                        nextClassName={'page-item'}
+                                                        nextLinkClassName={'page-link'}
+                                                        breakClassName={'page-item'}
+                                                        breakLinkClassName={'page-link'}
+                                                        pageClassName={'page-item'}
+                                                        pageLinkClassName={'page-link'}
+
+                                                    />
+                                                </>
+
                                             )}
 
                                         </div>

@@ -9,6 +9,7 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import Footer from './Components/Footer/Footer';
 import DashboardEmployee from './Components/Employee/Dashboard/Dashboard';
 import CreateCustomer from './Components/Employee/Customer/AddCustomer';
+import CreateCustomerSuperadmin from  './Components/Superadmin/AddCustomer';
 import ShowCustomer from './Components/Employee/Customer/ShowCustomer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
@@ -67,6 +68,7 @@ import ShowCarWareHouse from './Components/Admin/ShowCarWareHouse/ShowCarWareHou
 import { Order } from './Components/Superadmin/Order';
 import { DetailOrderSpm } from './Components/Superadmin/DetailOrder';
 import { WarehouseShow } from './Components/Superadmin/accountGeneral/WarehouseShow';
+import { AddCustomer } from './Components/Superadmin/AddCustomer';
 function App() {
   return (
     <Router>
@@ -77,7 +79,7 @@ function App() {
         <Route path='/EmployeeAdmin' element={<AddEmployee/>}/>
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/HomeAdminPage' element={<LayoutHomepage/>}/>
-        <Route path='/Homepage' element={<Homepage/>}/>
+        <Route path='/' element={<Homepage/>}/>
         <Route path='/DetailInventory/:id' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>
@@ -88,6 +90,7 @@ function App() {
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
             <Route path='showroom' element={<Showroom/>}/>
+            <Route path='Create' element={<CreateCustomerSuperadmin/>}/>
             <Route path='order' element={<Order/>}/>
             <Route path='Detailorder/:id' element={<DetailOrderSpm/>}/>
             <Route path='warehouse' element={<Warehouse/>}/>

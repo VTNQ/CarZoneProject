@@ -4,12 +4,29 @@ import { Outlet } from 'react-router-dom'
 
 import {useLocation, useNavigate} from "react-router-dom";
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie'
 
 export const BMV = () => {
   
     const navigate = useNavigate();
 
- 
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
     
   return (
     <div className="main-panel">

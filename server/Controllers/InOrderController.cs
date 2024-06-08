@@ -26,6 +26,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("GetCountinOrder/{id}/{time}")]
+        public async Task<IActionResult> GetCountinOrder(int id,int time)
+        {
+            try
+            {
+                return Ok(_orderService.GetCountinOrder(id,time));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("GetCountOrder/{id}/{time}")]
         public async Task<IActionResult> GetCountOrder(int id,int time)
         {
@@ -38,6 +50,7 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        
         [HttpGet("TotalOrderWareHouse/{id}")]
         public async Task<IActionResult> TotalOrderWareHouse(int id)
         {

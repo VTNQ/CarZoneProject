@@ -5,6 +5,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Pagination from "react-paginate";
 import axios from 'axios';
 import Select from 'react-select';
+import Cookies from 'js-cookie'
 
 
 export const AdminAccount = () => {
@@ -17,6 +18,7 @@ export const AdminAccount = () => {
         Phone: '',
         IdShowroom: ''
     })
+  
     const HandleOnSubmit = async (event) => {
         event.preventDefault();
         if (CountryData.FullName === '' || CountryData.Email === '') {
@@ -64,12 +66,35 @@ export const AdminAccount = () => {
         
     })
     const navigate = useNavigate();
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession=()=>{
+        const UserSession=Cookies.get("UserSession");
+        if(UserSession){
+            return JSON.parse(UserSession);
+        }
+        return null;
+    }
+    useEffect(() => {
+      const data = getUserSession();
+     
+      if (data && data.role=='Superadmin') {
+          setSessionData(data);
+      } else{
+        navigate('/login');
+      }
+  }, [navigate]);
     const [Country,setCountry] = useState([]);
-
+    const[loading,setloading]=useState(true)
     const fetchData = async () => {
-    const response = await axios.get(`http://localhost:5278/api/Account/getAdmin`);
-    setCountry(response.data);
-    console.log(response.data);
+      try{
+        const response = await axios.get(`http://localhost:5278/api/Account/getAdmin`);
+        setCountry(response.data);
+        console.log(response.data);
+      }catch(error){
+        console.log(error)
+      }finally{
+        setloading(false)
+      }
     };
 
 useEffect(() => {
@@ -216,6 +241,14 @@ useEffect(() => {
           });
       }, []);
   return (
+   <>
+    {loading && (
+                <div
+                    className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50" style={{ zIndex: '10000' }}>
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
+                </div>
+
+            )}
     <div class="row">
         <div class="col-md-4 grid-margin stretch-card">
           <div class="card">
@@ -329,5 +362,6 @@ useEffect(() => {
               </div>
             </div>
       </div>
+   </>
   )
 }
