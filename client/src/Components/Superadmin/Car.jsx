@@ -82,16 +82,19 @@ export const CarSpm = () => {
     const fetchBrandData = async () => {
         try {
             const response = await axios.get('http://localhost:5278/api/Brand/getBrand');
-            const brandOptions = response.data.map(brand => ({
+            const brandOptions = response.data.result.map(brand => ({
                 value: brand.id,
                 label: brand.name
             }));
+            console.log(brandOptions)
             setBrandApt(brandOptions);
+            
+            
         } catch (error) {
             console.error('Error fetching brands:', error);
         }
     };
-
+    console.log(BrandApi)
     // Fetch color data
     const fetchColorData = async () => {
         try {
