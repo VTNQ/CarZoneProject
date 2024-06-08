@@ -44,6 +44,7 @@ D:\CarZoneProject\server\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 D:\CarZoneProject\server\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\CarZoneProject\server\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 D:\CarZoneProject\server\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\CarZoneProject\server\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\CarZoneProject\server\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\CarZoneProject\server\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\CarZoneProject\server\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -152,7 +153,6 @@ D:\CarZoneProject\server\obj\Debug\net8.0\refint\server.dll
 D:\CarZoneProject\server\obj\Debug\net8.0\server.pdb
 D:\CarZoneProject\server\obj\Debug\net8.0\server.genruntimeconfig.cache
 D:\CarZoneProject\server\obj\Debug\net8.0\ref\server.dll
-D:\CarZoneProject\server\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\VisualStudioCode\CarZone\CarZoneProject\server\bin\Debug\net8.0\appsettings.Development.json
 D:\VisualStudioCode\CarZone\CarZoneProject\server\bin\Debug\net8.0\appsettings.json
 D:\VisualStudioCode\CarZone\CarZoneProject\server\bin\Debug\net8.0\server.staticwebassets.runtime.json

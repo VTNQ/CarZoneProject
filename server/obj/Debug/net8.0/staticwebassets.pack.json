@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\06c1f283c30c44efa0949936f545c806.png",
+      "PackagePath": "staticwebassets\\images\\06c1f283c30c44efa0949936f545c806.png"
+    },
+    {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png",
       "PackagePath": "staticwebassets\\images\\0dfc94e2555a42f89d5144003311c82c.png"
     },
@@ -19,6 +23,18 @@
     {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
       "PackagePath": "staticwebassets\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\390c650f8a7a4587a4cfc5f528765510.png",
+      "PackagePath": "staticwebassets\\images\\390c650f8a7a4587a4cfc5f528765510.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\3f16685566944e118491e3668ce1559b.png",
+      "PackagePath": "staticwebassets\\images\\3f16685566944e118491e3668ce1559b.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\45eaa111b0304532b02f5f81931eecff.png",
+      "PackagePath": "staticwebassets\\images\\45eaa111b0304532b02f5f81931eecff.png"
     },
     {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
@@ -95,6 +111,10 @@
     {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
       "PackagePath": "staticwebassets\\images\\e02391a72aef445086dfe983dfdb833e.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\e55731f7f247474ca3fb82b91a4507ec.png",
+      "PackagePath": "staticwebassets\\images\\e55731f7f247474ca3fb82b91a4507ec.png"
     },
     {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png",

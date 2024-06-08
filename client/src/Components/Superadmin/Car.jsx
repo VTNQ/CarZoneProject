@@ -82,21 +82,24 @@ export const CarSpm = () => {
     const fetchBrandData = async () => {
         try {
             const response = await axios.get('http://localhost:5278/api/Brand/getBrand');
-            const brandOptions = response.data.map(brand => ({
+            const brandOptions = response.data.result.map(brand => ({
                 value: brand.id,
                 label: brand.name
             }));
+            console.log(brandOptions)
             setBrandApt(brandOptions);
+            
+            
         } catch (error) {
             console.error('Error fetching brands:', error);
         }
     };
-
+    console.log(BrandApi)
     // Fetch color data
     const fetchColorData = async () => {
         try {
             const response = await axios.get('http://localhost:5278/api/Color/ShowColor');
-            const colorOptions = response.data.map(color => ({
+            const colorOptions = response.data.result.map(color => ({
                 value: color.id,
                 label: color.name,
                 color: color.name
@@ -112,7 +115,7 @@ export const CarSpm = () => {
     const fetchVersionData = async () => {
         try {
             const response = await axios.get('http://localhost:5278/api/Version/ShowVersion');
-            const versionOptions = response.data.map(version => ({
+            const versionOptions = response.data.result.map(version => ({
                 value: version.id,
                 label: version.relaseYear
             }));
@@ -126,7 +129,7 @@ export const CarSpm = () => {
     const fetchFormData = async () => {
         try {
             const response = await axios.get('http://localhost:5278/api/Form/ShowForm');
-            const formOptions = response.data.map(form => ({
+            const formOptions = response.data.result.map(form => ({
                 value: form.id,
                 label: form.name
             }));
@@ -353,6 +356,45 @@ export const CarSpm = () => {
                     timer: 1500
                 });
                 fetchDataCar();
+                setCarForm({
+                    Name: '',
+        IdModel: '',
+        Condition: '',
+        Engine: '',
+        Drivertrain: '',
+        FuelType: '',
+        MotorSize: '',
+        Bhp: '',
+        IdColorOutside: '',
+        IdColorInside: '',
+        Length: '',
+        Height: '',
+        Width: '',
+        NumberOfSeat: '',
+        Mileage: '',
+        Transmisstion: '',
+        IdVersion: '',
+        IdForm: '',
+        Price: '',
+        FuelConsumption: '',
+        Weight: '',
+        SpeedAbility: '',
+        MaxSpeed: '',
+        OffRoad: false,
+        DateAccept: '',
+        heightBetween: '',
+        MainPhoto: null,
+        SubPhotos: []
+                });
+                setSelectedColorInside(null);
+                setSelectedColorOutside(null);
+                setSelectedIdForm(null);
+                setSelectedBrand(null);
+                setSelectedModel(null);
+                setSelectedIdVersion(null);
+                setImagePreView('')
+                setSubPhotoPreviews([])
+              
             } else {
                 const responseBody = await response.json();
                 console.log("Form Data after failure: ", responseBody); // In lại dữ liệu formData khi thất bại

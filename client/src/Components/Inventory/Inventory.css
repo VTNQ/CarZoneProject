@@ -319,9 +319,7 @@ select:not([multiple]):not([size]) {
         padding: 50px 30px;
     }
 }
-.uk-flex {
-    display: flex !important;
-}
+
 .uk-modal-container .uk-modal-dialog {
     width: 1200px;
 }
