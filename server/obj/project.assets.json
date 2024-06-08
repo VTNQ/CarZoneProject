@@ -6609,11 +6609,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CarZoneProject\\server\\server.csproj",
+      "projectUniqueName": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
       "projectName": "server",
-      "projectPath": "D:\\CarZoneProject\\server\\server.csproj",
+      "projectPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "D:\\CarZoneProject\\server\\obj\\",
+      "outputPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6636,11 +6636,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -6702,15 +6697,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[8.0.4, 8.0.4]"
+            "version": "[8.0.0, 8.0.0]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.4, 8.0.4]"
+            "version": "[8.0.0, 8.0.0]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[8.0.4, 8.0.4]"
+            "version": "[8.0.0, 8.0.0]"
           }
         ],
         "frameworkReferences": {
@@ -6721,7 +6716,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
@@ -6729,5 +6724,13 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -35,6 +35,7 @@ export const LayoutSuperadmin = () => {
         navigate('/login');
       }
   }, [navigate]);
+  console.log("session" + sessionData);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const handleDropdownToggle = () => {
