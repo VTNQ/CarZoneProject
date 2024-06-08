@@ -251,7 +251,7 @@ button.uk-icon:not(:disabled) {
     border: none !important;
 }
 #templaza-sticky-header .templaza-nav > .menu-item > a {
-    color: #222222 !important;
+    color: #222222;
 }
 #templaza-sticky-header .templaza-nav > .menu-item > a {
     padding: 20px !important;

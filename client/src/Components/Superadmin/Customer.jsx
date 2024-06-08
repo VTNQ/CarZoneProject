@@ -12,7 +12,9 @@ export const Customer = () => {
     const [perPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [loading, setloading] = useState(true);
+    const [UpdateDob, setUpdateDob] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
+    
     const [FromData, setFromData] = useState({
         FullName: '',
         Email: '',
@@ -27,6 +29,82 @@ export const Customer = () => {
         UpdateIdentityCode: '',
         UpdateDOB: '',
     })
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        if (FromData.UpdateName==''  || FromData.UpdateEmail == '' || FromData.UpdateAdress == '' || FromData.UpdatePhone == '' || UpdateDob == null) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else if (FromData.UpdatePhone.length != 10) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Phone requires 10 digits',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            setloading(true);
+            const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
+            const vietnamStartDate = new Date(UpdateDob.getTime() + offsetInMilliseconds);
+
+            try {
+                const response = await fetch(`http://localhost:5278/api/Customer/UpdateCustomer/${FromData.id}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullName: FromData.UpdateName,
+                        email: FromData.UpdateEmail,
+                        address: FromData.UpdateAdress,
+                        phone: FromData.UpdatePhone,
+                        dob: vietnamStartDate.toISOString().split('T')[0]
+                    })
+
+                })
+                if (response.ok) {
+                    setloading(false)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Update Customer Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setPopupVisibility(false)
+                    setFromData({
+                        UpdateName: '',
+                        UpdateEmail: '',
+                        id: '',
+                        UpdateAdress: '',
+                        UpdatePhone: '',
+                        UpdateIdentityCode: ''
+                    })
+                    const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
+                    setCustomer(response.data.result)
+                    setUpdateDob(null);
+                   
+                } else {
+                    setloading(false)
+                    const responseBody = await response.json();
+                    if (responseBody.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: responseBody.message || 'Failed to add genre',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+    }
     const navigate = useNavigate();
     
     const location = useLocation();
@@ -64,6 +142,12 @@ export const Customer = () => {
         fetchdata()
     }, [])
     const [IsClosingPopup, setIsClosingPopup] = useState(false);
+    const today = new Date();
+    const MaxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
+    
+    const handleUpdateChange = (date) => {
+        setUpdateDob(date)
+    }
     const popupContentStyle = {
         background: 'white',
         padding: '20px',
@@ -107,7 +191,7 @@ export const Customer = () => {
             FromData.UpdateAdress = SelectCustomer.address;
             FromData.UpdateEmail = SelectCustomer.email;
             FromData.UpdatePhone = SelectCustomer.phone;
-            FromData.UpdateDOB = SelectCustomer.dob;
+            setUpdateDob(new Date(SelectCustomer.dob))
         }
         setPopupVisibility(true)
     }
@@ -216,23 +300,25 @@ export const Customer = () => {
 
                             <h3 className="box-title1">Edit Customer</h3>
                         </div>
-                        <form role="form" >
+                        <form role="form" onSubmit={handleUpdate}>
                             <div className="box-body">
                                 {/* Form fields go here */}
                                 <div class="form-group">
                                     <label className='float-left'>Full Name</label>
-                                    <input type="text" class="form-control" value={FromData.UpdateName} id="exampleInputUsername1" placeholder="Full Name" />
+                                    <input type="text" class="form-control" value={FromData.UpdateName} onChange={(e) => setFromData({ ...FromData, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Birthday</label>
                                     <DatePicker name='Birthday' dateFormat="dd/MM/yyyy"
                                         className="form-control w-[100%]"
-                                        selected={FromData.UpdateDOB}
+                                        selected={UpdateDob}
+                                        onChange={handleUpdateChange}
                                         placeholderText="Select Birthday"
                                         showYearDropdown
                                         scrollableYearDropdown
                                         yearDropdownItemNumber={83}
-                                    />
+
+                                        maxDate={MaxDate} />
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Email</label>
@@ -244,16 +330,22 @@ export const Customer = () => {
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Phone</label>
-                                    <input type="text" class="form-control" value={FromData.UpdatePhone} onChange={(e) => setFromData({ ...FromData, UpdatePhone: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
+                                    <input type="tel" class="form-control" value={FromData.UpdatePhone} onChange={(e) => setFromData({ ...FromData, UpdatePhone: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
+
+
                             </div>
+
                             <div className="box-footer">
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded ">Update</button>
                             </div>
                         </form>
+
+
                     </div>
                 </div>
             )}
+
         </>
 
 

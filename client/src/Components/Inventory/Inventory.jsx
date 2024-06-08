@@ -266,6 +266,9 @@ function Inventory() {
         display: 'none',
         animation: 'fadeUp 0.5s ease-out', // Specify the animation properties
     };
+    const indexOflastEmployee = (currentPage + 1) * perPage;
+    const indexOfFirtEmployee = indexOflastEmployee - perPage;
+    const currentEmployee = filterCar.slice(indexOfFirtEmployee, indexOflastEmployee)
     return (
         <>
             {loading && (
@@ -463,7 +466,7 @@ function Inventory() {
                                                 <>
 
                                                     <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-2@l uk-child-width-1-3@xl uk-child-width-1-2@m uk-child-width-1-2@s uk-child-width-1-1 uk-grid-default uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                                                        {filterCar.map((car, inex) => (
+                                                        {currentEmployee.map((car, inex) => (
                                                             <div className="ap-item ap-item-style4 templazaFadeInUp uk-first-column">
                                                                 <div className="ap-inner" style={{ width: '97%' }}>
                                                                     <div className="ap-info">
@@ -795,7 +798,7 @@ function Inventory() {
                                             {ChangeSwitch == 2 && (
                                                 <>
                                                     <div className="templaza-ap-archive templaza-ap-grid uk-child-width-1-1@l uk-child-width-1-1@xl uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-default uk-grid uk-grid-stack">
-                                                        {filterCar.map((car, index) => (
+                                                        {currentEmployee.map((car, index) => (
                                                             <div className="ap-item ap-item-style5 ap-item-list templazaFadeInUp uk-first-column" style={{ animationDelay: '0ms' }}>
                                                                 <div className="ap-inner">
                                                                     <div className="uk-card uk-child-width-1-2@s uk-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '35px', marginBottom: '28px' }}>

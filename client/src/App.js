@@ -79,7 +79,7 @@ function App() {
         <Route path='/EmployeeAdmin' element={<AddEmployee/>}/>
         <Route path='/Menu' element={<Menu/>}/>
         <Route path='/HomeAdminPage' element={<LayoutHomepage/>}/>
-        <Route path='/Homepage' element={<Homepage/>}/>
+        <Route path='/' element={<Homepage/>}/>
         <Route path='/DetailInventory/:id' element={<DetailInventory/>}/>
         <Route path='/AboutUs' element={<AboutUs/>}/>
         <Route path='/Footer' element={<Footer/>}/>

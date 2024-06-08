@@ -378,7 +378,7 @@ export const LayoutSuperadmin = () => {
           <li class="nav-item">
             <a class="nav-link"  onClick={()=>navigate('/superadmin/admin')}>
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Admin</span>
+              <span class="menu-title">Account management</span>
             </a>
           </li>
           <li class="nav-item">
