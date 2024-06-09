@@ -132,7 +132,7 @@ function DetailOutOrders() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th> Car </th>
-
+                                                        <th>Image</th>
                                                         <th> Delivery Date </th>
                                                         <th> Price</th>
                                                         <th> Tax </th>
@@ -145,6 +145,7 @@ function DetailOutOrders() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{Detail.car}</td>
+                                                            <td>{<img src={Detail.picture.pictureLink} width="100" height="100" alt="" style={{ objectFit: 'cover', width: '30%', height: '100%', borderRadius: '0%' }} />}</td>
                                                             <td>{new Date(Detail.deliveryDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                                                             <td>{Detail.price}</td>
                                                             <td>{Detail.tax}</td>

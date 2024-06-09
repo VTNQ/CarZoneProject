@@ -75,6 +75,22 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpPost("ApproveOrder/{id}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> ApproveOrder(int id)
+        {
+            try
+            {
+                return Ok(new
+                {
+                    result = _orderService.ApproveOrder(id)
+                }) ;
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost("AddInorder")]
         [Produces("application/json")]
         public async Task<IActionResult> AddInorder([FromForm] InOrder inOrder)
