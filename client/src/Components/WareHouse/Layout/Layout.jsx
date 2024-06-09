@@ -118,11 +118,8 @@ useEffect(() => {
               <a onClick={handleLogout}>
                 <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
               </a>
-              <a style={{cursor:'pointer'}}   onClick={() => navigate('/EditProfile', {state:{sessionData}})}>
-                <i className="fa fa-user" aria-hidden="true"></i> Account
-              </a>
-
-              {/* Các mục khác của dropdown có thể được thêm vào đây */}
+       
+            
             </div>
           )}
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -195,7 +192,7 @@ useEffect(() => {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/ShowWareHouseCar',{state:{sessionData}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/CarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car WareHouse</span>
     </a>

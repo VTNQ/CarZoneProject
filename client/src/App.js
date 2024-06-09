@@ -48,7 +48,7 @@ import { Showroom } from './Components/Superadmin/Showroom';
 import { Warehouse } from './Components/Superadmin/Warehouse';
 import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/CreateCarWareHouse';
 import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
-import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
+
 import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
 import { BMV } from './Components/Superadmin/BMV';
 import { BrandSpm } from './Components/Superadmin/bmw/Brand';
@@ -129,8 +129,8 @@ function App() {
           <Route path='Brand' element={<Brand/>}/>
           <Route path='CreateCarWareHouse' element={<CreateCarWareHouse/>}/>
           <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
-          <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
-          <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
+     
+          <Route path='CarWareHouse' element={<DetailWareHouseCar/>}/>
           <Route path='RequestWareHouse' element={<RequestWareHouse/>}/>
           <Route path='Model' element={<Model/>}/>
         </Route>

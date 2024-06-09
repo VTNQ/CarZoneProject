@@ -40,6 +40,24 @@ namespace server.Services
            
         }
 
+        public async Task<IEnumerable<dynamic>> GetShowRoom(int id)
+        {
+           return databaseContext.Showrooms.Where(d => d.IdDistrict == id).Select(d => new
+           {
+               id=d.Id,
+               Name=d.Name,
+           }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowDistrict(int id)
+        {
+            return databaseContext.Districts.Where(d => d.IdCity == id).Select(d => new
+            {
+                id = d.Id,
+                Name = d.Name,
+            }).ToList();
+        }
+
         public async Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname)
         {
             return databaseContext.Requests.Where(d => d.Type == false && d.From==fullname).Select(d => new
@@ -73,15 +91,7 @@ namespace server.Services
             }).ToList();
         }
 
-        public async Task<IEnumerable<dynamic>> ShowWareHouse()
-        {
-           return databaseContext.Warehouses.Select(d => new
-           {
-               id=d.Id,
-               Name=d.Name,
-           }).ToList(); 
-        }
-
+   
         public async Task<bool> UpdateRequest(int id)
         {
             using (var traction = await databaseContext.Database.BeginTransactionAsync())

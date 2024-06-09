@@ -80,12 +80,24 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("ShowWareHouse")]
-        public async Task<IActionResult> ShowWareHouse()
+        [HttpGet("ShowDistrict/{id}")]
+        public async Task<IActionResult> ShowDistrict(int id)
         {
             try
             {
-                return Ok(_requestService.ShowWareHouse());
+                return Ok(_requestService.ShowDistrict(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowShowRoom/{id}")]
+        public async Task<IActionResult> ShowShowRoom(int id)
+        {
+            try
+            {
+                return Ok(_requestService.GetShowRoom(id));
             }
             catch
             {

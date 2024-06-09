@@ -34,20 +34,23 @@ export const DetailOrderSpm = () => {
       }
   }, [navigate]);
 
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get(`http://localhost:5278/api/OutOrder/ShowAllContract/`);
-                setContract(response.data)
-            }catch(error){
-                console.log(error)
-            }
+  useEffect(() => {
+    const fetchdata = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowContract/${sessionData.IDOutOrder}`);
+            setContract(response.data.result)
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setloading(false)
         }
-        if(sessionData && sessionData.IDOutOrder){
-            fetchdata();
-        }
-        
-    },[sessionData])
+    }
+    if (sessionData && sessionData.IDOutOrder) {
+        fetchdata();
+    }
+
+}, [sessionData])
+
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
@@ -243,10 +246,15 @@ export const DetailOrderSpm = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>{Contract.condition || "N/A"}</td> {/* Handle undefined condition */}
-                                                    <td>{Contract.createDate ? new Date(Contract.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : "N/A"}</td>
-                                                </tr>
+                                               
+                                            {Contract.map((Contrac, index) => (
+                                                        <tr>
+                                                           
+                                                            <td>{Contrac.condition}</td>
+                                                            <td>{new Date(Contrac.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                        </tr>
+                                                    ))}
+
                                             </tbody>
                                         </table>
                                     </div>
