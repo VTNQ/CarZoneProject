@@ -114,7 +114,13 @@ namespace server.Services
             foreach(var order in Orders)
             {
                 var details=await databaseContext.DetailOfInOrders.Where(d=>d.IdOrder==order.Id && d.DeliveryDate<=DateOnly.FromDateTime(DateTime.Today)).ToListAsync();
-                if (details.Any())
+                var subwarehouses = await databaseContext.SubWarehouseCars
+           .Where(s => s.IdWarehouse == order.IdWarehouse)
+           .ToListAsync();
+
+                bool hasMatchingSubwarehouse = details.Any(detail =>
+                    subwarehouses.Any(sub => sub.IdCar == detail.IdCar));
+                if (details.Any() && hasMatchingSubwarehouse)
                 {
                     order.Status = true;
                 }
