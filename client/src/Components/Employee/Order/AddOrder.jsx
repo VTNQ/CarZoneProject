@@ -46,14 +46,17 @@ function AddOrder() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/OutOrder/ShowCar");
-                setCar(response.data)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowCar/${sessionData.idShowroom}`);
+                setCar(response.data.result)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idShowroom){
+            fetchdata();
+        }
+
+    }, [sessionData])
     const handleSubmit = async (event) => {
         event.preventDefault();
         let totalAmount = 0;

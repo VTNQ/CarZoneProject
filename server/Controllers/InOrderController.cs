@@ -139,12 +139,12 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("ShowCar/{id}")]
-        public async Task<IActionResult> ShowCar(int id)
+        [HttpGet("ShowCar")]
+        public async Task<IActionResult> ShowCar()
         {
             try
             {
-                return Ok(_orderService.ShowCar(id));
+                return Ok(_orderService.ShowCar());
             }
             catch
             {

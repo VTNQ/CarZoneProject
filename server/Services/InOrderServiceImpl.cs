@@ -18,9 +18,9 @@ namespace server.Services
                 Name=d.Name,
             }).ToList();    
         }
-        public async Task<IEnumerable<dynamic>> ShowCar(int id)
+        public async Task<IEnumerable<dynamic>> ShowCar()
         {
-            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(a => a.Id == id && databaseContext.SubWarehouseCars.Any(e => e.IdCar == d.Id && a.IdDistrictNavigation.IdCityNavigation.IdCountry == e.IdWarehouseNavigation.IdCountry))).Select(d => new
+            return databaseContext.Cars.Select(d => new
             {
                 id=d.Id,
                 name=d.Name,

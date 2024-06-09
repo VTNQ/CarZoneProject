@@ -100,14 +100,11 @@ function InOrder() {
    
     useEffect(() => {
         const fetchdata = async () => {
-            const response = await axios.get(`http://localhost:5278/api/InOrder/ShowCar/${sessionData.idShowroom}`);
+            const response = await axios.get(`http://localhost:5278/api/InOrder/ShowCar`);
             setCar(response.data.result)
         }
-        if(sessionData && sessionData.idShowroom){
-            fetchdata();
-        }
-   
-    }, [sessionData])
+      fetchdata()
+    }, [])
     const handleCarChange = (SelectedOptions) => {
         setSelectCars(SelectedOptions);
         const newCarTaxes = { ...carTaxes };
