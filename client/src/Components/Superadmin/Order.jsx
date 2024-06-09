@@ -184,8 +184,9 @@ export const Order = () => {
     }
     const handleDetailClick=(outorder)=>{
         
-        const updatedSessionData={...sessionData,IDOutOrder:outorder.id};
-        sessionStorage.setItem('sessionData',JSON.stringify(updatedSessionData));
+        const updatedSessionData = { ...sessionData, IDOutOrder: outorder.id };
+        Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
+      
         navigate(`/superadmin/DetailOrder/${outorder.id}`,{state:updatedSessionData})
     }
     return (

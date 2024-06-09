@@ -192,7 +192,7 @@ useEffect(() => {
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/ShowWareHouseCar',{state:{sessionData}})}>
+    <a class="nav-link" onClick={()=>navigate('/WareHouse/CarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car WareHouse</span>
     </a>

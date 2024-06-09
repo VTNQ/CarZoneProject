@@ -36,7 +36,7 @@ function DetailWareHousewarehouse() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/WareHouse/DetailWareHouseCar/${sessionData.IDCarWareHouse}`);
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/DetailWareHouseCar/${sessionData.idWarehouse}`);
                 setWareHouse(response.data.result)
             } catch (error) {
                 console.log(error)
@@ -44,7 +44,7 @@ function DetailWareHousewarehouse() {
                 setloading(false)
             }
         }
-        if (sessionData && sessionData.IDCarWareHouse) {
+        if (sessionData && sessionData.idWarehouse) {
             fetchdata();
         }
 
@@ -109,16 +109,7 @@ function DetailWareHousewarehouse() {
                                 <div class="card">
 
                                     <div class="card-body">
-                                        <button
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3"
-                                            onClick={handleBackClick}>Back
-                                        </button>
-                                        {sessionData ? (
-                                            <h4 class="card-title">Detail WareHouse {sessionData.NameWareHouse}</h4>
-                                        ) : (
-                                            <h4 class="card-title">Detail WareHouse </h4>
-                                        )}
-
+                                   
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"

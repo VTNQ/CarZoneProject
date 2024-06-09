@@ -99,6 +99,12 @@ function RequestSupplier() {
                         showConfirmButton: false,
                         timer: 1500,
                     })
+                    const response = await axios.get(`http://localhost:5278/api/Request/ShowRequestSupplier/${sessionData.fullName}`);
+                    setReQuest(response.data.result)
+                    setFromData({
+                        Description: '',
+                        ShowDescription: ''
+                    })
                 }
             } catch (error) {
                 console.log(error)
