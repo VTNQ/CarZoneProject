@@ -69,6 +69,7 @@ import { Order } from './Components/Superadmin/Order';
 import { DetailOrderSpm } from './Components/Superadmin/DetailOrder';
 import { WarehouseShow } from './Components/Superadmin/accountGeneral/WarehouseShow';
 import { AddCustomer } from './Components/Superadmin/AddCustomer';
+import { AddCarIntoWarehouse } from './Components/Superadmin/AddCarIntoWarehouse';
 function App() {
   return (
     <Router>
@@ -89,6 +90,7 @@ function App() {
             <Route path='countriesPage' element={<Countries/>}/>
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
+            <Route path='addCarIntoWarehouse/:id' element={<AddCarIntoWarehouse/>}/>
             <Route path='showroom' element={<Showroom/>}/>
             <Route path='Create' element={<CreateCustomerSuperadmin/>}/>
             <Route path='order' element={<Order/>}/>

@@ -59,6 +59,7 @@ export const Countries = () => {
                 setCountryData({
                     Name: '',
                 })
+                fetchData();
 
             } else {
                 const responseBody = await response.json();
