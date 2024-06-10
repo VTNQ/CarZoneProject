@@ -8,15 +8,27 @@ import { useNavigate } from "react-router-dom";
 function Request(){
     const[WareHouse,setWareHouse]=useState([]);
     const navigate = useNavigate();
-    const [sessionData, setSessionData] = useState(null);
+  
     const [loading, setloading] = useState(true);
-  const getUserSession=()=>{
-    const UserSession=Cookies.get("UserSession");
-    if(UserSession){
-        return JSON.parse(UserSession);
+    const [sessionData, setSessionData] = useState(null);
+    const getUserSession = () => {
+        const UserSession = Cookies.get("UserSession");
+        if (UserSession) {
+            return JSON.parse(UserSession);
+        }
+        return null;
     }
-    return null;
-}
+
+    useEffect(() => {
+        const data = getUserSession();
+
+        if (data && data.role == 'WareHouse') {
+            setSessionData(data);
+        } else {
+            // If no session data, redirect to login
+            navigate('/login');
+        }
+    }, [navigate]);
 
 useEffect(() => {
     const data = getUserSession();
@@ -28,10 +40,11 @@ useEffect(() => {
         navigate('/login');
     }
 }, [navigate]);
+
     useEffect(()=>{
         const fetchdata=async()=>{
             try{
-                const response=await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
+                const response=await axios.get(`http://localhost:5278/api/Request/ShowRequestShowRoom/${sessionData.idWarehouse}`);
                 setWareHouse(response.data.result)
             }catch(error){
                 console.log(error)
@@ -39,8 +52,11 @@ useEffect(() => {
                 setloading(false)
             }
         }
-        fetchdata();
-    },[])
+        if(sessionData && sessionData.idWarehouse){
+            fetchdata();
+        }
+      
+    },[sessionData])
    const UpdateStatus=async(ID)=>{
     try{
         setloading(true)

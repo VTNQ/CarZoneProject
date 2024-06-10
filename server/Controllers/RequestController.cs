@@ -67,12 +67,12 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("ShowRequestWareHouse")]
-        public async Task<IActionResult> ShowRequestWareHouse()
+        [HttpGet("ShowRequestShowRoom/{id}")]
+        public async Task<IActionResult> ShowRequestWareHouse(int id)
         {
             try
             {
-                return Ok(_requestService.ShowRequestWareHouse());
+                return Ok(_requestService.ShowRequestWareHouse(id));
 
             }
             catch

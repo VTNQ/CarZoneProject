@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RUGsnhm5+qBe0YxCCzaRcRGNH2WekxrsViH1M8zJ0zM=",
+  "Hash": "OW0PextWTT0qSolyOhv/xczZrz5I/HD3GUxlCyKquSE=",
   "Source": "server",
   "BasePath": "_content/server",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png"
+    },
+    {
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\21870c598ead4b138a379673aa327a45.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/21870c598ead4b138a379673aa327a45.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\21870c598ead4b138a379673aa327a45.png"
     },
     {
       "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
@@ -264,6 +283,25 @@
       "OriginalItemSpec": "wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png"
     },
     {
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\69049e39894949a99bfe766347511476.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/69049e39894949a99bfe766347511476.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\69049e39894949a99bfe766347511476.png"
+    },
+    {
       "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
       "SourceId": "server",
       "SourceType": "Discovered",
@@ -300,6 +338,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\99723dfe3ff544328521705069e4b7c0.png"
+    },
+    {
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\9b74c3af59eb4d2f9fe15b0ddca9880b.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/9b74c3af59eb4d2f9fe15b0ddca9880b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\9b74c3af59eb4d2f9fe15b0ddca9880b.png"
     },
     {
       "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\a1b1b11537a24a878ecc601b7feec6fa.png",
@@ -433,6 +490,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png"
+    },
+    {
+      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\d4628439656646ba872706cd5138fcf6.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/d4628439656646ba872706cd5138fcf6.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\d4628439656646ba872706cd5138fcf6.png"
     },
     {
       "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png",

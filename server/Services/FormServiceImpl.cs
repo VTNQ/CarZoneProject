@@ -62,7 +62,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowForm()
         {
-            return databaseContext.Forms.Select(d => new
+            return databaseContext.Forms.OrderByDescending(d => d.Id).Select(d => new
             {
                 id=d.Id,
                 name=d.Name,

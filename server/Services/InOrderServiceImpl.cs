@@ -20,9 +20,9 @@ namespace server.Services
                 Name=d.Name,
             }).ToList();    
         }
-        public async Task<IEnumerable<dynamic>> ShowCar()
+        public async Task<IEnumerable<dynamic>> ShowCar(int id)
         {
-            return databaseContext.Cars.Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(m => m.Id == id && databaseContext.Warehouses.Any(o => o.IdCountry == m.IdDistrictNavigation.IdCityNavigation.IdCountry && databaseContext.SubWarehouseCars.Any(l => l.IdWarehouse ==o.Id && l.IdCar==d.Id)))  ).Select(d => new
             {
                 id=d.Id,
                 name=d.Name,
@@ -90,7 +90,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowInOrder(int id)
         {
-            return databaseContext.InOrders.Where(d => d.IdEmployee == id).Select(d => new
+            return databaseContext.InOrders.OrderByDescending(d=>d.Id).Where(d => d.IdEmployee == id).Select(d => new
             {
                 id = d.Id,
                 WareHouse = d.IdWarehouseNavigation.Name,

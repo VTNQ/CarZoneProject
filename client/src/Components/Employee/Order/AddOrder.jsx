@@ -136,7 +136,7 @@ function AddOrder() {
         })
         setcarArray(newCarTaxes)
         const newTotalPrice=Object.values(newCarTaxes).reduce((acc,car)=>acc+car.price+car.tax,0);
-        console.log(newTotalPrice)
+    
         setTotalPrice(newTotalPrice);
     }
     useEffect(() => {

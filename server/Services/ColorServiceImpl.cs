@@ -60,7 +60,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowColor()
         {
-            return _databaseContext.Colors.Select(d => new
+            return _databaseContext.Colors.OrderByDescending(d => d.Id).Select(d => new
             {
                 id=d.Id,
                 name=d.Name,

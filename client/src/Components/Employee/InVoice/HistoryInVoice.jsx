@@ -63,10 +63,10 @@ function HistoryInVoice() {
     }
     fetchdata();
   },[])
-  console.log(DetailOrder)
-  const filterDetailOrder=DetailOrder.filter(Detail=>
-    Detail.idOrder.toString().toLowerCase().includes(FromData.id.toString().toLowerCase())
- )
+  
+  const filterDetailOrder = DetailOrder.filter(Detail =>
+    Detail.idOrder==FromData.id
+);
 
 
     const indexOflastInVoice = (currentPage + 1) * perPage;

@@ -224,13 +224,16 @@ function AddEmployee() {
                         address: FromData.Address,
                         phone: FromData.Phone,
                         identityCode: FromData.IdentityCode,
-                        idShowroom: sessionData.idShowroom != null || '',
+                        idShowroom: sessionData.idShowroom ,
 
 
                     }),
                 })
                 if (response.ok) {
                     setloading(false)
+                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
+                  
+                    setEmployee(response.data.result)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add success',
@@ -244,10 +247,8 @@ function AddEmployee() {
                         Phone: '',
                         IdentityCode: ''
                     })
-                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-                    if (sessionData && sessionData.idShowroom) {
-                        setEmployee(response.data)
-                    }
+                   
+                   
 
                 } else {
                     setloading(false)

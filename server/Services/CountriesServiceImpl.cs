@@ -49,7 +49,7 @@ namespace server.Services
 
         public dynamic ShowCountries()
         {
-            return databaseContext.Countries
+            return databaseContext.Countries.OrderBy(d=>d.Id)
                                   .Where(c => c.IsDelete.HasValue && !c.IsDelete.Value)  
                                   .Select(c => new
                                   {

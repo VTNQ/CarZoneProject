@@ -73,7 +73,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowSupplier()
         {
-            return _databaseContext.Supliers.Select(d => new
+            return _databaseContext.Supliers.OrderByDescending(d=>d.Id).Select(d => new
             {
                 Id = d.Id,
                 Name = d.Name,

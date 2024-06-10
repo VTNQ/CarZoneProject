@@ -236,7 +236,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> GetCartoShowRoom(int id)
         {
-            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).Select(d => new
+            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).OrderByDescending(d=>d.Id).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
