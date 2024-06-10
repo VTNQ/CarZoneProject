@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TwdIvqRGl81Be1d8mgFP5d2UIEVPP/dcs4z5bDeqC80=",
+  "Hash": "m/H8tqo36o0Y29caLRN3yhdNt5FeHz9YZaIYs5qR5Xo=",
   "Source": "server",
   "BasePath": "_content/server",
   "Mode": "Default",
@@ -264,6 +264,25 @@
       "OriginalItemSpec": "wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png"
     },
     {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\892fea4faa6c49279abb59e4adbe5aba.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/892fea4faa6c49279abb59e4adbe5aba.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\892fea4faa6c49279abb59e4adbe5aba.png"
+    },
+    {
       "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
       "SourceId": "server",
       "SourceType": "Discovered",
@@ -338,6 +357,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png"
+    },
+    {
+      "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\a679130e3fbe4de3bed1f8ee69a18837.png",
+      "SourceId": "server",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\",
+      "BasePath": "_content/server",
+      "RelativePath": "images/a679130e3fbe4de3bed1f8ee69a18837.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a679130e3fbe4de3bed1f8ee69a18837.png"
     },
     {
       "Identity": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",

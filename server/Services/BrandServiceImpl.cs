@@ -109,6 +109,8 @@ namespace server.Services
                Country=d.IdCountryNavigation.Name,
                HeadQuaters=d.Headquarters,
                idCountry=d.IdCountry,
+               CarCount = d.Models.SelectMany(model => model.Cars).Count(),
+
            }).ToList() ;
         }
 

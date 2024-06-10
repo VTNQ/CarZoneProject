@@ -208,6 +208,7 @@ function Inventory() {
         }
         setSortedProducts(CopyCar);
     }, [Car, selectedSortOption, SelectBrand, SelectModel, SelectCondition, sliderValues]);
+    
     const filterCar = sortedProducts.filter((product) => {
         const includesSearchTerm = SelectCondition === '' || product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
         const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
@@ -336,7 +337,7 @@ function Inventory() {
 
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        Branch
+                                                                        Brand
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">

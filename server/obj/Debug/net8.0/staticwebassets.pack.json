@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\images\\5b78973f9de94f5291cf5d3094ea82ef.png"
     },
     {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\892fea4faa6c49279abb59e4adbe5aba.png",
+      "PackagePath": "staticwebassets\\images\\892fea4faa6c49279abb59e4adbe5aba.png"
+    },
+    {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
       "PackagePath": "staticwebassets\\images\\8fe4b28f70cd42fca07614ba95c50f79.png"
     },
@@ -67,6 +71,10 @@
     {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png",
       "PackagePath": "staticwebassets\\images\\a5c82dd2c750414ab79a84ce13e36626.png"
+    },
+    {
+      "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\a679130e3fbe4de3bed1f8ee69a18837.png",
+      "PackagePath": "staticwebassets\\images\\a679130e3fbe4de3bed1f8ee69a18837.png"
     },
     {
       "Id": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",

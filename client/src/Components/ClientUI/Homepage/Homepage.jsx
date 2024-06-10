@@ -6,6 +6,9 @@ import { useEffect,useRef } from 'react'
 import Menu from '../../Menu/Menu'
 import homepage from '../../assets/images/homepage/homepage-bg.jpg'
 import homepage2 from '../../assets/images/homepage/homepage2-bg.jpg'
+import blogCar1 from '../../assets/images/homepage/blogCar1.jpg'
+import blogCar2 from '../../assets/images/homepage/blogCar2.jpg'
+import blogCar3 from '../../assets/images/homepage/blogCar3.jpg'
 import audiLogo from '../../assets/images/logo/audi-logo.png'
 import hondaLogo from '../../assets/images/logo/honda-logo.png'
 import mazdaLogo from '../../assets/images/logo/mazda-logo.png'
@@ -35,9 +38,11 @@ import TruncateText from '../../SubFeature/TruncateText'
 import Select from 'react-select';
 import Footer from '../../Footer/Footer';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Homepage = () => {
+    const navigate = useNavigate();
     const cards = [
         { id: 1, title: "Card 1", description: "Description for Card 1" },
         { id: 2, title: "Card 2", description: "Description for Card 2 Descriptiovdfvfdn for Card 2 Dedsjskscscription for Card 2 Description for Card 2" },
@@ -47,10 +52,10 @@ export const Homepage = () => {
         { id: 6, title: "Card 6", description: "Description for Card 5" },       
     ];
     const blogs = [
-        {id: 1,author: "jony Doe", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
-        {id: 2,author: "Kyos kao", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
-        {id: 3,author: "Iha Kalia", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
-        {id: 4,author: "abcded", avatar: homepage2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 1,author: "jony Doe", avatar: blogCar1, category: "Automotive, Blog", title: " Lamborghini Aventador successor breaks down while testing", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 2,author: "Kyos kao", avatar: blogCar2, category: "Automotive, Blog", title: " Toyota cuts production plan again on ongoing chip shortage", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 3,author: "Iha Kalia", avatar: blogCar3, category: "Automotive, Blog", title: " Tritium enters U.S. charger market with new design", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
+        {id: 4,author: "abcded", avatar: homepage2, category: "Automotive, Blog", title: " Tesla's Texas push puts German plant on back burner", description: "As ordinary motorists filed past the broken-down exotic supercar – stopped on the road and drawing attention not just for its looks but also for its immobility."},
         
     ]
 
@@ -105,10 +110,19 @@ export const Homepage = () => {
     };
 
     const options = [
-        { value: 'all', label: 'All Make' },
-        { value: 'audi', label: 'Audi' },
-        { value: 'bmw', label: 'BMW' },
-        { value: 'chevrolet', label: 'Chevrolet' },
+        { value: 'all', label: '2010' },
+        { value: 'audi', label: '2011' },
+        { value: 'bmw', label: '2012' },
+        { value: 'chevrolet', label: '2013' },
+        { value: '12', label: '2013' },
+        { value: '2', label: '2014' },
+        { value: '3', label: '2015' },
+        { value: '3', label: '2016' },
+        { value: '3', label: '2017' },
+        { value: '3', label: '2018' },
+        { value: '3', label: '2019' },
+        { value: '3', label: '2020' },
+        { value: '3', label: '2021' },
        
       ];
     
@@ -134,9 +148,87 @@ export const Homepage = () => {
           console.error('Error fetching car data:', error);
         }
       };
+      const [MakeData,setMakeData] = useState([]);
+
+      const fetchDataBrand = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:5278/api/Brand/GetBrand`);
+            setMakeData(response.data.result);
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        } 
+    }
+      
+    
     useEffect(()=>{
         fetchDataCar();
+        fetchDataBrand();
     },[])
+    
+    const [Brand, setBrand] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:5278/api/Brand/GetBrand')
+            .then(response => {
+                console.log('API response:', response.data.result); // Kiểm tra dữ liệu phản hồi
+                if (Array.isArray(response.data.result)) {
+                    const ModelOptions = response.data.result.map(brand => ({
+                        value: brand.id,
+                        label: brand.name
+                    }));
+                    setBrand(ModelOptions);
+                    console.log("ModelOptions", ModelOptions);
+                } else {
+                    console.error('Response data is not an array:', response.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching brand options:', error);
+            });
+    }, []);
+    const [Model, setModel] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:5278/api/Model/ShowModel')
+            .then(response => {
+                console.log('API response:', response.data.result); // Kiểm tra dữ liệu phản hồi
+                if (Array.isArray(response.data.result)) {
+                    const ModelOptions = response.data.result.map(brand => ({
+                        value: brand.id,
+                        label: brand.name
+                    }));
+                    setModel(ModelOptions);
+                    console.log("ModelOptions", ModelOptions);
+                } else {
+                    console.error('Response data is not an array:', response.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching brand options:', error);
+            });
+    }, []);
+    const [Form, setForm] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:5278/api/Form/ShowForm')
+            .then(response => {
+                console.log('API response:', response.data.result); // Kiểm tra dữ liệu phản hồi
+                if (Array.isArray(response.data.result)) {
+                    const ModelOptions = response.data.result.map(brand => ({
+                        value: brand.id,
+                        label: brand.name
+                    }));
+                    setForm(ModelOptions);
+                    console.log("ModelOptions", ModelOptions);
+                } else {
+                    console.error('Response data is not an array:', response.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching brand options:', error);
+            });
+    }, []);
     
   return (
     
@@ -215,7 +307,9 @@ export const Homepage = () => {
             </div>
           </div>
           <div className='absolute top-[63%]  w-full h-[140px] px-4'>
-            <h1 className='title-section3'>{card.name}</h1>
+          <a onClick={() => navigate(`/DetailInventory/${card.id}`, { state: { ID: card.id, Name: card.name } })} className="title-section3 cursor-pointer" style={{ textDecoration: 'none' }}>{card.name}
+                                                                                 
+                                                                                    </a>
             <h1 className='title1-section3'>With room for up to seven and a luxurious vibe, this SUV is so far the most compelling model in to wear the EQS name.</h1>
           </div>
           <div className='absolute bottom-0 w-full  grid grid-cols-3 gap-1'>
@@ -255,9 +349,9 @@ export const Homepage = () => {
             </div>
             <div className='absolute bottom-0 w-full h-[150px]  px-[5%] z-[2]'>
                     <form className='w-full h-full  pr-[12%] grid grid-cols-4 gap-3 items-center justify-center'>
-                    <Select placeholder='All Branch' menuPosition='fixed' className='' options={options} />
-                    <Select placeholder='All Make' menuPosition='fixed' className='' options={options} />
-                    <Select placeholder='All Model' menuPosition='fixed' className='' options={options} />
+                    <Select placeholder='All Branch' menuPosition='fixed' className='' options={Brand} />
+                    <Select placeholder='All Make' menuPosition='fixed' className='' options={Model} />
+                    <Select placeholder='All Model' menuPosition='fixed' className='' options={Form} />
                     <Select placeholder='All Registration Date' menuPosition='fixed' className='' options={options} />
                     
                     </form>
@@ -277,64 +371,17 @@ export const Homepage = () => {
                         <div className='line-x'></div>
                         <div className='line-x mt-1'></div>                   
                     </div>
-                    <div className='w-full h-full grid grid-cols-3 gap-2 mt-7'>
-                        <div className='w-full h-full '>
-                            <div className='flex  gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={audiLogo} alt="" />
+                    <div className='w-full grid grid-cols-3 gap-2 mt-7'>
+                    {Array.isArray(MakeData) && MakeData.map(make => (
+                            <div key={make.id} className='w-full max-h-[50px]'>
+                                <div className='flex gap-2 py-3 items-center'>
+                                    <div className='w-[50px]'>
+                                        <img className='h-[20px]' src={make.logo} alt={make.name} />
+                                    </div>
+                                    <p className='nameLogo m-0'>{make.name} <b className='quantityCar'>({make.carCount})</b></p>
                                 </div>
-                                <p className='nameLogo m-0'>Audi <b className='quantityCar '>(3)</b></p>
                             </div>
-                            <div className='flex gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={hondaLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Honda <b className='quantityCar'>(3)</b></p>                            </div>
-                            <div className='flex gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={mazdaLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Mazda <b className='quantityCar'>(3)</b></p>                            </div>
-                           
-                        </div>
-                        <div className='w-full h-full '>
-                            <div className='flex  gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={bmwLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>BMW <b className='quantityCar '>(3)</b></p>
-                            </div>
-                            <div className='flex gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={landLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Land Rover <b className='quantityCar'>(3)</b></p>                            </div>
-                            <div className='flex gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={merLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Mercesdes <b className='quantityCar'>(3)</b></p>                            </div>
-                           
-                        </div>
-                        <div className='w-full h-full '>
-                            <div className='flex  gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={fordLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Ford <b className='quantityCar '>(3)</b></p>
-                            </div>
-                            <div className='flex gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={lexusLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Lexus <b className='quantityCar'>(3)</b></p>                            </div>
-                            <div className='flex gap-2 py-3 items-center'>
-                                <div className='w-[50px]'>
-                                    <img className='h-[20px]' src={toyotaLogo} alt="" />
-                                </div>
-                                <p className='nameLogo m-0'>Toyots <b className='quantityCar'>(3)</b></p>                            </div>
-                           
-                        </div>
+                        ))}
                         
                     </div>
                     </div>
@@ -589,9 +636,9 @@ export const Homepage = () => {
                     </div>
                 </div>
                 <div className=' grid grid-cols-2 gap-3 '>
-                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
-                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
-                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={blogCar1} alt="" /></div>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={blogCar2} alt="" /></div>
+                    <div className='w-full image-Card  h-[220px]'><img className='h-full' src={blogCar3} alt="" /></div>
                     <div className='w-full image-Card  h-[220px]'><img className='h-full' src={homepage} alt="" /></div>
                 
                 </div>
