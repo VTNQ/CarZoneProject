@@ -12,12 +12,12 @@ function InOrder() {
     const [SelectCars, setSelectCars] = useState([])
     const [carTaxes, setcarTaxes] = useState({})
     const [loading, setloading] = useState(true)
-   
-    
+
+
     const [SelectSupply, setSelectSupply] = useState(null);
     const [Supply, setSupply] = useState([]);
     const [SelectCash, setSelectCash] = useState(null)
-    const [IDWareHouse,setIDWareHouse]=useState([]);
+    const [IDWareHouse, setIDWareHouse] = useState([]);
     const options = [
         { value: 0, label: "cash payment" },
         { value: 1, label: "transfer payments" }
@@ -63,20 +63,20 @@ function InOrder() {
         }
 
     }, [sessionData])
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            try{
-                const response=await axios.get(`http://localhost:5278/api/OutOrder/GetWareHouse/${sessionData.idShowroom}`)
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/GetWareHouse/${sessionData.idShowroom}`)
                 setIDWareHouse(response.data)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
             }
         }
-        if(sessionData && sessionData.idShowroom){
+        if (sessionData && sessionData.idShowroom) {
             fetchdata();
         }
-       
-    },[sessionData])
+
+    }, [sessionData])
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const handleSelectCash = (SelectCash) => {
@@ -85,7 +85,7 @@ function InOrder() {
     const handleSelectSupply = (SelectSupply) => {
         setSelectSupply(SelectSupply)
     }
-   
+
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -97,20 +97,20 @@ function InOrder() {
         }
         fetchdata();
     }, [])
-   
+
     useEffect(() => {
         const fetchdata = async () => {
             const response = await axios.get(`http://localhost:5278/api/InOrder/ShowCar`);
             setCar(response.data.result)
         }
-      fetchdata()
+        fetchdata()
     }, [])
     const handleCarChange = (SelectedOptions) => {
         setSelectCars(SelectedOptions);
         const newCarTaxes = { ...carTaxes };
         SelectedOptions.forEach(option => {
             if (!newCarTaxes[option.value]) {
-                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price * 0.2, price: option.price, delivery: null }
+                newCarTaxes[option.value] = { id: option.value, name: option.label, tax: option.price * 0.2, price: option.price, delivery: null, Quantity: '' }
             }
         })
         setcarTaxes(newCarTaxes)
@@ -179,6 +179,7 @@ function InOrder() {
                 formData.append(`DetailInOrders[${index}].deliveryDate`, vietnamStartDate.toISOString().split('T')[0])
                 formData.append(`DetailInOrders[${index}].price`, carTaxes[carId].price)
                 formData.append(`DetailInOrders[${index}].tax`, carTaxes[carId].tax)
+                formData.append(`DetailInOrders[${index}].quantity`,carTaxes[carId].quantity)
 
             })
             const response = await fetch("http://localhost:5278/api/InOrder/AddInorder", {
@@ -199,7 +200,7 @@ function InOrder() {
                 const responsedata = await axios.get(`http://localhost:5278/api/InOrder/ShowCar/${sessionData.idShowroom}`);
                 setCar(responsedata.data.result)
                 setSelectSupply(null)
-              
+
                 setSelectCars([]);
                 setSelectCash(null)
             }
@@ -211,6 +212,40 @@ function InOrder() {
         Cookies.set('UserSession', JSON.stringify(updatedSessionData), { expires: 0.5, secure: true, sameSite: 'strict' });
         navigate(`/DetailInOrder/${inorder.id}`, { state: updatedSessionData })
     }
+    const handleQuantityChange = (carId, newQuantity) => {
+        setcarTaxes(prevCarTaxes => ({
+            ...prevCarTaxes,
+            [carId]: {
+                ...prevCarTaxes[carId],
+                quantity: newQuantity
+            }
+        }));
+    };
+    const approveOrder=async(ID)=>{
+        try{
+            setloading(true)
+            const response=await fetch(`http://localhost:5278/api/InOrder/ApproveOrder/${ID}`,{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            if (response.ok) {
+                setloading(false)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Approve successful',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
+                setInOrder(response.data.result)
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     return (
         <>
             {loading && (
@@ -237,7 +272,7 @@ function InOrder() {
                                                     onChange={(SelectedOption) => handleSelectSupply(SelectedOption)}
                                                 />
                                             </div>
-                                         
+
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Car</label>
                                                 <Select options={car.map(type => ({ value: type.id, label: type.name, price: type.price }))}
@@ -265,6 +300,17 @@ function InOrder() {
                                                             onChange={date => handleDeliveryChange(car.value, date)}
                                                             dateFormat="dd/MM/yyyy"
                                                             className="form-control"
+                                                        />
+                                                    </div>
+                                                    <div key={car.value} className="form-group">
+                                                        <label htmlFor={`tax-${car.value}`}>Quantity for {car.label}</label>
+                                                        <input
+                                                            key={car.value}
+                                                            type="number"
+                                                            className="form-control"
+                                                            id={`tax-${car.value}`}
+                                                            value={carTaxes[car.value]?.quantity || ''}
+                                                            onChange={(e) => handleQuantityChange(car.value, e.target.value)}
                                                         />
                                                     </div>
                                                 </>
@@ -309,7 +355,10 @@ function InOrder() {
                                                         <th> Total Amount</th>
                                                         <th> Total Tax </th>
                                                         <th>Payment</th>
+                                                        <th>Status</th>
+                                                        <th>Order confirmation</th>
                                                         <th>Detail</th>
+                                                    
 
                                                     </tr>
                                                 </thead>
@@ -323,11 +372,22 @@ function InOrder() {
                                                             <td>{inorder.totalAmount}</td>
                                                             <td>{inorder.toTalTax}</td>
                                                             <td>{inorder.payment}</td>
+                                                            <td>{inorder.status==true ?"received":"not received"}</td>
+                                                            <td><button
+                                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
+                                                                disabled={inorder.status==true} style={{
+                                                                    opacity: inorder.status==true ? 0.5 : 1,
+                                                                    cursor: inorder.status==true ? 'not-allowed' : 'pointer'
+                                                                }}
+                                                             onClick={()=>approveOrder(inorder.id)}
+                                                            >Approve
+                                                            </button></td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "
                                                                 onClick={() => handleDetailClick(inorder)}
                                                             >Detail
                                                             </button></td>
+                                                           
                                                         </tr>
                                                     ))}
                                                 </tbody>
