@@ -6,10 +6,11 @@ namespace server.Services
     {
         Task<bool> AddRequest(AddRequest addRequest);
         Task<IEnumerable<dynamic>> GetShowRoom(int id);
-        Task<IEnumerable<dynamic>> ShowRequestWareHouse();
+        Task<IEnumerable<dynamic>> ShowRequestWareHouse(int id);
         Task<IEnumerable<dynamic>> ShowSupplier();
+        Task<IEnumerable<dynamic>> ShowRequestShowRoom(int id);
         Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname);
-        Task<bool> UpdateRequest(int id);
+        bool UpdateRequest(int id);
         Task<IEnumerable<dynamic>>ShowDistrict(int id);
     }
 }

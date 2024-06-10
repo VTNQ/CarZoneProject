@@ -8,17 +8,17 @@ function Menu() {
     }
     const navigate = useNavigate();
     const isInventoryPage = window.location.href === 'http://localhost:3000/Inventory';
+    const isContactPage=window.location.href==='http://localhost:3000/contact';
+        const isAboutpage=window.location.href==='http://localhost:3000/AboutUs';
     const [backgroundColor,setbackgroundColor]=useState('transparent');
-    const [color,setcolor]=useState('#222222')
+    const [color,setcolor]=useState('#fff')
     useEffect(() => {
        
         const isInventoryPage = window.location.href === 'http://localhost:3000/Inventory';
 
-   
-        if (isInventoryPage) {
-            setbackgroundColor('#fff');
-            setcolor('white')
-        }
+        const isContactPage=window.location.href==='http://localhost:3000/contact';
+        const isAboutpage=window.location.href==='http://localhost:3000/AboutUs';
+     
     }, []);
     useEffect(() => {
         const handleScroll = () => {
@@ -31,12 +31,12 @@ function Menu() {
 
             // Tính toán phần trăm cuộn
             const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
-
+        
             // Kiểm tra nếu phần trăm cuộn lớn hơn hoặc bằng 30%, đặt màu nền là #fff, ngược lại đặt là transparent
-            if (scrollPercentage >= 1 && !isInventoryPage) {
+            if (scrollPercentage >= 1) {
                 setbackgroundColor('#fff');
                 setcolor('#222222')
-            } else if(scrollPercentage<30 && !isInventoryPage) {
+            } else if(scrollPercentage<30) {
                 setbackgroundColor('transparent');
                 setcolor('white')
             }else{

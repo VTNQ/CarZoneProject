@@ -4,7 +4,8 @@ namespace server.Services
 {
     public interface InOrderService
     {
-        Task<IEnumerable<dynamic>> ShowCar();
+        Task<IEnumerable<dynamic>> ShowCar(int id);
+        Task<IEnumerable<dynamic>> ShowCarWareHouse(int id);
         Task<IEnumerable<dynamic>> ShowWareHouse();
         Task<IEnumerable<dynamic>> ShowSupply();
         Task<IEnumerable<dynamic>> ShowInOrder(int id);

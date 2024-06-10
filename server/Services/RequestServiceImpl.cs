@@ -58,9 +58,22 @@ namespace server.Services
             }).ToList();
         }
 
+        public async Task<IEnumerable<dynamic>> ShowRequestShowRoom(int id)
+        {
+            return databaseContext.Requests.Where(d => d.Type == true && databaseContext.Showrooms.Any(m => m.Id == id && m.Name == d.To)).Select(d => new
+            {
+                id = d.Id,
+                From=d.From,
+                To = d.To,
+                Creadate = d.CreateDay,
+                Decription = d.Description,
+                status = d.Status,
+            }).ToList();
+        }
+
         public async Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname)
         {
-            return databaseContext.Requests.Where(d => d.Type == false && d.From==fullname).Select(d => new
+            return databaseContext.Requests.OrderByDescending(d => d.Id).Where(d => d.Type == false && d.From==fullname).Select(d => new
             {
                 id = d.Id,
                 To = d.To,
@@ -70,11 +83,12 @@ namespace server.Services
             }).ToList();
         }
 
-        public async Task<IEnumerable<dynamic>> ShowRequestWareHouse()
+        public async Task<IEnumerable<dynamic>> ShowRequestWareHouse(int id)
         {
-           return databaseContext.Requests.Where(d => d.Type == true).Select(d => new
+           return databaseContext.Requests.OrderByDescending(d => d.Id).Where(d => d.Type == true && databaseContext.Warehouses.Any(M=>M.Id==id && databaseContext.Showrooms.Any(o=>o.IdDistrictNavigation.IdCityNavigation.IdCountry==M.IdCountry && o.Name==d.To))).Select(d => new
            {
                id=d.Id,
+               From=d.From,
                To=d.To,
                Creadate=d.CreateDay,
                Decription=d.Description,
@@ -92,10 +106,9 @@ namespace server.Services
         }
 
    
-        public async Task<bool> UpdateRequest(int id)
+        public bool UpdateRequest(int id)
         {
-            using (var traction = await databaseContext.Database.BeginTransactionAsync())
-            {
+           
                 try
                 {
                     var Request = databaseContext.Requests.Find(id);
@@ -103,16 +116,14 @@ namespace server.Services
                     {
                         Request.Status = true;
                     }
-                    await databaseContext.SaveChangesAsync();
-                    await traction.CommitAsync();
-                    return true;
+                    return databaseContext.SaveChanges()>0;
                 }
                 catch
                 {
-                    await traction.RollbackAsync();
+                    
                     return false;
                 }
-            }
+            
               
         }
 

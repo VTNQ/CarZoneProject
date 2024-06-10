@@ -38,9 +38,16 @@ function AddCustomer() {
         Sign: null
 
     })
+    const [imagePreView, setImagePreView] = useState(null);
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            const render = new FileReader();
+            render.onloadend = () => {
+                setImagePreView(render.result);
+            }
+
+            render.readAsDataURL(file);
             setFromData({
                 ...FromData,
                 Sign: file,
@@ -107,6 +114,7 @@ function AddCustomer() {
                 })
                 setDob('')
                 document.getElementById('Sign').value = '';
+                setImagePreView(null)
             } else {
                 setloading(false)
                 const responseBody = await response.json();
@@ -183,6 +191,11 @@ function AddCustomer() {
                                             <div>
                                                 <label htmlFor="exampleInputDate1">Sign</label>
                                                 <input type="file" className="form-control" id="Sign" onChange={(e) => handleImageChange(e)} />
+                                                {imagePreView && (
+                                                    <div className="image-preview">
+                                                        <img src={imagePreView} alt="Preview" className="preview-image" />
+                                                    </div>
+                                                )}
                                             </div>
                                             <br />
                                             <button type="submit" className="btn btn-primary me-2">Submit</button>

@@ -10,7 +10,7 @@ namespace server.Services
         Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id);
         public dynamic ShowBranch();
         public dynamic ShowRoom(int id);
-        public dynamic GetShowRoom();
+        public dynamic GetShowRoom(int id);
         public dynamic ShowModel();
         public dynamic findModelByBrand(int idBrand);
         public dynamic DetailCar(int id);

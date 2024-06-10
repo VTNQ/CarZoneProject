@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './Contact.css'
 import Swal from 'sweetalert2';
 import Menu from "../Menu/Menu";
+import Footer from "../Footer/Footer";
 function Contact() {
     const mapstyles = {
         height: '100vh',
@@ -261,6 +262,8 @@ function Contact() {
                     </div>
                 </div>
             </div>
+            <br />
+            <Footer/>
         </>
     )
 }

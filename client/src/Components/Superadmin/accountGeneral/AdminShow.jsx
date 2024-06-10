@@ -18,6 +18,7 @@ export const AdminShow = () => {
         Name: '',
         IdDistrict: ''
     })
+    const navigate = useNavigate();
     const [FormDataUpdate, setFormDataUpdate] = useState({
         Name: ''
     })
@@ -42,7 +43,7 @@ export const AdminShow = () => {
         navigate('/login');
       }
   }, [navigate]);
-    const navigate = useNavigate();
+   
     const location = useLocation();
     const username = location.state?.fullName || '';
     const email = location.state?.email || '';

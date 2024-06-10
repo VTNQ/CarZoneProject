@@ -44,7 +44,7 @@ namespace server.Services
                         IdentityCode = addEmployee.IdentityCode,
                         IdShowroom = addEmployee.IdShowroom,
                     };
-                    SendEmail(addEmployee.Email, "Reset Information", $"FullName :{addEmployee.FullName}\n Password:{Password}");
+                    SendEmail(addEmployee.Email, "Create Account", $"FullName :{addEmployee.FullName}\n Password:{Password}");
                     databaseContext.Employees.Add(EmployeeAdd);
                     await databaseContext.SaveChangesAsync();
                     await traction.CommitAsync();
@@ -60,7 +60,7 @@ namespace server.Services
     
         public async Task<IEnumerable<dynamic>> GetEmployee(int idShowRoom)
         {
-            return databaseContext.Employees.Where(d => d.IdShowroom == idShowRoom && d.Role== "Employee").Select(d => new
+            return databaseContext.Employees.Where(d => d.IdShowroom == idShowRoom && d.Role== "Employee").OrderByDescending(d=>d.Id).Select(d => new
             {
                 id=d.Id,
                 FullName=d.FullName,

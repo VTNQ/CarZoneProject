@@ -69,7 +69,7 @@ namespace server.Services
             try
             {
                 return databaseContext.Districts
-                    .Include(d => d.IdCityNavigation) 
+                    .Include(d => d.IdCityNavigation).OrderByDescending(d=>d.Id) 
                     .Where(d => !d.IsDelete.HasValue || !d.IsDelete.Value)  
                     .Select(d => new
                     {

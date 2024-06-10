@@ -321,7 +321,7 @@ const handleSubmitUpdateName = async (event,id) => {
                               <div class="card">
                                   <div class="card-body">
                                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded mb-6" onClick={() => handleEditClick()}><i class="mdi mdi-note-plus mr-2"></i>Add Showroom</button>
-                                      <h4 class="card-title">Customer</h4>
+                                      <h4 class="card-title">ShowRoom</h4>
                                       <form class="forms-sample">
                                           <label for="exampleInputUsername1">Search</label>
                                           <input type="text" class="form-control" value={searchTerm}

@@ -38,7 +38,7 @@ namespace server.Services
 
         public dynamic ShowContact()
         {
-          return _databaseContext.Contacts.Select(d => new
+          return _databaseContext.Contacts.OrderByDescending(d => d.Id).Select(d => new
           {
               id=d.Id,
               NameCustomer=d.NameCustomer,

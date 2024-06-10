@@ -1,16 +1,47 @@
 import React, { useEffect, useState } from "react";
 import Menu from "../Menu/Menu";
 import './Inventory.css';
+import Select from "react-select"
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Pagination from 'react-paginate';
 import axios from "axios";
+import Footer from '../Footer/Footer'
 import { useNavigate } from "react-router-dom";
 function Inventory() {
     const [Brand, setBrand] = useState([])
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const navigate = useNavigate();
+    const [SelectCity, setSelectcity] = useState(null);
+    const handleSelectCity = (SelectCity) => {
+        setSelectcity(SelectCity)
+    }
+    const [District, setDistrict] = useState([]);
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5278/api/Request/ShowDistrict/${SelectCity?.value}`);
+                setDistrict(response.data.result)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [SelectCity?.value])
+    const [city, setcity] = useState([]);
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://localhost:5278/api/City/showCity");
+                setcity(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchdata();
+    }, [])
     const [loading, setloading] = useState(true)
 
     const fetchCar = async () => {
@@ -25,6 +56,10 @@ function Inventory() {
 
         }
     };
+    const [SelectDistrict, setSelectDistrict] = useState(null);
+    const handleSelectDistrict = (SelectDistrict) => {
+        setSelectDistrict(SelectDistrict)
+    }
     const getInitialMaxPrice = async () => {
         try {
 
@@ -54,14 +89,14 @@ function Inventory() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/WareHouse/GetShowroom");
+                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetFilterShowRoom/${SelectDistrict?.value}`);
                 setShowRoom(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchData();
-    }, [])
+    }, [SelectDistrict?.value])
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -215,12 +250,12 @@ function Inventory() {
         const matchesBrand = SelectBrand === '' || SelectBrand.includes(product.branch);
         const matchesModel = SelectModel === '' || SelectModel.includes(product.idModel);
         const withinPriceRange = product.price >= sliderValues[0] && product.price <= sliderValues[1];
-    
+
         // If all filters are empty, return all products
         if (SelectBrand === '' && SelectCondition === '' && SelectModel === '' && SelectShowRoom === '') {
             return true;
         }
-    
+
         // Check all conditions
         return includesSearchTerm && matchesShowRoom && matchesBrand && matchesModel && withinPriceRange;
     });
@@ -254,6 +289,7 @@ function Inventory() {
 
 
     }
+  
     const [currentPage, setCurrentPage] = useState(0);
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
@@ -321,12 +357,43 @@ function Inventory() {
                                                             <form action="">
                                                                 <div className="ap-search-item uk-margin uk-first-column">
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
+                                                                        City
+                                                                    </label>
+                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
+                                                                        <div className="acf-taxonomy-field">
+                                                                            <Select options={city.map(ware => ({ value: ware.id, label: ware.name }))}
+                                                                                value={SelectCity}
+                                                                                onChange={(SelectedOption) => handleSelectCity(SelectedOption)}
+                                                                            />
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <div className="ap-search-item uk-margin uk-first-column">
+                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
+                                                                        District
+                                                                    </label>
+                                                                    <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
+                                                                        <div className="acf-taxonomy-field">
+                                                                            <Select options={District.map(ware => ({ value: ware.id, label: ware.name }))}
+                                                                                value={SelectDistrict}
+                                                                                onChange={(SelectedOption) => handleSelectDistrict(SelectedOption)}
+                                                                            />
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <div className="ap-search-item uk-margin uk-first-column">
+                                                                    <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
                                                                         Show Room
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
                                                                             <select name="" id="acf-field-ap_branch-663e95071b87b" value={SelectShowRoom} onChange={handleChangeSelectShowRoom}>
                                                                                 <option value="">All</option>
+
                                                                                 {ShowRoom.map(item => (
                                                                                     <option value={item.id}>{item.name}</option>
                                                                                 ))}
@@ -1076,6 +1143,7 @@ function Inventory() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

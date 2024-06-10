@@ -36,7 +36,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowCarWareHouse(int idShowroom)
         {
-            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==idShowroom)).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==idShowroom && m.IdCar==d.Id)).Select(d => new
             {
                 id=d.Id,
                 Name=d.Name,
@@ -104,7 +104,7 @@ namespace server.Services
 
         public dynamic ShowModel()
         {
-            return databaseContext.Models.Select(d => new
+            return databaseContext.Models.OrderByDescending(d => d.Id).Select(d => new
             {
                 id = d.Id,
                 name = d.Name,
@@ -236,7 +236,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> GetCartoShowRoom(int id)
         {
-            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).Select(d => new
+            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).OrderByDescending(d=>d.Id).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
@@ -428,9 +428,9 @@ namespace server.Services
             }).ToList();
         }
 
-        public dynamic GetShowRoom()
+        public dynamic GetShowRoom(int id)
         {
-            return databaseContext.Showrooms.Select(d => new
+            return databaseContext.Showrooms.Where(d=>d.IdDistrict==id).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,

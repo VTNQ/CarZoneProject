@@ -13,8 +13,9 @@ function HistoryInVoice() {
     const location = useLocation();
     const [ActiveTab,setActiveTab]=useState(0);
     const [loading, setloading] = useState(true);
-    const [sessionData, setSessionData] = useState(null);
+
     const navigate = useNavigate();
+    const[sessionData,setSessionData]=useState(null);
     const getUserSession=()=>{
         const UserSession=Cookies.get("UserSession");
         if(UserSession){
@@ -25,7 +26,7 @@ function HistoryInVoice() {
     
     useEffect(() => {
         const data = getUserSession();
-        console.log(data.role)
+   
         if (data && data.role=='Employee') {
             setSessionData(data);
         } else{
@@ -35,10 +36,11 @@ function HistoryInVoice() {
     const [FromData,setFromData]=useState({
         id:''
     })
+  
     useEffect(() => {
         const fetchdataInVoice = async () => {
            try{
-            const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${sessionData.ID}`);
+            const response = await axios.get(`http://localhost:5278/api/InVoice/ShowInvoice/${sessionData.idShowroom}`);
             setInVoice(response.data)
            }catch(error){
             console.log(error)
@@ -46,7 +48,7 @@ function HistoryInVoice() {
             setloading(false)
            }
         };
-        if(sessionData && sessionData.ID){
+        if(sessionData && sessionData.idShowroom){
             fetchdataInVoice();
         }
         
@@ -63,10 +65,10 @@ function HistoryInVoice() {
     }
     fetchdata();
   },[])
-  console.log(DetailOrder)
-  const filterDetailOrder=DetailOrder.filter(Detail=>
-    Detail.idOrder.toString().toLowerCase().includes(FromData.id.toString().toLowerCase())
- )
+  
+  const filterDetailOrder = DetailOrder.filter(Detail =>
+    Detail.idOrder==FromData.id
+);
 
 
     const indexOflastInVoice = (currentPage + 1) * perPage;

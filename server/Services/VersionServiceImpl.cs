@@ -11,10 +11,9 @@ namespace server.Services
         {
             this.databaseContext = databaseContext;
         }
-        public async Task<bool> AddVersion(AddVersion addVersion)
+        public bool AddVersion(AddVersion addVersion)
         {
-            using (var traction = await databaseContext.Database.BeginTransactionAsync())
-            {
+         
                 try
                 {
                     var Version = new Models.Version
@@ -22,23 +21,21 @@ namespace server.Services
                         ReleaseYear = addVersion.Version
                     };
                     databaseContext.Versions.Add(Version);
-                    await databaseContext.SaveChangesAsync();
-                    await traction.CommitAsync();
-                    return true;
+                return databaseContext.SaveChanges() > 0;
                 }
                 catch
                 {
-                    await traction.RollbackAsync();
+                  
                     return false;
                 }
             }
                 
-        }
+        
 
-        public async Task<bool> DeleteVersion(int id)
+
+        public bool DeleteVersion(int id)
         {
-            using (var traction = await databaseContext.Database.BeginTransactionAsync())
-            {
+            
                 try
                 {
                     var Version = databaseContext.Versions.Find(id);
@@ -46,22 +43,20 @@ namespace server.Services
                     {
                         databaseContext.Versions.Remove(Version);
                     }
-                    await databaseContext.SaveChangesAsync();
-                    await traction.CommitAsync();
-                    return true;
+                return databaseContext.SaveChanges() > 0;
                 }
                 catch
                 {
-                    await traction.RollbackAsync();
+                   
                     return false;
                 }
-            }
+            
                 
         }
 
         public async Task<IEnumerable<dynamic>> ShowVersion()
         {
-            return databaseContext.Versions.Select(d => new
+            return databaseContext.Versions.OrderByDescending(d => d.Id).Select(d => new
             {
                 id=d.Id,
                 relaseYear=d.ReleaseYear,

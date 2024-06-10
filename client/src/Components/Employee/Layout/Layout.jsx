@@ -6,7 +6,7 @@ import '../assets/vendors/font-awesome/css/font-awesome.min.css';
 import '../assets/vendors/mdi/css/materialdesignicons.min.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/css/style.css';
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/images/Carzone.png'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import {useLocation, useNavigate} from "react-router-dom";
@@ -48,7 +48,7 @@ const LayoutEmployee=({children})=>{
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <a class="navbar-brand brand-logo me-5" onClick={()=>navigate("/Employee/Dashboard")}><img src={logo} class="me-2" alt="logo" /></a>
+    <a class="navbar-brand brand-logo me-5" onClick={()=>navigate("/Employee/Dashboard")}><img src={logo} style={{height:'57px'}} class="me-2" alt="logo" /></a>
     <a class="navbar-brand brand-logo-mini" onClick={()=>navigate("/Employee/Dashboard")}><img src="assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">

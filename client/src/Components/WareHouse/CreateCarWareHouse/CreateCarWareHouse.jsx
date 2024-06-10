@@ -14,7 +14,7 @@ function CreateCarWareHouse() {
         }
         return null;
     }
-    const [loading, setloading] = useState(true);
+    const [loading, setloading] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const [sessionData, setSessionData] = useState(null);
@@ -33,29 +33,14 @@ function CreateCarWareHouse() {
 
 
     const [Showroom, setShowroom] = useState([]);
-    const [ShowCreateCar, setShowCreateCar] = useState([]);
+   
     const [SelectCars, setSelectCars] = useState([]);
     const [SelectShowRoom, setSelectShowRoom] = useState(null);
     const [Car, setCar] = useState([]);
     const handleChangeSelectShowRoom = (SelectShowRoom) => {
         setSelectShowRoom(SelectShowRoom)
     }
-    useEffect(() => {
-        const fetchdata = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCartoShowRoom/${sessionData.idWarehouse}`);
-                setShowCreateCar(response.data.result)
-            } catch (error) {
-                console.log(error)
-            } finally {
-                setloading(false)
-            }
-        }
-        if (sessionData && sessionData.idWarehouse) {
-            fetchdata();
-        }
 
-    }, [sessionData])
     const handleChange = (SelectedValue) => {
         setSelectCars(SelectedValue);
     }
@@ -96,16 +81,19 @@ function CreateCarWareHouse() {
                 })
                 if (response.ok) {
                     setloading(false)
+                   
+                   
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Card to ShowRoom success',
                         showConfirmButton: false,
                         timer: 1500,
                     })
+                    const responsedata = await axios.get(`http://localhost:5278/api/WareHouse/GetCarToWareHouse/${sessionData.idWarehouse}`);
+                    setCar(responsedata.data.result)
                     setSelectCars([]);
                     setSelectShowRoom(null)
-                    const response = await axios.get(`http://localhost:5278/api/WareHouse/GetCartoShowRoom/${sessionData.idWarehouse}`);
-                    setShowCreateCar(response.data.result)
+                   
                 }
             } catch (error) {
                 console.log(error)
@@ -119,15 +107,11 @@ function CreateCarWareHouse() {
 
     const [currentPage, setCurrentPage] = useState(0);
     const [searchTerm, setSearchtem] = useState('');
-    const filterCarWareHouse = ShowCreateCar.filter(Show =>
-        Show.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+   
     const handlePageclick = (data) => {
         setCurrentPage(data.selected);
     };
-    const indexOflastCarWareHouse = (currentPage + 1) * perPage;
-    const indexofFirtCarWareHouse = indexOflastCarWareHouse - perPage;
-    const CurrentCarWareHouse = filterCarWareHouse.slice(indexofFirtCarWareHouse, indexOflastCarWareHouse)
+  
 
     useEffect(() => {
         const fetchData = async () => {
@@ -195,70 +179,7 @@ function CreateCarWareHouse() {
                             </div>
 
                         </div>
-                        <div className="row">
-                            <div class="col-lg-12 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Car ShowRoom</h4>
-                                        <form class="forms-sample" >
-                                            <label for="exampleInputUsername1">Search</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm}
-                                                onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Show Room" />
-                                        </form>
-                                        <p class="card-description">
-                                        </p>
-                                        <div class="table-responsive">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th> # </th>
-                                                        <th>Show Room </th>
-
-                                                        <th> Total Car </th>
-                                                        <th>Detail</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {CurrentCarWareHouse.map((car, index) => (
-                                                        <tr>
-                                                            <td>{++index}</td>
-                                                            <td>{car.name}</td>
-                                                            <td>{car.totalCar}</td>
-                                                            <td><button disabled={car.totalCar <= 0} style={{
-                                                                opacity: car.totalCar <= 0 ? 0.5 : 1,
-                                                                cursor: car.totalCar <= 0 ? 'not-allowed' : 'pointer'
-                                                            }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={() => DetailWareHouse(car)}>Detail</button></td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                            <Pagination
-                                                previousLabel={'previous'}
-                                                nextLabel={'next'}
-                                                breakLabel={'...'}
-                                                pageCount={Math.ceil(filterCarWareHouse.length / perPage)}
-                                                marginPagesDisplayed={2}
-                                                pageRangeDisplayed={5}
-                                                onPageChange={handlePageclick}
-                                                containerClassName={'pagination'}
-                                                activeClassName={'active'}
-                                                previousClassName={'page-item'}
-                                                previousLinkClassName={'page-link'}
-                                                nextClassName={'page-item'}
-                                                nextLinkClassName={'page-link'}
-                                                breakClassName={'page-item'}
-                                                breakLinkClassName={'page-link'}
-                                                pageClassName={'page-item'}
-                                                pageLinkClassName={'page-link'}
-                                            />
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    
                     </div>
 
                     <footer className="footer">

@@ -5,7 +5,7 @@ import '../assets/vendors/font-awesome/css/font-awesome.min.css';
 import '../assets/vendors/mdi/css/materialdesignicons.min.css';
 import '../assets/vendors/ti-icons/css/themify-icons.css';
 import '../assets/css/style.css';
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/images/Carzone.png'
 import avatar from '../assets/images/faces/face28.jpg'
 import img from '../assets/images/dashboard/people.svg'
 import { useLocation, useNavigate } from "react-router-dom";
@@ -47,7 +47,7 @@ useEffect(() => {
         <>
      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{zIndex:'100'}}>
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <a class="navbar-brand brand-logo me-5" href="index.html"><img src={logo} class="me-2" alt="logo" /></a>
+    <a class="navbar-brand brand-logo me-5" href="index.html"><img src={logo} style={{height:'57px'}} class="me-2" alt="logo" /></a>
     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -143,12 +143,7 @@ useEffect(() => {
 <div className="container-fluid page-body-wrapper pt-0">
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 <ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link">
-      <i class="icon-grid menu-icon"></i>
-      <span class="menu-title">Dashboard</span>
-    </a>
-  </li>
+
   <li class="nav-item">
     <a class="nav-link" onClick={()=>navigate('/WareHouse/Dashboard',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>

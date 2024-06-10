@@ -73,9 +73,15 @@ function DetailWareHousewarehouse() {
     }
     const handleZoomIn = () => {
         const image = document.getElementById('preview-image');
-        if (image) {
-            image.style.width = (image.clientWidth * 1.2) + 'px';
+    const maxWidth = 800; // Set the maximum width limit in pixels
+    if (image) {
+        const newWidth = image.clientWidth * 1.2;
+        if (newWidth <= maxWidth) {
+            image.style.width = newWidth + 'px';
+        } else {
+            image.style.width = maxWidth + 'px'; // Set to max width if exceeding
         }
+    }
     };
     const handleZoomOut = () => {
         const image = document.getElementById('preview-image');

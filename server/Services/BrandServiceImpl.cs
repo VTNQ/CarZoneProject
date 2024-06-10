@@ -101,7 +101,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowBrand()
         {
-           return databaseContext.Brands.Select(d => new
+           return databaseContext.Brands.OrderByDescending(d => d.Id).Select(d => new
            {
                id=d.Id,
                Name=d.Name,

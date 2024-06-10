@@ -63,7 +63,7 @@ namespace server.Services
 
         public dynamic ShowCity()
         {
-            return databaseContext.Cities.Where(c => c.IsDelete.HasValue && !c.IsDelete.Value)
+            return databaseContext.Cities.OrderByDescending(d=>d.Id).Where(c => c.IsDelete.HasValue && !c.IsDelete.Value)
                                   .Select(c => new
                                   {
                                       Id = c.Id,

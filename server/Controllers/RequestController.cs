@@ -15,7 +15,7 @@ namespace server.Controllers
         }
         [HttpPut("UpdateRequest/{id}")]
         [Produces("application/json")]
-        public async Task<IActionResult> UpdateRequest(int id)
+        public IActionResult UpdateRequest(int id)
         {
             try
             {
@@ -67,12 +67,24 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("ShowRequestWareHouse")]
-        public async Task<IActionResult> ShowRequestWareHouse()
+        [HttpGet("ShowRequestAdminShowRoom/{id}")]
+        public async Task<IActionResult> ShowRequestAdminShowRoom(int id)
         {
             try
             {
-                return Ok(_requestService.ShowRequestWareHouse());
+                return Ok(_requestService.ShowRequestWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("ShowRequestShowRoom/{id}")]
+        public async Task<IActionResult> ShowRequestWareHouse(int id)
+        {
+            try
+            {
+                return Ok(_requestService.ShowRequestWareHouse(id));
 
             }
             catch
