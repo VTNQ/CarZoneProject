@@ -158,6 +158,7 @@ return(
                                         <thead>
                                             <tr>
                                             <th> # </th>
+                                            <th>From</th>
                                                         <th> To </th>
 
 
@@ -173,6 +174,7 @@ return(
                                         {currentRequest.map((request, index) => (
                                                         <tr>
                                                             <td>{++index}</td>
+                                                            <td>{request.from}</td>
                                                             <td>{request.to}</td>
 
                                                             <td>{new Date(request.creadate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>

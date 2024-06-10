@@ -63,6 +63,7 @@ namespace server.Services
             return databaseContext.Requests.Where(d => d.Type == true && databaseContext.Showrooms.Any(m => m.Id == id && m.Name == d.To)).Select(d => new
             {
                 id = d.Id,
+                From=d.From,
                 To = d.To,
                 Creadate = d.CreateDay,
                 Decription = d.Description,
@@ -87,6 +88,7 @@ namespace server.Services
            return databaseContext.Requests.OrderByDescending(d => d.Id).Where(d => d.Type == true && databaseContext.Warehouses.Any(M=>M.Id==id && databaseContext.Showrooms.Any(o=>o.IdDistrictNavigation.IdCityNavigation.IdCountry==M.IdCountry && o.Name==d.To))).Select(d => new
            {
                id=d.Id,
+               From=d.From,
                To=d.To,
                Creadate=d.CreateDay,
                Decription=d.Description,

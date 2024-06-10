@@ -118,7 +118,7 @@ function Request() {
                                 <div class="card">
                                     <div class="card-body">
 
-                                        <h4 class="card-title">Request WareHouse</h4>
+                                        <h4 class="card-title">Request ShowRoom</h4>
                                         <form class="forms-sample" >
                                             <label for="exampleInputUsername1">Search</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)} placeholder="Enter Name Or Email" />
@@ -130,6 +130,7 @@ function Request() {
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
+                                                        <th>From</th>
                                                         <th> To </th>
 
 
@@ -142,6 +143,7 @@ function Request() {
                                                     {currentRequest.map((request, index) => (
                                                         <tr>
                                                             <td>{++index}</td>
+                                                            <td>{request.from}</td>
                                                             <td>{request.to}</td>
 
                                                             <td>{new Date(request.creadate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
