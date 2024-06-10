@@ -376,7 +376,7 @@ function OutOrder() {
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">
-                                                        <label htmlFor={`tax-${car.value}`}>Tax for {car.label}</label>
+                                                        <label htmlFor={`tax-${car.value}`}>Tax for <b className="underline">{car.label}</b></label>
                                                         <input type="number"
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
@@ -385,7 +385,7 @@ function OutOrder() {
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">
-                                                        <label htmlFor={`tax-${car.value}`}>Delivery Date for {car.label}</label>
+                                                        <label htmlFor={`tax-${car.value}`}>Delivery Date for <b className="underline">{car.label}</b></label>
                                                         <DatePicker
                                                             selected={carTaxes[car.value]?.delivery || null}
                                                             onChange={date => handleDeliveryChange(car.value, date)}
