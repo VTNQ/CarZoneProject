@@ -217,6 +217,7 @@ function Dashboard() {
                             <div className="col-md-6  ">
                                 <div className="card tale-bg" style={{ minHeight: 'auto' }}>
                                     <div className="card-people mt-auto">
+                                        <label htmlFor="">Outorder statistics</label>
                                         <Bar data={chartData} options={chartOptions} />
                                         <label>Select Month:</label>
                                         <select id="selectMonth"
