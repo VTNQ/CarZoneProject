@@ -5,10 +5,11 @@ namespace server.Services
     public interface RequestService
     {
         Task<bool> AddRequest(AddRequest addRequest);
-        Task<IEnumerable<dynamic>> ShowWareHouse();
-        Task<IEnumerable<dynamic>> ShowRequestWareHouse();
+        Task<IEnumerable<dynamic>> GetShowRoom(int id);
+        Task<IEnumerable<dynamic>> ShowRequestWareHouse(int id);
         Task<IEnumerable<dynamic>> ShowSupplier();
         Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname);
         Task<bool> UpdateRequest(int id);
+        Task<IEnumerable<dynamic>>ShowDistrict(int id);
     }
 }

@@ -6,5 +6,8 @@ namespace server.Services
     {
          public bool addWarehouse(AddWarehouse addwarehouse);
        public dynamic getWarehouse();
+
+        public bool addCarIntoWarehouse(AddCarIntoWarehouse addCarIntoWarehouse);
+        public dynamic getCarFromWarehouse(int idWarehouse);
     }
 }

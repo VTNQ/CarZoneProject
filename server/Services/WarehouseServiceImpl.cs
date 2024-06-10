@@ -29,6 +29,27 @@ namespace server.Services
                 return false;
             }
         }
+        public bool addCarIntoWarehouse(AddCarIntoWarehouse addCarIntoWarehouse)
+        {
+            try
+            {
+                var subWarehouse = new SubWarehouseCar
+                {
+                    IdWarehouse = addCarIntoWarehouse.IdWarehouse,
+                    IdCar = addCarIntoWarehouse.IdCar,
+                };
+                databaseContext.SubWarehouseCars.Add(subWarehouse);
+                return databaseContext.SaveChanges()>0;
+            }catch { return false; }
+        }
+        public dynamic getCarFromWarehouse(int idWarehouse)
+        {
+            return databaseContext.SubWarehouseCars.Where(c => c.IdWarehouse == idWarehouse).Select(c => new
+            {
+                NameWarehouse = c.IdWarehouseNavigation.Name,
+                NameCar = c.IdCarNavigation.Name,
+            });
+        }
 
         
 
@@ -36,6 +57,7 @@ namespace server.Services
         {
             return databaseContext.Warehouses.Select(c=>new
             {
+                Id = c.Id,
                 Name = c.Name,
                 IdCountry = c.IdCountry,
                 CountryName = c.IdCountryNavigation.Name

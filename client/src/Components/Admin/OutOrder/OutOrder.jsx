@@ -65,6 +65,8 @@ function OutOrder() {
         return null;
     }
 
+    const [TotalPrice,setTotalPrice]=useState(0);
+    const[totalTax,settotalTax]=useState(0);
     useEffect(() => {
         const data = getUserSession();
 
@@ -112,8 +114,26 @@ function OutOrder() {
             }
         })
         setcarTaxes(newCarTaxes)
+        updateTotalPrice(newCarTaxes)
+   
     }
+    const updateTotalPrice = (carTaxes) => {
+        let totalTax = 0;
+        let totalPrice = 0;
 
+        Object.keys(carTaxes).forEach((carId) => {
+            const car = carTaxes[carId];
+            const price = Number(car.price || 0);
+            const tax = Number(car.tax || 0);
+
+            
+            totalPrice += price ;
+            totalTax += tax ;
+        });
+
+        settotalTax(totalTax);
+        setTotalPrice(totalPrice);
+    };
     useEffect(() => {
         const fetchdata = async () => {
             try {
@@ -221,13 +241,19 @@ function OutOrder() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setSelectCars([]);
                     const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
                     SetShowOutOrder(response.data.result)
 
                     SetSelectCustomer(null)
-                    setSelectCars([]);
+                  
                     SetSelectPayment(null);
+                    setcarTaxes({})
                     setSelectDeliveryType(null)
+                    settotalTax(0);
+                    setTotalPrice(0)
+                    console.log(SelectCars)
+                    console.log(carTaxes)
 
                 }
             } catch (error) {
@@ -334,13 +360,23 @@ function OutOrder() {
                                                 <label for="exampleInputUsername1">Car</label>
                                                 <Select options={Car.map(Car => ({ value: Car.id, label: Car.name, price: Car.price }))}
                                                     isMulti
+                                                    value={SelectCars}
                                                     onChange={handleCarChange}
                                                 />
                                             </div>
-                                            {SelectCars.map(car => (
+                                            { SelectCars.map(car => (
                                                 <>
+                                                <div key={car.value} className="form-group">
+                                                        <label htmlFor={`tax-${car.value}`}>Price for {car.label}</label>
+                                                        <input type="number"
+                                                            className="form-control"
+                                                            id={`tax-${car.value}`}
+                                                            value={carTaxes[car.value]?.price || ''}
+
+                                                        />
+                                                    </div>
                                                     <div key={car.value} className="form-group">
-                                                        <label htmlFor={`tax-${car.value}`}>Tax for {car.label}</label>
+                                                        <label htmlFor={`tax-${car.value}`}>Tax for <b className="underline">{car.label}</b></label>
                                                         <input type="number"
                                                             className="form-control"
                                                             id={`tax-${car.value}`}
@@ -349,7 +385,7 @@ function OutOrder() {
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">
-                                                        <label htmlFor={`tax-${car.value}`}>Delivery Date for {car.label}</label>
+                                                        <label htmlFor={`tax-${car.value}`}>Delivery Date for <b className="underline">{car.label}</b></label>
                                                         <DatePicker
                                                             selected={carTaxes[car.value]?.delivery || null}
                                                             onChange={date => handleDeliveryChange(car.value, date)}
@@ -372,6 +408,14 @@ function OutOrder() {
                                                     value={SelectDeliveryType}
                                                     onChange={(SelectedOption) => handleSelectDeliveryType(SelectedOption)}
                                                 />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="">Total Price</label>
+                                                <input type="text" value={TotalPrice} />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="">Total Tax</label>
+                                                <input type="text" value={totalTax} />
                                             </div>
                                             <button type="submit" class="btn btn-primary me-2">Submit</button>
 

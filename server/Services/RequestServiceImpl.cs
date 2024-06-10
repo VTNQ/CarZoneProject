@@ -40,9 +40,27 @@ namespace server.Services
            
         }
 
+        public async Task<IEnumerable<dynamic>> GetShowRoom(int id)
+        {
+           return databaseContext.Showrooms.Where(d => d.IdDistrict == id).Select(d => new
+           {
+               id=d.Id,
+               Name=d.Name,
+           }).ToList();
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowDistrict(int id)
+        {
+            return databaseContext.Districts.Where(d => d.IdCity == id).Select(d => new
+            {
+                id = d.Id,
+                Name = d.Name,
+            }).ToList();
+        }
+
         public async Task<IEnumerable<dynamic>> ShowRequestSupplier(string fullname)
         {
-            return databaseContext.Requests.Where(d => d.Type == false && d.From==fullname).Select(d => new
+            return databaseContext.Requests.OrderByDescending(d => d.Id).Where(d => d.Type == false && d.From==fullname).Select(d => new
             {
                 id = d.Id,
                 To = d.To,
@@ -52,9 +70,9 @@ namespace server.Services
             }).ToList();
         }
 
-        public async Task<IEnumerable<dynamic>> ShowRequestWareHouse()
+        public async Task<IEnumerable<dynamic>> ShowRequestWareHouse(int id)
         {
-           return databaseContext.Requests.Where(d => d.Type == true).Select(d => new
+           return databaseContext.Requests.OrderByDescending(d => d.Id).Where(d => d.Type == true && databaseContext.Warehouses.Any(M=>M.Id==id && databaseContext.Showrooms.Any(o=>o.IdDistrictNavigation.IdCityNavigation.IdCountry==M.IdCountry))).Select(d => new
            {
                id=d.Id,
                To=d.To,
@@ -73,15 +91,7 @@ namespace server.Services
             }).ToList();
         }
 
-        public async Task<IEnumerable<dynamic>> ShowWareHouse()
-        {
-           return databaseContext.Warehouses.Select(d => new
-           {
-               id=d.Id,
-               Name=d.Name,
-           }).ToList(); 
-        }
-
+   
         public async Task<bool> UpdateRequest(int id)
         {
             using (var traction = await databaseContext.Database.BeginTransactionAsync())

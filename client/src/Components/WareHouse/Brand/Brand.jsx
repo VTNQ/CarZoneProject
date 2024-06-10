@@ -55,9 +55,16 @@ useEffect(() => {
         UpdateName: '',
         UpdateHeadQuaters: ''
     })
+    const [imagePreView, setImagePreView] = useState(null);
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            const render = new FileReader();
+            render.onloadend = () => {
+                setImagePreView(render.result);
+            }
+
+            render.readAsDataURL(file);
             setFromData({
                 ...FromData,
                 Logo: file,
@@ -92,6 +99,7 @@ useEffect(() => {
                 })
                 setSelectCountry("")
                 document.getElementById('Logo').value = '';
+                setImagePreView(null)
                 const response = await axios.get("http://localhost:5278/api/Brand/GetBrand");
                 setBrand(response.data.result)
             }else{
@@ -307,6 +315,11 @@ useEffect(() => {
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Logo</label>
                                                 <input type="file" class="form-control" id="Logo" placeholder="Enter Head Quarters" onChange={(e) => handleImageChange(e)} />
+                                                {imagePreView && (
+                                                    <div className="image-preview">
+                                                        <img src={imagePreView} alt="Preview" className="preview-image" />
+                                                    </div>
+                                                )}
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Head Quarters</label>

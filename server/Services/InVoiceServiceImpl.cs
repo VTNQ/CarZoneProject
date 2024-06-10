@@ -43,7 +43,7 @@ public class InVoiceServiceImpl:InVoiceService
 
     public dynamic ShowInvoice(int idEmployee)
     {
-        return DatabaseContext.InVoices.Where(d => d.IdOrderNavigation.IdEmployee == idEmployee
+        return DatabaseContext.InVoices.OrderByDescending(d=>d.Id).Where(d => d.IdOrderNavigation.IdEmployee == idEmployee
         ).Select(d => new
         {
             idorder=d.IdOrder,

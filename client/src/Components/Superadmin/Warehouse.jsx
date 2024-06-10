@@ -216,6 +216,9 @@ const FilterCustomer = Showroom.filter(Cus =>
 )
 const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCustomer)
 
+
+
+
   return (
       <>
            {loading && (
@@ -247,7 +250,8 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                                                   <tr>
                                                       <th> # </th>
                                                       <th> Name Warehouse </th>
-                                                      <th>Country</th>                                                      
+                                                      <th>Country</th>   
+                                                      <th>Add Car</th>                                                   
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -256,6 +260,8 @@ const currentShowroom = FilterCustomer.slice(indexOfFirtCustomer, indexOflastCus
                                                           <td>{++index}</td>
                                                           <td>{Cus.name}</td>
                                                           <td>{Cus.countryName}</td>
+                                                          <td>                    <td><button className="btn btn-dark btn-icon-text" onClick={() => navigate( `/superadmin/addCarIntoWarehouse/${Cus.id}`)}  >Detail<i class="ti-file btn-icon-append"></i></button></td>
+</td>
                                                       </tr>
                                                   ))}
                                               </tbody>

@@ -73,7 +73,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowModel()
         {
-            return databaseContext.Models.Select(d => new
+            return databaseContext.Models.OrderByDescending(d => d.Id).Select(d => new
             {
                 Id = d.Id,
                 name = d.Name,

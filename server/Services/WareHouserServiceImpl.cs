@@ -236,7 +236,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> GetCartoShowRoom(int id)
         {
-            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).Select(d => new
+            return databaseContext.Showrooms.Where(d=>databaseContext.Warehouses.Any(m=>m.IdCountry==d.IdDistrictNavigation.IdCityNavigation.IdCountry && m.Id==id)).OrderByDescending(d=>d.Id).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
@@ -290,10 +290,10 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> DetailWareHouseCar(int id)
         {
-            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseCars.Any(m => m.IdWarehouse == id)).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseCars.Any(m => m.IdWarehouse == id && d.Id==m.IdCar)).Select(d => new
             {
                 id = d.Id,
-                TotalCar = databaseContext.SubWarehouseCars.Where(e => e.IdCar == id).Count(),
+                TotalCar = databaseContext.SubWarehouseCars.Where(e => e.IdCar == d.Id).Count(),
                 Name = d.Name,
                 Model = d.IdModelNavigation.Name,
                 brand = d.IdModelNavigation.IdBrandNavigation.Name,

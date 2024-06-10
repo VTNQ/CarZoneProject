@@ -52,7 +52,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
-app.UseMiddleware<InOrderMiddleware>();
+
 
 app.UseMiddleware<OutOrderMiddeware>();
 // Configure the HTTP request pipeline.

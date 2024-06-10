@@ -48,7 +48,7 @@ import { Showroom } from './Components/Superadmin/Showroom';
 import { Warehouse } from './Components/Superadmin/Warehouse';
 import CreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/CreateCarWareHouse';
 import DetailCreateCarWareHouse from './Components/WareHouse/CreateCarWareHouse/DetailCreateCarWareHouse';
-import ShowWareHouseCar from './Components/WareHouse/ShowWareHouseCar/ShowWareHouseCar';
+
 import DetailWareHouseCar from './Components/WareHouse/ShowWareHouseCar/DetailWareHouseCar';
 import { BMV } from './Components/Superadmin/BMV';
 import { BrandSpm } from './Components/Superadmin/bmw/Brand';
@@ -69,6 +69,7 @@ import { Order } from './Components/Superadmin/Order';
 import { DetailOrderSpm } from './Components/Superadmin/DetailOrder';
 import { WarehouseShow } from './Components/Superadmin/accountGeneral/WarehouseShow';
 import { AddCustomer } from './Components/Superadmin/AddCustomer';
+import { AddCarIntoWarehouse } from './Components/Superadmin/AddCarIntoWarehouse';
 function App() {
   return (
     <Router>
@@ -89,6 +90,7 @@ function App() {
             <Route path='countriesPage' element={<Countries/>}/>
             <Route path='CityDistrictPage' element={<CityDistrict/>}/>
             <Route path='CustomerPage' element={<Customer/>}/>
+            <Route path='addCarIntoWarehouse/:id' element={<AddCarIntoWarehouse/>}/>
             <Route path='showroom' element={<Showroom/>}/>
             <Route path='Create' element={<CreateCustomerSuperadmin/>}/>
             <Route path='order' element={<Order/>}/>
@@ -127,8 +129,8 @@ function App() {
           <Route path='Brand' element={<Brand/>}/>
           <Route path='CreateCarWareHouse' element={<CreateCarWareHouse/>}/>
           <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
-          <Route path='ShowWareHouseCar' element={<ShowWareHouseCar/>}/>
-          <Route path='DetailWareHouseCar/:id' element={<DetailWareHouseCar/>}/>
+     
+          <Route path='CarWareHouse' element={<DetailWareHouseCar/>}/>
           <Route path='RequestWareHouse' element={<RequestWareHouse/>}/>
           <Route path='Model' element={<Model/>}/>
         </Route>

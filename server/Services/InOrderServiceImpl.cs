@@ -6,9 +6,11 @@ namespace server.Services
     public class InOrderServiceImpl : InOrderService
     {
         private DatabaseContext databaseContext;
-        public InOrderServiceImpl(DatabaseContext databaseContext)
+        private IConfiguration configuration;
+        public InOrderServiceImpl(DatabaseContext databaseContext, IConfiguration configuration)
         {
             this.databaseContext = databaseContext;
+            this.configuration = configuration;
         }
         public async Task<IEnumerable<dynamic>> ShowWareHouse()
         {
@@ -20,7 +22,7 @@ namespace server.Services
         }
         public async Task<IEnumerable<dynamic>> ShowCar(int id)
         {
-            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(a => a.Id == id && databaseContext.SubWarehouseCars.Any(e => e.IdCar == d.Id && a.IdDistrictNavigation.IdCityNavigation.IdCountry == e.IdWarehouseNavigation.IdCountry))).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(m => m.Id == id && databaseContext.Warehouses.Any(o => o.IdCountry == m.IdDistrictNavigation.IdCityNavigation.IdCountry && databaseContext.SubWarehouseCars.Any(l => l.IdWarehouse ==o.Id && l.IdCar==d.Id)))  ).Select(d => new
             {
                 id=d.Id,
                 name=d.Name,
@@ -58,15 +60,19 @@ namespace server.Services
                     await databaseContext.SaveChangesAsync();
                     foreach (var inor in inOrder.DetailInOrders)
                     {
-                        var DetailIndorder = new DetailOfInOrder
+                        for(int i = 0; i < inor.Quantity; i++)
                         {
-                            IdOrder = InOrder.Id,
-                            IdCar = inor.IdCar,
-                            DeliveryDate = inor.DeliveryDate,
-                            Price = inor.Price,
-                            Tax = inor.Tax,
-                        };
-                        databaseContext.DetailOfInOrders.Add(DetailIndorder);
+                            var DetailIndorder = new DetailOfInOrder
+                            {
+                                IdOrder = InOrder.Id,
+                                IdCar = inor.IdCar,
+                                DeliveryDate = inor.DeliveryDate,
+                                Price = inor.Price,
+                                Tax = inor.Tax,
+                            };
+                            databaseContext.DetailOfInOrders.Add(DetailIndorder);
+                        }
+                        
                     }
                     await databaseContext.SaveChangesAsync();
                     await traction.CommitAsync();
@@ -84,7 +90,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowInOrder(int id)
         {
-            return databaseContext.InOrders.Where(d => d.IdEmployee == id).Select(d => new
+            return databaseContext.InOrders.OrderByDescending(d=>d.Id).Where(d => d.IdEmployee == id).Select(d => new
             {
                 id = d.Id,
                 WareHouse = d.IdWarehouseNavigation.Name,
@@ -93,35 +99,34 @@ namespace server.Services
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
                 Payment = d.Payment,
+                Status=d.Status
+                
             }).ToList();
         }
        
         public async Task<IEnumerable<dynamic>> DetailInOrder(int id)
         {
-            return databaseContext.DetailOfInOrders.Where(d => d.IdOrder == id).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.DetailOfInOrders.Any(m=> m.IdOrder == id && m.IdCar==d.Id)).Select(d => new
             {
                 id = d.Id,
-                Car = d.IdCarNavigation.Name,
-                DeleveryDate = d.DeliveryDate,
+                Car = d.Name,
+               
                 Price = d.Price,
-                Tax = d.Tax,
+                TotalPrice=databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Sum(m=>m.Price),
+                Tax = databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Select(o => new
+                {
+                    tax=o.Tax,
+                }).FirstOrDefault(),
+                Quantity= databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Count(),
+                TotalTax = databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Sum(m=>m.Tax),
+                Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+                {
+                    PictureLink = configuration["ImageUrl"] + m.Link,
+                }).FirstOrDefault(),
             }).ToList(); 
         }
 
-        public async Task UpdateOrderStatus()
-        {
-            var Orders = await databaseContext.InOrders.ToListAsync();
-            foreach(var order in Orders)
-            {
-                var details=await databaseContext.DetailOfInOrders.Where(d=>d.IdOrder==order.Id && d.DeliveryDate<=DateOnly.FromDateTime(DateTime.Today)).ToListAsync();
-                if (details.Any())
-                {
-                    order.Status = true;
-                }
-            }
-            await databaseContext.SaveChangesAsync();
-        }
-
+        
         public async Task<IEnumerable<dynamic>> ShowOrderWareHouse(int id)
         {
             return databaseContext.InOrders.Where(d=>d.IdWarehouse==id).Select(d => new
@@ -164,6 +169,39 @@ namespace server.Services
                 OrderDate = d.Key,
                 OrderCount = d.Count()
             }).OrderBy(x => x.OrderDate).ToList();
+        }
+
+        public async Task<bool> ApproveOrder(int id)
+        {
+            using (var traction = await databaseContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var Order = databaseContext.InOrders.FirstOrDefault(d=>d.Id==id && d.Status==false);
+                    if (Order != null)
+                    {
+                        Order.Status = true;
+                        var Detail=databaseContext.DetailOfInOrders.Where(d=>d.IdOrder==id).ToList();
+                        foreach(var d in Detail)
+                        {
+                            var subwarehouse = new SubWarehouseCar
+                            {
+                                IdWarehouse = Order.IdWarehouse,
+                                IdCar = d.IdCar,
+                            };
+                            databaseContext.SubWarehouseCars.Add(subwarehouse);
+                        }
+                    }
+                    await databaseContext.SaveChangesAsync();
+                    await traction.CommitAsync();
+                    return true;
+                }
+                catch
+                {
+                    await traction.RollbackAsync();
+                    return false;
+                }
+            }
         }
     }
 }

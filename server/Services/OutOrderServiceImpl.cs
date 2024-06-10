@@ -8,9 +8,11 @@ namespace server.Services
     public class OutOrderServiceImpl : OutOrderService
     {
         private readonly DatabaseContext _dbContext;
-        public OutOrderServiceImpl(DatabaseContext dbContext)
+        private IConfiguration configuration;
+        public OutOrderServiceImpl(DatabaseContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
+            this.configuration = configuration;
         }
 
         public async Task<bool> AddContract(int id,AddContract addContract)
@@ -127,6 +129,10 @@ namespace server.Services
                DeliveryDate=d.DeliveryDay,
                Price=d.Price,
                Tax=d.Tax,
+               Picture = _dbContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+               {
+                   PictureLink = configuration["ImageUrl"] + m.Link,
+               }).FirstOrDefault(),
 
            }).ToList();
         }

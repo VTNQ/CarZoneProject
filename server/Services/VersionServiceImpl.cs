@@ -61,7 +61,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowVersion()
         {
-            return databaseContext.Versions.Select(d => new
+            return databaseContext.Versions.OrderByDescending(d => d.Id).Select(d => new
             {
                 id=d.Id,
                 relaseYear=d.ReleaseYear,

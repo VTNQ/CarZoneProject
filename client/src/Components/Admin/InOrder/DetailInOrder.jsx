@@ -97,9 +97,12 @@ function DetailInOrders() {
                                                     <tr>
                                                         <th> # </th>
                                                         <th>Car </th>
-                                                        <th>Delivery Date</th>
+                                                        <th>Image</th>
                                                         <th>Price</th>
+                                                        <th>Total Price</th>
                                                         <th>Tax</th>
+                                                        <th>Total Tax</th>
+                                                        <th>Quantity</th>
 
                                                     </tr>
                                                 </thead>
@@ -108,9 +111,12 @@ function DetailInOrders() {
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{detail.car}</td>
-                                                            <td>{new Date(detail.deleveryDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                                                            <td>{detail.price}</td>
-                                                            <td>{detail.tax}</td>
+                                                            <td>{<img src={detail.picture.pictureLink} width="100" height="100" alt="" style={{ objectFit: 'cover', width: '30%', height: '100%', borderRadius: '0%' }} />}</td>
+                                                          <td>{detail.price}$</td>
+                                                            <td>{detail.totalPrice}$</td>
+                                                            <td>{detail.tax.tax}$</td>
+                                                            <td>{detail.totalTax}$</td>
+                                                            <td>{detail.quantity}</td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

@@ -231,7 +231,7 @@ export const CarDetail = () => {
                 <div class="col-md-12 grid-margin stretch-card">
                   {carDetail.map((cus, index) => (
                     <div class="card ">
-                      <div class="card-body bg-[#4747A1]">
+                      <div class="card-body bg-[#4747A1] rounded-[18px]">
                         <p class="card-title text-white">Main Photo</p>
                         <img src={cus.mainPhoto?.link} alt="Main Photo" width="100%" height="200px" style={{ objectFit: 'cover', borderRadius: '10px' }} />
                       </div>
