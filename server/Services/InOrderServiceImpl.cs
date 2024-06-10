@@ -18,9 +18,9 @@ namespace server.Services
                 Name=d.Name,
             }).ToList();    
         }
-        public async Task<IEnumerable<dynamic>> ShowCar(int id)
+        public async Task<IEnumerable<dynamic>> ShowCar()
         {
-            return databaseContext.Cars.Where(d => databaseContext.Showrooms.Any(a => a.Id == id && databaseContext.SubWarehouseCars.Any(e => e.IdCar == d.Id && a.IdDistrictNavigation.IdCityNavigation.IdCountry == e.IdWarehouseNavigation.IdCountry))).Select(d => new
+            return databaseContext.Cars.Select(d => new
             {
                 id=d.Id,
                 name=d.Name,
@@ -114,7 +114,13 @@ namespace server.Services
             foreach(var order in Orders)
             {
                 var details=await databaseContext.DetailOfInOrders.Where(d=>d.IdOrder==order.Id && d.DeliveryDate<=DateOnly.FromDateTime(DateTime.Today)).ToListAsync();
-                if (details.Any())
+                var subwarehouses = await databaseContext.SubWarehouseCars
+           .Where(s => s.IdWarehouse == order.IdWarehouse)
+           .ToListAsync();
+
+                bool hasMatchingSubwarehouse = details.Any(detail =>
+                    subwarehouses.Any(sub => sub.IdCar == detail.IdCar));
+                if (details.Any() && hasMatchingSubwarehouse)
                 {
                     order.Status = true;
                 }
