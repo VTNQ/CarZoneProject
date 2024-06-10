@@ -428,9 +428,9 @@ namespace server.Services
             }).ToList();
         }
 
-        public dynamic GetShowRoom()
+        public dynamic GetShowRoom(int id)
         {
-            return databaseContext.Showrooms.Select(d => new
+            return databaseContext.Showrooms.Where(d=>d.IdDistrict==id).Select(d => new
             {
                 id = d.Id,
                 Name = d.Name,
