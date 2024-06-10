@@ -76,7 +76,8 @@ function Version() {
                     timer: 1500,
                 });
                 const response = await axios.get("http://localhost:5278/api/Version/ShowVersion");
-                setVersion(response.data)
+                setVersion(response.data.result)
+
                 setFromData({
                     releaseYear: ''
                 })
@@ -124,7 +125,7 @@ function Version() {
                         timer: 1500,
                     });
                     const response = await axios.get("http://localhost:5278/api/Version/ShowVersion");
-                    setVersion(response.data)
+                    setVersion(response.data.result)
 
                 } else {
                     setloading(false)

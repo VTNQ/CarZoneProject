@@ -231,9 +231,7 @@ function AddEmployee() {
                 })
                 if (response.ok) {
                     setloading(false)
-                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-                  
-                    setEmployee(response.data.result)
+                    
                     Swal.fire({
                         icon: 'success',
                         title: 'Add success',
@@ -249,7 +247,9 @@ function AddEmployee() {
                     })
                    
                    
-
+                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
+                  
+                    setEmployee(response.data.result)
                 } else {
                     setloading(false)
                     const responseBody = await response.json();
@@ -357,7 +357,7 @@ function AddEmployee() {
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Phone</label>
-                                                <input type="number" class="form-control" id="exampleInputPassword1" value={FromData.Phone} onChange={(e) => setFromData({ ...FromData, Phone: e.target.value })} placeholder="Phone" />
+                                                <input type="text" class="form-control" id="exampleInputPassword1" value={FromData.Phone} onChange={(e) => setFromData({ ...FromData, Phone: e.target.value })} placeholder="Phone" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Identity Code</label>

@@ -41,10 +41,11 @@ function Request() {
     })
   
     const [Request, setReQuest] = useState([]);
+    
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
+                const response = await axios.get(`http://localhost:5278/api/Request/ShowRequestAdminShowRoom/${sessionData.idShowroom}`);
                 setReQuest(response.data.result)
             } catch (error) {
                 console.log(error)
@@ -52,23 +53,16 @@ function Request() {
                 setloading(false)
             }
         }
-        fetchdata();
-    }, [])
+        if(sessionData && sessionData.idShowroom){
+            fetchdata();
+        }
+     
+    }, [sessionData])
     const DescriptionType = {
         animation: 'flipleft 0.5s',
         zindex: '1000000'
     }
-    useEffect(() => {
-        const fetchdata = async () => {
-            try {
-                const response = await axios.get("http://localhost:5278/api/Request/ShowWareHouse");
-                setWareHouse(response.data.result)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchdata();
-    }, [])
+
     const handleClosepopup = () => {
         setIsDescriptionChange(true);
         setTimeout(() => {

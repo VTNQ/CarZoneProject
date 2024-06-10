@@ -170,6 +170,12 @@ function OutOrder() {
     const closingAnimation = {
         animation: 'flipright 0.5s forwards',
     };
+    const getTomorrow = () => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow;
+    };
     const handleClosepopup = () => {
         setIsClosingPopup(true);
         setTimeout(() => {
@@ -235,6 +241,8 @@ function OutOrder() {
                 })
                 if (response.ok) {
                     setloading(false)
+                    const responsedata = await axios.get(`http://localhost:5278/api/OutOrder/ShowCar/${sessionData.idShowroom}`)
+                    setCar(responsedata.data.result)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Order Success',
@@ -244,7 +252,7 @@ function OutOrder() {
                     setSelectCars([]);
                     const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
                     SetShowOutOrder(response.data.result)
-
+                    
                     SetSelectCustomer(null)
                   
                     SetSelectPayment(null);
@@ -390,6 +398,7 @@ function OutOrder() {
                                                             selected={carTaxes[car.value]?.delivery || null}
                                                             onChange={date => handleDeliveryChange(car.value, date)}
                                                             dateFormat="dd/MM/yyyy"
+                                                            minDate={getTomorrow()}
                                                             className="form-control"
                                                         />
                                                     </div>

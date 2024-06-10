@@ -42,13 +42,13 @@ function Dashboard() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/GetCountOrder/${sessionData.idShowroom}/${selectedMonth}`)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/GetCountOrder/${sessionData.ID}/${selectedMonth}`)
                 setOrderData(response.data.result);
             } catch (error) {
                 console.log(error)
             }
         }
-        if (sessionData && sessionData.idShowroom) {
+        if (sessionData && sessionData.ID) {
             fetchdata();
         }
 
@@ -56,13 +56,13 @@ function Dashboard() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/TotalContract/${sessionData.idShowroom}`)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/TotalContract/${sessionData.ID}`)
                 setContract(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        if (sessionData && sessionData.idShowroom) {
+        if (sessionData && sessionData.ID) {
             fetchdata();
         }
 
@@ -70,13 +70,13 @@ function Dashboard() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const response = await axios.get(`http://localhost:5278/api/OutOrder/TotalOutOrder/${sessionData.idShowroom}`)
+                const response = await axios.get(`http://localhost:5278/api/OutOrder/TotalOutOrder/${sessionData.ID}`)
                 setOrder(response.data)
             } catch (error) {
                 console.log(error)
             }
         }
-        if (sessionData && sessionData.idShowroom) {
+        if (sessionData && sessionData.ID) {
             fetchdata()
         }
 
@@ -188,7 +188,7 @@ function Dashboard() {
                             <div className="col-md-12 grid-margin">
                                 <div className="row">
                                     <div className="col-12 col-xl-8 mb-4 mb-xl-0">
-                                        <h3 className="font-weight-bold">Welcome John</h3>
+                                        <h3 className="font-weight-bold">Welcome {sessionData && sessionData.fullName ? sessionData.fullName : ''}</h3>
                                         <h6 className="font-weight-normal mb-0">All systems are running smoothly! You
                                             have <span className="text-primary">3 unread alerts!</span></h6>
                                     </div>

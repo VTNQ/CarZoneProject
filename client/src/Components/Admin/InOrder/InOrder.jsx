@@ -219,11 +219,12 @@ function InOrder() {
 
                 const response = await axios.get(`http://localhost:5278/api/InOrder/ShowInOrder/${sessionData.ID}`)
                 setInOrder(response.data.result)
-                const responsedata = await axios.get(`http://localhost:5278/api/InOrder/ShowCar`);
-                setCar(responsedata.data.result)
+                const responsedata = await axios.get(`http://localhost:5278/api/InOrder/ShowCar/${sessionData.idShowroom}`);
+            setCar(responsedata.data.result)
                 setSelectSupply(null)
                 settotalTax(0)
                 setSelectCars([]);
+                settotalprice(0)
                 setSelectCash(null)
             }
         }
@@ -273,7 +274,12 @@ function InOrder() {
             console.log(error)
         }
     }
-
+    const getTomorrow = () => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow;
+    };
     return (
         <>
             {loading && (
@@ -328,6 +334,7 @@ function InOrder() {
                                                             onChange={date => handleDeliveryChange(car.value, date)}
                                                             dateFormat="dd/MM/yyyy"
                                                             className="form-control"
+                                                            minDate={getTomorrow()}
                                                         />
                                                     </div>
                                                     <div key={car.value} className="form-group">

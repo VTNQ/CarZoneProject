@@ -36,7 +36,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> ShowCarWareHouse(int idShowroom)
         {
-            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==idShowroom)).Select(d => new
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseShowrooms.Any(m=>m.IdShowroom==idShowroom && m.IdCar==d.Id)).Select(d => new
             {
                 id=d.Id,
                 Name=d.Name,
@@ -104,7 +104,7 @@ namespace server.Services
 
         public dynamic ShowModel()
         {
-            return databaseContext.Models.Select(d => new
+            return databaseContext.Models.OrderByDescending(d => d.Id).Select(d => new
             {
                 id = d.Id,
                 name = d.Name,

@@ -24328,7 +24328,7 @@ preview-content img {
   color: #fff;
 }
 .sidebar .nav:not(.sub-menu) {
-  margin-top: 1.45rem;
+  margin-top: 3.45rem !important;
   margin-left: 1rem;
   margin-right: 1rem;
 }

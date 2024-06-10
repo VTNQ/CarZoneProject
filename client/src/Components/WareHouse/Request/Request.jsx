@@ -74,10 +74,11 @@ useEffect(() => {
                 showConfirmButton: false,
                 timer: 1500,
             })
-            const response=await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-            setWareHouse(response.data.result)
+            const response=await axios.get(`http://localhost:5278/api/Request/ShowRequestShowRoom/${sessionData.idWarehouse}`);
+                setWareHouse(response.data.result)
         }
     }catch(error){
+        setloading(false)
         console.log(error)
     }
    }

@@ -34,7 +34,7 @@ namespace server.Services
         {
             try
             {
-                var showrooms = await databaseContext.Showrooms
+                var showrooms = await databaseContext.Showrooms.OrderByDescending(d=>d.Id)
                     .Select(d => new
                     {
                         Id = d.Id,

@@ -55,7 +55,7 @@ namespace server.Services
 
         public dynamic getWarehouse()
         {
-            return databaseContext.Warehouses.Select(c=>new
+            return databaseContext.Warehouses.OrderByDescending(d => d.Id).Select(c=>new
             {
                 Id = c.Id,
                 Name = c.Name,

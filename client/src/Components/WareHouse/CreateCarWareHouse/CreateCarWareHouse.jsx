@@ -82,14 +82,15 @@ function CreateCarWareHouse() {
                 if (response.ok) {
                     setloading(false)
                    
-                    const responsedata = await axios.get(`http://localhost:5278/api/WareHouse/GetCarToWareHouse/${sessionData.idWarehouse}`);
-                    setCar(responsedata.data.result)
+                   
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Card to ShowRoom success',
                         showConfirmButton: false,
                         timer: 1500,
                     })
+                    const responsedata = await axios.get(`http://localhost:5278/api/WareHouse/GetCarToWareHouse/${sessionData.idWarehouse}`);
+                    setCar(responsedata.data.result)
                     setSelectCars([]);
                     setSelectShowRoom(null)
                    

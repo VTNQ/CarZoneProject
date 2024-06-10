@@ -5,6 +5,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Pagination from 'react-paginate';
 import axios from "axios";
+import Footer from '../Footer/Footer'
 import { useNavigate } from "react-router-dom";
 function Inventory() {
     const [Brand, setBrand] = useState([])
@@ -1075,6 +1076,7 @@ function Inventory() {
                     </div>
                 </div>
             </div>
+        <Footer/>
         </>
     )
 }

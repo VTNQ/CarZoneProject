@@ -277,12 +277,12 @@ namespace server.Services
 
         public async Task<int> TotalOutOrder(int id)
         {
-            return await _dbContext.OutOrders.Where(d => d.IdShowroom == id).CountAsync();
+            return await _dbContext.OutOrders.Where(d => d.IdEmployee == id).CountAsync();
         }
 
         public async Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime)
         {
-            return _dbContext.OutOrders.Where(p=>p.IdShowroom==id && p.DateOfSale.Month == datetime).GroupBy(o => o.DateOfSale).Select(g => new
+            return _dbContext.OutOrders.Where(p=>p.IdEmployee==id && p.DateOfSale.Month == datetime && p.Status==true).GroupBy(o => o.DateOfSale).Select(g => new
             {
                 OrderDate = g.Key,
                 OrderCount = g.Count()
@@ -292,7 +292,7 @@ namespace server.Services
 
         public async Task<int> TotalContract(int id)
         {
-            return await _dbContext.Contracts.Where(d=>d.IdOrderNavigation.IdShowroom==id).CountAsync();
+            return await _dbContext.Contracts.Where(d=>d.IdOrderNavigation.IdEmployee==id).CountAsync();
         }
 
         public dynamic GetWareHouse(int id)
