@@ -600,7 +600,7 @@ export const Dashboard = () => {
                        {EachCar.map((brand,index)=>(
                         <tr key={index}>
                         <td class="pl-0">{brand.brandName}</td>
-                        <td><p class="mb-0"><span class="font-weight-bold mr-2">{brand.carCount}</span>({brand.percentage}%)</p></td>
+                        <td><p class="mb-0"><span class="font-weight-bold mr-2">{brand.carCount}</span>({brand.percentage.toFixed(2)}%)</p></td>
                         
                       </tr>
                        ) )}

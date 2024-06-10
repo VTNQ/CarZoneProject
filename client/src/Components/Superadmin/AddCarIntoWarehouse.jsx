@@ -204,6 +204,8 @@ export const AddCarIntoWarehouse = () => {
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
+                        
+
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
@@ -219,36 +221,6 @@ export const AddCarIntoWarehouse = () => {
                                         >Back
                                         </button>
                                     </div>
-                                    <p class="card-description">
-                                        you need to create city and district before create new countries
-                                    </p>
-                                    <form class="forms-sample" onSubmit={HandleOnSubmit}>
-                                        <div class="form-group">
-                                            <label for="exampleInputUsername1">Country name</label>
-                                            <Select
-                                            value={selectedCar}
-                                            onChange={handleSelectedCar}
-                                            options={CarData}
-                                            placeholder="Select Car"
-                                            />
-                                        </div>
-
-                                        
-                                        <button type="submit" class="btn btn-primary mr-2">Create</button>
-                                        <button class="btn btn-light">Cancel</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    {nameWarehouseSelected ? (
-                                        <h4 class="card-title">{nameWarehouseSelected} Detail </h4>
-                                    ):(
-                                        <div>Loading...</div>
-                                    )}
                                     <p class="card-description">
                                         Hi Superadmin ! Checking car of each warehouse ?
                                     </p>
