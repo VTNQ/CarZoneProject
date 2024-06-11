@@ -14,7 +14,15 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c25359b1744e895bdc34cc8fdf282b01d4205bb")]
+=======
+<<<<<<< HEAD
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd1918c515eb315c1b175b1b7f26a8df7cd687bc")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a585263b3a4a94cbc515a13b576166355adf1016")]
+>>>>>>> 337ac258c4fe608606183463ade54b4ca4fd9341
+>>>>>>> 671b6de434ce93f532cd4ed701cc8fd368ea4ed3
 [assembly: System.Reflection.AssemblyProductAttribute("server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
