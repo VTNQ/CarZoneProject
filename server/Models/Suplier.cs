@@ -32,4 +32,7 @@ public partial class Suplier
 
     [InverseProperty("IdSuplierNavigation")]
     public virtual ICollection<InOrder> InOrders { get; set; } = new List<InOrder>();
+
+    [InverseProperty("IdSupplierNavigation")]
+    public virtual ICollection<SubWarehouseSupplier> SubWarehouseSuppliers { get; set; } = new List<SubWarehouseSupplier>();
 }

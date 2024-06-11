@@ -26,10 +26,6 @@ public partial class InOrder
     [Column(TypeName = "money")]
     public decimal TotalTax { get; set; }
 
-    [StringLength(50)]
-    [Unicode(false)]
-    public string Payment { get; set; } = null!;
-
     public bool Status { get; set; }
 
     [InverseProperty("IdOrderNavigation")]
