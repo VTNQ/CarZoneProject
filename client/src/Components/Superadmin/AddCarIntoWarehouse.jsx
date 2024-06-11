@@ -205,7 +205,35 @@ export const AddCarIntoWarehouse = () => {
                 <div class="content-wrapper">
                     <div class="row">
                         
+                    <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Create Countries</h4>
+                                    <p class="card-description">
+                                        you need to create city and district before create new countries
+                                    </p>
+                                    <form class="forms-sample" onSubmit={HandleOnSubmit}>
+                                        <div class="form-group">
+                                            <label for="exampleInputUsername1">Country name</label>
+                                        <Select
+                                            value={selectedCar}
+                                            onChange={handleSelectedCar}
+                                            options={CarData}
+                                            placeholder="select car to warehouse"
+                                        />                                        </div>
 
+                                        <div class="form-check form-check-flat form-check-primary">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" />
+                                                Remember me
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mr-2">Create</button>
+                                        <button class="btn btn-light">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
