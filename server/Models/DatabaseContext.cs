@@ -370,6 +370,10 @@ public partial class DatabaseContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK_dbo.SubWarehouseSupplier");
 
+            entity.Property(e => e.Quantity)
+                .HasDefaultValueSql("('1')")
+                .HasComment("");
+
             entity.HasOne(d => d.IdCarNavigation).WithMany(p => p.SubWarehouseSuppliers)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_SubWarehouseSupplier_Car");

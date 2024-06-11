@@ -16,6 +16,8 @@ public partial class SubWarehouseSupplier
 
     public int IdCar { get; set; }
 
+    public int Quantity { get; set; }
+
     [ForeignKey("IdCar")]
     [InverseProperty("SubWarehouseSuppliers")]
     public virtual Car IdCarNavigation { get; set; } = null!;
