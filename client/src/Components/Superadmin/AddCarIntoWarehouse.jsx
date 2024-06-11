@@ -13,7 +13,8 @@ export const AddCarIntoWarehouse = () => {
     const navigate = useNavigate();
     const [CarForm, setCarForm] = useState({
         idWarehouse: '',
-        idCar: ''
+        idCar: '',
+        Quantity: ''
 
 
     })
@@ -39,7 +40,7 @@ export const AddCarIntoWarehouse = () => {
 
     const HandleOnSubmit = async (event) => {
         event.preventDefault();
-        if (CarForm.idCar == '') {
+        if (CarForm.idCar == '' && CarForm.Quantity == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -52,6 +53,7 @@ export const AddCarIntoWarehouse = () => {
 
             formData.append("idCar", CarForm.idCar); // Sửa lại các tham chiếu tới state
             formData.append("idWarehouse", id);
+            formData.append("quantity",CarForm.Quantity);
             const response = await fetch("http://127.0.0.1:5278/api/WarehouseAll/addCarIntoWarehouse", {
                 method: 'POST',
                 body: formData
@@ -65,6 +67,7 @@ export const AddCarIntoWarehouse = () => {
                 });
                 setCarForm({
                     idCar: '',
+                    Quantity: ''
                 })
                 setSelectedCar(null);
                 fetchData();
@@ -192,6 +195,9 @@ export const AddCarIntoWarehouse = () => {
         setCarForm({...CarForm,idCar:selectedOption.value})
         
     }
+    const handleInputQuantity = (event) => {
+        setCarForm({...CarForm,Quantity:event.target.value});
+    }
     return (
         <>
             {loading && (
@@ -221,7 +227,10 @@ export const AddCarIntoWarehouse = () => {
                                             options={CarData}
                                             placeholder="select car to warehouse"
                                         />                                        </div>
-
+                                        <div class="form-group">
+                                            <label for="exampleInputUsername1">Quantity Car</label>
+                                            <input type="number" value={CarForm.Quantity} onChange={handleInputQuantity}  class="form-control" id="exampleInputUsername1" placeholder="Country name" />
+                                        </div>
                                         <div class="form-check form-check-flat form-check-primary">
                                             <label class="form-check-label">
                                                 <input type="checkbox" class="form-check-input" />
@@ -258,7 +267,7 @@ export const AddCarIntoWarehouse = () => {
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Name Car</th>
-                                                    
+                                                    <th>Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -266,7 +275,7 @@ export const AddCarIntoWarehouse = () => {
                                                     <tr>
                                                         <td>{++index}</td>
                                                         <td>{Emp.nameCar}</td>
-
+                                                        <td>{Emp.quantity}</td>
                                                         {/* <td>
                                                             <button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "

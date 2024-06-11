@@ -33,25 +33,34 @@ namespace server.Services
         {
             try
             {
-                var subWarehouse = new SubWarehouseSupplier
+                for(int i = 0; i < addCarIntoWarehouse.Quantity; i++)
                 {
-                    IdSupplier = addCarIntoWarehouse.IdWarehouse,
-                    IdCar = addCarIntoWarehouse.IdCar,
-                };
-                databaseContext.SubWarehouseSuppliers.Add(subWarehouse);
+                    var subWarehouse = new SubWarehouseCar
+                    {
+                        IdWarehouse = addCarIntoWarehouse.IdWarehouse,
+                        IdCar = addCarIntoWarehouse.IdCar,
+                    };
+                    databaseContext.SubWarehouseCars.Add(subWarehouse);
+                }
+                
                 return databaseContext.SaveChanges()>0;
             }catch { return false; }
         }
         public dynamic getCarFromWarehouse(int idWarehouse)
         {
-            return databaseContext.SubWarehouseCars.Where(c => c.IdWarehouse == idWarehouse).Select(c => new
-            {
-                NameWarehouse = c.IdWarehouseNavigation.Name,
-                NameCar = c.IdCarNavigation.Name,
-            });
+            return databaseContext.SubWarehouseCars
+                .Where(c => c.IdWarehouse == idWarehouse)
+                .GroupBy(c => new { c.IdCar, c.IdCarNavigation.Name })
+                .Select(g => new
+                {
+                    
+                    NameCar = g.Key.Name,
+                    Quantity = g.Count()
+                }).ToList();
         }
 
-        
+
+
 
         public dynamic getWarehouse()
         {
