@@ -8,17 +8,17 @@ function Menu() {
     }
     const navigate = useNavigate();
     const isInventoryPage = window.location.href === 'http://localhost:3000/Inventory';
+    const isContactPage=window.location.href==='http://localhost:3000/contact';
+        const isAboutpage=window.location.href==='http://localhost:3000/AboutUs';
     const [backgroundColor,setbackgroundColor]=useState('transparent');
-    const [color,setcolor]=useState('#222222')
+    const [color,setcolor]=useState('#fff')
     useEffect(() => {
        
         const isInventoryPage = window.location.href === 'http://localhost:3000/Inventory';
 
-   
-        if (isInventoryPage) {
-            setbackgroundColor('#fff');
-            setcolor('white')
-        }
+        const isContactPage=window.location.href==='http://localhost:3000/contact';
+        const isAboutpage=window.location.href==='http://localhost:3000/AboutUs';
+     
     }, []);
     useEffect(() => {
         const handleScroll = () => {
@@ -31,12 +31,12 @@ function Menu() {
 
             // Tính toán phần trăm cuộn
             const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
-
+        
             // Kiểm tra nếu phần trăm cuộn lớn hơn hoặc bằng 30%, đặt màu nền là #fff, ngược lại đặt là transparent
-            if (scrollPercentage >= 1 && !isInventoryPage) {
+            if (scrollPercentage >= 1) {
                 setbackgroundColor('#fff');
                 setcolor('#222222')
-            } else if(scrollPercentage<30 && !isInventoryPage) {
+            } else if(scrollPercentage<30) {
                 setbackgroundColor('transparent');
                 setcolor('white')
             }else{
@@ -95,27 +95,27 @@ function Menu() {
                                                     <div className="templaza-nav-wraper uk-visible@m px-2 uk-margin-auto-left">
                                                         <ul id="menu-main-menu-1" className="nav navbar-nav templaza-nav uk-flex uk-visible@m fade-down">
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a onClick={()=>navigate('/')} style={{color}} className="megamenu-item-link item-level-1 has-children">
+                                                                <a onClick={()=>navigate('/')} style={{color}} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">Home</span>
                                                       
                                                                 </a>
                                                             </li>
                                                             
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a style={{color}} onClick={()=>navigate("/Inventory")} className="megamenu-item-link item-level-1 has-children">
+                                                                <a style={{color}} onClick={()=>navigate("/Inventory")} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">Iventory</span>
                                                                  
                                                                 </a>
                                                             </li>
                                                       
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a style={{color}} onClick={()=>navigate('/contact')} className="megamenu-item-link item-level-1 has-children">
+                                                                <a style={{color}} onClick={()=>navigate('/contact')} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">Contact</span>
 
                                                                 </a>
                                                             </li>
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a style={{color}} onClick={()=>navigate('/AboutUs')} className="megamenu-item-link item-level-1 has-children">
+                                                                <a style={{color}} onClick={()=>navigate('/AboutUs')} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">About</span>
 
                                                                 </a>

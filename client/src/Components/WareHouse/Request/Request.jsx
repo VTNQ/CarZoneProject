@@ -74,10 +74,11 @@ useEffect(() => {
                 showConfirmButton: false,
                 timer: 1500,
             })
-            const response=await axios.get("http://localhost:5278/api/Request/ShowRequestWareHouse");
-            setWareHouse(response.data.result)
+            const response=await axios.get(`http://localhost:5278/api/Request/ShowRequestShowRoom/${sessionData.idWarehouse}`);
+                setWareHouse(response.data.result)
         }
     }catch(error){
+        setloading(false)
         console.log(error)
     }
    }
@@ -157,6 +158,7 @@ return(
                                         <thead>
                                             <tr>
                                             <th> # </th>
+                                            <th>From</th>
                                                         <th> To </th>
 
 
@@ -172,6 +174,7 @@ return(
                                         {currentRequest.map((request, index) => (
                                                         <tr>
                                                             <td>{++index}</td>
+                                                            <td>{request.from}</td>
                                                             <td>{request.to}</td>
 
                                                             <td>{new Date(request.creadate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>

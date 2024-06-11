@@ -87,12 +87,12 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("GetShowRoom")]
-        public IActionResult GetShowRoom()
+        [HttpGet("GetFilterShowRoom/{id}")]
+        public IActionResult GetFilterShowRoom(int id)
         {
             try
             {
-                return Ok(wareHouserService.GetShowRoom());
+                return Ok(wareHouserService.GetShowRoom(id));
             }
             catch
             {

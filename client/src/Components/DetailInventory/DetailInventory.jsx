@@ -6,6 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Pagination from 'react-paginate';
+import Footer from "../Footer/Footer";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -91,34 +92,44 @@ function DetailInventory() {
         fetchdata();
     },[])
     const SendRequest=async()=>{
-        try{
-            setloading(true)
-            const response=await fetch("http://localhost:5278/api/Request/AddRequest",{
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ to: SelectWareHouse?.label, from: FromData.NameRequest, type: true, description: FromData.CommentRequest })
+        if(SelectWareHouse?.label || FromData.NameRequest || FromData.CommentRequest ){
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter complete information',
+                showConfirmButton: false,
+                timer: 1500,
             })
-            if(response.ok){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Add success',
-                    showConfirmButton: false,
-                    timer: 1500,
+        }else{
+            try{
+                setloading(true)
+                const response=await fetch("http://localhost:5278/api/Request/AddRequest",{
+                    method: 'Post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ to: SelectWareHouse?.label, from: FromData.NameRequest, type: true, description: FromData.CommentRequest })
                 })
-                setloading(false)
-                setSelectWareHouse(null)
-                setFromData({
-                    NameRequest:'',
-                    CommentRequest:''
-                })
-                setSelectDistrict(null)
-                setSelectcity(null)
+                if(response.ok){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Add success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    setloading(false)
+                    setSelectWareHouse(null)
+                    setFromData({
+                        NameRequest:'',
+                        CommentRequest:''
+                    })
+                    setSelectDistrict(null)
+                    setSelectcity(null)
+                }
+            }catch(error){
+                console.log(error)
             }
-        }catch(error){
-            console.log(error)
         }
+        
     }
     const handleSubmit = async () => {
 
@@ -1026,80 +1037,9 @@ function DetailInventory() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="call-to-buy uk-flex uk-flex-middle" style={{ width: '268%' }}>
-                                                                <i className="fas fa-headphones"></i>
-                                                                <div>
-                                                                    <h4 className="phone uk-margin-remove"> +88 123 456 888</h4>
-                                                                    <p className="uk-margin-remove" style={{ fontFamily: 'Inter, Arial, Helvetica, sans-serif', fontWeight: '400' }}>Call our seller to get the best price</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className="ap-single-price-box ap-single-side-box ap-single-author-box widget" style={{ width: '268%' }}>
-                                                                <h3 className="widget-title ap-group-title is-style-templaza-heading-style3">
-                                                                    <span style={{ fontSize: '18px', fontWeight: '700', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>Vendor Profile</span>
-                                                                </h3>
-                                                                <div className="uk-card">
-                                                                    <div className="author-header">
-                                                                        <div className="uk-grid-small uk-flex-middle uk-grid">
-                                                                            <div className="uk-width-auto uk-first-column">
-                                                                                <a style={{ color: '#222222' }}>
-                                                                                    <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/10/thisisengineering-raeng-QODxaQMlIYk-unsplash.jpg" width={70} height={70} alt="" />
-                                                                                </a>
-                                                                            </div>
-                                                                            <div className="uk-width-expand" style={{ marginLeft: '15px' }}>
-                                                                                <h3 className="uk-card-title uk-margin-remove-bottom">
-                                                                                    <a href="" style={{ color: "#222222", textDecoration: 'none', fontFamily: "Montserrat, Arial, Helvetica, sans-serif", fontWeight: '600' }}> McDonald Terry </a>
-                                                                                </h3>
-                                                                                <p className="uk-text-meta uk-margin-remove-top">4 Products</p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div className="author-description" style={{ fontSize: '16px', color: '#555555', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif', lineHeight: '1.7' }}>
-                                                                    Blogging has really changed my life.  I know that sounds a bit corny, but I have whole new set of friends.
-                                                                    <div className="templaza-block-author-social uk-text-meta  uk-margin-top">
-                                                                        <a href="" className="uk-margin-right">
-                                                                            <i className="fab fa-facebook"></i>
-                                                                        </a>
-                                                                        <a href="" className="uk-margin-right">
-                                                                            <i className="fab fa-twitter"></i>
-                                                                        </a>
-                                                                        <a href="" className="uk-margin-right">
-                                                                            <i className="fab fa-dribbble"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="widget ap-single-side-box ap-box" style={{ width: '268%' }}>
-                                                                <div className="widget-content">
-                                                                    <h3 className="widget-title ap-group-title is-style-templaza-heading-style3" >
-                                                                        <span style={{ fontSize: '18px', fontWeight: 'bold', fontFamily: 'Montserrat, Arial, Helvetica, sans-serif' }}>Contact Vendor</span>
-                                                                    </h3>
-                                                                    <div className="ap-group-content">
-                                                                        <div className="wpforms-container wpforms-container-full">
-                                                                            <form id="wpforms-form-14099" className="wpforms-validate wpforms-form wpforms-ajax-form">
-                                                                                <div className="wpforms-field-container">
-                                                                                    <div id="wpforms-14099-field_1-container" className="wpforms-field wpforms-field-name">
-                                                                                        <input type="text" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Name" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                                                                    </div>
-                                                                                    <div id="wpforms-14099-field_1-container" className="wpforms-field wpforms-field-name">
-                                                                                        <input type="email" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Email" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                                                                    </div>
-                                                                                    <div id="wpforms-14099-field_1-container" className="wpforms-field wpforms-field-name">
-                                                                                        <input type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Phone" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '50px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%' }} />
-                                                                                    </div>
-                                                                                    <div id="wpforms-14099-field_1-container" className="wpforms-field wpforms-field-name">
-                                                                                        <textarea type="tel" id="wpforms-14099-field_1" className="wpforms-field-large wpforms-field-required" placeholder="Your Message" style={{ color: '#555555', fontWeight: '400', fontFamily: 'inherit', fontSize: '0.9em', marginRight: '0', height: '89px', lineHeight: '50px', backgroundColor: '#ffffff', borderRadius: '0', border: '1px solid rgba(0, 0, 0, 0.1)', marginTop: '0', padding: '0 15px', background: '#fff', width: '100%', maxWidth: '100%', paddingTop: '10px', paddingBottom: '10px' }} />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="wpforms-submit-container">
-                                                                                    <button type="button" id="wpforms-submit-14099" className="wpforms-submit" style={{ backgroundColor: '#ff5400', color: '#ffffff', border: '2px solid transparent', borderRadius: '0', cursor: 'pointer', fontWeight: '700', fontSize: '14px', lineHeight: '1.5', padding: '13px 32px', textDecoration: 'none', textTransform: 'uppercase' }}>Send Message</button>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                     
+                                                          
+                                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1446,6 +1386,7 @@ function DetailInventory() {
                     </div>
                 </div>
             )}
+            <Footer/>
         </>
 
     )

@@ -6,7 +6,7 @@ import '../Admin/assets/vendors/font-awesome/css/font-awesome.min.css';
 import '../Admin/assets/vendors/mdi/css/materialdesignicons.min.css';
 import '../Admin/assets/vendors/ti-icons/css/themify-icons.css';
 import '../Admin/assets/css/style.css';
-import Img from '../Admin/assets/images/logo.svg';
+import Img from '../Admin/assets/images/Carzone.png';
 import Cookies from 'js-cookie'
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
@@ -84,11 +84,10 @@ return(
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
+              <div class="brand-logo" style={{display:'flex',justifyContent:'center'}}>
                 <img src={Img} alt="logo"/>
               </div>
-              <h4>New here?</h4>
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+             
               <form class="pt-3" onSubmit={handleLogin}>
          
                 <div class="form-group">
@@ -111,7 +110,7 @@ return(
                   </div>
                 </div>
                 <div class="mt-3 d-grid gap-2">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                 </div>
               
               </form>

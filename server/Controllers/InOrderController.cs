@@ -155,6 +155,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("ShowCarWareHouse/{id}")]
+        public async Task<IActionResult> ShowCarWareHouse(int id)
+        {
+            try
+            {
+                return Ok(_orderService.ShowCarWareHouse(id));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("ShowCar/{id}")]
         public async Task<IActionResult> ShowCar(int id)
         {

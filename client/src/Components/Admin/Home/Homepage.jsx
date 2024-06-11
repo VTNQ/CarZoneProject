@@ -76,13 +76,13 @@ function HomePage(){
   useEffect(()=>{
     const fetchdata=async()=>{
       try{
-        const response=await axios.get(`http://localhost:5278/api/OutOrder/GetCountOrder/${sessionData.idShowroom}/${selectedMonth}`)
+        const response=await axios.get(`http://localhost:5278/api/OutOrder/GetCountOrder/${sessionData.ID}/${selectedMonth}`)
         setOrderData(response.data.result);
       }catch(error){
         console.log(error)
       }
     }
-    if(sessionData && sessionData.idShowroom){
+    if(sessionData && sessionData.ID){
       fetchdata();
     }
  
@@ -90,13 +90,13 @@ function HomePage(){
   useEffect(()=>{
     const fetchdata=async()=>{
       try{
-        const response=await axios.get(`http://localhost:5278/api/InOrder/GetCountinOrder/${sessionData.idShowroom}/${selectedMonthInorder}`)
+        const response=await axios.get(`http://localhost:5278/api/InOrder/GetCountinOrder/${sessionData.ID}/${selectedMonthInorder}`)
         setinorder(response.data.result);
       }catch(error){
         console.log(error)
       }
     }
-    if(sessionData && sessionData.idShowroom){
+    if(sessionData && sessionData.ID){
       fetchdata();
     }
  
@@ -169,13 +169,13 @@ function HomePage(){
   useEffect(()=>{
     const fetchdata=async()=>{
       try{
-        const response=await axios.get(`http://localhost:5278/api/OutOrder/TotalOutOrder/${sessionData.idShowroom}`);
+        const response=await axios.get(`http://localhost:5278/api/OutOrder/TotalOutOrder/${sessionData.ID}`);
         setOutOrder(response.data)
       }catch(error){
         console.log(error)
       }
     }
-    if(sessionData && sessionData.idShowroom){
+    if(sessionData && sessionData.ID){
       fetchdata();
     }
     
@@ -266,7 +266,7 @@ return(
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Welcome John</h3>
+                    <h3 class="font-weight-bold">Welcome {sessionData && sessionData.fullName ? sessionData.fullName : ''}</h3>
                     <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                   </div>
                   <div class="col-12 col-xl-4">
@@ -289,6 +289,7 @@ return(
             <div class="row col-auto">
               <div class="col-md-6">
                 <div class=" tale-bg">
+                  <label htmlFor="">Outorder statistics</label>
                 <Bar data={chartData} options={chartOptions} />
                   <label>Select Month:</label>
                   <select id="selectMonth"
@@ -319,7 +320,7 @@ return(
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Avenue By Month</p>
+                  <p class="card-title">Inorder statistics</p>
                   <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
                   <div class="d-flex flex-wrap pt-10">
                     

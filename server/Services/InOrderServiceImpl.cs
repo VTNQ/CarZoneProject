@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using server.Models;
+using System.Linq;
 
 namespace server.Services
 {
@@ -129,7 +130,7 @@ namespace server.Services
         
         public async Task<IEnumerable<dynamic>> ShowOrderWareHouse(int id)
         {
-            return databaseContext.InOrders.Where(d=>d.IdWarehouse==id).Select(d => new
+            return databaseContext.InOrders.OrderBy(d=>d.Id).Where(d=>d.IdWarehouse==id).Select(d => new
             {
                 id = d.Id,
                 WareHouse = d.IdWarehouseNavigation.Name,
@@ -164,7 +165,7 @@ namespace server.Services
 
         public async Task<IEnumerable<dynamic>> GetCountinOrder(int id, int datetime)
         {
-            return databaseContext.InOrders.Where(d => d.DateOfSale.Month == datetime && d.Status == true && databaseContext.Showrooms.Any(m => m.Id == id && m.IdDistrictNavigation.IdCityNavigation.IdCountry == d.IdWarehouseNavigation.IdCountry)).GroupBy(o => o.DateOfSale).Select(d => new
+            return databaseContext.InOrders.Where(d => d.DateOfSale.Month == datetime && d.Status == true && d.IdEmployee==id).GroupBy(o => o.DateOfSale).Select(d => new
             {
                 OrderDate = d.Key,
                 OrderCount = d.Count()
@@ -202,6 +203,16 @@ namespace server.Services
                     return false;
                 }
             }
+        }
+
+        public async Task<IEnumerable<dynamic>> ShowCarWareHouse(int id)
+        {
+            return databaseContext.Cars.Where(d => databaseContext.SubWarehouseCars.Any(m => m.IdWarehouse == id && m.IdCar == d.Id)).Select(d => new
+            {
+                id = d.Id,
+                name = d.Name,
+                Price = d.Price,
+            }).ToList();
         }
     }
 }

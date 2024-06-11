@@ -119,6 +119,7 @@ namespace server.Services
 
             return brandData;
         }
+
         public dynamic getAvenueEachShowroom()
         {
             var showroom = databaseContext.Showrooms.Select(showroom => new

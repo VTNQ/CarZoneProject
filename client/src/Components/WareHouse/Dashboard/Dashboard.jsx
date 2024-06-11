@@ -181,7 +181,7 @@ function Dashboard() {
                             <div className="col-md-12 grid-margin">
                                 <div className="row">
                                     <div className="col-12 col-xl-8 mb-4 mb-xl-0">
-                                        <h3 className="font-weight-bold">Welcome John</h3>
+                                        <h3 className="font-weight-bold">Welcome {sessionData && sessionData.fullName ? sessionData.fullName : ''}</h3>
                                         <h6 className="font-weight-normal mb-0">All systems are running smoothly! You
                                             have <span className="text-primary">3 unread alerts!</span></h6>
                                     </div>
@@ -210,6 +210,7 @@ function Dashboard() {
                             <div className="col-md-6  ">
                             <div className="card tale-bg" style={{ minHeight: 'auto' }}>
                                     <div className="card-people mt-auto">
+                                        <label htmlFor="">Inorder statistics</label>
                                         <Bar data={chartData} options={chartOptions} />
                                         <label>Select Month:</label>
                                         <select id="selectMonth"
