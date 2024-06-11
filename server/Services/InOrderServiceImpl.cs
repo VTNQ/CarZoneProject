@@ -50,7 +50,7 @@ namespace server.Services
                     {
                         IdWarehouse = inOrder.IdWarehouse,
                         IdEmployee = inOrder.IdEmployee,
-                        IdSuplier = inOrder.IdSuplier,
+                        IdShowroom = inOrder.IdShowroom,
                         DateOfSale = DateOnly.FromDateTime(DateTime.Now),
                         TotalAmount = inOrder.TotalAmount,
                         TotalTax = inOrder.TotalTax,
@@ -67,8 +67,6 @@ namespace server.Services
                                 IdOrder = InOrder.Id,
                                 IdCar = inor.IdCar,
                                 DeliveryDate = inor.DeliveryDate,
-                                Price = inor.Price,
-                                Tax = inor.Tax,
                             };
                             databaseContext.DetailOfInOrders.Add(DetailIndorder);
                         }
@@ -94,7 +92,7 @@ namespace server.Services
             {
                 id = d.Id,
                 WareHouse = d.IdWarehouseNavigation.Name,
-                Supplier = d.IdSuplierNavigation.Name,
+                Supplier = d.IdShowroomNavigation.Name,
                 DateofSale = d.DateOfSale,
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
@@ -109,15 +107,6 @@ namespace server.Services
             {
                 id = d.Id,
                 Car = d.Name,
-               
-                Price = d.Price,
-                TotalPrice=databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Sum(m=>m.Price),
-                Tax = databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Select(o => new
-                {
-                    tax=o.Tax,
-                }).FirstOrDefault(),
-                Quantity= databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Count(),
-                TotalTax = databaseContext.DetailOfInOrders.Where(m => m.IdOrder == id && m.IdCar == d.Id).Sum(m=>m.Tax),
                 Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
                 {
                     PictureLink = configuration["ImageUrl"] + m.Link,
@@ -132,7 +121,7 @@ namespace server.Services
             {
                 id = d.Id,
                 WareHouse = d.IdWarehouseNavigation.Name,
-                Supplier = d.IdSuplierNavigation.Name,
+                Supplier = d.IdShowroomNavigation.Name,
                 DateofSale = d.DateOfSale,
                 Employee=d.IdEmployeeNavigation.FullName,
                 TotalAmount = d.TotalAmount,

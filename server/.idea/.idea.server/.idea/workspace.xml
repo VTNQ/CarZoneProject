@@ -12,7 +12,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="Update By Quoc" />
+    <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_14_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_14_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/InOrder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/InOrder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Car.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Car.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DatabaseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/DetailOfInOrder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DetailOfInOrder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/InOrder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/InOrder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Showroom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Showroom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Suplier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Suplier.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/InOrderServiceImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/InOrderServiceImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,9 +59,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/votan/OneDrive/Máy tính/CarZoneProject/server/Models/DatabaseContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bin/Debug/net8.0/server.staticwebassets.runtime.json" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -159,7 +175,9 @@
       <workItem from="1718012459616" duration="1754000" />
       <workItem from="1718065584079" duration="2945000" />
       <workItem from="1718088624208" duration="715000" />
-      <workItem from="1718089712240" duration="316000" />
+      <workItem from="1718089712240" duration="2886000" />
+      <workItem from="1718097528902" duration="188000" />
+      <workItem from="1718097899563" duration="41000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -297,7 +315,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718090016839</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1718093352647</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718093352647</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
