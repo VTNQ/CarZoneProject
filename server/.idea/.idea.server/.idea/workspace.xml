@@ -12,28 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2024_4_41_PM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/apphost.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/server.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_8_47_AM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_6_2024_7_59_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_6_2024_7_59_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_6_2024_7_59_AM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_6_2024_7_59_AM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/server.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-    </list>
+    <list default="true" id="1ad1ee7e-72d9-497d-a896-438a28bed326" name="Changes" comment="Update By Quoc" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,6 +159,7 @@
       <workItem from="1718012459616" duration="1754000" />
       <workItem from="1718065584079" duration="2945000" />
       <workItem from="1718088624208" duration="715000" />
+      <workItem from="1718089712240" duration="316000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <option name="closed" value="true" />
@@ -301,7 +281,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718085321587</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1718089964375</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1718089964375</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Update By Quoc">
+      <option name="closed" value="true" />
+      <created>1718090016839</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718090016839</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,11 +334,11 @@
     <MESSAGE value="Fix: SQL" />
     <MESSAGE value="Fix : SQL" />
     <MESSAGE value="Update DatabaseContext.cs" />
-    <MESSAGE value="Update By Quoc" />
     <MESSAGE value="Update : SQL" />
     <MESSAGE value="update" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="Update By Quoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update By Quoc" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
