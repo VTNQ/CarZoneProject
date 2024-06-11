@@ -16,7 +16,7 @@ function InOrder() {
 
     const [SelectSupply, setSelectSupply] = useState(null);
     const [Supply, setSupply] = useState([]);
-    const [SelectCash, setSelectCash] = useState(null)
+   
     const [IDWareHouse, setIDWareHouse] = useState([]);
     const options = [
         { value: 0, label: "cash payment" },
@@ -79,9 +79,7 @@ function InOrder() {
     }, [sessionData])
     const [perPage, setperPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
-    const handleSelectCash = (SelectCash) => {
-        setSelectCash(SelectCash)
-    }
+
     const handleSelectSupply = (SelectSupply) => {
         setSelectSupply(SelectSupply)
     }
@@ -167,8 +165,8 @@ function InOrder() {
         });
 
         const IsSelectCars = SelectCars.length <= 0 ? false : true;
-
-        if (hasInvalidInput == true || IsSelectCars == false || SelectSupply?.value == null || SelectCash?.value == null) {
+     
+        if (hasInvalidInput == true || IsSelectCars == false  ) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -190,10 +188,11 @@ function InOrder() {
 
             formData.append("IdWarehouse", IDWareHouse.id)
             formData.append("IdEmployee", sessionData.ID)
-            formData.append("IdSuplier", SelectSupply?.value)
+        
             formData.append("TotalAmount", totalAmount);
             formData.append("TotalTax", totalTax);
-            formData.append("Payment", SelectCash?.value)
+            formData.append("IdShowroom",sessionData.idShowroom)
+     
             Object.keys(carTaxes).forEach((carId, index) => {
                 const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
                 const vietnamStartDate = new Date(carTaxes[carId].delivery.getTime() + offsetInMilliseconds);
@@ -225,7 +224,7 @@ function InOrder() {
                 settotalTax(0)
                 setSelectCars([]);
                 settotalprice(0)
-                setSelectCash(null)
+              
             }
         }
 
@@ -299,13 +298,7 @@ function InOrder() {
                                         <h4 class="card-title">In Order</h4>
                                         <p class="card-description"> Basic form layout </p>
                                         <form class="forms-sample" onSubmit={SubmitCar}>
-                                            <div class="form-group">
-                                                <label for="exampleInputUsername1">Supply</label>
-                                                <Select options={Supply.map(type => ({ value: type.id, label: type.name }))}
-                                                    value={SelectSupply}
-                                                    onChange={(SelectedOption) => handleSelectSupply(SelectedOption)}
-                                                />
-                                            </div>
+                                          
 
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Car</label>
