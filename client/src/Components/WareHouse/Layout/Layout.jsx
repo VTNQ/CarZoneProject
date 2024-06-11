@@ -145,55 +145,55 @@ useEffect(() => {
 <ul class="nav">
 
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Dashboard',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/Dashboard',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Home</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/InOrder',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/InOrder',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">In Order</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Form',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/Form',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Form</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Version',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/Version',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Version</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Brand',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/Brand',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Brand</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/Model',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/Model',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Model</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/CreateCarWareHouse',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/CreateCarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car ShowRoom</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/CarWareHouse',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/CarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car WareHouse</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onClick={()=>navigate('/WareHouse/RequestWareHouse',{state:{sessionData}})}>
+    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/RequestWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Request</span>
     </a>

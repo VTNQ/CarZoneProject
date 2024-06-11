@@ -243,6 +243,7 @@ function Inventory() {
         }
         setSortedProducts(CopyCar);
     }, [Car, selectedSortOption, SelectBrand, SelectModel, SelectCondition, sliderValues]);
+    
     const filterCar = sortedProducts.filter((product) => {
         const includesSearchTerm = SelectCondition === '' || product.condition.toLowerCase().includes(SelectCondition.toLowerCase());
         const matchesShowRoom = SelectShowRoom === '' || product.idshowRoom.some(showroom => showroom.idshowroomCar === parseInt(SelectShowRoom));
@@ -403,7 +404,7 @@ function Inventory() {
 
                                                                 <div className="ap-search-item uk-margin uk-first-column" style={{ marginTop: '50px' }}>
                                                                     <label htmlFor="" className="search-label" style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '13px', paddingRight: '20vh' }}>
-                                                                        Branch
+                                                                        Brand
                                                                     </label>
                                                                     <div className="uk-form-controls" style={{ marginTop: '25px', marginLeft: '-4px' }}>
                                                                         <div className="acf-taxonomy-field">
@@ -486,10 +487,7 @@ function Inventory() {
                                         <div id="templaza-content_area-1715377415090807" className="templaza-content_area tz_custom_1715377415090807">
                                             <div className="uk-flex uk-grid-collapse uk-flex-middle uk-flex-between templaza-ap-archive-view uk-grid">
                                                 <div className="uk-width-1-3@s uk-flex ap-number-product uk-first-column">
-                                                    <h3 className="uk-margin-remove">
-                                                        <span>24 </span>
-                                                        Products available
-                                                    </h3>
+                                              
                                                 </div>
                                                 <div className="uk-width-2-3@s uk-flex uk-flex-middle uk-flex-between uk-flex-right@s">
                                                     <div className="templaza-ap-archive-sort uk-flex uk-flex-middle">

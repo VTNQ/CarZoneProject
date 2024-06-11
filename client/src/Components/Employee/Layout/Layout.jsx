@@ -117,7 +117,7 @@ const LayoutEmployee=({children})=>{
         {showDropdown && (
             <div className="dropdown1">
               <a onClick={handleLogout}>
-                <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+                <i className="fa fa-sign-out cursor-pointer" aria-hidden="true"></i> Logout
               </a>
         
               
@@ -145,13 +145,13 @@ const LayoutEmployee=({children})=>{
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
               <ul className="nav">
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Employee/Dashboard')}>
+                  <a className="nav-link cursor-pointer" onClick={() => navigate('/Employee/Dashboard')}>
                     <i className="icon-grid menu-icon"></i>
                     <span className="menu-title">Dashboard</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Employee/Show-Customer', {
+                  <a className="nav-link cursor-pointer" onClick={() => navigate('/Employee/Show-Customer', {
                     state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
@@ -159,7 +159,7 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Invoice/HistoryInVoice', {
+                  <a className="nav-link cursor-pointer" onClick={() => navigate('/Invoice/HistoryInVoice', {
                     state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
@@ -167,7 +167,7 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Employee/HistoryOrder', {
+                  <a className="nav-link cursor-pointer" onClick={() => navigate('/Employee/HistoryOrder', {
                     state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
@@ -175,7 +175,7 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate('/Employee/ShowContact', {
+                  <a className="nav-link cursor-pointer" onClick={() => navigate('/Employee/ShowContact', {
                     state: sessionData
                   })}>
                     <i className="icon-grid menu-icon"></i>
@@ -183,7 +183,7 @@ const LayoutEmployee=({children})=>{
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => navigate(`/Employee/ShowContract/${sessionData.ID}`, {
+                  <a className="nav-link cursor-pointer" onClick={() => navigate(`/Employee/ShowContract/${sessionData.ID}`, {
                     state: {
                       sessionData
                     }
