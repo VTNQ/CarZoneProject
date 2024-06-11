@@ -58,10 +58,6 @@ namespace server.Controllers
         [HttpDelete("DeleteSupplier/{id}")]
         public async Task<IActionResult> DeleteSupplier(int id)
         {
-            if (databaseContext.InOrders.Any(d => d.IdSuplier == id))
-            {
-                return BadRequest(new { message = "Delete Supplier Exist" });
-            }
             try
             {
                 return Ok(new

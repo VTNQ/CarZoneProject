@@ -59,8 +59,6 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<SubWarehouseShowroom> SubWarehouseShowrooms { get; set; }
 
-    public virtual DbSet<SubWarehouseSupplier> SubWarehouseSuppliers { get; set; }
-
     public virtual DbSet<Suplier> Supliers { get; set; }
 
     public virtual DbSet<Version> Versions { get; set; }
@@ -259,9 +257,9 @@ public partial class DatabaseContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_inorder_employee");
 
-            entity.HasOne(d => d.IdSuplierNavigation).WithMany(p => p.InOrders)
+            entity.HasOne(d => d.IdShowroomNavigation).WithMany(p => p.InOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_inorder_suplier");
+                .HasConstraintName("FK_inorder_showroom");
 
             entity.HasOne(d => d.IdWarehouseNavigation).WithMany(p => p.InOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -364,19 +362,6 @@ public partial class DatabaseContext : DbContext
             entity.HasOne(d => d.IdShowroomNavigation).WithMany(p => p.SubWarehouseShowrooms)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_SubWarehouse_Showroom");
-        });
-
-        modelBuilder.Entity<SubWarehouseSupplier>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK_dbo.SubWarehouseSupplier");
-
-            entity.HasOne(d => d.IdCarNavigation).WithMany(p => p.SubWarehouseSuppliers)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_SubWarehouseSupplier_Car");
-
-            entity.HasOne(d => d.IdSupplierNavigation).WithMany(p => p.SubWarehouseSuppliers)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_SubWarehouseSupplier_supplier");
         });
 
         modelBuilder.Entity<Suplier>(entity =>

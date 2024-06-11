@@ -6,7 +6,7 @@
 
         public int IdEmployee { get; set; }
 
-        public int IdSuplier { get; set; }
+        public int IdShowroom { get; set; }
 
 
         public decimal TotalAmount { get; set; }
