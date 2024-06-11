@@ -9,7 +9,7 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import Footer from './Components/Footer/Footer';
 import DashboardEmployee from './Components/Employee/Dashboard/Dashboard';
 import CreateCustomer from './Components/Employee/Customer/AddCustomer';
-import CreateCustomerSuperadmin from  './Components/Superadmin/AddCustomer';
+import CreateCustomerSuperadmin from './Components/Superadmin/AddCustomer';
 import ShowCustomer from './Components/Employee/Customer/ShowCustomer';
 import AddEmployee from './Components/Admin/AddEmployee/AddEmployee';
 import Login from './Components/Login/Login';
@@ -39,8 +39,8 @@ import HistoryOrder from './Components/Employee/Order/HistoryOrder';
 import ShowContactEmployee from './Components/Employee/ShowContact/ShowContact';
 import ShowContract from './Components/Employee/Contract/ShowContract';
 import DashboardWareHouse from './Components/WareHouse/Dashboard/Dashboard';
-import InOrderWareHouse from './Components/WareHouse/InOrder/InOrder';
-import DetailOrder from './Components/WareHouse/InOrder/DetailOrder';
+import InOrderWareHouse from './Components/Superadmin/InOrder/InOrder';
+import DetailOrder from './Components/Superadmin/InOrder/DetailOrder';
 import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
@@ -74,89 +74,90 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/Contact' element={<Contact/>}/>
-        <Route path='/Login' element={<Login/>}/>
-        <Route path='/Inventory' element={<Inventory/>}/>
-        <Route path='/EmployeeAdmin' element={<AddEmployee/>}/>
-        <Route path='/Menu' element={<Menu/>}/>
-        <Route path='/HomeAdminPage' element={<LayoutHomepage/>}/>
-        <Route path='/' element={<Homepage/>}/>
-        <Route path='/DetailInventory/:id' element={<DetailInventory/>}/>
-        <Route path='/AboutUs' element={<AboutUs/>}/>
-        <Route path='/Footer' element={<Footer/>}/>
-        <Route path='/superadmin/' element={<LayoutSuperadmin/>}>
-            <Route index element={<Dashboard/>} />
-            <Route path='carPage' element={<Car/>}/>
-            <Route path='countriesPage' element={<Countries/>}/>
-            <Route path='CityDistrictPage' element={<CityDistrict/>}/>
-            <Route path='CustomerPage' element={<Customer/>}/>
-            <Route path='addCarIntoWarehouse/:id' element={<AddCarIntoWarehouse/>}/>
-            <Route path='showroom' element={<Showroom/>}/>
-            <Route path='Create' element={<CreateCustomerSuperadmin/>}/>
-            <Route path='order' element={<Order/>}/>
-            <Route path='Detailorder/:id' element={<DetailOrderSpm/>}/>
-            <Route path='warehouse' element={<Warehouse/>}/>
-            <Route path='bmw/' element={<BMV/>}>
-                <Route index element={<BrandSpm/>}></Route>
-                <Route path='model' element={<ModelSpm/>}></Route>
-                <Route path='version' element={<VersionSpm/>}></Route>
-                <Route path='form' element={<FormSpm/>}></Route>
-            </Route>
-            <Route path='admin/' element={<Admin/>}>
-                <Route index element={<AdminAccount/>}></Route>
-                <Route path='warehouse' element={<WarehouseAccount/>}></Route>
-                <Route path='adminShow' element={<AdminShow/>}></Route>
-                <Route path='warehouseShow' element={<WarehouseShow/>}></Route>
+        <Route path='/Contact' element={<Contact />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/Inventory' element={<Inventory />} />
+        <Route path='/EmployeeAdmin' element={<AddEmployee />} />
+        <Route path='/Menu' element={<Menu />} />
+        <Route path='/HomeAdminPage' element={<LayoutHomepage />} />
+        <Route path='/' element={<Homepage />} />
+        <Route path='/DetailInventory/:id' element={<DetailInventory />} />
+        <Route path='/AboutUs' element={<AboutUs />} />
+        <Route path='/Footer' element={<Footer />} />
+        <Route path='/superadmin/' element={<LayoutSuperadmin />}>
+          <Route path='InOrder' element={<InOrderWareHouse />} />
+          <Route index element={<Dashboard />} />
+          <Route path='carPage' element={<Car />} />
+          <Route path='countriesPage' element={<Countries />} />
+          <Route path='CityDistrictPage' element={<CityDistrict />} />
+          <Route path='CustomerPage' element={<Customer />} />
+          <Route path='addCarIntoWarehouse/:id' element={<AddCarIntoWarehouse />} />
+          <Route path='showroom' element={<Showroom />} />
+          <Route path='Create' element={<CreateCustomerSuperadmin />} />
+          <Route path='order' element={<Order />} />
+          <Route path='Detailorder/:id' element={<DetailOrderSpm />} />
+          <Route path='warehouse' element={<Warehouse />} />
+          <Route path='bmw/' element={<BMV />}>
+            <Route index element={<BrandSpm />}></Route>
+            <Route path='model' element={<ModelSpm />}></Route>
+            <Route path='version' element={<VersionSpm />}></Route>
+            <Route path='form' element={<FormSpm />}></Route>
+          </Route>
+          <Route path='admin/' element={<Admin />}>
+            <Route index element={<AdminAccount />}></Route>
+            <Route path='warehouse' element={<WarehouseAccount />}></Route>
+            <Route path='adminShow' element={<AdminShow />}></Route>
+            <Route path='warehouseShow' element={<WarehouseShow />}></Route>
 
-            </Route>
-            <Route path='car' element={<CarSpm/>}/>
-            <Route path='carTable' element={<CarTable/>}/>
-            
-            <Route path='carDetail/:id' element={<CarDetail/>}/>
+          </Route>
+          <Route path='car' element={<CarSpm />} />
+          <Route path='carTable' element={<CarTable />} />
 
-                
-            
-            
-          
+          <Route path='carDetail/:id' element={<CarDetail />} />
+
+
+
+
+
         </Route>
-        <Route path='/DetailInOrder/:id' element={<DetailInOrders/>}/>
+        <Route path='/DetailInOrder/:id' element={<DetailInOrders />} />
         <Route path='/WareHouse/'>
-          <Route index path='Dashboard' element={<DashboardWareHouse/>}/>
-          <Route path='InOrder' element={<InOrderWareHouse/>}/>
-          <Route path='DetaiInOrder/:id' element={<DetailOrder/>}/>
-          <Route path='Form' element={<Form/>}/>
-          <Route path='Version' element={<Version/>}/>
-          <Route path='Brand' element={<Brand/>}/>
-          <Route path='CreateCarWareHouse' element={<CreateCarWareHouse/>}/>
-          <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse/>}/>
-     
-          <Route path='CarWareHouse' element={<DetailWareHouseCar/>}/>
-          <Route path='RequestWareHouse' element={<RequestWareHouse/>}/>
-          <Route path='Model' element={<Model/>}/>
+          <Route index path='Dashboard' element={<DashboardWareHouse />} />
+
+          <Route path='DetaiInOrder/:id' element={<DetailOrder />} />
+          <Route path='Form' element={<Form />} />
+          <Route path='Version' element={<Version />} />
+          <Route path='Brand' element={<Brand />} />
+          <Route path='CreateCarWareHouse' element={<CreateCarWareHouse />} />
+          <Route path='DetailCreateCarShowRoom/:id' element={<DetailCreateCarWareHouse />} />
+
+          <Route path='CarWareHouse' element={<DetailWareHouseCar />} />
+          <Route path='RequestWareHouse' element={<RequestWareHouse />} />
+          <Route path='Model' element={<Model />} />
         </Route>
         <Route path='/Employee/'>
-          <Route index path="Dashboard" element={<DashboardEmployee/>}/>
-          <Route path='Show-Customer' element={<ShowCustomer/>}/>
-          <Route path='Create-Customer' element={<CreateCustomer/>}/>
-          <Route path='AddOrder' element={<AddOrder/>}/>
-          <Route path='HistoryOrder' element={<HistoryOrder/>}/>
-          <Route path='ShowContact' element={<ShowContactEmployee/>}/>
-          <Route path='ShowContract/:id' element={<ShowContract/>}/>
+          <Route index path="Dashboard" element={<DashboardEmployee />} />
+          <Route path='Show-Customer' element={<ShowCustomer />} />
+          <Route path='Create-Customer' element={<CreateCustomer />} />
+          <Route path='AddOrder' element={<AddOrder />} />
+          <Route path='HistoryOrder' element={<HistoryOrder />} />
+          <Route path='ShowContact' element={<ShowContactEmployee />} />
+          <Route path='ShowContract/:id' element={<ShowContract />} />
         </Route>
-        <Route path='/InVoice/HistoryInVoice' element={<HistoryInVoice/>}/>
-        <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer/>}/>
-        <Route path='/Supplier' element={<Supplier/>}/>
-        <Route path='/Color' element={<Color/>}/>
-        <Route path='/InOrder' element={<InOrder/>}/>
-        <Route path='/OutOrder' element={<OutOrder/>}/>
-        <Route path='/DetailOutOrder/:id' element={<DetailOutOrders/>}/>
-        <Route path='/ShowContact' element={<ShowContact/>}/>
-        <Route path='/RequestWareHouse' element={<Request/>}/>
-        <Route path='/EditProfile' element={<EditProfile/>}/>
-        <Route path='/RequestSupplier' element={<RequestSupplier/>}/>
-        <Route path='/ShowCarShowRoom' element={<ShowCarShowRoom/>}/>
-        <Route path='/ShowCarWareHouse' element={<ShowCarWareHouse/>}/>
-      
+        <Route path='/InVoice/HistoryInVoice' element={<HistoryInVoice />} />
+        <Route path='/ManagerAdminCustomer' element={<ManagerAdminCustomer />} />
+        <Route path='/Supplier' element={<Supplier />} />
+        <Route path='/Color' element={<Color />} />
+        <Route path='/InOrder' element={<InOrder />} />
+        <Route path='/OutOrder' element={<OutOrder />} />
+        <Route path='/DetailOutOrder/:id' element={<DetailOutOrders />} />
+        <Route path='/ShowContact' element={<ShowContact />} />
+        <Route path='/RequestWareHouse' element={<Request />} />
+        <Route path='/EditProfile' element={<EditProfile />} />
+        <Route path='/RequestSupplier' element={<RequestSupplier />} />
+        <Route path='/ShowCarShowRoom' element={<ShowCarShowRoom />} />
+        <Route path='/ShowCarWareHouse' element={<ShowCarWareHouse />} />
+
       </Routes>
     </Router>
   );

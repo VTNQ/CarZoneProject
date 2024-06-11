@@ -129,7 +129,7 @@ namespace server.Services
                DeliveryDate=d.DeliveryDay,
                Price=d.Price,
                Tax=d.Tax,
-               Picture = _dbContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
+               Picture = _dbContext.Photos.Where(m => m.IdCar == d.IdCar && m.Status == 0).Select(m => new
                {
                    PictureLink = configuration["ImageUrl"] + m.Link,
                }).FirstOrDefault(),

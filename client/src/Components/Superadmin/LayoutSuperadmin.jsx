@@ -380,6 +380,12 @@ export const LayoutSuperadmin = () => {
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link"  onClick={()=>navigate('/superadmin/InOrder')}>
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Inorder</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link"  onClick={()=>navigate('/superadmin/order')}>
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Order</span>
