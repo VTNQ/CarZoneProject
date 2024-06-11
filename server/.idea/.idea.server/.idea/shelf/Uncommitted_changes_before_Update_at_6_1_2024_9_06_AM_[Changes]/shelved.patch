@@ -1,0 +1,97 @@
+Index: obj/server.csproj.nuget.dgspec.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"format\": 1,\r\n  \"restore\": {\r\n    \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\": {}\r\n  },\r\n  \"projects\": {\r\n    \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\": {\r\n      \"version\": \"1.0.0\",\r\n      \"restore\": {\r\n        \"projectUniqueName\": \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\",\r\n        \"projectName\": \"server\",\r\n        \"projectPath\": \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\",\r\n        \"packagesPath\": \"C:\\\\Users\\\\LENOVO\\\\.nuget\\\\packages\\\\\",\r\n        \"outputPath\": \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\obj\\\\\",\r\n        \"projectStyle\": \"PackageReference\",\r\n        \"configFilePaths\": [\r\n          \"C:\\\\Users\\\\LENOVO\\\\AppData\\\\Roaming\\\\NuGet\\\\NuGet.Config\",\r\n          \"C:\\\\Program Files (x86)\\\\NuGet\\\\Config\\\\Microsoft.VisualStudio.Offline.config\"\r\n        ],\r\n        \"originalTargetFrameworks\": [\r\n          \"net8.0\"\r\n        ],\r\n        \"sources\": {\r\n          \"C:\\\\Program Files (x86)\\\\Microsoft SDKs\\\\NuGetPackages\\\\\": {},\r\n          \"https://api.nuget.org/v3/index.json\": {}\r\n        },\r\n        \"frameworks\": {\r\n          \"net8.0\": {\r\n            \"targetAlias\": \"net8.0\",\r\n            \"projectReferences\": {}\r\n          }\r\n        },\r\n        \"warningProperties\": {\r\n          \"warnAsError\": [\r\n            \"NU1605\"\r\n          ]\r\n        }\r\n      },\r\n      \"frameworks\": {\r\n        \"net8.0\": {\r\n          \"targetAlias\": \"net8.0\",\r\n          \"dependencies\": {\r\n            \"BCrypt.Net-Core\": {\r\n              \"target\": \"Package\",\r\n              \"version\": \"[1.6.0, )\"\r\n            },\r\n            \"Microsoft.EntityFrameworkCore\": {\r\n              \"target\": \"Package\",\r\n              \"version\": \"[9.0.0-preview.3.24172.4, )\"\r\n            },\r\n            \"Microsoft.EntityFrameworkCore.Design\": {\r\n              \"include\": \"Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive\",\r\n              \"suppressParent\": \"All\",\r\n              \"target\": \"Package\",\r\n              \"version\": \"[9.0.0-preview.3.24172.4, )\"\r\n            },\r\n            \"Microsoft.EntityFrameworkCore.Proxies\": {\r\n              \"target\": \"Package\",\r\n              \"version\": \"[9.0.0-preview.3.24172.4, )\"\r\n            },\r\n            \"Microsoft.EntityFrameworkCore.SqlServer\": {\r\n              \"target\": \"Package\",\r\n              \"version\": \"[9.0.0-preview.3.24172.4, )\"\r\n            },\r\n            \"Microsoft.EntityFrameworkCore.Tools\": {\r\n              \"include\": \"Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive\",\r\n              \"suppressParent\": \"All\",\r\n              \"target\": \"Package\",\r\n              \"version\": \"[9.0.0-preview.3.24172.4, )\"\r\n            },\r\n            \"Swashbuckle.AspNetCore\": {\r\n              \"target\": \"Package\",\r\n              \"version\": \"[6.4.0, )\"\r\n            }\r\n          },\r\n          \"imports\": [\r\n            \"net461\",\r\n            \"net462\",\r\n            \"net47\",\r\n            \"net471\",\r\n            \"net472\",\r\n            \"net48\",\r\n            \"net481\"\r\n          ],\r\n          \"assetTargetFallback\": true,\r\n          \"warn\": true,\r\n          \"frameworkReferences\": {\r\n            \"Microsoft.AspNetCore.App\": {\r\n              \"privateAssets\": \"none\"\r\n            },\r\n            \"Microsoft.NETCore.App\": {\r\n              \"privateAssets\": \"all\"\r\n            }\r\n          },\r\n          \"runtimeIdentifierGraphPath\": \"C:\\\\Program Files\\\\dotnet\\\\sdk\\\\8.0.100/PortableRuntimeIdentifierGraph.json\"\r\n    \"C:\\\\Users\\\\votan\\\\OneDrive\\\\Máy tính\\\\CarZoneProject\\\\server\\\\server.csproj\": {}\r\n    \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\": {}\r\n    \"C:\\\\Users\\\\votan\\\\OneDrive\\\\Máy tính\\\\CarZoneProject\\\\server\\\\server.csproj\": {\r\n    \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\": {\r\n        \"projectUniqueName\": \"C:\\\\Users\\\\votan\\\\OneDrive\\\\Máy tính\\\\CarZoneProject\\\\server\\\\server.csproj\",\r\n        \"projectUniqueName\": \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\",\r\n        \"projectPath\": \"C:\\\\Users\\\\votan\\\\OneDrive\\\\Máy tính\\\\CarZoneProject\\\\server\\\\server.csproj\",\r\n        \"packagesPath\": \"C:\\\\Users\\\\votan\\\\.nuget\\\\packages\\\\\",\r\n        \"outputPath\": \"C:\\\\Users\\\\votan\\\\OneDrive\\\\Máy tính\\\\CarZoneProject\\\\server\\\\obj\\\\\",\r\n        \"projectPath\": \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\server.csproj\",\r\n        \"packagesPath\": \"C:\\\\Users\\\\LENOVO\\\\.nuget\\\\packages\\\\\",\r\n        \"outputPath\": \"D:\\\\VisualStudioCode\\\\CarZone\\\\CarZoneProject\\\\server\\\\obj\\\\\",\r\n        \"fallbackFolders\": [\r\n          \"C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\Shared\\\\NuGetPackages\"\r\n        ],\r\n          \"C:\\\\Users\\\\votan\\\\AppData\\\\Roaming\\\\NuGet\\\\NuGet.Config\",\r\n          \"C:\\\\Program Files (x86)\\\\NuGet\\\\Config\\\\Microsoft.VisualStudio.FallbackLocation.config\",\r\n          \"C:\\\\Program Files\\\\dotnet\\\\library-packs\": {},\r\n          \"runtimeIdentifierGraphPath\": \"C:\\\\Program Files\\\\dotnet\\\\sdk\\\\8.0.100/PortableRuntimeIdentifierGraph.json\"\r\n        }\r\n      }\r\n    }\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/server.csproj.nuget.dgspec.json b/obj/server.csproj.nuget.dgspec.json
+--- a/obj/server.csproj.nuget.dgspec.json	
++++ b/obj/server.csproj.nuget.dgspec.json	
+@@ -1,20 +1,24 @@
+ {
+   "format": 1,
+   "restore": {
+-    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {}
++    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {}
+   },
+   "projects": {
+-    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {
++    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {
+       "version": "1.0.0",
+       "restore": {
+-        "projectUniqueName": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
++        "projectUniqueName": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
+         "projectName": "server",
+-        "projectPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+-        "outputPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\",
++        "projectPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
++        "packagesPath": "C:\\Users\\votan\\.nuget\\packages\\",
++        "outputPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\obj\\",
+         "projectStyle": "PackageReference",
++        "fallbackFolders": [
++          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
++        ],
+         "configFilePaths": [
+-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
++          "C:\\Users\\votan\\AppData\\Roaming\\NuGet\\NuGet.Config",
++          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+         ],
+         "originalTargetFrameworks": [
+@@ -22,6 +26,7 @@
+         ],
+         "sources": {
+           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
++          "C:\\Program Files\\dotnet\\library-packs": {},
+           "https://api.nuget.org/v3/index.json": {}
+         },
+         "frameworks": {
+@@ -92,26 +97,7 @@
+               "privateAssets": "all"
+             }
+           },
+-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+-    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {}
+-    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {}
+-    "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj": {
+-    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {
+-        "projectUniqueName": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
+-        "projectUniqueName": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+-        "projectPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\server.csproj",
+-        "packagesPath": "C:\\Users\\votan\\.nuget\\packages\\",
+-        "outputPath": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\obj\\",
+-        "projectPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
+-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+-        "outputPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\",
+-        "fallbackFolders": [
+-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+-        ],
+-          "C:\\Users\\votan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+-          "C:\\Program Files\\dotnet\\library-packs": {},
+-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
++          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+         }
+       }
+     }
+Index: obj/Debug/net8.0/server.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing System;\r\nusing System.Reflection;\r\n\r\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"server\")]\r\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\r\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\r\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+8ed68a1efc3b6eae9df92802e9b7f14c508442fb\")]\r\n[assembly: System.Reflection.AssemblyProductAttribute(\"server\")]\r\n[assembly: System.Reflection.AssemblyTitleAttribute(\"server\")]\r\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\r\n\r\n// Generated by the MSBuild WriteCodeFragment class.\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/server.AssemblyInfo.cs b/obj/Debug/net8.0/server.AssemblyInfo.cs
+--- a/obj/Debug/net8.0/server.AssemblyInfo.cs	
++++ b/obj/Debug/net8.0/server.AssemblyInfo.cs	
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("server")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ed68a1efc3b6eae9df92802e9b7f14c508442fb")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ef7a488b0219ff36a894647dc9a31096d03fd3a")]
+ [assembly: System.Reflection.AssemblyProductAttribute("server")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("server")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -351,7 +351,7 @@ settotalprice(totalPriceorder)
                                                     <tr>
                                                         <th> # </th>
                                                         <th>Employee</th>
-                                                        <th> WareHouse </th>
+                                                      
                                                         <th>Supplier</th>
                                                         <th> Date of Sale </th>
                                                         <th> Total Amount</th>
@@ -366,7 +366,7 @@ settotalprice(totalPriceorder)
                                                         <tr>
                                                             <td>{++index}</td>
                                                             <td>{inorder.employee}</td>
-                                                            <td>{inorder.wareHouse}</td>
+                                                          
                                                             <td>{inorder.supplier}</td>
                                                             <td>{new Date(inorder.dateofSale).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                                                             <td>{inorder.totalAmount}$</td>

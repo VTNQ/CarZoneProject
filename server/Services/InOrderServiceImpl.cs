@@ -54,7 +54,6 @@ namespace server.Services
                         DateOfSale = DateOnly.FromDateTime(DateTime.Now),
                         TotalAmount = inOrder.TotalAmount,
                         TotalTax = inOrder.TotalTax,
-                        Payment = inOrder.Payment,
                         Status = false,
                     };
                     databaseContext.InOrders.Add(InOrder);
@@ -99,7 +98,6 @@ namespace server.Services
                 DateofSale = d.DateOfSale,
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
-                Payment = d.Payment,
                 Status=d.Status
                 
             }).ToList();
@@ -139,7 +137,6 @@ namespace server.Services
                 Employee=d.IdEmployeeNavigation.FullName,
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
-                Payment = d.Payment,
             }).ToList();
         }
 

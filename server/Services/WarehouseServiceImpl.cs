@@ -33,12 +33,12 @@ namespace server.Services
         {
             try
             {
-                var subWarehouse = new SubWarehouseCar
+                var subWarehouse = new SubWarehouseSupplier
                 {
-                    IdWarehouse = addCarIntoWarehouse.IdWarehouse,
+                    IdSupplier = addCarIntoWarehouse.IdWarehouse,
                     IdCar = addCarIntoWarehouse.IdCar,
                 };
-                databaseContext.SubWarehouseCars.Add(subWarehouse);
+                databaseContext.SubWarehouseSuppliers.Add(subWarehouse);
                 return databaseContext.SaveChanges()>0;
             }catch { return false; }
         }

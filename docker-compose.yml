@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  server: 
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: server
+    volumes:
+      - ./server:/app
+    ports:
+      - "80:5278"
+    environment:
+      - ASPNETCORE_ENVIROMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=carzone.database.windows.net;Database=CarZone;User Id=root130504;Password=Carzone13052004;
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: client
+    volumes:
+      - ./client:/src
+    ports:
+    - "80:3000"
+    depends_on:
+      - server
+  sqlserver:
+   image: mcr.microsoft.com/mssql/server:latest
+   container_name: sqlserver
+   environment:
+     SA_PASSWORD: <Carzone13052004>
+     ACCEPT_EULA: Y
+     MSSQL_PID: root13050424
+     MSSQL_AGENT_ENABLED: true
+     ports: "1433:1433"

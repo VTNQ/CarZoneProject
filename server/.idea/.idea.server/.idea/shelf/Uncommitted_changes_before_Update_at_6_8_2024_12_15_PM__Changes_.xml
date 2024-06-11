@@ -1,0 +1,19 @@
+﻿<changelist name="Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM_[Changes]" date="1717823745674" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 6/8/2024 12:15 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="obj/Debug/net8.0/server.assets.cache" />
+    <option name="AFTER_PATH" value="obj/Debug/net8.0/server.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM_[Changes]/server.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM_[Changes]/project.nuget.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="obj/Debug/net8.0/server.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="obj/Debug/net8.0/server.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.server/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_2024_12_15_PM_[Changes]/server.AssemblyInfoInputs.cache" />
+  </binary>
+</changelist>

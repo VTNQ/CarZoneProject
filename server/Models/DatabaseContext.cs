@@ -59,6 +59,8 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<SubWarehouseShowroom> SubWarehouseShowrooms { get; set; }
 
+    public virtual DbSet<SubWarehouseSupplier> SubWarehouseSuppliers { get; set; }
+
     public virtual DbSet<Suplier> Supliers { get; set; }
 
     public virtual DbSet<Version> Versions { get; set; }
@@ -252,7 +254,6 @@ public partial class DatabaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__InOrder__3214EC07B8BDA2B0");
 
             entity.Property(e => e.DateOfSale).HasDefaultValueSql("('')");
-            entity.Property(e => e.Payment).HasDefaultValue("0");
 
             entity.HasOne(d => d.IdEmployeeNavigation).WithMany(p => p.InOrders)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -363,6 +364,19 @@ public partial class DatabaseContext : DbContext
             entity.HasOne(d => d.IdShowroomNavigation).WithMany(p => p.SubWarehouseShowrooms)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_SubWarehouse_Showroom");
+        });
+
+        modelBuilder.Entity<SubWarehouseSupplier>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_dbo.SubWarehouseSupplier");
+
+            entity.HasOne(d => d.IdCarNavigation).WithMany(p => p.SubWarehouseSuppliers)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_SubWarehouseSupplier_Car");
+
+            entity.HasOne(d => d.IdSupplierNavigation).WithMany(p => p.SubWarehouseSuppliers)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_SubWarehouseSupplier_supplier");
         });
 
         modelBuilder.Entity<Suplier>(entity =>

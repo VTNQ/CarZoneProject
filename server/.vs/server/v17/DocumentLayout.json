@@ -452,8 +452,7 @@
               "ViewState": "AQIAAAcAAAAAAAAAAAAzwAoAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-25T02:02:28.767Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -501,8 +500,7 @@
               "RelativeToolTip": "Controllers\\WareHouseController.cs",
               "ViewState": "AQIAAFAAAAAAAAAAAAArwF4AAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T08:36:57.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T08:36:57.58Z"
             },
             {
               "$type": "Document",
@@ -514,8 +512,7 @@
               "RelativeToolTip": "Services\\OutOrderService.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAIAywBIAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T08:44:15.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T08:44:15.702Z"
             },
             {
               "$type": "Document",

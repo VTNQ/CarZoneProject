@@ -92,7 +92,7 @@ function DetailInventory() {
         fetchdata();
     },[])
     const SendRequest=async()=>{
-        if(SelectWareHouse?.label || FromData.NameRequest || FromData.CommentRequest ){
+        if(SelectWareHouse?.label==null || FromData.NameRequest=='' || FromData.CommentRequest=='' ){
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',

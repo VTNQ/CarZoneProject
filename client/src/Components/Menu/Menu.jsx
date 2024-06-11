@@ -86,7 +86,7 @@ function Menu() {
                                                     </div>
                                                 </div>
                                                 <div className="header-left-section uk-flex uk-flex-between uk-flex-middle">
-                                                    <a className="logo-text templaza-logo templaza-logo-image uk-flex uk-flex-middle mr-0 mr-lg-4">
+                                                    <a onClick={()=>navigate('/')} className="logo-text templaza-logo templaza-logo-image uk-flex uk-flex-middle mr-0 mr-lg-4">
                                                         {/* <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/08/Auto-Showroom-White.svg" alt="" /> */}
                                                         car <b className="logo-sub">zone</b>
                                                     </a>
@@ -95,27 +95,27 @@ function Menu() {
                                                     <div className="templaza-nav-wraper uk-visible@m px-2 uk-margin-auto-left">
                                                         <ul id="menu-main-menu-1" className="nav navbar-nav templaza-nav uk-flex uk-visible@m fade-down">
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a onClick={()=>navigate('/')} style={{color}} className="megamenu-item-link item-level-1 has-children">
+                                                                <a onClick={()=>navigate('/')} style={{color}} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">Home</span>
                                                       
                                                                 </a>
                                                             </li>
                                                             
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a style={{color}} onClick={()=>navigate("/Inventory")} className="megamenu-item-link item-level-1 has-children">
-                                                                    <span className="megamenu-title">Iventory</span>
+                                                                <a style={{color}} onClick={()=>navigate("/Inventory")} className="megamenu-item-link item-level-1 has-children cursor-pointer">
+                                                                    <span className="megamenu-title">Inventory</span>
                                                                  
                                                                 </a>
                                                             </li>
                                                       
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a style={{color}} onClick={()=>navigate('/contact')} className="megamenu-item-link item-level-1 has-children">
+                                                                <a style={{color}} onClick={()=>navigate('/contact')} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">Contact</span>
 
                                                                 </a>
                                                             </li>
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
-                                                                <a style={{color}} onClick={()=>navigate('/AboutUs')} className="megamenu-item-link item-level-1 has-children">
+                                                                <a style={{color}} onClick={()=>navigate('/AboutUs')} className="megamenu-item-link item-level-1 has-children cursor-pointer">
                                                                     <span className="megamenu-title">About</span>
 
                                                                 </a>

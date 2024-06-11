@@ -116,7 +116,7 @@ const LayoutAdmin = ({ children }) => {
               </a>
               {showDropdown && (
                 <div className="dropdown1">
-                  <a onClick={handleLogout}>
+                  <a onClick={handleLogout} style={{cursor:'pointer'}}>
                     <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
                   </a>
                   <a style={{ cursor: 'pointer' }} onClick={() => navigate('/EditProfile', { state: sessionData })}>
@@ -129,7 +129,7 @@ const LayoutAdmin = ({ children }) => {
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item">
                   <i class="ti-settings text-primary"></i> Settings </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item ">
                   <i class="ti-power-off text-primary"></i> Logout </a>
               </div>
             </li>
@@ -149,74 +149,74 @@ const LayoutAdmin = ({ children }) => {
           <ul class="nav">
             
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/HomeAdminPage', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/HomeAdminPage', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Home</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/EmployeeAdmin', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/EmployeeAdmin', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Employee</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/ManagerAdminCustomer', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/ManagerAdminCustomer', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Customer</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/Supplier', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/Supplier', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Supplier</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/Color', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/Color', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Color</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/Inorder', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/Inorder', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">In Order</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/OutOrder', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/OutOrder', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Out Order</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/ShowContact', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/ShowContact', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Contact</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/RequestWareHouse', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/RequestWareHouse', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Request WareHouse</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/RequestSupplier', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/RequestSupplier', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Request Supplier</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/ShowCarWareHouse', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/ShowCarWareHouse', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Car WareHouse</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" onClick={() => navigate('/ShowCarShowRoom', { state: sessionData })}>
+              <a class="nav-link cursor-pointer" onClick={() => navigate('/ShowCarShowRoom', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Car ShowRoom</span>
               </a>

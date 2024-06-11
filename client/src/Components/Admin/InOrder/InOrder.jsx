@@ -392,7 +392,7 @@ function InOrder() {
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                        <th> WareHouse </th>
+                                                       
                                                         <th>Supplier</th>
                                                         <th> Date of Sale </th>
                                                         <th> Total Amount</th>
@@ -409,7 +409,7 @@ function InOrder() {
                                                     {currentOrder.map((inorder, index) => (
                                                         <tr>
                                                             <td>{++index}</td>
-                                                            <td>{inorder.wareHouse}</td>
+                                                           
                                                             <td>{inorder.supplier}</td>
                                                             <td>{new Date(inorder.dateofSale).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                                                             <td>{inorder.totalAmount}</td>
