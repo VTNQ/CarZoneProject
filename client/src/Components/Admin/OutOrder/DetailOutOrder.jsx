@@ -194,19 +194,32 @@ function DetailOutOrders() {
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th> # </th>
+
                                                         <th>Date Create</th>
 
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {Invoice.map((Invoice, index) => (
+                                                {Invoice.length > 0 ? (
+                                                    Invoice.map((Invoice, index) => (
                                                         <tr>
-                                                            <td>{++index}</td>
-                                                            <td>{new Date(Invoice.dateCreate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+
+                                                            <td>
+                                                                {Invoice.dateCreate
+                                                                    ? new Date(Invoice.dateCreate).toLocaleString('en-GB', {
+                                                                        day: 'numeric',
+                                                                        month: 'short',
+                                                                        year: 'numeric',
+                                                                    })
+                                                                    : ''}
+                                                            </td>
                                                         </tr>
-                                                    ))}
+                                                    ))
+                                                ) : (
+                                                   <tr></tr>
+                                                )}
+
 
 
                                                 </tbody>
@@ -232,7 +245,7 @@ function DetailOutOrders() {
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th> # </th>
+
                                                         <th>Condition</th>
                                                         <th>create Date</th>
 
@@ -240,11 +253,18 @@ function DetailOutOrders() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+
                                                     {Contract.map((Contrac, index) => (
                                                         <tr>
-                                                            <td>{++index}</td>
+
                                                             <td>{Contrac.condition}</td>
-                                                            <td>{new Date(Contrac.createDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                                                            <td>{Contrac.createDate
+                                                                ? new Date(Contrac.createDate).toLocaleString('en-GB', {
+                                                                    day: 'numeric',
+                                                                    month: 'short',
+                                                                    year: 'numeric',
+                                                                })
+                                                                : ''}</td>
                                                         </tr>
                                                     ))}
 
