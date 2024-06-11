@@ -29,10 +29,4 @@ public partial class Suplier
     [ForeignKey("IdCountry")]
     [InverseProperty("Supliers")]
     public virtual Country IdCountryNavigation { get; set; } = null!;
-
-    [InverseProperty("IdSuplierNavigation")]
-    public virtual ICollection<InOrder> InOrders { get; set; } = new List<InOrder>();
-
-    [InverseProperty("IdSupplierNavigation")]
-    public virtual ICollection<SubWarehouseSupplier> SubWarehouseSuppliers { get; set; } = new List<SubWarehouseSupplier>();
 }

@@ -18,12 +18,6 @@ public partial class DetailOfInOrder
 
     public DateOnly DeliveryDate { get; set; }
 
-    [Column(TypeName = "money")]
-    public decimal Price { get; set; }
-
-    [Column(TypeName = "money")]
-    public decimal Tax { get; set; }
-
     [ForeignKey("IdCar")]
     [InverseProperty("DetailOfInOrders")]
     public virtual Car IdCarNavigation { get; set; } = null!;

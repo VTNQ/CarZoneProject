@@ -14,9 +14,9 @@ public partial class InOrder
 
     public int IdWarehouse { get; set; }
 
-    public int IdEmployee { get; set; }
+    public int IdShowroom { get; set; }
 
-    public int IdSuplier { get; set; }
+    public int IdEmployee { get; set; }
 
     public DateOnly DateOfSale { get; set; }
 
@@ -35,9 +35,9 @@ public partial class InOrder
     [InverseProperty("InOrders")]
     public virtual Employee IdEmployeeNavigation { get; set; } = null!;
 
-    [ForeignKey("IdSuplier")]
+    [ForeignKey("IdShowroom")]
     [InverseProperty("InOrders")]
-    public virtual Suplier IdSuplierNavigation { get; set; } = null!;
+    public virtual Showroom IdShowroomNavigation { get; set; } = null!;
 
     [ForeignKey("IdWarehouse")]
     [InverseProperty("InOrders")]

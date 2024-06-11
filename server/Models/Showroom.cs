@@ -23,6 +23,9 @@ public partial class Showroom
     public virtual District IdDistrictNavigation { get; set; } = null!;
 
     [InverseProperty("IdShowroomNavigation")]
+    public virtual ICollection<InOrder> InOrders { get; set; } = new List<InOrder>();
+
+    [InverseProperty("IdShowroomNavigation")]
     public virtual ICollection<OutOrder> OutOrders { get; set; } = new List<OutOrder>();
 
     [InverseProperty("IdShowroomNavigation")]
