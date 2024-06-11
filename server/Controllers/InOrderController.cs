@@ -75,15 +75,15 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost("ApproveOrder/{id}")]
+        [HttpPost("ApproveOrder/{id}/{idshowroom}/{idwareHouse}")]
         [Produces("application/json")]
-        public async Task<IActionResult> ApproveOrder(int id)
+        public async Task<IActionResult> ApproveOrder(int id, int idshowroom, int idwareHouse)
         {
             try
             {
                 return Ok(new
                 {
-                    result = _orderService.ApproveOrder(id)
+                    result = _orderService.ApproveOrder(id,idshowroom,idwareHouse)
                 }) ;
             }
             catch

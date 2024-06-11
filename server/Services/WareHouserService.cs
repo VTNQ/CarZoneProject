@@ -8,6 +8,7 @@ namespace server.Services
         Task<IEnumerable<dynamic>> CarWareHouse(int idshowroom);
         Task<IEnumerable<dynamic>> ShowCar();
         Task<IEnumerable<dynamic>> DetailCartoShowRoom(int id);
+        Task<IEnumerable<dynamic>> ShowWareHouse();
         public dynamic ShowBranch();
         public dynamic ShowRoom(int id);
         public dynamic GetShowRoom(int id);

@@ -1,0 +1,753 @@
+﻿Index: obj/Debug/net8.0/staticwebassets.build.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"Version\": 1,\r\n  \"Hash\": \"pD2W0DjxevUS7MCStDXEqYa62etgwBhIcMZpeBT0hR4=\",\r\n  \"Source\": \"server\",\r\n  \"BasePath\": \"_content/server\",\r\n  \"Mode\": \"Default\",\r\n  \"ManifestType\": \"Build\",\r\n  \"ReferencedProjectsConfiguration\": [],\r\n  \"DiscoveryPatterns\": [\r\n    {\r\n      \"Name\": \"server\\\\wwwroot\",\r\n      \"Source\": \"server\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"Pattern\": \"**\"\r\n    }\r\n  ],\r\n  \"Assets\": [\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\0dfc94e2555a42f89d5144003311c82c.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/0dfc94e2555a42f89d5144003311c82c.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\0dfc94e2555a42f89d5144003311c82c.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\1fe0cf657635486cb627d91be41c4872.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/1fe0cf657635486cb627d91be41c4872.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\1fe0cf657635486cb627d91be41c4872.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\2a4020bea8004e068c0a73cf0924f0c1.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/2a4020bea8004e068c0a73cf0924f0c1.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\2a4020bea8004e068c0a73cf0924f0c1.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\30f9b6149bc44d3f9057b1a7c963beac.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/30f9b6149bc44d3f9057b1a7c963beac.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\30f9b6149bc44d3f9057b1a7c963beac.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\368e6eaa89554db1a61a9e7db7543f87.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/368e6eaa89554db1a61a9e7db7543f87.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\368e6eaa89554db1a61a9e7db7543f87.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\4a2b06492e764cd18be611ce6ae77c27.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/4a2b06492e764cd18be611ce6ae77c27.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\4a2b06492e764cd18be611ce6ae77c27.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\4a43a80ec2e642e48a2d47ee7347f15b.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/4a43a80ec2e642e48a2d47ee7347f15b.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\4a43a80ec2e642e48a2d47ee7347f15b.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\4f40bba2169448b09c91ef54c94e8f70.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/4f40bba2169448b09c91ef54c94e8f70.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\4f40bba2169448b09c91ef54c94e8f70.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\5b78973f9de94f5291cf5d3094ea82ef.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/5b78973f9de94f5291cf5d3094ea82ef.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\5b78973f9de94f5291cf5d3094ea82ef.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\8fe4b28f70cd42fca07614ba95c50f79.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/8fe4b28f70cd42fca07614ba95c50f79.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\8fe4b28f70cd42fca07614ba95c50f79.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\99723dfe3ff544328521705069e4b7c0.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/99723dfe3ff544328521705069e4b7c0.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\99723dfe3ff544328521705069e4b7c0.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\a1b1b11537a24a878ecc601b7feec6fa.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/a1b1b11537a24a878ecc601b7feec6fa.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\a1b1b11537a24a878ecc601b7feec6fa.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\a5c82dd2c750414ab79a84ce13e36626.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/a5c82dd2c750414ab79a84ce13e36626.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\a5c82dd2c750414ab79a84ce13e36626.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\audi.jpg\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/audi.jpg\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\audi.jpg\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\audi2.jpg\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/audi2.jpg\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\audi2.jpg\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\bad9dc920443424084a88ca8ed42c05c.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/bad9dc920443424084a88ca8ed42c05c.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\bad9dc920443424084a88ca8ed42c05c.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\c1212b58c1ca45dabd1d069524cb6093.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/c1212b58c1ca45dabd1d069524cb6093.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\c1212b58c1ca45dabd1d069524cb6093.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\cac934d233e343c3bc30f634240a06c3.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/cac934d233e343c3bc30f634240a06c3.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\cac934d233e343c3bc30f634240a06c3.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\d5a2e927430d4a38bf20583f06ae588b.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/d5a2e927430d4a38bf20583f06ae588b.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\d5a2e927430d4a38bf20583f06ae588b.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\d72269fd808a4e31a6dc8a398f21a3ae.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/d72269fd808a4e31a6dc8a398f21a3ae.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\d72269fd808a4e31a6dc8a398f21a3ae.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\dc64900a6d8e4ed5a6216f1c645eff5e.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/dc64900a6d8e4ed5a6216f1c645eff5e.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\dc64900a6d8e4ed5a6216f1c645eff5e.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\dcbae94c5e2941b8b58858f52430ed64.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/dcbae94c5e2941b8b58858f52430ed64.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\dcbae94c5e2941b8b58858f52430ed64.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\dcfa6797ad4e402ba11236cf6faf68f5.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/dcfa6797ad4e402ba11236cf6faf68f5.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\dcfa6797ad4e402ba11236cf6faf68f5.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\e02391a72aef445086dfe983dfdb833e.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/e02391a72aef445086dfe983dfdb833e.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\e02391a72aef445086dfe983dfdb833e.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\e9c0bcc2cc5f49b38590727d57537452.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/e9c0bcc2cc5f49b38590727d57537452.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\e9c0bcc2cc5f49b38590727d57537452.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\f695214be5b14f83bae6213a5df67733.png\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/f695214be5b14f83bae6213a5df67733.png\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\f695214be5b14f83bae6213a5df67733.png\"\r\n    },\r\n    {\r\n      \"Identity\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\",\r\n      \"SourceId\": \"server\",\r\n      \"SourceType\": \"Discovered\",\r\n      \"ContentRoot\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\",\r\n      \"BasePath\": \"_content/server\",\r\n      \"RelativePath\": \"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\",\r\n      \"AssetKind\": \"All\",\r\n      \"AssetMode\": \"All\",\r\n      \"AssetRole\": \"Primary\",\r\n      \"AssetMergeBehavior\": \"PreferTarget\",\r\n      \"AssetMergeSource\": \"\",\r\n      \"RelatedAsset\": \"\",\r\n      \"AssetTraitName\": \"\",\r\n      \"AssetTraitValue\": \"\",\r\n      \"CopyToOutputDirectory\": \"Never\",\r\n      \"CopyToPublishDirectory\": \"PreserveNewest\",\r\n      \"OriginalItemSpec\": \"wwwroot\\\\images\\\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\"\r\n    }\r\n  ]\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/staticwebassets.build.json b/obj/Debug/net8.0/staticwebassets.build.json
+--- a/obj/Debug/net8.0/staticwebassets.build.json	
++++ b/obj/Debug/net8.0/staticwebassets.build.json	
+@@ -1,6 +1,6 @@
+ {
+   "Version": 1,
+-  "Hash": "pD2W0DjxevUS7MCStDXEqYa62etgwBhIcMZpeBT0hR4=",
++  "Hash": "eiXpDzLO9tihBIobPKEBgBuCmMGTc9w1Wci8g1YfX5Y=",
+   "Source": "server",
+   "BasePath": "_content/server",
+   "Mode": "Default",
+@@ -10,17 +10,36 @@
+     {
+       "Name": "server\\wwwroot",
+       "Source": "server",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "Pattern": "**"
+     }
+   ],
+   "Assets": [
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\06c1f283c30c44efa0949936f545c806.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
++      "BasePath": "_content/server",
++      "RelativePath": "images/06c1f283c30c44efa0949936f545c806.png",
++      "AssetKind": "All",
++      "AssetMode": "All",
++      "AssetRole": "Primary",
++      "AssetMergeBehavior": "PreferTarget",
++      "AssetMergeSource": "",
++      "RelatedAsset": "",
++      "AssetTraitName": "",
++      "AssetTraitValue": "",
++      "CopyToOutputDirectory": "Never",
++      "CopyToPublishDirectory": "PreserveNewest",
++      "OriginalItemSpec": "wwwroot\\images\\06c1f283c30c44efa0949936f545c806.png"
++    },
++    {
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png",
++      "SourceId": "server",
++      "SourceType": "Discovered",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/0dfc94e2555a42f89d5144003311c82c.png",
+       "AssetKind": "All",
+@@ -36,10 +55,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/1fe0cf657635486cb627d91be41c4872.png",
+       "AssetKind": "All",
+@@ -55,10 +74,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/2a4020bea8004e068c0a73cf0924f0c1.png",
+       "AssetKind": "All",
+@@ -74,10 +93,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\30f9b6149bc44d3f9057b1a7c963beac.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\30f9b6149bc44d3f9057b1a7c963beac.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/30f9b6149bc44d3f9057b1a7c963beac.png",
+       "AssetKind": "All",
+@@ -93,10 +112,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\30f9b6149bc44d3f9057b1a7c963beac.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/368e6eaa89554db1a61a9e7db7543f87.png",
+       "AssetKind": "All",
+@@ -112,10 +131,67 @@
+       "OriginalItemSpec": "wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\390c650f8a7a4587a4cfc5f528765510.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
++      "BasePath": "_content/server",
++      "RelativePath": "images/390c650f8a7a4587a4cfc5f528765510.png",
++      "AssetKind": "All",
++      "AssetMode": "All",
++      "AssetRole": "Primary",
++      "AssetMergeBehavior": "PreferTarget",
++      "AssetMergeSource": "",
++      "RelatedAsset": "",
++      "AssetTraitName": "",
++      "AssetTraitValue": "",
++      "CopyToOutputDirectory": "Never",
++      "CopyToPublishDirectory": "PreserveNewest",
++      "OriginalItemSpec": "wwwroot\\images\\390c650f8a7a4587a4cfc5f528765510.png"
++    },
++    {
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\3f16685566944e118491e3668ce1559b.png",
++      "SourceId": "server",
++      "SourceType": "Discovered",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
++      "BasePath": "_content/server",
++      "RelativePath": "images/3f16685566944e118491e3668ce1559b.png",
++      "AssetKind": "All",
++      "AssetMode": "All",
++      "AssetRole": "Primary",
++      "AssetMergeBehavior": "PreferTarget",
++      "AssetMergeSource": "",
++      "RelatedAsset": "",
++      "AssetTraitName": "",
++      "AssetTraitValue": "",
++      "CopyToOutputDirectory": "Never",
++      "CopyToPublishDirectory": "PreserveNewest",
++      "OriginalItemSpec": "wwwroot\\images\\3f16685566944e118491e3668ce1559b.png"
++    },
++    {
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\45eaa111b0304532b02f5f81931eecff.png",
++      "SourceId": "server",
++      "SourceType": "Discovered",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
++      "BasePath": "_content/server",
++      "RelativePath": "images/45eaa111b0304532b02f5f81931eecff.png",
++      "AssetKind": "All",
++      "AssetMode": "All",
++      "AssetRole": "Primary",
++      "AssetMergeBehavior": "PreferTarget",
++      "AssetMergeSource": "",
++      "RelatedAsset": "",
++      "AssetTraitName": "",
++      "AssetTraitValue": "",
++      "CopyToOutputDirectory": "Never",
++      "CopyToPublishDirectory": "PreserveNewest",
++      "OriginalItemSpec": "wwwroot\\images\\45eaa111b0304532b02f5f81931eecff.png"
++    },
++    {
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
++      "SourceId": "server",
++      "SourceType": "Discovered",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/4a2b06492e764cd18be611ce6ae77c27.png",
+       "AssetKind": "All",
+@@ -131,10 +207,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/4a43a80ec2e642e48a2d47ee7347f15b.png",
+       "AssetKind": "All",
+@@ -150,10 +226,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\4f40bba2169448b09c91ef54c94e8f70.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4f40bba2169448b09c91ef54c94e8f70.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/4f40bba2169448b09c91ef54c94e8f70.png",
+       "AssetKind": "All",
+@@ -169,10 +245,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\4f40bba2169448b09c91ef54c94e8f70.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/5b78973f9de94f5291cf5d3094ea82ef.png",
+       "AssetKind": "All",
+@@ -188,10 +264,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/8fe4b28f70cd42fca07614ba95c50f79.png",
+       "AssetKind": "All",
+@@ -207,10 +283,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\99723dfe3ff544328521705069e4b7c0.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\99723dfe3ff544328521705069e4b7c0.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/99723dfe3ff544328521705069e4b7c0.png",
+       "AssetKind": "All",
+@@ -226,10 +302,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\99723dfe3ff544328521705069e4b7c0.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\a1b1b11537a24a878ecc601b7feec6fa.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\a1b1b11537a24a878ecc601b7feec6fa.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/a1b1b11537a24a878ecc601b7feec6fa.png",
+       "AssetKind": "All",
+@@ -245,10 +321,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\a1b1b11537a24a878ecc601b7feec6fa.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/a5c82dd2c750414ab79a84ce13e36626.png",
+       "AssetKind": "All",
+@@ -264,10 +340,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/audi.jpg",
+       "AssetKind": "All",
+@@ -283,10 +359,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\audi.jpg"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/audi2.jpg",
+       "AssetKind": "All",
+@@ -302,10 +378,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\audi2.jpg"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/bad9dc920443424084a88ca8ed42c05c.png",
+       "AssetKind": "All",
+@@ -321,10 +397,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/c1212b58c1ca45dabd1d069524cb6093.png",
+       "AssetKind": "All",
+@@ -340,10 +416,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/cac934d233e343c3bc30f634240a06c3.png",
+       "AssetKind": "All",
+@@ -359,10 +435,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/d5a2e927430d4a38bf20583f06ae588b.png",
+       "AssetKind": "All",
+@@ -378,10 +454,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/d72269fd808a4e31a6dc8a398f21a3ae.png",
+       "AssetKind": "All",
+@@ -397,10 +473,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/dc64900a6d8e4ed5a6216f1c645eff5e.png",
+       "AssetKind": "All",
+@@ -416,10 +492,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcbae94c5e2941b8b58858f52430ed64.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\dcbae94c5e2941b8b58858f52430ed64.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/dcbae94c5e2941b8b58858f52430ed64.png",
+       "AssetKind": "All",
+@@ -435,10 +511,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\dcbae94c5e2941b8b58858f52430ed64.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/dcfa6797ad4e402ba11236cf6faf68f5.png",
+       "AssetKind": "All",
+@@ -454,10 +530,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/e02391a72aef445086dfe983dfdb833e.png",
+       "AssetKind": "All",
+@@ -473,10 +549,29 @@
+       "OriginalItemSpec": "wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e55731f7f247474ca3fb82b91a4507ec.png",
++      "SourceId": "server",
++      "SourceType": "Discovered",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
++      "BasePath": "_content/server",
++      "RelativePath": "images/e55731f7f247474ca3fb82b91a4507ec.png",
++      "AssetKind": "All",
++      "AssetMode": "All",
++      "AssetRole": "Primary",
++      "AssetMergeBehavior": "PreferTarget",
++      "AssetMergeSource": "",
++      "RelatedAsset": "",
++      "AssetTraitName": "",
++      "AssetTraitValue": "",
++      "CopyToOutputDirectory": "Never",
++      "CopyToPublishDirectory": "PreserveNewest",
++      "OriginalItemSpec": "wwwroot\\images\\e55731f7f247474ca3fb82b91a4507ec.png"
++    },
++    {
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/e9c0bcc2cc5f49b38590727d57537452.png",
+       "AssetKind": "All",
+@@ -492,10 +587,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+       "AssetKind": "All",
+@@ -511,10 +606,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/f695214be5b14f83bae6213a5df67733.png",
+       "AssetKind": "All",
+@@ -530,10 +625,10 @@
+       "OriginalItemSpec": "wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png"
+     },
+     {
+-      "Identity": "D:\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
++      "Identity": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+       "SourceId": "server",
+       "SourceType": "Discovered",
+-      "ContentRoot": "D:\\CarZoneProject\\server\\wwwroot\\",
++      "ContentRoot": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\",
+       "BasePath": "_content/server",
+       "RelativePath": "images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+       "AssetKind": "All",
+Index: obj/Debug/net8.0/server.sourcelink.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"documents\":{\"D:\\\\CarZoneProject\\\\*\":\"https://raw.githubusercontent.com/VTNQ/CarZoneProject/f09066cd12958131c7a0a47599be8589baceefa4/*\"}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/server.sourcelink.json b/obj/Debug/net8.0/server.sourcelink.json
+--- a/obj/Debug/net8.0/server.sourcelink.json	
++++ b/obj/Debug/net8.0/server.sourcelink.json	
+@@ -1,1 +1,1 @@
+-{"documents":{"D:\\CarZoneProject\\*":"https://raw.githubusercontent.com/VTNQ/CarZoneProject/f09066cd12958131c7a0a47599be8589baceefa4/*"}}
+\ No newline at end of file
++{"documents":{"C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\*":"https://raw.githubusercontent.com/VTNQ/CarZoneProject/1d9af45b81adf7a87c5bc02b8c47479f14d7cf95/*"}}
+\ No newline at end of file
+Index: obj/rider.project.restore.info
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>17176403881570572
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/rider.project.restore.info b/obj/rider.project.restore.info
+--- a/obj/rider.project.restore.info	
++++ b/obj/rider.project.restore.info	
+@@ -1,1 +1,1 @@
+-17176403881570572
+\ No newline at end of file
++17178238081384373
+\ No newline at end of file
+Index: obj/Debug/net8.0/server.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\r\n// <auto-generated>\r\n//     This code was generated by a tool.\r\n//\r\n//     Changes to this file may cause incorrect behavior and will be lost if\r\n//     the code is regenerated.\r\n// </auto-generated>\r\n//------------------------------------------------------------------------------\r\n\r\nusing System;\r\nusing System.Reflection;\r\n\r\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"server\")]\r\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\r\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\r\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+e4fc1f386a7e970028dad72985db637358464947\")]\r\n[assembly: System.Reflection.AssemblyProductAttribute(\"server\")]\r\n[assembly: System.Reflection.AssemblyTitleAttribute(\"server\")]\r\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\r\n\r\n// Generated by the MSBuild WriteCodeFragment class.\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/server.AssemblyInfo.cs b/obj/Debug/net8.0/server.AssemblyInfo.cs
+--- a/obj/Debug/net8.0/server.AssemblyInfo.cs	
++++ b/obj/Debug/net8.0/server.AssemblyInfo.cs	
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("server")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4fc1f386a7e970028dad72985db637358464947")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d9af45b81adf7a87c5bc02b8c47479f14d7cf95")]
+ [assembly: System.Reflection.AssemblyProductAttribute("server")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("server")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+Index: obj/rider.project.model.nuget.info
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>17178236440995881
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/rider.project.model.nuget.info b/obj/rider.project.model.nuget.info
+--- a/obj/rider.project.model.nuget.info	
++++ b/obj/rider.project.model.nuget.info	
+@@ -1,1 +1,1 @@
+-17178236440995881
+\ No newline at end of file
++17178238081384373
+\ No newline at end of file
+Index: bin/Debug/net8.0/server.staticwebassets.runtime.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"ContentRoots\":[\"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\"],\"Root\":{\"Children\":{\"images\":{\"Children\":{\"0dfc94e2555a42f89d5144003311c82c.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/0dfc94e2555a42f89d5144003311c82c.png\"},\"Patterns\":null},\"1fe0cf657635486cb627d91be41c4872.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/1fe0cf657635486cb627d91be41c4872.png\"},\"Patterns\":null},\"2a4020bea8004e068c0a73cf0924f0c1.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/2a4020bea8004e068c0a73cf0924f0c1.png\"},\"Patterns\":null},\"30f9b6149bc44d3f9057b1a7c963beac.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/30f9b6149bc44d3f9057b1a7c963beac.png\"},\"Patterns\":null},\"368e6eaa89554db1a61a9e7db7543f87.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/368e6eaa89554db1a61a9e7db7543f87.png\"},\"Patterns\":null},\"4a2b06492e764cd18be611ce6ae77c27.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/4a2b06492e764cd18be611ce6ae77c27.png\"},\"Patterns\":null},\"4a43a80ec2e642e48a2d47ee7347f15b.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/4a43a80ec2e642e48a2d47ee7347f15b.png\"},\"Patterns\":null},\"4f40bba2169448b09c91ef54c94e8f70.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/4f40bba2169448b09c91ef54c94e8f70.png\"},\"Patterns\":null},\"5b78973f9de94f5291cf5d3094ea82ef.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/5b78973f9de94f5291cf5d3094ea82ef.png\"},\"Patterns\":null},\"8fe4b28f70cd42fca07614ba95c50f79.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/8fe4b28f70cd42fca07614ba95c50f79.png\"},\"Patterns\":null},\"99723dfe3ff544328521705069e4b7c0.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/99723dfe3ff544328521705069e4b7c0.png\"},\"Patterns\":null},\"a1b1b11537a24a878ecc601b7feec6fa.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/a1b1b11537a24a878ecc601b7feec6fa.png\"},\"Patterns\":null},\"a5c82dd2c750414ab79a84ce13e36626.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/a5c82dd2c750414ab79a84ce13e36626.png\"},\"Patterns\":null},\"audi.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/audi.jpg\"},\"Patterns\":null},\"audi2.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/audi2.jpg\"},\"Patterns\":null},\"bad9dc920443424084a88ca8ed42c05c.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/bad9dc920443424084a88ca8ed42c05c.png\"},\"Patterns\":null},\"c1212b58c1ca45dabd1d069524cb6093.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/c1212b58c1ca45dabd1d069524cb6093.png\"},\"Patterns\":null},\"cac934d233e343c3bc30f634240a06c3.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/cac934d233e343c3bc30f634240a06c3.png\"},\"Patterns\":null},\"d5a2e927430d4a38bf20583f06ae588b.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/d5a2e927430d4a38bf20583f06ae588b.png\"},\"Patterns\":null},\"d72269fd808a4e31a6dc8a398f21a3ae.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/d72269fd808a4e31a6dc8a398f21a3ae.png\"},\"Patterns\":null},\"dc64900a6d8e4ed5a6216f1c645eff5e.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/dc64900a6d8e4ed5a6216f1c645eff5e.png\"},\"Patterns\":null},\"dcbae94c5e2941b8b58858f52430ed64.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/dcbae94c5e2941b8b58858f52430ed64.png\"},\"Patterns\":null},\"dcfa6797ad4e402ba11236cf6faf68f5.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/dcfa6797ad4e402ba11236cf6faf68f5.png\"},\"Patterns\":null},\"e02391a72aef445086dfe983dfdb833e.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/e02391a72aef445086dfe983dfdb833e.png\"},\"Patterns\":null},\"e9c0bcc2cc5f49b38590727d57537452.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/e9c0bcc2cc5f49b38590727d57537452.png\"},\"Patterns\":null},\"erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\"},\"Patterns\":null},\"f695214be5b14f83bae6213a5df67733.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/f695214be5b14f83bae6213a5df67733.png\"},\"Patterns\":null},\"jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\"},\"Patterns\":null}},\"Asset\":null,\"Patterns\":null}},\"Asset\":null,\"Patterns\":[{\"ContentRootIndex\":0,\"Pattern\":\"**\",\"Depth\":0}]}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/bin/Debug/net8.0/server.staticwebassets.runtime.json b/bin/Debug/net8.0/server.staticwebassets.runtime.json
+--- a/bin/Debug/net8.0/server.staticwebassets.runtime.json	
++++ b/bin/Debug/net8.0/server.staticwebassets.runtime.json	
+@@ -1,1 +1,1 @@
+-{"ContentRoots":["D:\\CarZoneProject\\server\\wwwroot\\"],"Root":{"Children":{"images":{"Children":{"0dfc94e2555a42f89d5144003311c82c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/0dfc94e2555a42f89d5144003311c82c.png"},"Patterns":null},"1fe0cf657635486cb627d91be41c4872.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/1fe0cf657635486cb627d91be41c4872.png"},"Patterns":null},"2a4020bea8004e068c0a73cf0924f0c1.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/2a4020bea8004e068c0a73cf0924f0c1.png"},"Patterns":null},"30f9b6149bc44d3f9057b1a7c963beac.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/30f9b6149bc44d3f9057b1a7c963beac.png"},"Patterns":null},"368e6eaa89554db1a61a9e7db7543f87.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/368e6eaa89554db1a61a9e7db7543f87.png"},"Patterns":null},"4a2b06492e764cd18be611ce6ae77c27.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a2b06492e764cd18be611ce6ae77c27.png"},"Patterns":null},"4a43a80ec2e642e48a2d47ee7347f15b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a43a80ec2e642e48a2d47ee7347f15b.png"},"Patterns":null},"4f40bba2169448b09c91ef54c94e8f70.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4f40bba2169448b09c91ef54c94e8f70.png"},"Patterns":null},"5b78973f9de94f5291cf5d3094ea82ef.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/5b78973f9de94f5291cf5d3094ea82ef.png"},"Patterns":null},"8fe4b28f70cd42fca07614ba95c50f79.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/8fe4b28f70cd42fca07614ba95c50f79.png"},"Patterns":null},"99723dfe3ff544328521705069e4b7c0.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/99723dfe3ff544328521705069e4b7c0.png"},"Patterns":null},"a1b1b11537a24a878ecc601b7feec6fa.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a1b1b11537a24a878ecc601b7feec6fa.png"},"Patterns":null},"a5c82dd2c750414ab79a84ce13e36626.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a5c82dd2c750414ab79a84ce13e36626.png"},"Patterns":null},"audi.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi.jpg"},"Patterns":null},"audi2.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi2.jpg"},"Patterns":null},"bad9dc920443424084a88ca8ed42c05c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/bad9dc920443424084a88ca8ed42c05c.png"},"Patterns":null},"c1212b58c1ca45dabd1d069524cb6093.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/c1212b58c1ca45dabd1d069524cb6093.png"},"Patterns":null},"cac934d233e343c3bc30f634240a06c3.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/cac934d233e343c3bc30f634240a06c3.png"},"Patterns":null},"d5a2e927430d4a38bf20583f06ae588b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d5a2e927430d4a38bf20583f06ae588b.png"},"Patterns":null},"d72269fd808a4e31a6dc8a398f21a3ae.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d72269fd808a4e31a6dc8a398f21a3ae.png"},"Patterns":null},"dc64900a6d8e4ed5a6216f1c645eff5e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dc64900a6d8e4ed5a6216f1c645eff5e.png"},"Patterns":null},"dcbae94c5e2941b8b58858f52430ed64.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcbae94c5e2941b8b58858f52430ed64.png"},"Patterns":null},"dcfa6797ad4e402ba11236cf6faf68f5.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcfa6797ad4e402ba11236cf6faf68f5.png"},"Patterns":null},"e02391a72aef445086dfe983dfdb833e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e02391a72aef445086dfe983dfdb833e.png"},"Patterns":null},"e9c0bcc2cc5f49b38590727d57537452.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e9c0bcc2cc5f49b38590727d57537452.png"},"Patterns":null},"erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"},"Patterns":null},"f695214be5b14f83bae6213a5df67733.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/f695214be5b14f83bae6213a5df67733.png"},"Patterns":null},"jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"},"Patterns":null}},"Asset":null,"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+\ No newline at end of file
++{"ContentRoots":["C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\"],"Root":{"Children":{"images":{"Children":{"06c1f283c30c44efa0949936f545c806.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/06c1f283c30c44efa0949936f545c806.png"},"Patterns":null},"0dfc94e2555a42f89d5144003311c82c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/0dfc94e2555a42f89d5144003311c82c.png"},"Patterns":null},"1fe0cf657635486cb627d91be41c4872.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/1fe0cf657635486cb627d91be41c4872.png"},"Patterns":null},"2a4020bea8004e068c0a73cf0924f0c1.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/2a4020bea8004e068c0a73cf0924f0c1.png"},"Patterns":null},"30f9b6149bc44d3f9057b1a7c963beac.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/30f9b6149bc44d3f9057b1a7c963beac.png"},"Patterns":null},"368e6eaa89554db1a61a9e7db7543f87.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/368e6eaa89554db1a61a9e7db7543f87.png"},"Patterns":null},"390c650f8a7a4587a4cfc5f528765510.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/390c650f8a7a4587a4cfc5f528765510.png"},"Patterns":null},"3f16685566944e118491e3668ce1559b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/3f16685566944e118491e3668ce1559b.png"},"Patterns":null},"45eaa111b0304532b02f5f81931eecff.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/45eaa111b0304532b02f5f81931eecff.png"},"Patterns":null},"4a2b06492e764cd18be611ce6ae77c27.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a2b06492e764cd18be611ce6ae77c27.png"},"Patterns":null},"4a43a80ec2e642e48a2d47ee7347f15b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a43a80ec2e642e48a2d47ee7347f15b.png"},"Patterns":null},"4f40bba2169448b09c91ef54c94e8f70.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4f40bba2169448b09c91ef54c94e8f70.png"},"Patterns":null},"5b78973f9de94f5291cf5d3094ea82ef.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/5b78973f9de94f5291cf5d3094ea82ef.png"},"Patterns":null},"8fe4b28f70cd42fca07614ba95c50f79.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/8fe4b28f70cd42fca07614ba95c50f79.png"},"Patterns":null},"99723dfe3ff544328521705069e4b7c0.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/99723dfe3ff544328521705069e4b7c0.png"},"Patterns":null},"a1b1b11537a24a878ecc601b7feec6fa.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a1b1b11537a24a878ecc601b7feec6fa.png"},"Patterns":null},"a5c82dd2c750414ab79a84ce13e36626.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a5c82dd2c750414ab79a84ce13e36626.png"},"Patterns":null},"audi.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi.jpg"},"Patterns":null},"audi2.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi2.jpg"},"Patterns":null},"bad9dc920443424084a88ca8ed42c05c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/bad9dc920443424084a88ca8ed42c05c.png"},"Patterns":null},"c1212b58c1ca45dabd1d069524cb6093.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/c1212b58c1ca45dabd1d069524cb6093.png"},"Patterns":null},"cac934d233e343c3bc30f634240a06c3.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/cac934d233e343c3bc30f634240a06c3.png"},"Patterns":null},"d5a2e927430d4a38bf20583f06ae588b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d5a2e927430d4a38bf20583f06ae588b.png"},"Patterns":null},"d72269fd808a4e31a6dc8a398f21a3ae.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d72269fd808a4e31a6dc8a398f21a3ae.png"},"Patterns":null},"dc64900a6d8e4ed5a6216f1c645eff5e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dc64900a6d8e4ed5a6216f1c645eff5e.png"},"Patterns":null},"dcbae94c5e2941b8b58858f52430ed64.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcbae94c5e2941b8b58858f52430ed64.png"},"Patterns":null},"dcfa6797ad4e402ba11236cf6faf68f5.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcfa6797ad4e402ba11236cf6faf68f5.png"},"Patterns":null},"e02391a72aef445086dfe983dfdb833e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e02391a72aef445086dfe983dfdb833e.png"},"Patterns":null},"e55731f7f247474ca3fb82b91a4507ec.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e55731f7f247474ca3fb82b91a4507ec.png"},"Patterns":null},"e9c0bcc2cc5f49b38590727d57537452.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e9c0bcc2cc5f49b38590727d57537452.png"},"Patterns":null},"erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"},"Patterns":null},"f695214be5b14f83bae6213a5df67733.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/f695214be5b14f83bae6213a5df67733.png"},"Patterns":null},"jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"},"Patterns":null}},"Asset":null,"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+\ No newline at end of file
+Index: obj/Debug/net8.0/staticwebassets.development.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"ContentRoots\":[\"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\\"],\"Root\":{\"Children\":{\"images\":{\"Children\":{\"0dfc94e2555a42f89d5144003311c82c.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/0dfc94e2555a42f89d5144003311c82c.png\"},\"Patterns\":null},\"1fe0cf657635486cb627d91be41c4872.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/1fe0cf657635486cb627d91be41c4872.png\"},\"Patterns\":null},\"2a4020bea8004e068c0a73cf0924f0c1.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/2a4020bea8004e068c0a73cf0924f0c1.png\"},\"Patterns\":null},\"30f9b6149bc44d3f9057b1a7c963beac.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/30f9b6149bc44d3f9057b1a7c963beac.png\"},\"Patterns\":null},\"368e6eaa89554db1a61a9e7db7543f87.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/368e6eaa89554db1a61a9e7db7543f87.png\"},\"Patterns\":null},\"4a2b06492e764cd18be611ce6ae77c27.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/4a2b06492e764cd18be611ce6ae77c27.png\"},\"Patterns\":null},\"4a43a80ec2e642e48a2d47ee7347f15b.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/4a43a80ec2e642e48a2d47ee7347f15b.png\"},\"Patterns\":null},\"4f40bba2169448b09c91ef54c94e8f70.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/4f40bba2169448b09c91ef54c94e8f70.png\"},\"Patterns\":null},\"5b78973f9de94f5291cf5d3094ea82ef.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/5b78973f9de94f5291cf5d3094ea82ef.png\"},\"Patterns\":null},\"8fe4b28f70cd42fca07614ba95c50f79.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/8fe4b28f70cd42fca07614ba95c50f79.png\"},\"Patterns\":null},\"99723dfe3ff544328521705069e4b7c0.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/99723dfe3ff544328521705069e4b7c0.png\"},\"Patterns\":null},\"a1b1b11537a24a878ecc601b7feec6fa.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/a1b1b11537a24a878ecc601b7feec6fa.png\"},\"Patterns\":null},\"a5c82dd2c750414ab79a84ce13e36626.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/a5c82dd2c750414ab79a84ce13e36626.png\"},\"Patterns\":null},\"audi.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/audi.jpg\"},\"Patterns\":null},\"audi2.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/audi2.jpg\"},\"Patterns\":null},\"bad9dc920443424084a88ca8ed42c05c.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/bad9dc920443424084a88ca8ed42c05c.png\"},\"Patterns\":null},\"c1212b58c1ca45dabd1d069524cb6093.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/c1212b58c1ca45dabd1d069524cb6093.png\"},\"Patterns\":null},\"cac934d233e343c3bc30f634240a06c3.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/cac934d233e343c3bc30f634240a06c3.png\"},\"Patterns\":null},\"d5a2e927430d4a38bf20583f06ae588b.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/d5a2e927430d4a38bf20583f06ae588b.png\"},\"Patterns\":null},\"d72269fd808a4e31a6dc8a398f21a3ae.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/d72269fd808a4e31a6dc8a398f21a3ae.png\"},\"Patterns\":null},\"dc64900a6d8e4ed5a6216f1c645eff5e.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/dc64900a6d8e4ed5a6216f1c645eff5e.png\"},\"Patterns\":null},\"dcbae94c5e2941b8b58858f52430ed64.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/dcbae94c5e2941b8b58858f52430ed64.png\"},\"Patterns\":null},\"dcfa6797ad4e402ba11236cf6faf68f5.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/dcfa6797ad4e402ba11236cf6faf68f5.png\"},\"Patterns\":null},\"e02391a72aef445086dfe983dfdb833e.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/e02391a72aef445086dfe983dfdb833e.png\"},\"Patterns\":null},\"e9c0bcc2cc5f49b38590727d57537452.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/e9c0bcc2cc5f49b38590727d57537452.png\"},\"Patterns\":null},\"erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\"},\"Patterns\":null},\"f695214be5b14f83bae6213a5df67733.png\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/f695214be5b14f83bae6213a5df67733.png\"},\"Patterns\":null},\"jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\":{\"Children\":null,\"Asset\":{\"ContentRootIndex\":0,\"SubPath\":\"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\"},\"Patterns\":null}},\"Asset\":null,\"Patterns\":null}},\"Asset\":null,\"Patterns\":[{\"ContentRootIndex\":0,\"Pattern\":\"**\",\"Depth\":0}]}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/staticwebassets.development.json b/obj/Debug/net8.0/staticwebassets.development.json
+--- a/obj/Debug/net8.0/staticwebassets.development.json	
++++ b/obj/Debug/net8.0/staticwebassets.development.json	
+@@ -1,1 +1,1 @@
+-{"ContentRoots":["D:\\CarZoneProject\\server\\wwwroot\\"],"Root":{"Children":{"images":{"Children":{"0dfc94e2555a42f89d5144003311c82c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/0dfc94e2555a42f89d5144003311c82c.png"},"Patterns":null},"1fe0cf657635486cb627d91be41c4872.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/1fe0cf657635486cb627d91be41c4872.png"},"Patterns":null},"2a4020bea8004e068c0a73cf0924f0c1.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/2a4020bea8004e068c0a73cf0924f0c1.png"},"Patterns":null},"30f9b6149bc44d3f9057b1a7c963beac.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/30f9b6149bc44d3f9057b1a7c963beac.png"},"Patterns":null},"368e6eaa89554db1a61a9e7db7543f87.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/368e6eaa89554db1a61a9e7db7543f87.png"},"Patterns":null},"4a2b06492e764cd18be611ce6ae77c27.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a2b06492e764cd18be611ce6ae77c27.png"},"Patterns":null},"4a43a80ec2e642e48a2d47ee7347f15b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a43a80ec2e642e48a2d47ee7347f15b.png"},"Patterns":null},"4f40bba2169448b09c91ef54c94e8f70.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4f40bba2169448b09c91ef54c94e8f70.png"},"Patterns":null},"5b78973f9de94f5291cf5d3094ea82ef.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/5b78973f9de94f5291cf5d3094ea82ef.png"},"Patterns":null},"8fe4b28f70cd42fca07614ba95c50f79.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/8fe4b28f70cd42fca07614ba95c50f79.png"},"Patterns":null},"99723dfe3ff544328521705069e4b7c0.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/99723dfe3ff544328521705069e4b7c0.png"},"Patterns":null},"a1b1b11537a24a878ecc601b7feec6fa.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a1b1b11537a24a878ecc601b7feec6fa.png"},"Patterns":null},"a5c82dd2c750414ab79a84ce13e36626.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a5c82dd2c750414ab79a84ce13e36626.png"},"Patterns":null},"audi.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi.jpg"},"Patterns":null},"audi2.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi2.jpg"},"Patterns":null},"bad9dc920443424084a88ca8ed42c05c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/bad9dc920443424084a88ca8ed42c05c.png"},"Patterns":null},"c1212b58c1ca45dabd1d069524cb6093.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/c1212b58c1ca45dabd1d069524cb6093.png"},"Patterns":null},"cac934d233e343c3bc30f634240a06c3.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/cac934d233e343c3bc30f634240a06c3.png"},"Patterns":null},"d5a2e927430d4a38bf20583f06ae588b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d5a2e927430d4a38bf20583f06ae588b.png"},"Patterns":null},"d72269fd808a4e31a6dc8a398f21a3ae.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d72269fd808a4e31a6dc8a398f21a3ae.png"},"Patterns":null},"dc64900a6d8e4ed5a6216f1c645eff5e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dc64900a6d8e4ed5a6216f1c645eff5e.png"},"Patterns":null},"dcbae94c5e2941b8b58858f52430ed64.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcbae94c5e2941b8b58858f52430ed64.png"},"Patterns":null},"dcfa6797ad4e402ba11236cf6faf68f5.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcfa6797ad4e402ba11236cf6faf68f5.png"},"Patterns":null},"e02391a72aef445086dfe983dfdb833e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e02391a72aef445086dfe983dfdb833e.png"},"Patterns":null},"e9c0bcc2cc5f49b38590727d57537452.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e9c0bcc2cc5f49b38590727d57537452.png"},"Patterns":null},"erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"},"Patterns":null},"f695214be5b14f83bae6213a5df67733.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/f695214be5b14f83bae6213a5df67733.png"},"Patterns":null},"jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"},"Patterns":null}},"Asset":null,"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+\ No newline at end of file
++{"ContentRoots":["C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\"],"Root":{"Children":{"images":{"Children":{"06c1f283c30c44efa0949936f545c806.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/06c1f283c30c44efa0949936f545c806.png"},"Patterns":null},"0dfc94e2555a42f89d5144003311c82c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/0dfc94e2555a42f89d5144003311c82c.png"},"Patterns":null},"1fe0cf657635486cb627d91be41c4872.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/1fe0cf657635486cb627d91be41c4872.png"},"Patterns":null},"2a4020bea8004e068c0a73cf0924f0c1.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/2a4020bea8004e068c0a73cf0924f0c1.png"},"Patterns":null},"30f9b6149bc44d3f9057b1a7c963beac.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/30f9b6149bc44d3f9057b1a7c963beac.png"},"Patterns":null},"368e6eaa89554db1a61a9e7db7543f87.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/368e6eaa89554db1a61a9e7db7543f87.png"},"Patterns":null},"390c650f8a7a4587a4cfc5f528765510.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/390c650f8a7a4587a4cfc5f528765510.png"},"Patterns":null},"3f16685566944e118491e3668ce1559b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/3f16685566944e118491e3668ce1559b.png"},"Patterns":null},"45eaa111b0304532b02f5f81931eecff.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/45eaa111b0304532b02f5f81931eecff.png"},"Patterns":null},"4a2b06492e764cd18be611ce6ae77c27.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a2b06492e764cd18be611ce6ae77c27.png"},"Patterns":null},"4a43a80ec2e642e48a2d47ee7347f15b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4a43a80ec2e642e48a2d47ee7347f15b.png"},"Patterns":null},"4f40bba2169448b09c91ef54c94e8f70.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/4f40bba2169448b09c91ef54c94e8f70.png"},"Patterns":null},"5b78973f9de94f5291cf5d3094ea82ef.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/5b78973f9de94f5291cf5d3094ea82ef.png"},"Patterns":null},"8fe4b28f70cd42fca07614ba95c50f79.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/8fe4b28f70cd42fca07614ba95c50f79.png"},"Patterns":null},"99723dfe3ff544328521705069e4b7c0.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/99723dfe3ff544328521705069e4b7c0.png"},"Patterns":null},"a1b1b11537a24a878ecc601b7feec6fa.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a1b1b11537a24a878ecc601b7feec6fa.png"},"Patterns":null},"a5c82dd2c750414ab79a84ce13e36626.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/a5c82dd2c750414ab79a84ce13e36626.png"},"Patterns":null},"audi.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi.jpg"},"Patterns":null},"audi2.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/audi2.jpg"},"Patterns":null},"bad9dc920443424084a88ca8ed42c05c.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/bad9dc920443424084a88ca8ed42c05c.png"},"Patterns":null},"c1212b58c1ca45dabd1d069524cb6093.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/c1212b58c1ca45dabd1d069524cb6093.png"},"Patterns":null},"cac934d233e343c3bc30f634240a06c3.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/cac934d233e343c3bc30f634240a06c3.png"},"Patterns":null},"d5a2e927430d4a38bf20583f06ae588b.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d5a2e927430d4a38bf20583f06ae588b.png"},"Patterns":null},"d72269fd808a4e31a6dc8a398f21a3ae.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/d72269fd808a4e31a6dc8a398f21a3ae.png"},"Patterns":null},"dc64900a6d8e4ed5a6216f1c645eff5e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dc64900a6d8e4ed5a6216f1c645eff5e.png"},"Patterns":null},"dcbae94c5e2941b8b58858f52430ed64.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcbae94c5e2941b8b58858f52430ed64.png"},"Patterns":null},"dcfa6797ad4e402ba11236cf6faf68f5.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/dcfa6797ad4e402ba11236cf6faf68f5.png"},"Patterns":null},"e02391a72aef445086dfe983dfdb833e.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e02391a72aef445086dfe983dfdb833e.png"},"Patterns":null},"e55731f7f247474ca3fb82b91a4507ec.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e55731f7f247474ca3fb82b91a4507ec.png"},"Patterns":null},"e9c0bcc2cc5f49b38590727d57537452.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/e9c0bcc2cc5f49b38590727d57537452.png"},"Patterns":null},"erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"},"Patterns":null},"f695214be5b14f83bae6213a5df67733.png":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/f695214be5b14f83bae6213a5df67733.png"},"Patterns":null},"jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"images/jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"},"Patterns":null}},"Asset":null,"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+\ No newline at end of file
+Index: obj/Debug/net8.0/staticwebassets.pack.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"Files\": [\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\0dfc94e2555a42f89d5144003311c82c.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\0dfc94e2555a42f89d5144003311c82c.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\1fe0cf657635486cb627d91be41c4872.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\1fe0cf657635486cb627d91be41c4872.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\2a4020bea8004e068c0a73cf0924f0c1.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\2a4020bea8004e068c0a73cf0924f0c1.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\30f9b6149bc44d3f9057b1a7c963beac.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\30f9b6149bc44d3f9057b1a7c963beac.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\368e6eaa89554db1a61a9e7db7543f87.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\368e6eaa89554db1a61a9e7db7543f87.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\4a2b06492e764cd18be611ce6ae77c27.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\4a2b06492e764cd18be611ce6ae77c27.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\4a43a80ec2e642e48a2d47ee7347f15b.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\4a43a80ec2e642e48a2d47ee7347f15b.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\4f40bba2169448b09c91ef54c94e8f70.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\4f40bba2169448b09c91ef54c94e8f70.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\5b78973f9de94f5291cf5d3094ea82ef.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\5b78973f9de94f5291cf5d3094ea82ef.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\8fe4b28f70cd42fca07614ba95c50f79.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\8fe4b28f70cd42fca07614ba95c50f79.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\99723dfe3ff544328521705069e4b7c0.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\99723dfe3ff544328521705069e4b7c0.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\a1b1b11537a24a878ecc601b7feec6fa.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\a1b1b11537a24a878ecc601b7feec6fa.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\a5c82dd2c750414ab79a84ce13e36626.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\a5c82dd2c750414ab79a84ce13e36626.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\audi.jpg\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\audi.jpg\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\audi2.jpg\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\audi2.jpg\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\bad9dc920443424084a88ca8ed42c05c.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\bad9dc920443424084a88ca8ed42c05c.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\c1212b58c1ca45dabd1d069524cb6093.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\c1212b58c1ca45dabd1d069524cb6093.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\cac934d233e343c3bc30f634240a06c3.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\cac934d233e343c3bc30f634240a06c3.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\d5a2e927430d4a38bf20583f06ae588b.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\d5a2e927430d4a38bf20583f06ae588b.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\d72269fd808a4e31a6dc8a398f21a3ae.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\d72269fd808a4e31a6dc8a398f21a3ae.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\dc64900a6d8e4ed5a6216f1c645eff5e.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\dc64900a6d8e4ed5a6216f1c645eff5e.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\dcbae94c5e2941b8b58858f52430ed64.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\dcbae94c5e2941b8b58858f52430ed64.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\dcfa6797ad4e402ba11236cf6faf68f5.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\dcfa6797ad4e402ba11236cf6faf68f5.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\e02391a72aef445086dfe983dfdb833e.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\e02391a72aef445086dfe983dfdb833e.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\e9c0bcc2cc5f49b38590727d57537452.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\e9c0bcc2cc5f49b38590727d57537452.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\f695214be5b14f83bae6213a5df67733.png\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\f695214be5b14f83bae6213a5df67733.png\"\r\n    },\r\n    {\r\n      \"Id\": \"D:\\\\CarZoneProject\\\\server\\\\wwwroot\\\\images\\\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\",\r\n      \"PackagePath\": \"staticwebassets\\\\images\\\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg\"\r\n    },\r\n    {\r\n      \"Id\": \"obj\\\\Debug\\\\net8.0\\\\staticwebassets\\\\msbuild.build.server.props\",\r\n      \"PackagePath\": \"build\\\\server.props\"\r\n    },\r\n    {\r\n      \"Id\": \"obj\\\\Debug\\\\net8.0\\\\staticwebassets\\\\msbuild.buildMultiTargeting.server.props\",\r\n      \"PackagePath\": \"buildMultiTargeting\\\\server.props\"\r\n    },\r\n    {\r\n      \"Id\": \"obj\\\\Debug\\\\net8.0\\\\staticwebassets\\\\msbuild.buildTransitive.server.props\",\r\n      \"PackagePath\": \"buildTransitive\\\\server.props\"\r\n    },\r\n    {\r\n      \"Id\": \"obj\\\\Debug\\\\net8.0\\\\staticwebassets\\\\msbuild.server.Microsoft.AspNetCore.StaticWebAssets.props\",\r\n      \"PackagePath\": \"build\\\\Microsoft.AspNetCore.StaticWebAssets.props\"\r\n    }\r\n  ],\r\n  \"ElementsToRemove\": []\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/staticwebassets.pack.json b/obj/Debug/net8.0/staticwebassets.pack.json
+--- a/obj/Debug/net8.0/staticwebassets.pack.json	
++++ b/obj/Debug/net8.0/staticwebassets.pack.json	
+@@ -1,115 +1,135 @@
+ {
+   "Files": [
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\06c1f283c30c44efa0949936f545c806.png",
++      "PackagePath": "staticwebassets\\images\\06c1f283c30c44efa0949936f545c806.png"
++    },
++    {
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\0dfc94e2555a42f89d5144003311c82c.png",
+       "PackagePath": "staticwebassets\\images\\0dfc94e2555a42f89d5144003311c82c.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\1fe0cf657635486cb627d91be41c4872.png",
+       "PackagePath": "staticwebassets\\images\\1fe0cf657635486cb627d91be41c4872.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\2a4020bea8004e068c0a73cf0924f0c1.png",
+       "PackagePath": "staticwebassets\\images\\2a4020bea8004e068c0a73cf0924f0c1.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\30f9b6149bc44d3f9057b1a7c963beac.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\30f9b6149bc44d3f9057b1a7c963beac.png",
+       "PackagePath": "staticwebassets\\images\\30f9b6149bc44d3f9057b1a7c963beac.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\368e6eaa89554db1a61a9e7db7543f87.png",
+       "PackagePath": "staticwebassets\\images\\368e6eaa89554db1a61a9e7db7543f87.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\390c650f8a7a4587a4cfc5f528765510.png",
++      "PackagePath": "staticwebassets\\images\\390c650f8a7a4587a4cfc5f528765510.png"
++    },
++    {
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\3f16685566944e118491e3668ce1559b.png",
++      "PackagePath": "staticwebassets\\images\\3f16685566944e118491e3668ce1559b.png"
++    },
++    {
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\45eaa111b0304532b02f5f81931eecff.png",
++      "PackagePath": "staticwebassets\\images\\45eaa111b0304532b02f5f81931eecff.png"
++    },
++    {
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a2b06492e764cd18be611ce6ae77c27.png",
+       "PackagePath": "staticwebassets\\images\\4a2b06492e764cd18be611ce6ae77c27.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png",
+       "PackagePath": "staticwebassets\\images\\4a43a80ec2e642e48a2d47ee7347f15b.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\4f40bba2169448b09c91ef54c94e8f70.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\4f40bba2169448b09c91ef54c94e8f70.png",
+       "PackagePath": "staticwebassets\\images\\4f40bba2169448b09c91ef54c94e8f70.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\5b78973f9de94f5291cf5d3094ea82ef.png",
+       "PackagePath": "staticwebassets\\images\\5b78973f9de94f5291cf5d3094ea82ef.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\8fe4b28f70cd42fca07614ba95c50f79.png",
+       "PackagePath": "staticwebassets\\images\\8fe4b28f70cd42fca07614ba95c50f79.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\99723dfe3ff544328521705069e4b7c0.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\99723dfe3ff544328521705069e4b7c0.png",
+       "PackagePath": "staticwebassets\\images\\99723dfe3ff544328521705069e4b7c0.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\a1b1b11537a24a878ecc601b7feec6fa.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\a1b1b11537a24a878ecc601b7feec6fa.png",
+       "PackagePath": "staticwebassets\\images\\a1b1b11537a24a878ecc601b7feec6fa.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\a5c82dd2c750414ab79a84ce13e36626.png",
+       "PackagePath": "staticwebassets\\images\\a5c82dd2c750414ab79a84ce13e36626.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi.jpg",
+       "PackagePath": "staticwebassets\\images\\audi.jpg"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\audi2.jpg",
+       "PackagePath": "staticwebassets\\images\\audi2.jpg"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\bad9dc920443424084a88ca8ed42c05c.png",
+       "PackagePath": "staticwebassets\\images\\bad9dc920443424084a88ca8ed42c05c.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\c1212b58c1ca45dabd1d069524cb6093.png",
+       "PackagePath": "staticwebassets\\images\\c1212b58c1ca45dabd1d069524cb6093.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\cac934d233e343c3bc30f634240a06c3.png",
+       "PackagePath": "staticwebassets\\images\\cac934d233e343c3bc30f634240a06c3.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\d5a2e927430d4a38bf20583f06ae588b.png",
+       "PackagePath": "staticwebassets\\images\\d5a2e927430d4a38bf20583f06ae588b.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png",
+       "PackagePath": "staticwebassets\\images\\d72269fd808a4e31a6dc8a398f21a3ae.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png",
+       "PackagePath": "staticwebassets\\images\\dc64900a6d8e4ed5a6216f1c645eff5e.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcbae94c5e2941b8b58858f52430ed64.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\dcbae94c5e2941b8b58858f52430ed64.png",
+       "PackagePath": "staticwebassets\\images\\dcbae94c5e2941b8b58858f52430ed64.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png",
+       "PackagePath": "staticwebassets\\images\\dcfa6797ad4e402ba11236cf6faf68f5.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e02391a72aef445086dfe983dfdb833e.png",
+       "PackagePath": "staticwebassets\\images\\e02391a72aef445086dfe983dfdb833e.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e55731f7f247474ca3fb82b91a4507ec.png",
++      "PackagePath": "staticwebassets\\images\\e55731f7f247474ca3fb82b91a4507ec.png"
++    },
++    {
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\e9c0bcc2cc5f49b38590727d57537452.png",
+       "PackagePath": "staticwebassets\\images\\e9c0bcc2cc5f49b38590727d57537452.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg",
+       "PackagePath": "staticwebassets\\images\\erik-mclean-M0z9ajPI3PE-unsplash-768x512.jpg"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\f695214be5b14f83bae6213a5df67733.png",
+       "PackagePath": "staticwebassets\\images\\f695214be5b14f83bae6213a5df67733.png"
+     },
+     {
+-      "Id": "D:\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
++      "Id": "C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\server\\wwwroot\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg",
+       "PackagePath": "staticwebassets\\images\\jon-koop-khYVyHiNZo0-unsplash-1-768x512.jpg"
+     },
+     {

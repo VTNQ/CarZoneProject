@@ -1,0 +1,15 @@
+Index: obj/Debug/net8.0/server.sourcelink.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"documents\":{\"D:\\\\CarZoneProject\\\\*\":\"https://raw.githubusercontent.com/VTNQ/CarZoneProject/1f8f76af14c9a11dd320eea68581d189c3afc43b/*\"}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/obj/Debug/net8.0/server.sourcelink.json b/obj/Debug/net8.0/server.sourcelink.json
+--- a/obj/Debug/net8.0/server.sourcelink.json	
++++ b/obj/Debug/net8.0/server.sourcelink.json	
+@@ -1,1 +1,1 @@
+-{"documents":{"D:\\CarZoneProject\\*":"https://raw.githubusercontent.com/VTNQ/CarZoneProject/1f8f76af14c9a11dd320eea68581d189c3afc43b/*"}}
+\ No newline at end of file
++{"documents":{"C:\\Users\\votan\\OneDrive\\Máy tính\\CarZoneProject\\*":"https://raw.githubusercontent.com/VTNQ/CarZoneProject/2cae08238e5a5e31794bd3c7149f9a4ea55efd17/*"}}
+\ No newline at end of file

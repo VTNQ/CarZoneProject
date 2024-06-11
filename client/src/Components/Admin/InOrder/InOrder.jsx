@@ -250,10 +250,10 @@ function InOrder() {
             return updatedCarTaxes;
         });
     };
-    const approveOrder=async(ID)=>{
+    const approveOrder=async(ID,IDWareHouse)=>{
         try{
             setloading(true)
-            const response=await fetch(`http://localhost:5278/api/InOrder/ApproveOrder/${ID}`,{
+            const response=await fetch(`http://localhost:5278/api/InOrder/ApproveOrder/${ID}/${sessionData.idShowroom}/${IDWareHouse}`,{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -353,13 +353,7 @@ function InOrder() {
 
 
                                             ))}
-                                            <div class="form-group">
-                                                <label for="exampleInputUsername1">Payment</label>
-                                                <Select options={options.map(type => ({ value: type.label, label: type.label }))}
-                                                    value={SelectCash}
-                                                    onChange={(SelectedOption) => handleSelectCash(SelectedOption)}
-                                                />
-                                            </div>
+                                         
                                             <div className="form-group">
                                                 <label htmlFor="">Total Tax Order</label>
                                                 <input type="text" value={totalTax} />
@@ -422,7 +416,7 @@ function InOrder() {
                                                                     opacity: inorder.status==true ? 0.5 : 1,
                                                                     cursor: inorder.status==true ? 'not-allowed' : 'pointer'
                                                                 }}
-                                                             onClick={()=>approveOrder(inorder.id)}
+                                                             onClick={()=>approveOrder(inorder.id,inorder.idWareHouse)}
                                                             >Approve
                                                             </button></td>
                                                             <td><button

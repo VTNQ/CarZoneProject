@@ -117,4 +117,7 @@ public partial class Car
 
     [InverseProperty("IdCarNavigation")]
     public virtual ICollection<SubWarehouseShowroom> SubWarehouseShowrooms { get; set; } = new List<SubWarehouseShowroom>();
+
+    [InverseProperty("IdCarNavigation")]
+    public virtual ICollection<SubWarehouseSupplier> SubWarehouseSuppliers { get; set; } = new List<SubWarehouseSupplier>();
 }

@@ -87,6 +87,18 @@ namespace server.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("ShowWareHouse")]
+        public async Task<IActionResult> ShowWareHouse()
+        {
+            try
+            {
+                return Ok(wareHouserService.ShowWareHouse());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet("GetFilterShowRoom/{id}")]
         public IActionResult GetFilterShowRoom(int id)
         {

@@ -437,6 +437,15 @@ namespace server.Services
                 District = d.IdDistrictNavigation.Name,
             }).ToList();
         }
+
+        public async Task<IEnumerable<dynamic>> ShowWareHouse()
+        {
+            return databaseContext.Warehouses.Select(d => new
+            {
+                id = d.Id,
+                Name = d.Name,
+            }).ToList();
+        }
     }
     
         

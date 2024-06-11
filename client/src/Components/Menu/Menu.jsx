@@ -86,7 +86,7 @@ function Menu() {
                                                     </div>
                                                 </div>
                                                 <div className="header-left-section uk-flex uk-flex-between uk-flex-middle">
-                                                    <a className="logo-text templaza-logo templaza-logo-image uk-flex uk-flex-middle mr-0 mr-lg-4">
+                                                    <a onClick={()=>navigate('/')} className="logo-text templaza-logo templaza-logo-image uk-flex uk-flex-middle mr-0 mr-lg-4">
                                                         {/* <img src="https://autoshowroom.templaza.net/wp-content/uploads/2022/08/Auto-Showroom-White.svg" alt="" /> */}
                                                         car <b className="logo-sub">zone</b>
                                                     </a>
@@ -103,7 +103,7 @@ function Menu() {
                                                             
                                                             <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-11244">
                                                                 <a style={{color}} onClick={()=>navigate("/Inventory")} className="megamenu-item-link item-level-1 has-children cursor-pointer">
-                                                                    <span className="megamenu-title">Iventory</span>
+                                                                    <span className="megamenu-title">Inventory</span>
                                                                  
                                                                 </a>
                                                             </li>

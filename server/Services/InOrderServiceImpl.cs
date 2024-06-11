@@ -54,7 +54,6 @@ namespace server.Services
                         DateOfSale = DateOnly.FromDateTime(DateTime.Now),
                         TotalAmount = inOrder.TotalAmount,
                         TotalTax = inOrder.TotalTax,
-                        Payment = inOrder.Payment,
                         Status = false,
                     };
                     databaseContext.InOrders.Add(InOrder);
@@ -94,12 +93,12 @@ namespace server.Services
             return databaseContext.InOrders.OrderByDescending(d=>d.Id).Where(d => d.IdEmployee == id).Select(d => new
             {
                 id = d.Id,
+                idWareHouse=d.IdWarehouse,
                 WareHouse = d.IdWarehouseNavigation.Name,
                 Supplier = d.IdSuplierNavigation.Name,
                 DateofSale = d.DateOfSale,
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
-                Payment = d.Payment,
                 Status=d.Status
                 
             }).ToList();
@@ -139,7 +138,6 @@ namespace server.Services
                 Employee=d.IdEmployeeNavigation.FullName,
                 TotalAmount = d.TotalAmount,
                 ToTalTax = d.TotalTax,
-                Payment = d.Payment,
             }).ToList();
         }
 
@@ -172,7 +170,7 @@ namespace server.Services
             }).OrderBy(x => x.OrderDate).ToList();
         }
 
-        public async Task<bool> ApproveOrder(int id)
+        public async Task<bool> ApproveOrder(int id,int idshowroom,int idwareHouse)
         {
             using (var traction = await databaseContext.Database.BeginTransactionAsync())
             {
@@ -185,12 +183,18 @@ namespace server.Services
                         var Detail=databaseContext.DetailOfInOrders.Where(d=>d.IdOrder==id).ToList();
                         foreach(var d in Detail)
                         {
-                            var subwarehouse = new SubWarehouseCar
+                            var subwareShowRoom = new SubWarehouseShowroom
                             {
-                                IdWarehouse = Order.IdWarehouse,
+                                IdShowroom=idshowroom,
                                 IdCar = d.IdCar,
                             };
-                            databaseContext.SubWarehouseCars.Add(subwarehouse);
+                            var SubWareHouseCar = databaseContext.SubWarehouseCars.FirstOrDefault(e => e.IdCar == d.IdCar && e.IdWarehouse == idwareHouse);
+                            databaseContext.SubWarehouseShowrooms.Add(subwareShowRoom);
+                            if(SubWareHouseCar != null)
+                            {
+                                databaseContext.SubWarehouseCars.Remove(SubWareHouseCar);
+                            }
+                          
                         }
                     }
                     await databaseContext.SaveChangesAsync();

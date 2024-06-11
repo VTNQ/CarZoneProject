@@ -15,7 +15,7 @@ namespace server.Services
         Task<IEnumerable<dynamic>> ShowOrderWareHouse(int id);
         Task<int> TotalInorder(int id);
         Task<int> TotalOrderWareHouse(int id);
-        Task<bool> ApproveOrder(int id);
+        Task<bool> ApproveOrder(int id, int idshowroom, int idwareHouse);
         Task<IEnumerable<dynamic>> GetCountOrder(int id, int datetime);
         Task<IEnumerable<dynamic>> GetCountinOrder(int id, int datetime);
     }

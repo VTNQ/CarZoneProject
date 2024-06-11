@@ -39,8 +39,8 @@ import HistoryOrder from './Components/Employee/Order/HistoryOrder';
 import ShowContactEmployee from './Components/Employee/ShowContact/ShowContact';
 import ShowContract from './Components/Employee/Contract/ShowContract';
 import DashboardWareHouse from './Components/WareHouse/Dashboard/Dashboard';
-import InOrderWareHouse from './Components/Superadmin/InOrder/InOrder';
-import DetailOrder from './Components/Superadmin/InOrder/DetailOrder';
+
+
 import Form from './Components/WareHouse/Form/Form';
 import Version from './Components/WareHouse/Version/Version';
 import Brand from './Components/WareHouse/Brand/Brand';
@@ -85,7 +85,7 @@ function App() {
         <Route path='/AboutUs' element={<AboutUs />} />
         <Route path='/Footer' element={<Footer />} />
         <Route path='/superadmin/' element={<LayoutSuperadmin />}>
-          <Route path='InOrder' element={<InOrderWareHouse />} />
+        
           <Route index element={<Dashboard />} />
           <Route path='carPage' element={<Car />} />
           <Route path='countriesPage' element={<Countries />} />
@@ -124,7 +124,7 @@ function App() {
         <Route path='/WareHouse/'>
           <Route index path='Dashboard' element={<DashboardWareHouse />} />
 
-          <Route path='DetaiInOrder/:id' element={<DetailOrder />} />
+ 
           <Route path='Form' element={<Form />} />
           <Route path='Version' element={<Version />} />
           <Route path='Brand' element={<Brand />} />
