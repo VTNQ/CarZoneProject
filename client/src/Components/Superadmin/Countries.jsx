@@ -340,14 +340,14 @@ export const Countries = () => {
                             <form role="form" >
                                 <div className="box-body">
                                     {/* Form fields go here */}
-                                    <div class="form-group">
+                                    <div class="form-group" onSubmit={handleEditCountry}>
                                         <label className='float-left'>Country Name</label>
                                         <input type="text" className="form-control" value={FromDataUpdate.UpdateName} onChange={(e) => setFromDataUpdate({ ...FromDataUpdate, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Country Name" />
                                     </div>
                                 </div>
 
                                 <div className="box-footer">
-                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " onClick={(e) => handleEditCountry(e, FromDataUpdate.id)}>Update</button>
+                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded " >Update</button>
                                 </div>
                             </form>
 

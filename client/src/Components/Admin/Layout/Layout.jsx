@@ -199,7 +199,7 @@ const LayoutAdmin = ({ children }) => {
             <li class="nav-item">
               <a class="nav-link cursor-pointer" onClick={() => navigate('/RequestWareHouse', { state: sessionData })}>
                 <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Request WareHouse</span>
+                <span class="menu-title">Request ShowRoom</span>
               </a>
             </li>
             <li class="nav-item">

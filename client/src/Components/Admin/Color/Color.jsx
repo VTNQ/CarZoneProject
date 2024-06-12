@@ -69,7 +69,7 @@ function Color() {
     }, [])
     const handleDeleteColor = async (ID) => {
         try {
-            setloading(true)
+           
             const confirmation = await Swal.fire({
                 title: 'Are you sure?',
                 text: 'You won\'t be able to revert this!',
@@ -80,7 +80,8 @@ function Color() {
                 confirmButtonText: 'Yes, Delete it',
             });
             if (confirmation.isConfirmed) {
-                setloading(false)
+                setloading(true)
+                
                 const response = await fetch(`http://localhost:5278/api/Color/DeleteColor/${ID}`, {
                     method: 'Delete',
                     headers: {
@@ -88,6 +89,7 @@ function Color() {
                     },
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Deletion successful',

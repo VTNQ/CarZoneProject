@@ -99,9 +99,8 @@ function DetailInOrders() {
                                                         <th>Car </th>
                                                         <th>Image</th>
                                                         <th>Price</th>
-                                                        <th>Total Price</th>
-                                                        <th>Tax</th>
-                                                        <th>Total Tax</th>
+                                                        
+                                                 
                                                         <th>Quantity</th>
 
                                                     </tr>
@@ -113,9 +112,8 @@ function DetailInOrders() {
                                                             <td>{detail.car}</td>
                                                             <td>{<img src={detail.picture.pictureLink} width="100" height="100" alt="" style={{ objectFit: 'cover', width: '30%', height: '100%', borderRadius: '0%' }} />}</td>
                                                           <td>{detail.price}$</td>
-                                                            <td>{detail.totalPrice}$</td>
-                                                            <td>{detail.tax.tax}$</td>
-                                                            <td>{detail.totalTax}$</td>
+                                                   
+                                                       
                                                             <td>{detail.quantity}</td>
                                                         </tr>
                                                     ))}

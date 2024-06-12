@@ -150,7 +150,7 @@ function AddCustomer() {
                                 <div className="card" style={{ height: 'auto' }}>
                                     <div className="card-body">
                                         <h4 className="card-title">Add Customer</h4>
-                                        <form className="forms-sample" onSubmit={HandleOnSubmit}>
+                                        <form className="forms-sample">
                                             <div classname="form-group">
                                                 <label htmlFor="exampleInputIndentity1">Indentity Code</label>
                                                 <input type="text" className="form-control" id="exampleInputIndentity1"
@@ -198,7 +198,7 @@ function AddCustomer() {
                                                 )}
                                             </div>
                                             <br />
-                                            <button type="submit" className="btn btn-primary me-2">Submit</button>
+                                            <button type="submit" className="btn btn-primary me-2" onClick={HandleOnSubmit}>Submit</button>
                                             <button className="btn btn-light">Cancel</button>
                                         </form>
                                     </div>

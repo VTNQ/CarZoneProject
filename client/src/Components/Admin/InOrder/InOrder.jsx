@@ -384,7 +384,7 @@ function InOrder() {
                                                         <th> Date of Sale </th>
                                                         <th> Total Amount</th>
                                                         <th> Total Tax </th>
-                                                        <th>Payment</th>
+                                                      
                                                         <th>Status</th>
                                                         <th>Order confirmation</th>
                                                         <th>Detail</th>
@@ -401,7 +401,7 @@ function InOrder() {
                                                             <td>{new Date(inorder.dateofSale).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                                                             <td>{inorder.totalAmount}</td>
                                                             <td>{inorder.toTalTax}</td>
-                                                            <td>{inorder.payment}</td>
+                         
                                                             <td>{inorder.status==true ?"received":"not received"}</td>
                                                             <td><button
                                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-[0.8rem] px-4 rounded "

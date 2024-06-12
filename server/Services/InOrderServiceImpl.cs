@@ -108,6 +108,8 @@ namespace server.Services
             {
                 id = d.Id,
                 Car = d.Name,
+                Price=d.Price,
+                Quantity=databaseContext.DetailOfInOrders.Where(m=>m.IdCar==d.Id).Count(),
                 Picture = databaseContext.Photos.Where(m => m.IdCar == d.Id && m.Status == 0).Select(m => new
                 {
                     PictureLink = configuration["ImageUrl"] + m.Link,

@@ -8,9 +8,13 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie'
 
 function ShowCustomer() {
+    const today = new Date();
+
+    const MaxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
     const [perPage] = useState(5);
     const [searchTerm, setSearchtem] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
+    const [UpdateDob, setUpdateDob] = useState(null);
     const [loading, setloading] = useState(true);
     const [FromData, setFromData] = useState({
         FullName: '',
@@ -80,6 +84,13 @@ function ShowCustomer() {
         setTimeout(() => {
             setPopupVisibility(false)
             setIsClosingPopup(false)
+            setFromData({
+                id: '',
+                UpdateAdress: '',
+                UpdatePhone: '',
+                UpdateIdentityCode: '',
+            })
+            setUpdateDob(null)
         }, 500);
     }
     const FilterCustomer = Customer.filter(Cus =>
@@ -105,7 +116,7 @@ function ShowCustomer() {
             FromData.UpdateAdress = SelectCustomer.address;
             FromData.UpdateEmail = SelectCustomer.email;
             FromData.UpdatePhone = SelectCustomer.phone;
-            FromData.UpdateDOB = SelectCustomer.dob;
+            setUpdateDob(new Date(SelectCustomer.dob))
         }
         setPopupVisibility(true)
     }
@@ -116,7 +127,7 @@ function ShowCustomer() {
     }
     const handleUpdate = async (event) => {
         event.preventDefault();
-        if (FromData.UpdateName==''  || FromData.UpdateEmail == '' || FromData.UpdateAdress == '' || FromData.UpdatePhone == '' || FromData.UpdateDOB == null) {
+        if (FromData.UpdateName==''  || FromData.UpdateEmail == '' || FromData.UpdateAdress == '' || FromData.UpdatePhone == '' || UpdateDob == null) {
             Swal.fire({
                 icon: 'error',
                 title: 'Please enter complete information',
@@ -131,9 +142,9 @@ function ShowCustomer() {
                 timer: 1500,
             })
         } else {
-            setloading(true)
+            setloading(true);
             const offsetInMilliseconds = 7 * 60 * 60 * 1000; // Vietnam's timezone offset from UTC in milliseconds (7 hours ahead)
-            const vietnamStartDate = new Date(FromData.UpdateDOB.getTime() + offsetInMilliseconds);
+            const vietnamStartDate = new Date(UpdateDob.getTime() + offsetInMilliseconds);
 
             try {
                 const response = await fetch(`http://localhost:5278/api/Customer/UpdateCustomer/${FromData.id}`, {
@@ -158,19 +169,19 @@ function ShowCustomer() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setPopupVisibility(false)
                     setFromData({
                         UpdateName: '',
                         UpdateEmail: '',
                         id: '',
                         UpdateAdress: '',
                         UpdatePhone: '',
-                        UpdateIdentityCode: '',
-                        UpdateDOB:''
+                        UpdateIdentityCode: ''
                     })
                     const response = await axios.get("http://localhost:5278/api/Customer/ShowCustomer");
                     setCustomer(response.data.result)
-                    
-                    setPopupVisibility(false)
+                    setUpdateDob(null);
+                   
                 } else {
                     setloading(false)
                     const responseBody = await response.json();
@@ -301,19 +312,20 @@ function ShowCustomer() {
                                 {/* Form fields go here */}
                                 <div class="form-group">
                                     <label className='float-left'>Full Name</label>
-                                    <input type="text" class="form-control" value={FromData.UpdateName} id="exampleInputUsername1" placeholder="Full Name" />
+                                    <input type="text" class="form-control" value={FromData.UpdateName} onChange={(e) => setFromData({ ...FromData, UpdateName: e.target.value })} id="exampleInputUsername1" placeholder="Full Name" />
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Birthday</label>
                                     <DatePicker name='Birthday' dateFormat="dd/MM/yyyy"
                                         className="form-control w-[100%]"
+                                        selected={UpdateDob}
                                         onChange={handleUpdateChange}
-                                        selected={FromData.UpdateDOB}
                                         placeholderText="Select Birthday"
                                         showYearDropdown
                                         scrollableYearDropdown
                                         yearDropdownItemNumber={83}
-                                    />
+
+                                        maxDate={MaxDate} />
                                 </div>
                                 <div class="form-group">
                                     <label className='float-left'>Email</label>

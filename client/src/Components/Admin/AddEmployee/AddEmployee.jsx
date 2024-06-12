@@ -174,9 +174,8 @@ function AddEmployee() {
                         UpdateIdentityCode: ''
                     })
                     const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
-                    if (sessionData && sessionData.idShowroom) {
-                        setEmployee(response.data)
-                    }
+                  
+                    setEmployee(response.data.result)
     
                 }
             } catch (error) {
@@ -302,6 +301,9 @@ function AddEmployee() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    const response = await axios.get(`http://localhost:5278/api/Employee/GetEmployee/${sessionData.idShowroom}`);
+                  
+                    setEmployee(response.data.result)
                 } else {
                     setloading(false)
                     const responseBody = await response.json();

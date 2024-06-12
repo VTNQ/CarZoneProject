@@ -115,6 +115,7 @@ function HistoryOrder() {
                     body: JSON.stringify({ name: FromData.Condition })
                 })
                 if (response.ok) {
+                    setloading(false)
                     Swal.fire({
                         icon: 'success',
                         title: 'Add Contract Success',
@@ -126,6 +127,8 @@ function HistoryOrder() {
                         Condition: '',
                     })
                     setPopupVisibility(false)
+                    const response = await axios.get(`http://localhost:5278/api/OutOrder/ShowOutOrder/${sessionData.ID}`)
+                    setOrder(response.data.result)
                 } else {
                     setloading(false)
                     const responseBody = await response.json();

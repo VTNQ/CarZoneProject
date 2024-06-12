@@ -146,7 +146,7 @@ return(
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Request WareHouse</h4>
+                                <h4 class="card-title">Request ShowRoom</h4>
                                 <form class="forms-sample" >
                                     <label for="exampleInputUsername1">Search</label>
                                     <input type="text" class="form-control" id="exampleInputUsername1" value={searchTerm} onChange={(e) => setSearchtem(e.target.value)}  placeholder="Enter Name Or Email" />

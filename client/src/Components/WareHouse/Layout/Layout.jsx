@@ -150,12 +150,7 @@ useEffect(() => {
       <span class="menu-title">Home</span>
     </a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/InOrder',{state:{sessionData}})}>
-      <i class="icon-grid menu-icon"></i>
-      <span class="menu-title">In Order</span>
-    </a>
-  </li>
+
   <li class="nav-item">
     <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/Form',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
@@ -180,12 +175,12 @@ useEffect(() => {
       <span class="menu-title">Model</span>
     </a>
   </li>
-  <li class="nav-item">
+  {/* <li class="nav-item">
     <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/CreateCarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>
       <span class="menu-title">Car ShowRoom</span>
     </a>
-  </li>
+  </li> */}
   <li class="nav-item">
     <a class="nav-link cursor-pointer" onClick={()=>navigate('/WareHouse/CarWareHouse',{state:{sessionData}})}>
       <i class="icon-grid menu-icon"></i>

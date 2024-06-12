@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "D:\\CarZoneProject\\server\\server.csproj": {}
   },
   "projects": {
@@ -13,19 +12,6 @@
         "projectPath": "D:\\CarZoneProject\\server\\server.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
         "outputPath": "D:\\CarZoneProject\\server\\obj\\",
-=======
-    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {}
-  },
-  "projects": {
-    "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
-        "projectName": "server",
-        "projectPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\server.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "D:\\VisualStudioCode\\CarZone\\CarZoneProject\\server\\obj\\",
->>>>>>> 671b6de434ce93f532cd4ed701cc8fd368ea4ed3
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -114,15 +100,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.0, 8.0.0]"
+              "version": "[8.0.4, 8.0.4]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.0, 8.0.0]"
+              "version": "[8.0.4, 8.0.4]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.0, 8.0.0]"
+              "version": "[8.0.4, 8.0.4]"
             }
           ],
           "frameworkReferences": {
@@ -133,7 +119,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
